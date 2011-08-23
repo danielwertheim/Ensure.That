@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>Ensure.That.Source</id>    
+    <title>Ensure.That-Source distribution</title>
+	<version>0.0.0.0</version>
+	<authors>Daniel Wertheim - @@danielwertheim - http://daniel.wertheim.se</authors>
+	<owners>Daniel Wertheim - @@danielwertheim - http://daniel.wertheim.se</owners>
+	<summary>Yet another guard clause project.</summary>
+    <description>
+		Yet another guard clause project helping you with validation and uniformed exception throwing when validating args.
+		Distributed as SOURCE CONTENT. Use package Ensure.That for lib distribution.
+	</description>
+	<projectUrl>http://github.com/sedanwer/ensure.that</projectUrl>
+	<licenseUrl>http://github.com/sedanwer/ensure.that/blob/master/Solution/License.That.txt</licenseUrl>
+	<requireLicenseAcceptance>false</requireLicenseAcceptance>
+	<tags>argument validation, guard clause</tags>
+  </metadata>
+  <files>
+      <file src="Source\EnsureThat\License*.txt" target="Content\EnsureThat" />
+      <file src="Source\EnsureThat\*.cs" target="Content\EnsureThat" />
+	  <file src="Source\EnsureThat\Core\*.cs" target="Content\EnsureThat\Core" />
+	  <file src="Source\EnsureThat\Resources\*.cs" target="Content\EnsureThat\Resources" />	  
+  </files>    
+</package>

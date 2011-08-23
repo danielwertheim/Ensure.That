@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>Ensure.That</id>    
+    <title>Ensure.That</title>
+	<version>0.0.0.0</version>
+	<authors>Daniel Wertheim - @@danielwertheim - http://daniel.wertheim.se</authors>
+	<owners>Daniel Wertheim - @@danielwertheim - http://daniel.wertheim.se</owners>
+	<summary>Yet another guard clause project.</summary>
+    <description>
+		Yet another guard clause project helping you with validation and uniformed exception throwing when validating args.
+	</description>
+	<projectUrl>http://github.com/sedanwer/ensure.that</projectUrl>
+	<licenseUrl>http://github.com/sedanwer/ensure.that/blob/master/Solution/License.txt</licenseUrl>
+	<requireLicenseAcceptance>false</requireLicenseAcceptance>
+	<tags>argument validation, guard clause</tags>
+  </metadata>
+  <files>
+      <file src="*.*" target="lib" />
+  </files>    
+</package>

@@ -1,0 +1,22 @@
+# Visual studio stuff
+[Bb]uilds/
+[Oo]bj/
+[Bb]in/
+[D]ebug/
+[Tt]est[Rr]esult/
+[Pp]ackages/
+[Tt]emp/
+*.vspscc
+*.vssscc
+*.suo
+*.cache
+*.csproj.user
+*~
+_ReSharper.*
+*.resharper*
+*.[Rr]e[Ss]harper.user
+*.swp
+*.nupkg
+
+#windows stuff
+Thumbs.db
