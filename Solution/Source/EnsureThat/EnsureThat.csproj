@@ -51,12 +51,15 @@
     <Compile Include="..\..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="EnsureShortExtensions.cs" />
+    <Compile Include="EnsureDecimalExtensions.cs" />
     <Compile Include="Core\ExpressionExtensions.cs" />
     <Compile Include="Ensure.cs" />
     <Compile Include="EnsureBoolExtensions.cs" />
     <Compile Include="EnsureCollectionExtensions.cs" />
+    <Compile Include="EnsureDoubleExtensions.cs" />
     <Compile Include="EnsureGuidExtensions.cs" />
-    <Compile Include="EnsureNumericExtensions.cs" />
+    <Compile Include="EnsureIntExtensions.cs" />
     <Compile Include="EnsureObjectExtensions.cs" />
     <Compile Include="EnsureStringExtensions.cs" />
     <Compile Include="EnsureTypeExtensions.cs" />

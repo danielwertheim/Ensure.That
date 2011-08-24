@@ -4,10 +4,10 @@ using EnsureThat.Resources;
 
 namespace EnsureThat
 {
-    public static class EnsureNumericExtensions
+    public static class EnsureDecimalExtensions
     {
         [DebuggerStepThrough]
-        public static Param<int> IsLt(this Param<int> param, int limit)
+        public static Param<decimal> IsLt(this Param<decimal> param, decimal limit)
         {
             if (param.Value >= limit)
                 throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsLt.Inject(param.Value, limit));
@@ -16,7 +16,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static Param<int> IsLte(this Param<int> param, int limit)
+        public static Param<decimal> IsLte(this Param<decimal> param, decimal limit)
         {
             if (!(param.Value <= limit))
                 throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsLte.Inject(param.Value, limit));
@@ -25,7 +25,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static Param<int> IsGt(this Param<int> param, int limit)
+        public static Param<decimal> IsGt(this Param<decimal> param, decimal limit)
         {
             if (param.Value <= limit)
                 throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsGt.Inject(param.Value, limit));
@@ -34,7 +34,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static Param<int> IsGte(this Param<int> param, int limit)
+        public static Param<decimal> IsGte(this Param<decimal> param, decimal limit)
         {
             if (!(param.Value >= limit))
                 throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsGte.Inject(param.Value, limit));
@@ -43,7 +43,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static Param<int> IsInRange(this Param<int> param, int min, int max)
+        public static Param<decimal> IsInRange(this Param<decimal> param, decimal min, decimal max)
         {
             if (param.Value < min)
                 throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsInRange_ToLow.Inject(param.Value, min));

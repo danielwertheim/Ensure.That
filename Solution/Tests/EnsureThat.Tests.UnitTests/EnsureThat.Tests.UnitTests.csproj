@@ -56,11 +56,16 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NumericTests\EnsureShortParamTests.cs" />
+    <Compile Include="NumericTests\EnsureDoubleParamTests.cs" />
+    <Compile Include="NumericTests\EnsureDecimalParamTests.cs" />
+    <Compile Include="NumericTests\EnsureIntParamTests.cs" />
+    <Compile Include="NumericTests\NumericParamTestSpec.cs" />
     <Compile Include="UnitTestBase.cs" />
     <Compile Include="EnsureBoolParamTests.cs" />
     <Compile Include="EnsureCollectionParamsTests.cs" />
     <Compile Include="EnsureGuidParamTests.cs" />
-    <Compile Include="EnsureNumericParamTests.cs" />
+    <Compile Include="NumericTests\EnsureNumericParamTests.cs" />
     <Compile Include="EnsureObjectParamTests.cs" />
     <Compile Include="EnsureStringParamTests.cs" />
     <Compile Include="EnsureTypeParamTests.cs" />
