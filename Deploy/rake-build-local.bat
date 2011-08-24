@@ -1,1 +1,1 @@
-rake -f rake-build.rb -t local env_buildversion='0.0.0' env_buildconfigname='Release'
+rake -f rake-build.rb -t local
