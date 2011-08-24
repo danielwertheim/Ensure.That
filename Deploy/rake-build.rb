@@ -9,7 +9,7 @@ require 'albacore'
 #--------------------------------------
 # My environment vars
 #--------------------------------------
-@env_buildversion = ENV['env_buildversion']
+@env_buildversion = "0.1.1" + (ENV['env_buildnumber'].to_s.empty? ? "" : ".#{ENV['env_buildnumber'].to_s}")
 @env_buildconfigname = ENV['env_buildconfigname']
 @env_buildfolderpath = ENV['env_buildfolderpath']
 
