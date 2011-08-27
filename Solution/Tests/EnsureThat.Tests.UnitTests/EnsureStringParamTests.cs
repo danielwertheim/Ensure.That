@@ -35,25 +35,92 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
-        public void HasNonWhiteSpaceValue_WhenWhiteSpaceString_ThrowsArgumentNullException()
+        public void IsNotNullOrEmpty_WhenStringIsNull_ThrowsArgumentException()
         {
-            string value = " ";
+            string value = null;
 
             var ex = Assert.Throws<ArgumentException>(
-                () => Ensure.That(value, ParamName).HasNonWhiteSpaceValue());
+                () => Ensure.That(value, ParamName).IsNotNullOrEmpty());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_HasNonWhiteSpaceValue
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty
                 + "\r\nParameter name: test",
                 ex.Message);
         }
 
         [Test]
-        public void HasNonWhiteSpaceValue_WhenStringHasValue_ReturnsPassedString()
+        public void IsNotNullOrEmpty_WhenStringIsEmpty_ThrowsArgumentException()
+        {
+            string value = string.Empty;
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(value, ParamName).IsNotNullOrEmpty());
+
+            Assert.AreEqual(ParamName, ex.ParamName);
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
+
+        [Test]
+        public void IsNotNullOrEmpty_WhenStringIsNotNullOrEmpty_ReturnsPassedString()
+        {
+            var value = " ";
+
+            var returnedValue = Ensure.That(value, ParamName).IsNotNull();
+
+            Assert.AreEqual(ParamName, returnedValue.Name);
+            Assert.AreEqual(value, returnedValue.Value);
+        }
+
+        [Test]
+        public void IsNotNullOrWhiteSpace_WhenStringIsNull_ThrowsArgumentNullException()
+        {
+            string value = null;
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(value, ParamName).IsNotNullOrWhiteSpace());
+
+            Assert.AreEqual(ParamName, ex.ParamName);
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
+
+        [Test]
+        public void IsNotNullOrWhiteSpace_WhenStringIsEmpty_ThrowsArgumentNullException()
+        {
+            string value = string.Empty;
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(value, ParamName).IsNotNullOrWhiteSpace());
+
+            Assert.AreEqual(ParamName, ex.ParamName);
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
+
+        [Test]
+        public void IsNotNullOrWhiteSpace_WhenStringIsWhiteSpace_ThrowsArgumentNullException()
+        {
+            string value = " ";
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(value, ParamName).IsNotNullOrWhiteSpace());
+
+            Assert.AreEqual(ParamName, ex.ParamName);
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
+
+        [Test]
+        public void IsNotNullOrWhiteSpace_WhenStringHasValue_ReturnsPassedString()
         {
             var value = "delta";
 
-            var returnedValue = Ensure.That(value, ParamName).HasNonWhiteSpaceValue();
+            var returnedValue = Ensure.That(value, ParamName).IsNotNullOrWhiteSpace();
 
             Assert.AreEqual(ParamName, returnedValue.Name);
             Assert.AreEqual(value, returnedValue.Value);

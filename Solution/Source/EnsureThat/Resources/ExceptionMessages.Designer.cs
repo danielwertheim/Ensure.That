@@ -61,15 +61,6 @@ namespace EnsureThat.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The string can&apos;t be left empty, null or consist of only whitespaces..
-        /// </summary>
-        internal static string EnsureExtensions_HasNonWhiteSpaceValue {
-            get {
-                return ResourceManager.GetString("EnsureExtensions_HasNonWhiteSpaceValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Expected an expression that evaluates to false..
         /// </summary>
         internal static string EnsureExtensions_IsFalse {
@@ -156,6 +147,24 @@ namespace EnsureThat.Resources {
         internal static string EnsureExtensions_IsNotNull {
             get {
                 return ResourceManager.GetString("EnsureExtensions_IsNotNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The string can&apos;t be null or empty..
+        /// </summary>
+        internal static string EnsureExtensions_IsNotNullOrEmpty {
+            get {
+                return ResourceManager.GetString("EnsureExtensions_IsNotNullOrEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The string can&apos;t be left empty, null or consist of only whitespaces..
+        /// </summary>
+        internal static string EnsureExtensions_IsNotNullOrWhiteSpace {
+            get {
+                return ResourceManager.GetString("EnsureExtensions_IsNotNullOrWhiteSpace", resourceCulture);
             }
         }
         

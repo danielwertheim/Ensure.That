@@ -141,7 +141,7 @@
   <data name="ExpressionUtils_GetRightMostMember_NoMemberFound" xml:space="preserve">
     <value>No MemberExpression found in expression: '{0}'.</value>
   </data>
-  <data name="EnsureExtensions_HasNonWhiteSpaceValue" xml:space="preserve">
+  <data name="EnsureExtensions_IsNotNullOrWhiteSpace" xml:space="preserve">
     <value>The string can't be left empty, null or consist of only whitespaces.</value>
   </data>
   <data name="EnsureExtensions_IsFalse" xml:space="preserve">
@@ -158,5 +158,8 @@
   </data>
   <data name="EnsureExtensions_IsLte" xml:space="preserve">
     <value>value '{0}' is not lower than or equal to limit '{1}'.</value>
+  </data>
+  <data name="EnsureExtensions_IsNotNullOrEmpty" xml:space="preserve">
+    <value>The string can't be null or empty.</value>
   </data>
 </root>
