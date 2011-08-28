@@ -7,26 +7,21 @@ require 'albacore'
 #--------------------------------------
 #ENV.each {|key, value| puts "#{key} = #{value}" }
 #--------------------------------------
-# My environment vars
+# Environment vars
 #--------------------------------------
-#optionals
-@env_buildnumber = ENV['env_buildnumber'].to_s
-@env_buildconfigname = ENV['env_buildconfigname'].empty? ? "Release" : ENV['env_buildconfigname']
-@env_buildfolderpath = ENV['env_buildfolderpath']
+@env_solutionname = 'Ensure.That'
+@env_projectname = 'EnsureThat'
+@env_solutionfolderpath = "../Solution/"
+@env_buildversion = "0.2.0" + (ENV['env_buildnumber'].to_s.empty? ? "" : ".#{ENV['env_buildnumber'].to_s}")
+@env_buildconfigname = ENV['env_buildconfigname'].to_s.empty? ? "Release" : ENV['env_buildconfigname'].to_s
+@env_buildname = "#{@env_solutionname}-v#{@env_buildversion}-#{@env_buildconfigname}"
+@env_buildfolderpath = "#{ENV['env_buildfolderpath']}builds/#{@env_buildname}/"
+@env_binariesfolderpath = "#{@env_buildfolderpath}binaries"
 #--------------------------------------
 #optional if no remote nuget actions should be performed
 @env_nugetPublishApiKey = ENV['env_nugetPublishApiKey']
 @env_nugetPublishUrl = ENV['env_nugetPublishUrl']
 @env_nugetSourceUrl = ENV['env_nugetSourceUrl']
-#--------------------------------------
-#generated
-@env_solutionfolderpath = "../Solution/"
-@env_solutionname = 'Ensure.That'
-@env_projectname = 'EnsureThat'
-@env_buildversion = "0.2.0" + (@env_buildnumber.empty? ? "" : ".#{@env_buildnumber}")
-@env_buildname = "#{@env_solutionname}-v#{@env_buildversion}-#{@env_buildconfigname}"
-@env_buildfolderpath = "#{@env_buildfolderpath}builds/#{@env_buildname}/"
-@env_binariesfolderpath = "#{@env_buildfolderpath}binaries"
 #--------------------------------------
 # Albacore flow controlling tasks
 #--------------------------------------
