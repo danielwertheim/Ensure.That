@@ -85,5 +85,30 @@ namespace EnsureThat.Tests.UnitTests
             Assert.AreEqual(ParamName, returnedArray.Name);
             CollectionAssert.AreEqual(array, returnedArray.Value);
         }
+
+        [Test]
+        public void HasItems_WhenEmptyDictionary_ThrowsArgumentException()
+        {
+            var emptyArray = new Dictionary<string, int>();
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(emptyArray, ParamName).HasItems());
+
+            Assert.AreEqual(ParamName, ex.ParamName);
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNonEmptyCollection
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
+
+        [Test]
+        public void HasItems_WhenNonEmptyDictionary_ReturnsPassedValues()
+        {
+            var array = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            var returnedArray = Ensure.That(array, ParamName).HasItems();
+
+            Assert.AreEqual(ParamName, returnedArray.Name);
+            CollectionAssert.AreEqual(array, returnedArray.Value);
+        }
     }
 }
