@@ -64,10 +64,10 @@ namespace EnsureThat.Tests.UnitTests
         [Test]
         public void HasItems_WhenEmptyList_ThrowsArgumentException()
         {
-            var emptyArray = new List<int>();
+            var emptyList = new List<int>();
 
             var ex = Assert.Throws<ArgumentException>(
-                () => Ensure.That(emptyArray, ParamName).HasItems());
+                () => Ensure.That(emptyList, ParamName).HasItems());
 
             Assert.AreEqual(ParamName, ex.ParamName);
             Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNonEmptyCollection
@@ -78,21 +78,21 @@ namespace EnsureThat.Tests.UnitTests
         [Test]
         public void HasItems_WhenNonEmptyList_ReturnsPassedValues()
         {
-            var array = new List<int> { 1, 2, 3 };
+            var list = new List<int> { 1, 2, 3 };
 
-            var returnedArray = Ensure.That(array, ParamName).HasItems();
+            var returnedArray = Ensure.That(list, ParamName).HasItems();
 
             Assert.AreEqual(ParamName, returnedArray.Name);
-            CollectionAssert.AreEqual(array, returnedArray.Value);
+            CollectionAssert.AreEqual(list, returnedArray.Value);
         }
 
         [Test]
         public void HasItems_WhenEmptyDictionary_ThrowsArgumentException()
         {
-            var emptyArray = new Dictionary<string, int>();
+            var emptyDict = new Dictionary<string, int>();
 
             var ex = Assert.Throws<ArgumentException>(
-                () => Ensure.That(emptyArray, ParamName).HasItems());
+                () => Ensure.That(emptyDict, ParamName).HasItems());
 
             Assert.AreEqual(ParamName, ex.ParamName);
             Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNonEmptyCollection
@@ -103,12 +103,12 @@ namespace EnsureThat.Tests.UnitTests
         [Test]
         public void HasItems_WhenNonEmptyDictionary_ReturnsPassedValues()
         {
-            var array = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+            var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
 
-            var returnedArray = Ensure.That(array, ParamName).HasItems();
+            var returnedArray = Ensure.That(dict, ParamName).HasItems();
 
             Assert.AreEqual(ParamName, returnedArray.Name);
-            CollectionAssert.AreEqual(array, returnedArray.Value);
+            CollectionAssert.AreEqual(dict, returnedArray.Value);
         }
     }
 }
