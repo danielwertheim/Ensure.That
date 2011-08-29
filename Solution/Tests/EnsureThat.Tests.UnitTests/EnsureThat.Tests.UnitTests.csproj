@@ -56,6 +56,9 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="NumericTests\EnsureShortParamTests.cs" />
     <Compile Include="NumericTests\EnsureDoubleParamTests.cs" />
     <Compile Include="NumericTests\EnsureDecimalParamTests.cs" />
