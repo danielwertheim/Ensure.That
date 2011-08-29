@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using EnsureThat.Resources;
 using NUnit.Framework;
@@ -53,6 +54,31 @@ namespace EnsureThat.Tests.UnitTests
         public void HasItems_WhenNonEmptyArray_ReturnsPassedValues()
         {
             var array = new[] { 1, 2, 3 };
+
+            var returnedArray = Ensure.That(array, ParamName).HasItems();
+
+            Assert.AreEqual(ParamName, returnedArray.Name);
+            CollectionAssert.AreEqual(array, returnedArray.Value);
+        }
+
+        [Test]
+        public void HasItems_WhenEmptyList_ThrowsArgumentException()
+        {
+            var emptyArray = new List<int>();
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(emptyArray, ParamName).HasItems());
+
+            Assert.AreEqual(ParamName, ex.ParamName);
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNonEmptyCollection
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
+
+        [Test]
+        public void HasItems_WhenNonEmptyList_ReturnsPassedValues()
+        {
+            var array = new List<int> { 1, 2, 3 };
 
             var returnedArray = Ensure.That(array, ParamName).HasItems();
 
