@@ -12,14 +12,14 @@
 		Distributed as SOURCE CONTENT. Use package Ensure.That for lib distribution.
 	</description>
 	<projectUrl>http://github.com/danielwertheim/ensure.that</projectUrl>
-	<licenseUrl>http://github.com/danielwertheim/ensure.that/blob/master/Solution/License.That.txt</licenseUrl>
+	<licenseUrl>http://github.com/danielwertheim/ensure.that/blob/master/Source/License.That.txt</licenseUrl>
 	<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<tags>argument validation, guard clause</tags>
   </metadata>
   <files>
-      <file src="Source\EnsureThat\License*.txt" target="Content\EnsureThat" />
-      <file src="Source\EnsureThat\*.cs" target="Content\EnsureThat" />
-	  <file src="Source\EnsureThat\Core\*.cs" target="Content\EnsureThat\Core" />
-	  <file src="Source\EnsureThat\Resources\*.cs" target="Content\EnsureThat\Resources" />	  
+      <file src="Projects\EnsureThat\License*.txt" target="Content\EnsureThat" />
+      <file src="Projects\EnsureThat\*.cs" target="Content\EnsureThat" />
+	  <file src="Projects\EnsureThat\Core\*.cs" target="Content\EnsureThat\Core" />
+	  <file src="Projects\EnsureThat\Resources\*.cs" target="Content\EnsureThat\Resources" />	  
   </files>    
 </package>
