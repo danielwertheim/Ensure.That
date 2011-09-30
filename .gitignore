@@ -4,7 +4,6 @@
 [Bb]in/
 [D]ebug/
 [Tt]est[Rr]esult/
-[Pp]ackages/
 [Tt]emp/
 *.vspscc
 *.vssscc
@@ -16,7 +15,6 @@ _ReSharper.*
 *.resharper*
 *.[Rr]e[Ss]harper.user
 *.swp
-*.nupkg
 
 #windows stuff
 Thumbs.db

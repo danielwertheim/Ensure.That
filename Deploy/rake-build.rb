@@ -25,7 +25,7 @@ require 'albacore'
 #--------------------------------------
 # Albacore flow controlling tasks
 #--------------------------------------
-task :ci => [:installMissingNuGets, :buildIt, :testIt, :packageIt, :deployIt]
+task :ci => [:buildIt, :testIt, :packageIt, :deployIt]
 
 task :local => [:buildIt, :testIt, :packageIt]
 #--------------------------------------
@@ -39,13 +39,6 @@ task :deployIt => [:publishNuGet, :publishNuGetSource]
 #--------------------------------------
 # Albacore tasks
 #--------------------------------------
-exec :installMissingNuGets do |cmd|
-  FileList["#{@env_solutionfolderpath}**/packages.config"].each { |filepath|
-    cmd.command = "NuGet.exe"
-    cmd.parameters = "i #{filepath} -o #{@env_solutionfolderpath}/packages -s #{@env_nugetSourceUrl}"
-  }
-end
-
 assemblyinfo :versionIt do |asm|
   sharedAssemblyInfoPath = "#{@env_solutionfolderpath}SharedAssemblyInfo.cs"
   
