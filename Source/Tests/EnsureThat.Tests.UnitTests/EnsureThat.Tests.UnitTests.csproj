@@ -77,7 +77,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Source\EnsureThat\EnsureThat.csproj">
+    <ProjectReference Include="..\..\Projects\EnsureThat\EnsureThat.csproj">
       <Project>{9DAFA0E7-35AA-43AA-BF9A-E44E0C954297}</Project>
       <Name>EnsureThat</Name>
     </ProjectReference>

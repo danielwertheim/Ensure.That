@@ -1,4 +1,4 @@
 # Ensure.That
 
 ## License
-License: New BSD License (BSD)
+License: [The MIT License (MIT)](http://www.opensource.org/licenses/mit-license.php)

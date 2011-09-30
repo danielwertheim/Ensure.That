@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8974ABF3-C25D-4974-A0B1-44A7A0EE44AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnsureThat", "Source\EnsureThat\EnsureThat.csproj", "{9DAFA0E7-35AA-43AA-BF9A-E44E0C954297}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnsureThat", "Projects\EnsureThat\EnsureThat.csproj", "{9DAFA0E7-35AA-43AA-BF9A-E44E0C954297}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnsureThat.Tests.UnitTests", "Tests\EnsureThat.Tests.UnitTests\EnsureThat.Tests.UnitTests.csproj", "{B819F092-F369-4819-AD2F-E5DABE1A0D92}"
 EndProject
