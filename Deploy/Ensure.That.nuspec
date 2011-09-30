@@ -11,7 +11,7 @@
 		Yet another guard clause project helping you with validation and uniformed exception throwing when validating args.
 	</description>
 	<projectUrl>http://github.com/danielwertheim/ensure.that</projectUrl>
-	<licenseUrl>http://github.com/danielwertheim/ensure.that/blob/master/Solution/License.txt</licenseUrl>
+	<licenseUrl>http://github.com/danielwertheim/ensure.that/blob/master/Source/License.txt</licenseUrl>
 	<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<tags>argument validation, guard clause</tags>
   </metadata>
