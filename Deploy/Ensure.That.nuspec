@@ -17,7 +17,6 @@
   </metadata>
   <files>
     <file src="EnsureThat.dll" target="lib" />
-	<file src="EnsureThat.xml" target="lib" />
 	<file src="License.txt" />
   </files>
 </package>
