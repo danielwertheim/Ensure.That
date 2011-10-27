@@ -12,7 +12,7 @@ require 'albacore'
 @env_solutionname = 'Ensure.That'
 @env_projectname = 'EnsureThat'
 @env_solutionfolderpath = "../Source/"
-@env_buildversion = "0.3.0" + (ENV['env_buildnumber'].to_s.empty? ? "" : ".#{ENV['env_buildnumber'].to_s}")
+@env_buildversion = "0.4.0" + (ENV['env_buildnumber'].to_s.empty? ? "" : ".#{ENV['env_buildnumber'].to_s}")
 @env_buildconfigname = ENV['env_buildconfigname'].to_s.empty? ? "Release" : ENV['env_buildconfigname'].to_s
 @env_buildname = "#{@env_solutionname}-v#{@env_buildversion}-#{@env_buildconfigname}"
 @env_buildfolderpath = "#{ENV['env_buildfolderpath']}builds/#{@env_buildname}/"
@@ -77,12 +77,12 @@ end
 
 exec :createNuGet do |cmd|
   cmd.command = "NuGet.exe"
-  cmd.parameters = "pack #{@env_solutionname}.nuspec -version #{@env_buildversion} -nodefaultexcludes -basepath #{@env_binariesfolderpath} -outputdirectory #{@env_buildfolderpath}"
+  cmd.parameters = "pack #{@env_solutionname}.nuspec -version #{@env_buildversion} -basepath #{@env_binariesfolderpath} -outputdirectory #{@env_buildfolderpath}"
 end
 
 exec :createNuGetSource do |cmd|
   cmd.command = "NuGet.exe"
-  cmd.parameters = "pack #{@env_solutionname}.Source.nuspec -version #{@env_buildversion} -nodefaultexcludes -basepath #{@env_solutionfolderpath} -outputdirectory #{@env_buildfolderpath}"
+  cmd.parameters = "pack #{@env_solutionname}.Source.nuspec -version #{@env_buildversion} -basepath #{@env_solutionfolderpath} -outputdirectory #{@env_buildfolderpath}"
 end
 
 exec :publishNuGet do |cmd|
