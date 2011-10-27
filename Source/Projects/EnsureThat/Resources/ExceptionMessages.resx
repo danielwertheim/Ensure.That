@@ -117,49 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EnsureExtensions_IsGte" xml:space="preserve">
+  <data name="EnsureExtensions_IsNotGte" xml:space="preserve">
     <value>value '{0}' is not greater than or equal to limit '{1}'.</value>
   </data>
-  <data name="EnsureExtensions_IsGt" xml:space="preserve">
+  <data name="EnsureExtensions_IsNotGt" xml:space="preserve">
     <value>value '{0}' is not greater than limit '{1}'.</value>
   </data>
-  <data name="EnsureExtensions_IsInRange_ToHigh" xml:space="preserve">
+  <data name="EnsureExtensions_IsNotInRange_ToHigh" xml:space="preserve">
     <value>value '{0}' is &gt; max '{1}'.</value>
   </data>
-  <data name="EnsureExtensions_IsInRange_ToLow" xml:space="preserve">
+  <data name="EnsureExtensions_IsNotInRange_ToLow" xml:space="preserve">
     <value>value '{0}' is &lt; min '{1}'.</value>
   </data>
-  <data name="EnsureExtensions_IsNonEmptyCollection" xml:space="preserve">
+  <data name="EnsureExtensions_IsEmptyCollection" xml:space="preserve">
     <value>Empty collection is not allowed.</value>
   </data>
-  <data name="EnsureExtensions_IsNonEmptyGuid" xml:space="preserve">
+  <data name="EnsureExtensions_IsEmptyGuid" xml:space="preserve">
     <value>Empty Guid is not allowed.</value>
   </data>
-  <data name="EnsureExtensions_IsNotNull" xml:space="preserve">
+  <data name="EnsureExtensions_IsNull" xml:space="preserve">
     <value>Value can not be null.</value>
   </data>
   <data name="ExpressionUtils_GetRightMostMember_NoMemberFound" xml:space="preserve">
     <value>No MemberExpression found in expression: '{0}'.</value>
   </data>
-  <data name="EnsureExtensions_IsNotNullOrWhiteSpace" xml:space="preserve">
+  <data name="EnsureExtensions_IsNullOrWhiteSpace" xml:space="preserve">
     <value>The string can't be left empty, null or consist of only whitespaces.</value>
   </data>
-  <data name="EnsureExtensions_IsFalse" xml:space="preserve">
+  <data name="EnsureExtensions_IsNotFalse" xml:space="preserve">
     <value>Expected an expression that evaluates to false.</value>
   </data>
-  <data name="EnsureExtensions_IsTrue" xml:space="preserve">
+  <data name="EnsureExtensions_IsNotTrue" xml:space="preserve">
     <value>Expected an expression that evaluates to true.</value>
   </data>
-  <data name="EnsureExtensions_IsOfType" xml:space="preserve">
+  <data name="EnsureExtensions_IsNotOfType" xml:space="preserve">
     <value>The param is not of expected type: '{0}'.</value>
   </data>
-  <data name="EnsureExtensions_IsLt" xml:space="preserve">
+  <data name="EnsureExtensions_IsNotLt" xml:space="preserve">
     <value>value '{0}' is not lower than limit '{1}'.</value>
   </data>
-  <data name="EnsureExtensions_IsLte" xml:space="preserve">
+  <data name="EnsureExtensions_IsNotLte" xml:space="preserve">
     <value>value '{0}' is not lower than or equal to limit '{1}'.</value>
   </data>
-  <data name="EnsureExtensions_IsNotNullOrEmpty" xml:space="preserve">
+  <data name="EnsureExtensions_IsNullOrEmpty" xml:space="preserve">
     <value>The string can't be null or empty.</value>
   </data>
 </root>

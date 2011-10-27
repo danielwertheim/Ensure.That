@@ -10,7 +10,7 @@ namespace EnsureThat
         public static Param<int> IsLt(this Param<int> param, int limit)
         {
             if (param.Value >= limit)
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsLt.Inject(param.Value, limit));
+                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotLt.Inject(param.Value, limit));
 
             return param;
         }
@@ -19,7 +19,7 @@ namespace EnsureThat
         public static Param<int> IsLte(this Param<int> param, int limit)
         {
             if (!(param.Value <= limit))
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsLte.Inject(param.Value, limit));
+                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotLte.Inject(param.Value, limit));
 
             return param;
         }
@@ -28,7 +28,7 @@ namespace EnsureThat
         public static Param<int> IsGt(this Param<int> param, int limit)
         {
             if (param.Value <= limit)
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsGt.Inject(param.Value, limit));
+                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotGt.Inject(param.Value, limit));
 
             return param;
         }
@@ -37,7 +37,7 @@ namespace EnsureThat
         public static Param<int> IsGte(this Param<int> param, int limit)
         {
             if (!(param.Value >= limit))
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsGte.Inject(param.Value, limit));
+                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotGte.Inject(param.Value, limit));
 
             return param;
         }
@@ -46,10 +46,10 @@ namespace EnsureThat
         public static Param<int> IsInRange(this Param<int> param, int min, int max)
         {
             if (param.Value < min)
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsInRange_ToLow.Inject(param.Value, min));
+                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotInRange_ToLow.Inject(param.Value, min));
 
             if (param.Value > max)
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsInRange_ToHigh.Inject(param.Value, max));
+                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotInRange_ToHigh.Inject(param.Value, max));
 
             return param;
         }

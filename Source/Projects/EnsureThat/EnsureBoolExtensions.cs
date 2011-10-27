@@ -9,7 +9,7 @@ namespace EnsureThat
         public static Param<bool> IsTrue(this Param<bool> param)
         {
             if (!param.Value)
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsTrue);
+                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotTrue);
 
             return param;
         }
@@ -18,7 +18,7 @@ namespace EnsureThat
         public static Param<bool> IsFalse(this Param<bool> param)
         {
             if (param.Value)
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsFalse);
+                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotFalse);
 
             return param;
         }

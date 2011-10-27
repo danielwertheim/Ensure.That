@@ -16,7 +16,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.That(false, ParamName).IsTrue());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsTrue
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotTrue
                 + "\r\nParameter name: test",
                 ex.Message);
         }
@@ -37,7 +37,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.That(true, ParamName).IsFalse());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsFalse
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotFalse
                 + "\r\nParameter name: test",
                 ex.Message);
         }

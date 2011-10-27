@@ -25,7 +25,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.ThatTypeFor(new Bogus(), ParamName).IsOfType(NonBogusType));
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsOfType.Inject(BogusType.FullName)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(BogusType.FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
@@ -46,7 +46,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.ThatTypeFor(42m, ParamName).IsInt());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsOfType.Inject(typeof(decimal).FullName)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(typeof(decimal).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
@@ -67,7 +67,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.ThatTypeFor(42, ParamName).IsShort());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsOfType.Inject(typeof(int).FullName)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(typeof(int).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
@@ -88,7 +88,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.ThatTypeFor(42, ParamName).IsDecimal());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsOfType.Inject(typeof(int).FullName)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(typeof(int).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
@@ -109,7 +109,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.ThatTypeFor(42, ParamName).IsDouble());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsOfType.Inject(typeof(int).FullName)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(typeof(int).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
@@ -130,7 +130,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.ThatTypeFor(42, ParamName).IsFloat());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsOfType.Inject(typeof(int).FullName)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(typeof(int).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
@@ -151,7 +151,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.ThatTypeFor(42, ParamName).IsBool());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsOfType.Inject(typeof(int).FullName)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(typeof(int).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
@@ -172,7 +172,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.ThatTypeFor(42, ParamName).IsDateTime());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsOfType.Inject(typeof(int).FullName)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(typeof(int).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
@@ -193,7 +193,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.ThatTypeFor(42, ParamName).IsString());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsOfType.Inject(typeof(int).FullName)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(typeof(int).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }

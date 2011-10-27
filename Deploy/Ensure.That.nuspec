@@ -16,6 +16,8 @@
 	<tags>argument validation, guard clause</tags>
   </metadata>
   <files>
-      <file src="*.*" target="lib" />
-  </files>    
+    <file src="EnsureThat.dll" target="lib" />
+	<file src="EnsureThat.xml" target="lib" />
+	<file src="License.txt" />
+  </files>
 </package>
