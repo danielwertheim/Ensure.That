@@ -17,7 +17,7 @@ namespace EnsureThat.Tests.UnitTests
 
             Assert.AreEqual(ParamName, ex.ParamName);
             Assert.AreEqual(
-                ExceptionMessages.EnsureExtensions_IsNonEmptyGuid + "\r\nParameter name: test",
+                ExceptionMessages.EnsureExtensions_IsEmptyGuid + "\r\nParameter name: test",
                 ex.Message);
         }
 

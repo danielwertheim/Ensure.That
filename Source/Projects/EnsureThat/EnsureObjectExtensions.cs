@@ -9,7 +9,7 @@ namespace EnsureThat
         public static Param<T> IsNotNull<T>(this Param<T> param) where T : class
         {
             if (param.Value == null)
-                throw ExceptionFactory.CreateForParamNullValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotNull);
+                throw ExceptionFactory.CreateForParamNullValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNull);
 
             return param;
         }

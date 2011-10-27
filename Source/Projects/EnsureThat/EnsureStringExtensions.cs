@@ -9,7 +9,7 @@ namespace EnsureThat
         public static Param<string> IsNotNullOrWhiteSpace(this Param<string> param)
         {
             if (string.IsNullOrWhiteSpace(param.Value))
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace);
+                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNullOrWhiteSpace);
 
             return param;
         }
@@ -18,7 +18,7 @@ namespace EnsureThat
         public static Param<string> IsNotNullOrEmpty(this Param<string> param)
         {
             if (string.IsNullOrEmpty(param.Value))
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty);
+                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNullOrEmpty);
 
             return param;
         }

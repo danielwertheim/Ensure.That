@@ -79,7 +79,7 @@ namespace EnsureThat
         {
             if (!param.Type.Equals(type))
                 throw ExceptionFactory.CreateForParamValidation(param.Name,
-                    ExceptionMessages.EnsureExtensions_IsOfType.Inject(param.Type.FullName));
+                    ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(param.Type.FullName));
 
             return param;
         }

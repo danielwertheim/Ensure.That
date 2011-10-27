@@ -18,7 +18,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.That(value, ParamName).IsNotNull());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotNull
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNull
                 + "\r\nParameter name: test",
                 ex.Message);
         }

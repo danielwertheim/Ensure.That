@@ -20,7 +20,7 @@ namespace EnsureThat.Tests.UnitTests.NumericTests
                 () => Test_for_IsLt(spec));
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsLt.Inject(spec.Value, spec.Limit)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotLt.Inject(spec.Value, spec.Limit)
                 + "\r\nParameter name: test",
                 ex.Message);
         }
@@ -36,7 +36,7 @@ namespace EnsureThat.Tests.UnitTests.NumericTests
                 () => Test_for_IsLt(spec));
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsLt.Inject(spec.Value, spec.Limit)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotLt.Inject(spec.Value, spec.Limit)
                 + "\r\nParameter name: test",
                 ex.Message);
         }
@@ -67,7 +67,7 @@ namespace EnsureThat.Tests.UnitTests.NumericTests
                 () => Test_for_IsGt(spec));
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsGt.Inject(spec.Value, spec.Limit)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotGt.Inject(spec.Value, spec.Limit)
                 + "\r\nParameter name: test",
                 ex.Message);
         }
@@ -83,7 +83,7 @@ namespace EnsureThat.Tests.UnitTests.NumericTests
                 () => Test_for_IsGt(spec));
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsGt.Inject(spec.Value, spec.Limit)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotGt.Inject(spec.Value, spec.Limit)
                 + "\r\nParameter name: test",
                 ex.Message);
         }
@@ -127,7 +127,7 @@ namespace EnsureThat.Tests.UnitTests.NumericTests
                 () => Test_for_IsLte(spec));
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsLte.Inject(spec.Value, spec.Limit)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotLte.Inject(spec.Value, spec.Limit)
                 + "\r\nParameter name: test",
                 ex.Message);
         }
@@ -171,7 +171,7 @@ namespace EnsureThat.Tests.UnitTests.NumericTests
                 () => Test_for_IsGte(spec));
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsGte.Inject(spec.Value, spec.Limit)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotGte.Inject(spec.Value, spec.Limit)
                 + "\r\nParameter name: test",
                 ex.Message);
         }
@@ -241,7 +241,7 @@ namespace EnsureThat.Tests.UnitTests.NumericTests
                 () => Test_for_IsInRange(spec));
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsInRange_ToLow.Inject(spec.Value, spec.LowerLimit)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotInRange_ToLow.Inject(spec.Value, spec.LowerLimit)
                 + "\r\nParameter name: test",
                 ex.Message);
         }
@@ -257,7 +257,7 @@ namespace EnsureThat.Tests.UnitTests.NumericTests
                 () => Test_for_IsInRange(spec));
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsInRange_ToHigh.Inject(spec.Value, spec.UpperLimit)
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotInRange_ToHigh.Inject(spec.Value, spec.UpperLimit)
                 + "\r\nParameter name: test",
                 ex.Message);
         }
