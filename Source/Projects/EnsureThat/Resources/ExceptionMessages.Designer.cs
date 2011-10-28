@@ -142,6 +142,33 @@ namespace EnsureThat.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value can not be null..
+        /// </summary>
+        internal static string EnsureExtensions_IsNotNull {
+            get {
+                return ResourceManager.GetString("EnsureExtensions_IsNotNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The string can&apos;t be null or empty..
+        /// </summary>
+        internal static string EnsureExtensions_IsNotNullOrEmpty {
+            get {
+                return ResourceManager.GetString("EnsureExtensions_IsNotNullOrEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The string can&apos;t be left empty, null or consist of only whitespaces..
+        /// </summary>
+        internal static string EnsureExtensions_IsNotNullOrWhiteSpace {
+            get {
+                return ResourceManager.GetString("EnsureExtensions_IsNotNullOrWhiteSpace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The param is not of expected type: &apos;{0}&apos;..
         /// </summary>
         internal static string EnsureExtensions_IsNotOfType {
@@ -156,33 +183,6 @@ namespace EnsureThat.Resources {
         internal static string EnsureExtensions_IsNotTrue {
             get {
                 return ResourceManager.GetString("EnsureExtensions_IsNotTrue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Value can not be null..
-        /// </summary>
-        internal static string EnsureExtensions_IsNull {
-            get {
-                return ResourceManager.GetString("EnsureExtensions_IsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The string can&apos;t be null or empty..
-        /// </summary>
-        internal static string EnsureExtensions_IsNullOrEmpty {
-            get {
-                return ResourceManager.GetString("EnsureExtensions_IsNullOrEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The string can&apos;t be left empty, null or consist of only whitespaces..
-        /// </summary>
-        internal static string EnsureExtensions_IsNullOrWhiteSpace {
-            get {
-                return ResourceManager.GetString("EnsureExtensions_IsNullOrWhiteSpace", resourceCulture);
             }
         }
         

@@ -3,12 +3,12 @@ using EnsureThat.Resources;
 
 namespace EnsureThat
 {
-    public static class EnsureObjectExtensions
+    public static class EnsureNullableValueTypeExtensions
     {
         [DebuggerStepThrough]
-        public static Param<T> IsNotNull<T>(this Param<T> param) where T : class
+        public static Param<T?> IsNotNull<T>(this Param<T?> param) where T : struct
         {
-            if (param.Value == null)
+            if (param.Value == null || !param.Value.HasValue)
                 throw ExceptionFactory.CreateForParamNullValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotNull);
 
             return param;

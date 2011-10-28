@@ -52,6 +52,8 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="EnsureDateTimeExtensions.cs" />
+    <Compile Include="EnsureLongExtensions.cs" />
+    <Compile Include="EnsureNullableValueTypeExtensions.cs" />
     <Compile Include="EnsureShortExtensions.cs" />
     <Compile Include="EnsureDecimalExtensions.cs" />
     <Compile Include="Core\ExpressionExtensions.cs" />
