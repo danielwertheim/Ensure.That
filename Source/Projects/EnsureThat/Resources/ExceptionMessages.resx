@@ -135,13 +135,13 @@
   <data name="EnsureExtensions_IsEmptyGuid" xml:space="preserve">
     <value>Empty Guid is not allowed.</value>
   </data>
-  <data name="EnsureExtensions_IsNull" xml:space="preserve">
+  <data name="EnsureExtensions_IsNotNull" xml:space="preserve">
     <value>Value can not be null.</value>
   </data>
   <data name="ExpressionUtils_GetRightMostMember_NoMemberFound" xml:space="preserve">
     <value>No MemberExpression found in expression: '{0}'.</value>
   </data>
-  <data name="EnsureExtensions_IsNullOrWhiteSpace" xml:space="preserve">
+  <data name="EnsureExtensions_IsNotNullOrWhiteSpace" xml:space="preserve">
     <value>The string can't be left empty, null or consist of only whitespaces.</value>
   </data>
   <data name="EnsureExtensions_IsNotFalse" xml:space="preserve">
@@ -159,7 +159,7 @@
   <data name="EnsureExtensions_IsNotLte" xml:space="preserve">
     <value>value '{0}' is not lower than or equal to limit '{1}'.</value>
   </data>
-  <data name="EnsureExtensions_IsNullOrEmpty" xml:space="preserve">
+  <data name="EnsureExtensions_IsNotNullOrEmpty" xml:space="preserve">
     <value>The string can't be null or empty.</value>
   </data>
 </root>

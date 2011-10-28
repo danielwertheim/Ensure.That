@@ -18,7 +18,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.That(value, ParamName).IsNotNull());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNull
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotNull
                 + "\r\nParameter name: test",
                 ex.Message);
         }
@@ -43,7 +43,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.That(value, ParamName).IsNotNullOrEmpty());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNullOrEmpty
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty
                 + "\r\nParameter name: test",
                 ex.Message);
         }
@@ -57,7 +57,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.That(value, ParamName).IsNotNullOrEmpty());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNullOrEmpty
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty
                 + "\r\nParameter name: test",
                 ex.Message);
         }
@@ -82,7 +82,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.That(value, ParamName).IsNotNullOrWhiteSpace());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNullOrWhiteSpace
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace
                 + "\r\nParameter name: test",
                 ex.Message);
         }
@@ -96,7 +96,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.That(value, ParamName).IsNotNullOrWhiteSpace());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNullOrWhiteSpace
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace
                 + "\r\nParameter name: test",
                 ex.Message);
         }
@@ -110,7 +110,7 @@ namespace EnsureThat.Tests.UnitTests
                 () => Ensure.That(value, ParamName).IsNotNullOrWhiteSpace());
 
             Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNullOrWhiteSpace
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace
                 + "\r\nParameter name: test",
                 ex.Message);
         }
