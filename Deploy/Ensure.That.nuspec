@@ -4,19 +4,21 @@
     <id>Ensure.That</id>    
     <title>Ensure.That</title>
 	<version>0.0.0.0</version>
-	<authors>Daniel Wertheim - @@danielwertheim - http://daniel.wertheim.se</authors>
-	<owners>Daniel Wertheim - @@danielwertheim - http://daniel.wertheim.se</owners>
+	<authors>Daniel Wertheim</authors>
+	<owners>Daniel Wertheim</owners>
+	<copyright>Daniel Wertheim</copyright>
 	<summary>Yet another guard clause project.</summary>
     <description>
 		Yet another guard clause project helping you with validation and uniformed exception throwing when validating args.
 	</description>
 	<projectUrl>http://github.com/danielwertheim/ensure.that</projectUrl>
-	<licenseUrl>http://github.com/danielwertheim/ensure.that/blob/master/Source/License.txt</licenseUrl>
+	<licenseUrl>http://github.com/danielwertheim/ensure.that/blob/master/Source/License-EnsureThat.txt</licenseUrl>
 	<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<tags>argument validation, guard clause</tags>
   </metadata>
   <files>
-    <file src="EnsureThat.dll" target="lib" />
-	<file src="License.txt" />
-  </files>
+    <file src="**\*.dll" target="lib\net40\"/>
+	<file src="**\*.xml" target="lib\net40\"/>
+	<file src="**\*.txt" target="content\"/>
+  </files> 
 </package>

@@ -1,8 +1,10 @@
-# Visual studio stuff
+#v0.1.0
+# Dev stuff
+[Aa]pp_[Dd]ata/
 [Bb]uilds/
 [Oo]bj/
 [Bb]in/
-[D]ebug/
+[Dd]ebug/
 [Tt]est[Rr]esult/
 [Tt]emp/
 *.vspscc
