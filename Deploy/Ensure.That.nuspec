@@ -5,7 +5,6 @@
     <title>Ensure.That</title>
 	<version>0.0.0.0</version>
 	<authors>Daniel Wertheim</authors>
-	<owners>Daniel Wertheim</owners>
 	<copyright>Daniel Wertheim</copyright>
 	<summary>Yet another guard clause project.</summary>
     <description>
@@ -17,8 +16,7 @@
 	<tags>argument validation, guard clause</tags>
   </metadata>
   <files>
-    <file src="**\*.dll" target="lib\net40\"/>
-	<file src="**\*.xml" target="lib\net40\"/>
-	<file src="**\*.txt" target="content\"/>
+    <file src="**\EnsureThat*.dll" target="lib\net40\"/>
+	<file src="**\EnsureThat*.xml" target="lib\net40\"/>
   </files> 
 </package>
