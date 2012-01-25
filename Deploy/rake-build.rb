@@ -52,7 +52,8 @@ assemblyinfo :versionIt do |asm|
 end
 
 task :ensureCleanBuildFolder do
-	FileUtils.rm_rf(@env_buildfolderpath)
+	FileUtils.rm_rf("#{@env_solutionname}-v")
+	#FileUtils.rm_rf(@env_buildfolderpath)
 	FileUtils.mkdir_p(@env_buildfolderpath)
 end
 
@@ -69,8 +70,8 @@ end
 
 nunit :unittests do |nunit|
 	nunit.command = "#{@env_solutionfolderpath}/packages/NUnit.2.5.10.11092/tools/nunit-console.exe"
-	nunit.options "/framework=v4.0.30319","/xml=#{@env_buildfolderpath}/NUnit-Report-#{@env_projectnameEnsureThat}-UnitTests.xml"
-	nunit.assemblies FileList["#{@env_solutionfolderpath}/Tests/#{@env_projectnameEnsureThat}.**UnitTests/bin/#{@env_buildconfigname}/#{@env_projectnameEnsureThat}.**UnitTests.dll"]
+	nunit.options "/framework=v4.0.30319","/xml=#{@env_buildfolderpath}/NUnit-Report-#{@env_solutionname}-UnitTests.xml"
+	nunit.assemblies FileList["#{@env_solutionfolderpath}/Tests/#{@env_solutionname}.**UnitTests/bin/#{@env_buildconfigname}/#{@env_solutionname}.**UnitTests.dll"]
 end
 
 zip :zipEnsureThat do |zip|
@@ -81,10 +82,10 @@ end
 
 exec :packEnsureThatNuGet do |cmd|
 	cmd.command = "NuGet.exe"
-	cmd.parameters = "pack #{@env_solutionname}.nuspec -version #{@env_buildversion} -basepath #{ensureThatOutputPath} -outputdirectory #{@env_buildfolderpath}"
+	cmd.parameters = "pack #{@env_projectnameEnsureThat}.nuspec -version #{@env_buildversion} -basepath #{ensureThatOutputPath} -outputdirectory #{@env_buildfolderpath}"
 end
 
 exec :publishEnsureThatNuGet do |cmd|
 	cmd.command = "NuGet.exe"
-	cmd.parameters = "push #{@env_buildfolderpath}/#{@env_solutionname}.#{@env_buildversion}.nupkg #{@env_nugetPublishApiKey} -src #{@env_nugetPublishUrl}"
+	cmd.parameters = "push #{@env_buildfolderpath}/#{@env_projectnameEnsureThat}.#{@env_buildversion}.nupkg #{@env_nugetPublishApiKey} -src #{@env_nugetPublishUrl}"
 end
