@@ -28,9 +28,9 @@ ensureThatOutputPath = "#{@env_buildfolderpath}/#{@env_projectnameEnsureThat}"
 #--------------------------------------
 # Albacore flow controlling tasks
 #--------------------------------------
-task :ci => [:buildIt, :copyIt, :testIt, :zipIt, :packIt, :publishIt]
+task :ci => [:buildIt, :copyEnsureThat, :testIt, :zipIt, :packIt, :publishIt]
 
-task :local => [:buildIt, :copyIt, :testIt, :zipIt, :packIt]
+task :local => [:buildIt, :copyEnsureThat, :testIt, :zipIt, :packIt]
 #--------------------------------------
 task :testIt => [:unittests]
 
@@ -62,7 +62,7 @@ msbuild :buildIt => [:ensureCleanBuildFolder, :versionIt] do |msb|
 	msb.solution = "#{@env_solutionfolderpath}/#{@env_solutionname}.sln"
 end
 
-task :copyIt do
+task :copyEnsureThat do
 	FileUtils.mkdir_p(ensureThatOutputPath)
 	FileUtils.cp_r(FileList["#{@env_solutionfolderpath}/Projects/#{@env_projectnameEnsureThat}/bin/#{@env_buildconfigname}/**"], ensureThatOutputPath)
 end
