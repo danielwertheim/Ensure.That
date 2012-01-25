@@ -1,22 +1,23 @@
-#v0.1.0
+#v0.2
 # Dev stuff
 [Aa]pp_[Dd]ata/
 [Bb]uilds/
 [Oo]bj/
 [Bb]in/
-[Dd]ebug/
+[D]ebug/
 [Tt]est[Rr]esult/
 [Tt]emp/
 *.vspscc
 *.vssscc
 *.suo
 *.cache
-*.csproj.user
+*.user
 *~
 _ReSharper.*
 *.resharper*
 *.[Rr]e[Ss]harper.user
 *.swp
+*.sdf
 
 #windows stuff
 Thumbs.db
