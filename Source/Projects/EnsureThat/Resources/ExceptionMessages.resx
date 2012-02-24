@@ -162,4 +162,10 @@
   <data name="EnsureExtensions_IsNotNullOrEmpty" xml:space="preserve">
     <value>The string can't be null or empty.</value>
   </data>
+  <data name="EnsureExtensions_IsNotInRange_ToLong" xml:space="preserve">
+    <value>The string is too long. Must be between '{0}' and  '{1}'. Must be between '{0}' and '{1}' but was '{2}' characters long.</value>
+  </data>
+  <data name="EnsureExtensions_IsNotInRange_ToShort" xml:space="preserve">
+    <value>The string is not long enough. Must be between '{0}' and '{1}' but was '{2}' characters long.</value>
+  </data>
 </root>
