@@ -10,8 +10,8 @@
     <description>
 		Yet another guard clause project helping you with validation and uniformed exception throwing when validating args.
 	</description>
-	<projectUrl>http://github.com/danielwertheim/ensure.that</projectUrl>
-	<licenseUrl>http://github.com/danielwertheim/ensure.that/blob/master/Source/License-EnsureThat.txt</licenseUrl>
+	<projectUrl>https://github.com/danielwertheim/ensure.that</projectUrl>
+	<licenseUrl>https://github.com/danielwertheim/Ensure.That/blob/master/Source/License.txt</licenseUrl>
 	<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<tags>argument validation, guard clause</tags>
   </metadata>
