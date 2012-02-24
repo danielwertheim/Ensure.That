@@ -36,9 +36,9 @@ task :testIt => [:unittests]
 
 task :zipIt => [:zipEnsureThat]
 
-task :packIt => [:packEnsureThatNuGet]
+task :packIt => [:packEnsureThatNuGet, :packEnsureThatSourceNuGet]
 
-task :publishIt => [:publishEnsureThatNuGet]
+task :publishIt => [:publishEnsureThatNuGet, :publishEnsureThatSourceNuGet]
 #--------------------------------------
 # Albacore tasks
 #--------------------------------------
@@ -84,7 +84,17 @@ exec :packEnsureThatNuGet do |cmd|
 	cmd.parameters = "pack #{@env_solutionname}.nuspec -version #{@env_buildversion} -basepath #{ensureThatOutputPath} -outputdirectory #{@env_buildfolderpath}"
 end
 
+exec :packEnsureThatSourceNuGet do |cmd|
+  cmd.command = "NuGet.exe"
+  cmd.parameters = "pack #{@env_solutionname}.Source.nuspec -version #{@env_buildversion} -basepath #{@env_solutionfolderpath} -outputdirectory #{@env_buildfolderpath}"
+end
+
 exec :publishEnsureThatNuGet do |cmd|
 	cmd.command = "NuGet.exe"
 	cmd.parameters = "push #{@env_buildfolderpath}/#{@env_solutionname}.#{@env_buildversion}.nupkg #{@env_nugetPublishApiKey} -src #{@env_nugetPublishUrl}"
+end
+
+exec :publishEnsureThatSourceNuGet do |cmd|
+  cmd.command = "NuGet.exe"
+  cmd.parameters = "push #{@env_buildfolderpath}#{@env_solutionname}.Source.#{@env_buildversion}.nupkg #{@env_nugetPublishApiKey} -src #{@env_nugetPublishUrl}"
 end
