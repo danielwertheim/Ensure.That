@@ -10,12 +10,15 @@ require 'albacore'
 # Environment vars
 #--------------------------------------
 @env_solutionname = 'Ensure.That'
-@env_projectnameEnsureThat = 'EnsureThat'
 @env_solutionfolderpath = "../Source"
-@env_buildversion = "0.6.0" + (ENV['env_buildnumber'].to_s.empty? ? "" : ".#{ENV['env_buildnumber'].to_s}")
+
+@env_projectnameEnsureThat = 'EnsureThat'
+
+@env_buildfolderpath = 'build'
+@env_version = "0.6.0"
+@env_buildversion = @env_version + (ENV['env_buildnumber'].to_s.empty? ? "" : ".#{ENV['env_buildnumber'].to_s}")
 @env_buildconfigname = ENV['env_buildconfigname'].to_s.empty? ? "Release" : ENV['env_buildconfigname'].to_s
 @env_buildname = "#{@env_solutionname}-v#{@env_buildversion}-#{@env_buildconfigname}"
-@env_buildfolderpath = 'build'
 #--------------------------------------
 # Reusable vars
 #--------------------------------------
@@ -40,7 +43,7 @@ assemblyinfo :versionIt do |asm|
 
 	asm.input_file = sharedAssemblyInfoPath
 	asm.output_file = sharedAssemblyInfoPath
-	asm.version = @env_buildversion
+	asm.version = @env_version
 	asm.file_version = @env_buildversion  
 end
 
@@ -74,10 +77,10 @@ end
 
 exec :packEnsureThatNuGet do |cmd|
 	cmd.command = "NuGet.exe"
-	cmd.parameters = "pack #{@env_solutionname}.nuspec -version #{@env_buildversion} -basepath #{ensureThatOutputPath} -outputdirectory #{@env_buildfolderpath}"
+	cmd.parameters = "pack #{@env_solutionname}.nuspec -version #{@env_version} -basepath #{ensureThatOutputPath} -outputdirectory #{@env_buildfolderpath}"
 end
 
 exec :packEnsureThatSourceNuGet do |cmd|
   cmd.command = "NuGet.exe"
-  cmd.parameters = "pack #{@env_solutionname}.Source.nuspec -version #{@env_buildversion} -basepath #{@env_solutionfolderpath} -outputdirectory #{@env_buildfolderpath}"
+  cmd.parameters = "pack #{@env_solutionname}.Source.nuspec -version #{@env_version} -basepath #{@env_solutionfolderpath} -outputdirectory #{@env_buildfolderpath}"
 end
