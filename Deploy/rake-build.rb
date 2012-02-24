@@ -12,7 +12,7 @@ require 'albacore'
 @env_solutionname = 'Ensure.That'
 @env_projectnameEnsureThat = 'EnsureThat'
 @env_solutionfolderpath = "../Source"
-@env_buildversion = "0.5.0" + (ENV['env_buildnumber'].to_s.empty? ? "" : ".#{ENV['env_buildnumber'].to_s}")
+@env_buildversion = "0.6.0" + (ENV['env_buildnumber'].to_s.empty? ? "" : ".#{ENV['env_buildnumber'].to_s}")
 @env_buildconfigname = ENV['env_buildconfigname'].to_s.empty? ? "Release" : ENV['env_buildconfigname'].to_s
 @env_buildname = "#{@env_solutionname}-v#{@env_buildversion}-#{@env_buildconfigname}"
 @env_buildfolderpath = 'build'
