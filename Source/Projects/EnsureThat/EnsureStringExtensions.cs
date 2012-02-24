@@ -25,7 +25,7 @@ namespace EnsureThat
         }
 
 		[DebuggerStepThrough]
-        public static Param<string> HasLengthBetween(this Param<string> param, int minLength, int maxLenth)
+        public static Param<string> HasLengthBetween(this Param<string> param, int minLength, int maxLength)
         {
             if (string.IsNullOrEmpty(param.Value))
                 throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty);
@@ -33,10 +33,10 @@ namespace EnsureThat
 			var length = param.Value.Length;
 			
 			if (length < minLength)
-				throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotInRange_ToShort.Inject(minLength, maxLenth, length));
+				throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotInRange_ToShort.Inject(minLength, maxLength, length));
 
-            if (length > maxLenth)
-				throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotInRange_ToLong.Inject(minLength, maxLenth, length));
+            if (length > maxLength)
+				throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotInRange_ToLong.Inject(minLength, maxLength, length));
 
             return param;
         }
