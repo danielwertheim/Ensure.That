@@ -17,18 +17,13 @@ require 'albacore'
 @env_buildname = "#{@env_solutionname}-v#{@env_buildversion}-#{@env_buildconfigname}"
 @env_buildfolderpath = 'build'
 #--------------------------------------
-#optional if no remote nuget actions should be performed
-@env_nugetPublishApiKey = ENV['env_nugetPublishApiKey']
-@env_nugetPublishUrl = ENV['env_nugetPublishUrl']
-@env_nugetSourceUrl = ENV['env_nugetSourceUrl']
-#--------------------------------------
 # Reusable vars
 #--------------------------------------
 ensureThatOutputPath = "#{@env_buildfolderpath}/#{@env_projectnameEnsureThat}"
 #--------------------------------------
 # Albacore flow controlling tasks
 #--------------------------------------
-task :ci => [:buildIt, :copyEnsureThat, :testIt, :zipIt, :packIt, :publishIt]
+task :ci => [:buildIt, :copyEnsureThat, :testIt, :zipIt, :packIt]
 
 task :local => [:buildIt, :copyEnsureThat, :testIt, :zipIt, :packIt]
 #--------------------------------------
@@ -37,8 +32,6 @@ task :testIt => [:unittests]
 task :zipIt => [:zipEnsureThat]
 
 task :packIt => [:packEnsureThatNuGet, :packEnsureThatSourceNuGet]
-
-task :publishIt => [:publishEnsureThatNuGet, :publishEnsureThatSourceNuGet]
 #--------------------------------------
 # Albacore tasks
 #--------------------------------------
@@ -87,14 +80,4 @@ end
 exec :packEnsureThatSourceNuGet do |cmd|
   cmd.command = "NuGet.exe"
   cmd.parameters = "pack #{@env_solutionname}.Source.nuspec -version #{@env_buildversion} -basepath #{@env_solutionfolderpath} -outputdirectory #{@env_buildfolderpath}"
-end
-
-exec :publishEnsureThatNuGet do |cmd|
-	cmd.command = "NuGet.exe"
-	cmd.parameters = "push #{@env_buildfolderpath}/#{@env_solutionname}.#{@env_buildversion}.nupkg #{@env_nugetPublishApiKey} -src #{@env_nugetPublishUrl}"
-end
-
-exec :publishEnsureThatSourceNuGet do |cmd|
-  cmd.command = "NuGet.exe"
-  cmd.parameters = "push #{@env_buildfolderpath}#{@env_solutionname}.Source.#{@env_buildversion}.nupkg #{@env_nugetPublishApiKey} -src #{@env_nugetPublishUrl}"
 end
