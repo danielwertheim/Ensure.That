@@ -1,4 +1,6 @@
-# Visual studio stuff
+#v0.3
+# Dev stuff
+[Aa]pp_[Dd]ata/
 [Bb]uilds/
 [Oo]bj/
 [Bb]in/
@@ -9,12 +11,14 @@
 *.vssscc
 *.suo
 *.cache
-*.csproj.user
+*.user
 *~
 _ReSharper.*
 *.resharper*
 *.[Rr]e[Ss]harper.user
 *.swp
+*.sdf
+*.orig
 
 #windows stuff
 Thumbs.db

@@ -125,5 +125,69 @@ namespace EnsureThat.Tests.UnitTests
             Assert.AreEqual(ParamName, returnedValue.Name);
             Assert.AreEqual(value, returnedValue.Value);
         }
+
+        [Test]
+        public void HasLengthBetween_WhenStringIsNull_ThrowsArgumentNullException()
+        {
+            string value = null;
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(value, ParamName).HasLengthBetween(1, 2));
+
+            Assert.AreEqual(ParamName, ex.ParamName);
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
+
+        [Test]
+        public void HasLengthBetween_WhenStringIs1CharacterLong_ThrowsArgumentException()
+        {
+            string value = "a";
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(value, ParamName).HasLengthBetween(2, 4));
+
+            Assert.AreEqual(ParamName, ex.ParamName);
+            Assert.AreEqual(String.Format(ExceptionMessages.EnsureExtensions_IsNotInRange_ToShort, 2, 4, 1)
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
+
+        [Test]
+        public void HasLengthBetween_WhenStringIs5CharactersLong_ThrowsArgumentException()
+        {
+            string value = "abcde";
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(value, ParamName).HasLengthBetween(2, 4));
+
+            Assert.AreEqual(ParamName, ex.ParamName);
+            Assert.AreEqual(String.Format(ExceptionMessages.EnsureExtensions_IsNotInRange_ToLong, 2, 4, 5)
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
+
+        [Test]
+        public void HasLengthBetween_WhenStringIs2CharactersLong_ReturnsPassedString()
+        {
+            var value = "ab";
+
+            var returnedValue = Ensure.That(value, ParamName).HasLengthBetween(2, 4);
+
+            Assert.AreEqual(ParamName, returnedValue.Name);
+            Assert.AreEqual(value, returnedValue.Value);
+        }
+
+        [Test]
+        public void HasLengthBetween_WhenStringIs4CharactersLong_ReturnsPassedString()
+        {
+            var value = "abcd";
+
+            var returnedValue = Ensure.That(value, ParamName).HasLengthBetween(2, 4);
+
+            Assert.AreEqual(ParamName, returnedValue.Name);
+            Assert.AreEqual(value, returnedValue.Value);
+        }
     }
 }

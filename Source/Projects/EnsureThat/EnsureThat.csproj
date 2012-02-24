@@ -84,7 +84,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="License.txt">
+    <Content Include="..\..\License-EnsureThat.txt">
+      <Link>License-EnsureThat.txt</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
