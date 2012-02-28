@@ -64,7 +64,7 @@ task :copyEnsureThat do
 end
 
 nunit :unittests do |nunit|
-	nunit.command = "#{@env_solutionfolderpath}/packages/NUnit.2.5.10.11092/tools/nunit-console.exe"
+	nunit.command = "nunit-console.exe"
 	nunit.options "/framework=v4.0.30319","/xml=#{@env_buildfolderpath}/NUnit-Report-#{@env_projectnameEnsureThat}-UnitTests.xml"
 	nunit.assemblies FileList["#{@env_solutionfolderpath}/Tests/#{@env_projectnameEnsureThat}.**UnitTests/bin/#{@env_buildconfigname}/#{@env_projectnameEnsureThat}.**UnitTests.dll"]
 end
