@@ -168,4 +168,7 @@
   <data name="EnsureExtensions_IsNotInRange_ToShort" xml:space="preserve">
     <value>The string is not long enough. Must be between '{0}' and '{1}' but was '{2}' characters long.</value>
   </data>
+  <data name="EnsureExtensions_NoMatch" xml:space="preserve">
+    <value>value '{0}' does not match '{1}'</value>
+  </data>
 </root>

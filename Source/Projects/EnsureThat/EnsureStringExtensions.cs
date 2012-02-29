@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using EnsureThat.Core;
 using EnsureThat.Resources;
 
@@ -38,6 +39,22 @@ namespace EnsureThat
             if (length > maxLength)
 				throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotInRange_ToLong.Inject(minLength, maxLength, length));
 
+            return param;
+        }
+
+		[DebuggerStepThrough]
+        public static Param<string> Matches(this Param<string> param, string match)
+        {
+            return Matches(param, new Regex(match));
+        }
+
+    [DebuggerStepThrough]
+        public static Param<string> Matches(this Param<string> param, Regex match)
+        {
+            if (!match.IsMatch(param.Value))
+            {
+                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_NoMatch.Inject(param.Value, match));
+            }
             return param;
         }
     }
