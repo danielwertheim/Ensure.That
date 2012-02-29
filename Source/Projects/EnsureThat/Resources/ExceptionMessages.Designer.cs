@@ -203,7 +203,16 @@ namespace EnsureThat.Resources {
                 return ResourceManager.GetString("EnsureExtensions_IsNotTrue", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to value &apos;{0}&apos; does not match &apos;{1}&apos;.
+        /// </summary>
+        internal static string EnsureExtensions_NoMatch {
+            get {
+                return ResourceManager.GetString("EnsureExtensions_NoMatch", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to No MemberExpression found in expression: &apos;{0}&apos;..
         /// </summary>

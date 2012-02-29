@@ -1,6 +1,7 @@
 using System;
 using EnsureThat.Resources;
 using NUnit.Framework;
+using System.Text.RegularExpressions;
 
 namespace EnsureThat.Tests.UnitTests
 {
@@ -186,6 +187,54 @@ namespace EnsureThat.Tests.UnitTests
 
             var returnedValue = Ensure.That(value, ParamName).HasLengthBetween(2, 4);
 
+            Assert.AreEqual(ParamName, returnedValue.Name);
+            Assert.AreEqual(value, returnedValue.Value);
+        }
+
+        [Test]
+        public void MatchesWhenUrlStringMatchesStringPattern_ThrowsArgumentException()
+        {
+            var value = @"incorrect";
+            var match = @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*";
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(value, ParamName).Matches(match));
+
+            Assert.AreEqual(ParamName, ex.ParamName);
+            Assert.AreEqual(String.Format(ExceptionMessages.EnsureExtensions_NoMatch, value, match)
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
+
+        [Test]
+        public void MatchesWhenUrlStringMatchesRegexPattern_ThrowsArgumentException()
+        {
+            var value = @"incorrect";
+            var match = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*");
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(value, ParamName).Matches(match));
+
+            Assert.AreEqual(ParamName, ex.ParamName);
+            Assert.AreEqual(String.Format(ExceptionMessages.EnsureExtensions_NoMatch, value, match)
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
+
+        [Test]
+        public void MatchesWhenUrlStringMatchesStringPattern_ReturnsPassedString()
+        {
+            var value = @"http://google.com:8080";
+            var match = @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*";
+            var returnedValue = Ensure.That(value, ParamName).Matches(match);
+            Assert.AreEqual(ParamName, returnedValue.Name);
+            Assert.AreEqual(value, returnedValue.Value);
+        }
+
+        [Test]
+        public void MatchesWhenUrlStringMatchesRegexPattern_ReturnsPassedString()
+        {
+            var value = @"http://google.com:8080";
+            var match = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*");
+            var returnedValue = Ensure.That(value, ParamName).Matches(match);
             Assert.AreEqual(ParamName, returnedValue.Name);
             Assert.AreEqual(value, returnedValue.Value);
         }
