@@ -192,7 +192,7 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
-        public void MatchesWhenUrlStringMatchesStringPattern_ThrowsArgumentException()
+        public void Matches_WhenUrlStringMatchesStringPattern_ThrowsArgumentException()
         {
             var value = @"incorrect";
             var match = @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*";
@@ -206,7 +206,7 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
-        public void MatchesWhenUrlStringMatchesRegexPattern_ThrowsArgumentException()
+        public void Matches_WhenUrlStringMatchesRegexPattern_ThrowsArgumentException()
         {
             var value = @"incorrect";
             var match = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*");
@@ -220,7 +220,7 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
-        public void MatchesWhenUrlStringMatchesStringPattern_ReturnsPassedString()
+        public void Matches_WhenUrlStringMatchesStringPattern_ReturnsPassedString()
         {
             var value = @"http://google.com:8080";
             var match = @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*";
@@ -230,7 +230,7 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
-        public void MatchesWhenUrlStringMatchesRegexPattern_ReturnsPassedString()
+        public void Matches_WhenUrlStringMatchesRegexPattern_ReturnsPassedString()
         {
             var value = @"http://google.com:8080";
             var match = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*");
