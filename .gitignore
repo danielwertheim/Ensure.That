@@ -1,4 +1,4 @@
-#v0.3
+#v0.4
 # Dev stuff
 [Aa]pp_[Dd]ata/
 [Bb]uilds/
@@ -7,6 +7,8 @@
 [D]ebug/
 [Tt]est[Rr]esult/
 [Tt]emp/
+[Pp]ackages/
+![Pp]ackages/repositories.config
 *.vspscc
 *.vssscc
 *.suo

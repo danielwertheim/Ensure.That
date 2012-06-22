@@ -11,13 +11,14 @@
 		Yet another guard clause project helping you with validation and uniformed exception throwing when validating args.
 	</description>
 	<projectUrl>https://github.com/danielwertheim/ensure.that</projectUrl>
-	<licenseUrl>https://github.com/danielwertheim/Ensure.That/blob/master/Source/License.txt</licenseUrl>
+	<licenseUrl>https://github.com/danielwertheim/Ensure.That/blob/master/Source/License-EnsureThat.txt</licenseUrl>
 	<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	<tags>argument validation, guard clause</tags>
   </metadata>
   <files>
       <file src="Projects\EnsureThat\*.cs" target="Content\EnsureThat" />
 	  <file src="Projects\EnsureThat\Core\*.cs" target="Content\EnsureThat\Core" />
+	  <file src="Projects\EnsureThat\Resources\*.resx" target="Content\EnsureThat\Resources" />
 	  <file src="Projects\EnsureThat\Resources\*.cs" target="Content\EnsureThat\Resources" />	  
   </files>
 </package>

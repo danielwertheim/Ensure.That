@@ -3,6 +3,9 @@
 ## License
 License: [The MIT License (MIT)](http://www.opensource.org/licenses/mit-license.php)
 
+## SemVer for versioning
+Ensure.That uses [SemVer](http://semver.org) for versioning.
+
 ## Contribute
 Line feeds setting should be `core.autocrlf=false`.
 

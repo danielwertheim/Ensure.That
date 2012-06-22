@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using EnsureThat.Core;
 using EnsureThat.Resources;
 
@@ -24,20 +25,36 @@ namespace EnsureThat
             return param;
         }
 
-		[DebuggerStepThrough]
+        [DebuggerStepThrough]
         public static Param<string> HasLengthBetween(this Param<string> param, int minLength, int maxLength)
         {
             if (string.IsNullOrEmpty(param.Value))
                 throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty);
 
-			var length = param.Value.Length;
-			
-			if (length < minLength)
-				throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotInRange_ToShort.Inject(minLength, maxLength, length));
+            var length = param.Value.Length;
+
+            if (length < minLength)
+                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotInRange_ToShort.Inject(minLength, maxLength, length));
 
             if (length > maxLength)
-				throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotInRange_ToLong.Inject(minLength, maxLength, length));
+                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsNotInRange_ToLong.Inject(minLength, maxLength, length));
 
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<string> Matches(this Param<string> param, string match)
+        {
+            return Matches(param, new Regex(match));
+        }
+
+        [DebuggerStepThrough]
+        public static Param<string> Matches(this Param<string> param, Regex match)
+        {
+            if (!match.IsMatch(param.Value))
+            {
+                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_NoMatch.Inject(param.Value, match));
+            }
             return param;
         }
     }
