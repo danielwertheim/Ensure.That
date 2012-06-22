@@ -19,6 +19,5 @@
       <file src="Projects\EnsureThat\*.cs" target="Content\EnsureThat" />
 	  <file src="Projects\EnsureThat\Core\*.cs" target="Content\EnsureThat\Core" />
 	  <file src="Projects\EnsureThat\Resources\*.resx" target="Content\EnsureThat\Resources" />
-	  <file src="Projects\EnsureThat\Resources\*.cs" target="Content\EnsureThat\Resources" />	  
   </files>
 </package>
