@@ -1,6 +1,7 @@
 using System;
 using EnsureThat.Core;
 using EnsureThat.Resources;
+using NCore;
 using NUnit.Framework;
 
 namespace EnsureThat.Tests.UnitTests.NumericTests
