@@ -15,7 +15,7 @@ require 'albacore'
 @env_projectnameEnsureThat = 'EnsureThat'
 
 @env_buildfolderpath = 'build'
-@env_version = "0.8.1"
+@env_version = "0.9.0"
 @env_buildversion = @env_version + (ENV['env_buildnumber'].to_s.empty? ? "" : ".#{ENV['env_buildnumber'].to_s}")
 @env_buildconfigname = ENV['env_buildconfigname'].to_s.empty? ? "Release" : ENV['env_buildconfigname'].to_s
 @env_buildname = "#{@env_solutionname}-v#{@env_buildversion}-#{@env_buildconfigname}"
@@ -23,12 +23,15 @@ require 'albacore'
 # Reusable vars
 #--------------------------------------
 ensureThatOutputPath = "#{@env_buildfolderpath}/#{@env_projectnameEnsureThat}"
+sharedAssemblyInfoPath = "#{@env_solutionfolderpath}/SharedAssemblyInfo.cs"
 #--------------------------------------
 # Albacore flow controlling tasks
 #--------------------------------------
-task :ci => [:installNuGetPackages, :buildIt, :copyEnsureThat, :testIt, :zipIt, :packIt]
+task :ci => [:installNuGets, :cleanIt, :versionIt, :buildIt, :copyEnsureThat, :testIt, :zipIt, :packIt]
 
-task :local => [:installNuGetPackages, :buildIt, :copyEnsureThat, :testIt, :zipIt, :packIt]
+task :local => [:installNuGets, :cleanIt, :versionIt, :buildIt, :copyEnsureThat, :testIt, :zipIt, :packIt]
+
+task :local_signed => [:installNuGets, :cleanIt, :versionIt, :signIt, :buildIt, :copyEnsureThat, :testIt, :zipIt, :packIt]
 #--------------------------------------
 task :testIt => [:unittests]
 
@@ -38,27 +41,31 @@ task :packIt => [:packEnsureThatNuGet, :packEnsureThatSourceNuGet]
 #--------------------------------------
 # Albacore tasks
 #--------------------------------------
-task :installNuGetPackages do
+task :installNuGets do
 	FileList["#{@env_solutionfolderpath}/**/packages.config"].each { |filepath|
 		sh "NuGet.exe i #{filepath} -o #{@env_solutionfolderpath}/packages"
 	}
 end
 
-assemblyinfo :versionIt do |asm|
-	sharedAssemblyInfoPath = "#{@env_solutionfolderpath}/SharedAssemblyInfo.cs"
+task :cleanIt do
+	FileUtils.rm_rf(@env_buildfolderpath)
+	FileUtils.mkdir_p(@env_buildfolderpath)
+end
 
+assemblyinfo :versionIt do |asm|
 	asm.input_file = sharedAssemblyInfoPath
 	asm.output_file = sharedAssemblyInfoPath
 	asm.version = @env_version
 	asm.file_version = @env_buildversion  
 end
 
-task :ensureCleanBuildFolder do
-	FileUtils.rm_rf(@env_buildfolderpath)
-	FileUtils.mkdir_p(@env_buildfolderpath)
+assemblyinfo :signIt do |asm|
+	asm.input_file = sharedAssemblyInfoPath
+	asm.output_file = sharedAssemblyInfoPath
+	asm.custom_attributes :AssemblyKeyFileAttribute => "..\\..\\#{@env_projectnameEnsureThat}.snk"
 end
 
-msbuild :buildIt => [:ensureCleanBuildFolder, :versionIt] do |msb|
+msbuild :buildIt do |msb|
 	msb.properties :configuration => @env_buildconfigname
 	msb.targets :Clean, :Build
 	msb.solution = "#{@env_solutionfolderpath}/#{@env_solutionname}.sln"

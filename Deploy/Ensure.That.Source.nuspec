@@ -16,8 +16,7 @@
 	<tags>argument validation, guard clause</tags>
   </metadata>
   <files>
-      <file src="Projects\EnsureThat\*.cs" target="Content\EnsureThat" />
-	  <file src="Projects\EnsureThat\Core\*.cs" target="Content\EnsureThat\Core" />
-	  <file src="Projects\EnsureThat\Resources\*.resx" target="Content\EnsureThat\Resources" />
+    <file src="Projects\EnsureThat\**\*.cs" target="Content\net40\EnsureThat" exclude="Projects\EnsureThat\Properties\**\*.cs;Projects\EnsureThat\Resources\**\*.*" />
+	<file src="Projects\EnsureThat\Resources\*.resx" target="Content\net40\EnsureThat\Resources" />
   </files>
 </package>

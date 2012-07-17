@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using EnsureThat.Core;
 using EnsureThat.Resources;
 
 namespace EnsureThat

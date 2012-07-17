@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8974ABF3-C25D-4974-A0B1-44A7A0EE44AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnsureThat", "Projects\EnsureThat\EnsureThat.csproj", "{9DAFA0E7-35AA-43AA-BF9A-E44E0C954297}"
@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnsureThat.Tests.UnitTests"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B6DB6C61-146F-4C79-9499-14C4EB341D9C}"
 	ProjectSection(SolutionItems) = preProject
+		EnsureThat.snk = EnsureThat.snk
 		License-EnsureThat.txt = License-EnsureThat.txt
 		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
 	EndProjectSection
