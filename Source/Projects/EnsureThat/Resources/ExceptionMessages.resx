@@ -171,4 +171,7 @@
   <data name="EnsureExtensions_NoMatch" xml:space="preserve">
     <value>value '{0}' does not match '{1}'</value>
   </data>
+  <data name="EnsureExtensions_IsNotClass" xml:space="preserve">
+    <value>The param was expected to be a class, but was type of: '{0}'.</value>
+  </data>
 </root>

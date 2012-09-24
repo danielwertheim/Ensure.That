@@ -30,7 +30,7 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
-        public void IsOfType_WhenIsCorrectType_Expect()
+        public void IsOfType_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor(new Bogus(), ParamName).IsOfType(BogusType);
 
@@ -51,7 +51,7 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
-        public void IsInt_WhenIsCorrectType_Expect()
+        public void IsInt_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor(42, ParamName).IsInt();
 
@@ -72,7 +72,7 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
-        public void IsShort_WhenIsCorrectType_Expect()
+        public void IsShort_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor((short)42, ParamName).IsShort();
 
@@ -93,7 +93,7 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
-        public void IsDecimal_WhenIsCorrectType_Expect()
+        public void IsDecimal_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor(42.33m, ParamName).IsDecimal();
 
@@ -114,7 +114,7 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
-        public void IsDouble_WhenIsCorrectType_Expect()
+        public void IsDouble_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor(42.33, ParamName).IsDouble();
 
@@ -135,7 +135,7 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
-        public void IsFloat_WhenIsCorrectType_Expect()
+        public void IsFloat_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor((float)42.33, ParamName).IsFloat();
 
@@ -156,7 +156,7 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
-        public void IsBool_WhenIsCorrectType_Expect()
+        public void IsBool_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor(true, ParamName).IsBool();
 
@@ -177,7 +177,7 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
-        public void IsDateTime_WhenIsCorrectType_Expect()
+        public void IsDateTime_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor(DateTime.Now, ParamName).IsDateTime();
 
@@ -198,12 +198,37 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
-        public void IsString_WhenIsCorrectType_Expect()
+        public void IsString_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor("Gone fishing", ParamName).IsString();
 
             Assert.AreEqual(ParamName, returnedValue.Name);
             Assert.AreEqual(typeof(string), returnedValue.Type);
+        }
+
+        [Test]
+        public void IsClass_WhenIsNotClass_ThrowsArgumentException()
+        {
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(typeof(int), ParamName).IsClass());
+
+            Assert.AreEqual(ParamName, ex.ParamName);
+            Assert.AreEqual(string.Format(ExceptionMessages.EnsureExtensions_IsNotClass, typeof(int).FullName)
+                            + "\r\nParameter name: test",
+                            ex.Message);
+        }
+
+        [Test]
+        public void IsClass_WhenIsClass_GivesValidResult()
+        {
+            var returnedValue = Ensure.That(typeof (MyClass), ParamName).IsClass();
+
+            Assert.AreEqual(ParamName, returnedValue.Name);
+            Assert.AreEqual(typeof(MyClass), returnedValue.Value);
+        }
+
+        private class MyClass
+        {
         }
     }
 }

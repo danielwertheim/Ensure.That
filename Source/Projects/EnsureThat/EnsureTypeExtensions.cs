@@ -77,8 +77,18 @@ namespace EnsureThat
         public static TypeParam IsOfType(this TypeParam param, Type type)
         {
             if (!param.Type.Equals(type))
-                throw ExceptionFactory.CreateForParamValidation(param.Name,
+                throw ExceptionFactory.CreateForParamValidation(param,
                     ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(param.Type.FullName));
+
+            return param;
+        }
+
+        //[DebuggerStepThrough]
+        public static Param<Type> IsClass(this Param<Type> param)
+        {
+            if (param.Value != null && !param.Value.IsClass)
+                throw ExceptionFactory.CreateForParamValidation(param,
+                    ExceptionMessages.EnsureExtensions_IsNotClass.Inject(param.Value.FullName));
 
             return param;
         }
