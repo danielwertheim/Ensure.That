@@ -1,14 +1,18 @@
+using System;
+
 namespace EnsureThat
 {
     public abstract class Param
     {
         public const string DefaultName = "";
+        public Func<string> ExtraMessageFn;
 
         public readonly string Name;
 
-        protected Param(string name)
+        protected Param(string name, Func<string> extraMessageFn = null)
         {
             Name = name;
+            ExtraMessageFn = extraMessageFn;
         }
     }
 
@@ -16,7 +20,8 @@ namespace EnsureThat
     {
         public readonly T Value;
 
-        internal Param(string name, T value) : base(name)
+        internal Param(string name, T value, Func<string> extraMessageFn = null)
+            : base(name, extraMessageFn)
         {
             Value = value;
         }

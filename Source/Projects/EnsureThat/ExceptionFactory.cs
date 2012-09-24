@@ -2,16 +2,24 @@
 
 namespace EnsureThat
 {
-    internal static class ExceptionFactory
+    public static class ExceptionFactory
     {
-         internal static ArgumentException CreateForParamValidation(string paramName, string message)
-         {
-             return new ArgumentException(message, paramName);
-         }
+        public static ArgumentException CreateForParamValidation(Param param, string message)
+        {
+            return new ArgumentException(
+                param.ExtraMessageFn == null 
+                    ? message 
+                    : string.Concat(message, Environment.NewLine, param.ExtraMessageFn()),
+                param.Name);
+        }
 
-         internal static ArgumentNullException CreateForParamNullValidation(string paramName, string message)
-         {
-             return new ArgumentNullException(paramName, message);
-         }
+        public static ArgumentNullException CreateForParamNullValidation(Param param, string message)
+        {
+            return new ArgumentNullException(
+                param.Name, 
+                param.ExtraMessageFn == null 
+                    ? message 
+                    : string.Concat(message, Environment.NewLine, param.ExtraMessageFn()));
+        }
     }
 }

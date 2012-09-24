@@ -12,7 +12,7 @@ namespace EnsureThat
         public static Param<T> HasItems<T>(this Param<T> param) where T : class, ICollection
         {
             if (param.Value == null || param.Value.Count < 1)
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
 
             return param;
         }
@@ -21,7 +21,7 @@ namespace EnsureThat
         public static Param<Collection<T>> HasItems<T>(this Param<Collection<T>> param)
         {
             if (param.Value == null || param.Value.Count < 1)
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
 
             return param;
         }
@@ -30,7 +30,7 @@ namespace EnsureThat
         public static Param<ICollection<T>> HasItems<T>(this Param<ICollection<T>> param)
         {
             if (param.Value == null || param.Value.Count < 1)
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
 
             return param;
         }
@@ -39,7 +39,7 @@ namespace EnsureThat
         public static Param<T[]> HasItems<T>(this Param<T[]> param)
         {
             if (param.Value == null || param.Value.Length < 1)
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
 
             return param;
         }
@@ -48,7 +48,7 @@ namespace EnsureThat
         public static Param<List<T>> HasItems<T>(this Param<List<T>> param)
         {
             if (param.Value == null || param.Value.Count < 1)
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
 
             return param;
         }
@@ -57,7 +57,7 @@ namespace EnsureThat
         public static Param<IList<T>> HasItems<T>(this Param<IList<T>> param)
         {
             if (param.Value == null || param.Value.Count < 1)
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
 
             return param;
         }
@@ -66,7 +66,7 @@ namespace EnsureThat
         public static Param<IDictionary<TKey, TValue>> HasItems<TKey, TValue>(this Param<IDictionary<TKey, TValue>> param)
         {
             if (param.Value == null || param.Value.Count < 1)
-                throw ExceptionFactory.CreateForParamValidation(param.Name, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
 
             return param;
         }
