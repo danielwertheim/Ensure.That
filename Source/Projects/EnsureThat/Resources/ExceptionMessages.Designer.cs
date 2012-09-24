@@ -88,6 +88,15 @@ namespace EnsureThat.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The param was expected to be a class, but was NULL..
+        /// </summary>
+        public static string EnsureExtensions_IsNotClass_WasNull {
+            get {
+                return ResourceManager.GetString("EnsureExtensions_IsNotClass_WasNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expected an expression that evaluates to false..
         /// </summary>
         public static string EnsureExtensions_IsNotFalse {

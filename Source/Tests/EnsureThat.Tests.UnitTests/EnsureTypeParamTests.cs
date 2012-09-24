@@ -219,6 +219,18 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
+        public void IsClass_WhenPassingNull_ThrowsArgumentException()
+        {
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(null as Type, ParamName).IsClass());
+
+            Assert.AreEqual(ParamName, ex.ParamName);
+            Assert.AreEqual(
+                ExceptionMessages.EnsureExtensions_IsNotClass_WasNull + "\r\nParameter name: test",
+                ex.Message);
+        }
+
+        [Test]
         public void IsClass_WhenIsClass_GivesValidResult()
         {
             var returnedValue = Ensure.That(typeof (MyClass), ParamName).IsClass();
