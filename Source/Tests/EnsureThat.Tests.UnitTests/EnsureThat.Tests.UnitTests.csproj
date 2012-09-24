@@ -54,6 +54,7 @@
     <Compile Include="..\..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="CustomMessageTests.cs" />
     <Compile Include="EnsureNullableValueTypeParamTests.cs" />
     <Compile Include="NumericTests\EnsureDateTimeParamTests.cs" />
     <Compile Include="NumericTests\EnsureLongParamTests.cs" />

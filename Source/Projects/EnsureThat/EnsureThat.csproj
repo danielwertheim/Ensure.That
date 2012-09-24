@@ -52,6 +52,7 @@
     <Compile Include="..\..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="CustomMessageExtensions.cs" />
     <Compile Include="EnsureDateTimeExtensions.cs" />
     <Compile Include="EnsureLongExtensions.cs" />
     <Compile Include="EnsureNullableValueTypeExtensions.cs" />
