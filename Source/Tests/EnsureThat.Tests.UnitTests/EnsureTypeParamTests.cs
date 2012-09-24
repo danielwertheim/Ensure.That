@@ -205,5 +205,30 @@ namespace EnsureThat.Tests.UnitTests
             Assert.AreEqual(ParamName, returnedValue.Name);
             Assert.AreEqual(typeof(string), returnedValue.Type);
         }
+
+        [Test]
+        public void IsClass_WhenIsNotClass_ThrowsArgumentException()
+        {
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(typeof(int), ParamName).IsClass());
+
+            Assert.AreEqual(ParamName, ex.ParamName);
+            Assert.AreEqual(string.Format(ExceptionMessages.EnsureExtensions_IsNotClass, typeof(int).FullName)
+                            + "\r\nParameter name: test",
+                            ex.Message);
+        }
+
+        [Test]
+        public void IsClass_WhenIsClass_GivesValidResult()
+        {
+            var returnedValue = Ensure.That(typeof (MyClass), ParamName).IsClass();
+
+            Assert.AreEqual(ParamName, returnedValue.Name);
+            Assert.AreEqual(typeof(MyClass), returnedValue.Value);
+        }
+
+        private class MyClass
+        {
+        }
     }
 }

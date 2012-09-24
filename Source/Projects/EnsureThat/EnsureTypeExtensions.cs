@@ -82,5 +82,15 @@ namespace EnsureThat
 
             return param;
         }
+
+        //[DebuggerStepThrough]
+        public static Param<Type> IsClass(this Param<Type> param)
+        {
+            if (param.Value != null && !param.Value.IsClass)
+                throw ExceptionFactory.CreateForParamValidation(param.Name,
+                    ExceptionMessages.EnsureExtensions_IsNotClass.Inject(param.Value.FullName));
+
+            return param;
+        }
     }
 }
