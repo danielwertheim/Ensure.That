@@ -62,6 +62,20 @@ namespace EnsureThat.Tests.UnitTests
         }
 
         [Test]
+        public void HasItems_WhenNullArray_ThrowsArgumentException()
+        {
+            var nullArray = null as int[];
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(nullArray, ParamName).HasItems());
+
+            Assert.AreEqual(ParamName, ex.ParamName);
+            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsEmptyCollection
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
+
+        [Test]
         public void HasItems_WhenEmptyArray_ThrowsArgumentException()
         {
             var emptyArray = new int[] { };

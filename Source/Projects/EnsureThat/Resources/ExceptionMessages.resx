@@ -174,4 +174,7 @@
   <data name="EnsureExtensions_IsNotClass" xml:space="preserve">
     <value>The param was expected to be a class, but was type of: '{0}'.</value>
   </data>
+  <data name="EnsureExtensions_IsNotClass_WasNull" xml:space="preserve">
+    <value>The param was expected to be a class, but was NULL.</value>
+  </data>
 </root>
