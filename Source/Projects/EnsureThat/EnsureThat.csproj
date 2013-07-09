@@ -68,7 +68,6 @@
     <Compile Include="EnsureStringExtensions.cs" />
     <Compile Include="EnsureTypeExtensions.cs" />
     <Compile Include="ExceptionFactory.cs" />
-    <Compile Include="ExpressionExtensions.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="Param.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
