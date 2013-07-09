@@ -75,13 +75,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Projects\EnsureThat\EnsureThat.csproj">
-      <Project>{9DAFA0E7-35AA-43AA-BF9A-E44E0C954297}</Project>
-      <Name>EnsureThat</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\..\Projects\EnsureThat\EnsureThat.csproj">
+      <Project>{84c64fbf-a7d0-4057-b437-762a646457a2}</Project>
+      <Name>EnsureThat</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
