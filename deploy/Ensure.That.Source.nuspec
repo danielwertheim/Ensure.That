@@ -8,7 +8,8 @@
         <copyright>©Daniel Wertheim</copyright>
         <summary>Yet another guard clause project.</summary>
         <description>
-        Yet another guard clause project helping you with validation and uniformed exception throwing when validating args.
+        A simple guard clause project helping you with validation and uniformed exception throwing when validating args.
+        This is the source distribution. There is also a portable class library package, Ensure.That.
         </description>
         <projectUrl>https://github.com/danielwertheim/ensure.that</projectUrl>
         <licenseUrl>https://github.com/danielwertheim/Ensure.That#license</licenseUrl>
