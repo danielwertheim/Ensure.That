@@ -1,0 +1,99 @@
+#--------------------------------------
+# Dependencies
+#--------------------------------------
+require 'albacore'
+#--------------------------------------
+# Debug
+#--------------------------------------
+#ENV.each {|key, value| puts "#{key} = #{value}" }
+#--------------------------------------
+# Environment vars
+#--------------------------------------
+@env_solutionname = 'Ensure.That'
+@env_solutionfolderpath = "../Source"
+
+@env_projectnameEnsureThat = 'EnsureThat'
+
+@env_buildfolderpath = 'build'
+@env_version = "1.0.0"
+@env_buildversion = @env_version + (ENV['env_buildnumber'].to_s.empty? ? "" : ".#{ENV['env_buildnumber'].to_s}")
+@env_buildconfigname = ENV['env_buildconfigname'].to_s.empty? ? "Release" : ENV['env_buildconfigname'].to_s
+@env_buildname = "#{@env_solutionname}-v#{@env_buildversion}-#{@env_buildconfigname}"
+#--------------------------------------
+# Reusable vars
+#--------------------------------------
+ensureThatOutputPath = "#{@env_buildfolderpath}/#{@env_projectnameEnsureThat}"
+sharedAssemblyInfoPath = "#{@env_solutionfolderpath}/SharedAssemblyInfo.cs"
+#--------------------------------------
+# Albacore flow controlling tasks
+#--------------------------------------
+task :ci => [:installNuGets, :cleanIt, :versionIt, :buildIt, :copyEnsureThat, :testIt, :zipIt, :packIt]
+
+task :local => [:installNuGets, :cleanIt, :versionIt, :buildIt, :copyEnsureThat, :testIt, :zipIt, :packIt]
+
+task :local_signed => [:installNuGets, :cleanIt, :versionIt, :signIt, :buildIt, :copyEnsureThat, :testIt, :zipIt, :packIt]
+#--------------------------------------
+task :testIt => [:unittests]
+
+task :zipIt => [:zipEnsureThat]
+
+task :packIt => [:packEnsureThatNuGet, :packEnsureThatSourceNuGet]
+#--------------------------------------
+# Albacore tasks
+#--------------------------------------
+task :installNuGets do
+	FileList["#{@env_solutionfolderpath}/**/packages.config"].each { |filepath|
+		sh "NuGet.exe i #{filepath} -o #{@env_solutionfolderpath}/packages"
+	}
+end
+
+task :cleanIt do
+	FileUtils.rm_rf(@env_buildfolderpath)
+	FileUtils.mkdir_p(@env_buildfolderpath)
+end
+
+assemblyinfo :versionIt do |asm|
+	asm.input_file = sharedAssemblyInfoPath
+	asm.output_file = sharedAssemblyInfoPath
+	asm.version = @env_version
+	asm.file_version = @env_buildversion  
+end
+
+assemblyinfo :signIt do |asm|
+	asm.input_file = sharedAssemblyInfoPath
+	asm.output_file = sharedAssemblyInfoPath
+	asm.custom_attributes :AssemblyKeyFileAttribute => "..\\..\\#{@env_projectnameEnsureThat}.snk"
+end
+
+msbuild :buildIt do |msb|
+	msb.properties :configuration => @env_buildconfigname
+	msb.targets :Clean, :Build
+	msb.solution = "#{@env_solutionfolderpath}/#{@env_solutionname}.sln"
+end
+
+task :copyEnsureThat do
+	FileUtils.mkdir_p(ensureThatOutputPath)
+	FileUtils.cp_r(FileList["#{@env_solutionfolderpath}/Projects/#{@env_projectnameEnsureThat}/bin/#{@env_buildconfigname}/**"], ensureThatOutputPath)
+end
+
+nunit :unittests do |nunit|
+	nunit.command = "nunit-console.exe"
+	nunit.options "/framework=v4.0.30319","/xml=#{@env_buildfolderpath}/NUnit-Report-#{@env_projectnameEnsureThat}-UnitTests.xml"
+	nunit.assemblies FileList["#{@env_solutionfolderpath}/Tests/#{@env_projectnameEnsureThat}.**UnitTests/bin/#{@env_buildconfigname}/#{@env_projectnameEnsureThat}.**UnitTests.dll"]
+end
+
+zip :zipEnsureThat do |zip|
+	zip.directories_to_zip ensureThatOutputPath
+	zip.output_file = "#{@env_buildname}.zip"
+	zip.output_path = @env_buildfolderpath
+end
+
+exec :packEnsureThatNuGet do |cmd|
+	cmd.command = "NuGet.exe"
+	cmd.parameters = "pack #{@env_solutionname}.nuspec -version #{@env_version} -basepath #{ensureThatOutputPath} -outputdirectory #{@env_buildfolderpath}"
+end
+
+exec :packEnsureThatSourceNuGet do |cmd|
+  cmd.command = "NuGet.exe"
+  cmd.parameters = "pack #{@env_solutionname}.Source.nuspec -version #{@env_version} -basepath #{@env_solutionfolderpath} -outputdirectory #{@env_buildfolderpath}"
+end
