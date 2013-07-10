@@ -85,9 +85,9 @@ task :copyCore do
 end
 
 nunit :unittests do |nunit|
-	nunit.command = "nunit-console.exe"
-	nunit.options "/framework=v4.0.30319","/xml=#{@env_buildfolderpath}/NUnit-Report-#{@env_solutionname}-UnitTests.xml"
-	nunit.assemblies FileList["#{@env_solutionfolderpath}/Tests/#{@env_projectnameCore}.**UnitTests/bin/#{@env_buildconfigname}/#{@env_solutionname}.**UnitTests.dll"]
+    nunit.command = "nunit-console.exe"
+    nunit.options "/framework=v4.0.30319","/xml=#{@env_buildfolderpath}/NUnit-Report-#{@env_solutionname}-UnitTests.xml"
+    nunit.assemblies FileList["#{@env_solutionfolderpath}/Tests/#{@env_projectnameCore}.**UnitTests/bin/#{@env_buildconfigname}/#{@env_projectnameCore}.**UnitTests.dll"]
 end
 
 zip :zipCore do |zip|
@@ -102,9 +102,9 @@ def packProject(cmd, projectname, basepath)
 end
 
 exec :packCore do |cmd|
-    packProject(cmd, @env_projectnameCore, @env_buildfolderpath)
+    packProject(cmd, @env_solutionname, @env_buildfolderpath)
 end
 
 exec :packCoreAsSource do |cmd|
-    packProject(cmd, "#{@env_projectnameCore}.Source", @env_solutionfolderpath)
+    packProject(cmd, "#{@env_solutionname}.Source", @env_solutionfolderpath)
 end
