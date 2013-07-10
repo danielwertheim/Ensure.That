@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package>
-  <metadata>
-    <id>Ensure.That.Source</id>    
-    <title>Ensure.That (source)</title>
-	<version>0.0.0.0</version>
-	<authors>danielwertheim</authors>
-	<copyright>Daniel Wertheim</copyright>
-	<summary>Yet another guard clause project.</summary>
-    <description>
-		Yet another guard clause project helping you with validation and uniformed exception throwing when validating args.
-	</description>
-	<projectUrl>https://github.com/danielwertheim/ensure.that</projectUrl>
-	<licenseUrl>https://github.com/danielwertheim/Ensure.That/blob/master/Source/License-EnsureThat.txt</licenseUrl>
-	<requireLicenseAcceptance>false</requireLicenseAcceptance>
-	<tags>argument validation, guard clause</tags>
-  </metadata>
-  <files>
-    <file src="Projects\EnsureThat\**\*.cs" target="Content\net40\EnsureThat" exclude="Projects\EnsureThat\Properties\**\*.cs;Projects\EnsureThat\Resources\**\*.*" />
-	<file src="Projects\EnsureThat\Resources\*.resx" target="Content\net40\EnsureThat\Resources" />
-  </files>
+    <metadata>
+        <id>Ensure.That.Source</id>    
+        <title>Ensure.That (source)</title>
+        <version>$version$</version>
+        <authors>danielwertheim</authors>
+        <copyright>©Daniel Wertheim</copyright>
+        <summary>Yet another guard clause project.</summary>
+        <description>
+        Yet another guard clause project helping you with validation and uniformed exception throwing when validating args.
+        </description>
+        <projectUrl>https://github.com/danielwertheim/ensure.that</projectUrl>
+        <licenseUrl>https://github.com/danielwertheim/Ensure.That#license</licenseUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <tags>argument validation guard clause</tags>
+    </metadata>
+    <files>
+        <file src="Projects\EnsureThat\**\*.cs" target="Content\net40\EnsureThat" exclude="Projects\EnsureThat\Properties\**\*.cs;Projects\EnsureThat\Resources\**\*.*" />
+        <file src="Projects\EnsureThat\Resources\*.resx" target="Content\net40\EnsureThat\Resources" />
+    </files>
 </package>
