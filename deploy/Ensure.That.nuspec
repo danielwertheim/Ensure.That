@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+    <metadata>
+        <id>Ensure.That</id>    
+        <title>Ensure.That</title>
+        <version>$version$</version>
+        <authors>danielwertheim</authors>
+        <copyright>©Daniel Wertheim</copyright>
+        <summary>Yet another guard clause project.</summary>
+        <description>
+        A simple guard clause project helping you with validation and uniformed exception throwing when validating args.
+        This is the portable class library distribution. There is also a source package, Ensure.That.Source.
+        </description>
+        <projectUrl>https://github.com/danielwertheim/ensure.that</projectUrl>
+        <licenseUrl>https://github.com/danielwertheim/Ensure.That#license</licenseUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <tags>argument validation guard clause</tags>
+    </metadata>
+    <files>
+        <file src="*\EnsureThat.dll" target="lib\portable-win+net40+sl40+wp71\EnsureThat.dll"/>
+        <file src="*\EnsureThat.xml" target="lib\portable-win+net40+sl40+wp71\EnsureThat.xml"/>
+    </files>
+</package>

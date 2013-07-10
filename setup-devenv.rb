@@ -1,13 +1,13 @@
 task :default => [:installNuGetPackages]
 
 task :installNuGetPackages do
-	FileList["Source/**/packages.config"].each { |filepath|
-		sh "NuGet.exe i #{filepath} -o Source/Packages"
+	FileList["src/**/packages.config"].each { |filepath|
+		sh "NuGet.exe i #{filepath} -o src/packages"
 	}
 end
 
 task :updateNuGetPackages do
-	FileList["Source/**/packages.config"].each { |filepath|
+	FileList["src/**/packages.config"].each { |filepath|
 		sh "NuGet.exe update #{filepath}"
 	}
 end
