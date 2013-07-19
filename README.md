@@ -7,16 +7,16 @@ Ensure.That is distributed via NuGet. Either [as a portable library](http://nuge
 ## Documentation ##
 The documentation is contained in the [project wiki](https://github.com/danielwertheim/ensure.that/wiki).
 
-## Get the code up and running ##
-The project is being developed using `Visual Studio 2012`. **No NuGet packages are checked in**. To get your project up and running you need to install the missing NuGet packages using the provided PowerShell script:
+# Get up and running with the source code #
+The Sample has been written using Visual Studio 2012, targetting multiple platforms using a portable class library (PCL). Please note. **No NuGet packages are checked in**. To get your project up and running you need to install the missing NuGet packages using the provided PowerShell script:
 
     ps:> .\setup-devenv.ps1
 
 or
 
-    cmd:> powershell .\setup-devenv.ps1
+    cmd:> powershell -executionpolicy unrestricted .\setup-devenv.ps1
 
-For the script to work, you need to have [the NuGet command line](http://nuget.codeplex.com/releases) `(NuGet.exe) registrered in the environment path`, or you need to tweak the script to where it will find your NuGet.exe.
+For the script to work, you need to have [the NuGet command line](http://nuget.codeplex.com/releases) `(NuGet.exe) registrered in the environment path`, or you need to tweak the script so it knows where it will find your NuGet.exe.
 
 ## Issues, questions, etc ##
 So you have issues or questions... Great! That means someone is using it. Use the issues function here at the project page or contact me via mail: firstname@lastname.se; or Twitter: [@danielwertheim](https://twitter.com/danielwertheim)
