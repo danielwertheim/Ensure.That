@@ -1,1 +1,0 @@
-rake -f rakefile.rb -t local
