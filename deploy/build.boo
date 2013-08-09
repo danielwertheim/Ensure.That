@@ -9,6 +9,9 @@ build_config = "Release"
 build_name = "${project_name}-v${build_version}-${build_config}"
 build_dir_path = "${builds_dir_path}/${build_name}"
 
+target default, (clean, compile, copy, test, zip, nuget_pack):
+  pass
+
 target clean:
     rm(build_dir_path)
 
@@ -24,7 +27,7 @@ target copy:
         .ForEach def(file):
             file.CopyToDirectory(build_dir_path)
 
-target unittests:
+target test:
     mynunit(
         assemblies: MyFileList("${solution_dir_path}/Tests/*.UnitTests/bin/${build_config}", "*.UnitTests.{dll}"),
         options: "/framework=v4.0.30319 /xml=${build_dir_path}/NUnit-Report-${build_name}-UnitTests.xml")
