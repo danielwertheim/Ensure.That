@@ -1,5 +1,5 @@
 # Ensure.That
-Ensure.That is a simple guard clause argument validation lib, that helps you with validation of your arguments. E.g. `Ensure.That(myString, "myString").IsNotNullOrWhiteSpace();` You can also easily extend it to use lambdas. Please not though, that you will loose performance, but look in the wiki and I'll show you how to enable: `Ensure.That(() => myString).IsNotNullOrWhiteSpace()`.
+Ensure.That is a simple guard clause argument validation lib, that helps you with validation of your arguments. E.g. `Ensure.That(myString, "myString").IsNotNullOrWhiteSpace();` You can also easily extend it to use lambdas. Please note though, that you will lose performance, but look in the wiki and I'll show you how to enable: `Ensure.That(() => myString).IsNotNullOrWhiteSpace()`.
 
 ## Portable libary or Source via NuGet #
 Ensure.That is distributed via NuGet. Either [as a portable library](http://nuget.org/packages/ensure.that) (`targetting .Net4+, Silverlight 4+, Windows Phone 7.5+, WindowsRT`) or as [an includable source package](http://nuget.org/packages/ensure.that.source).
@@ -8,7 +8,7 @@ Ensure.That is distributed via NuGet. Either [as a portable library](http://nuge
 The documentation is contained in the [project wiki](https://github.com/danielwertheim/ensure.that/wiki).
 
 # Get up and running with the source code #
-The Sample has been written using Visual Studio 2012, targetting multiple platforms using a portable class library (PCL). Please note. **No NuGet packages are checked in**. To get your project up and running you need to install the missing NuGet packages using the provided PowerShell script:
+The Sample has been written using Visual Studio 2012, targetting multiple platforms using a portable class library (PCL). Please note: **No NuGet packages are checked in**. To get your project up and running you need to install the missing NuGet packages using the provided PowerShell script:
 
     ps:> .\setup-devenv.ps1
 
