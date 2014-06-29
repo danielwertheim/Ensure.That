@@ -1,5 +1,5 @@
 # Ensure.That
-Ensure.That is a simple guard clause argument validation lib, that helps you with validation of your arguments. E.g. `Ensure.That(myString, "myString").IsNotNullOrWhiteSpace();` You can also easily extend it to use lambdas. Please not though, that you will loose performance, but look in the wiki and I'll show you how to enable: `Ensure.That(() => myString).IsNotNullOrWhiteSpace()`.
+Ensure.That is a simple guard clause argument validation lib, that helps you with validation of your arguments. E.g. `Ensure.That(myString, "myString").IsNotNullOrWhiteSpace();` You can also easily extend it to use lambdas. Please not though, that you will lose performance, but look in the wiki and I'll show you how to enable: `Ensure.That(() => myString).IsNotNullOrWhiteSpace()`.
 
 ## Portable libary or Source via NuGet #
 Ensure.That is distributed via NuGet. Either [as a portable library](http://nuget.org/packages/ensure.that) (`targetting .Net4+, Silverlight 4+, Windows Phone 7.5+, WindowsRT`) or as [an includable source package](http://nuget.org/packages/ensure.that.source).
