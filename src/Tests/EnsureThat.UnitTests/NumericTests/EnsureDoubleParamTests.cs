@@ -1,8 +1,5 @@
-using NUnit.Framework;
-
 namespace EnsureThat.Tests.UnitTests.NumericTests
 {
-    [TestFixture]
     public class EnsureDoubleParamTests : EnsureNumericParamTests<double>
     {
         protected override Param<double> Test_for_IsLt(NumericParamTestSpec<double> spec)
