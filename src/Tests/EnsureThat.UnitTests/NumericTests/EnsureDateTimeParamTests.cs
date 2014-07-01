@@ -1,9 +1,7 @@
 using System;
-using NUnit.Framework;
 
 namespace EnsureThat.Tests.UnitTests.NumericTests
 {
-    [TestFixture]
     public class EnsureDateTimeParamTests : EnsureNumericParamTests<DateTime>
     {
         private static readonly DateTime BaseDateTime = new DateTime(1970, 1, 1);

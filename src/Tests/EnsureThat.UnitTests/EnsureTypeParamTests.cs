@@ -1,10 +1,9 @@
 using System;
 using EnsureThat.Resources;
-using NUnit.Framework;
+using Xunit;
 
 namespace EnsureThat.Tests.UnitTests
 {
-    [TestFixture]
     public class EnsureTypeParamTests : UnitTestBase
     {
         private const string ParamName = "test";
@@ -17,226 +16,226 @@ namespace EnsureThat.Tests.UnitTests
 
         private static readonly Type NonBogusType = typeof(NonBogus);
 
-        [Test]
+        [Fact]
         public void IsOfType_WhenNotTypeOf_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(new Bogus(), ParamName).IsOfType(NonBogusType));
 
-            Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, BogusType.FullName)
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, BogusType.FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void IsOfType_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor(new Bogus(), ParamName).IsOfType(BogusType);
 
-            Assert.AreEqual(ParamName, returnedValue.Name);
-            Assert.AreEqual(BogusType, returnedValue.Type);
+            Assert.Equal(ParamName, returnedValue.Name);
+            Assert.Equal(BogusType, returnedValue.Type);
         }
 
-        [Test]
+        [Fact]
         public void IsInt_WhenNotTypeOf_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42m, ParamName).IsInt());
 
-            Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(decimal).FullName)
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(decimal).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void IsInt_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor(42, ParamName).IsInt();
 
-            Assert.AreEqual(ParamName, returnedValue.Name);
-            Assert.AreEqual(typeof(int), returnedValue.Type);
+            Assert.Equal(ParamName, returnedValue.Name);
+            Assert.Equal(typeof(int), returnedValue.Type);
         }
 
-        [Test]
+        [Fact]
         public void IsShort_WhenNotTypeOf_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42, ParamName).IsShort());
 
-            Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void IsShort_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor((short)42, ParamName).IsShort();
 
-            Assert.AreEqual(ParamName, returnedValue.Name);
-            Assert.AreEqual(typeof(short), returnedValue.Type);
+            Assert.Equal(ParamName, returnedValue.Name);
+            Assert.Equal(typeof(short), returnedValue.Type);
         }
 
-        [Test]
+        [Fact]
         public void IsDecimal_WhenNotTypeOf_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42, ParamName).IsDecimal());
 
-            Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void IsDecimal_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor(42.33m, ParamName).IsDecimal();
 
-            Assert.AreEqual(ParamName, returnedValue.Name);
-            Assert.AreEqual(typeof(decimal), returnedValue.Type);
+            Assert.Equal(ParamName, returnedValue.Name);
+            Assert.Equal(typeof(decimal), returnedValue.Type);
         }
 
-        [Test]
+        [Fact]
         public void IsDouble_WhenNotTypeOf_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42, ParamName).IsDouble());
 
-            Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void IsDouble_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor(42.33, ParamName).IsDouble();
 
-            Assert.AreEqual(ParamName, returnedValue.Name);
-            Assert.AreEqual(typeof(double), returnedValue.Type);
+            Assert.Equal(ParamName, returnedValue.Name);
+            Assert.Equal(typeof(double), returnedValue.Type);
         }
 
-        [Test]
+        [Fact]
         public void IsFloat_WhenNotTypeOf_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42, ParamName).IsFloat());
 
-            Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void IsFloat_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor((float)42.33, ParamName).IsFloat();
 
-            Assert.AreEqual(ParamName, returnedValue.Name);
-            Assert.AreEqual(typeof(float), returnedValue.Type);
+            Assert.Equal(ParamName, returnedValue.Name);
+            Assert.Equal(typeof(float), returnedValue.Type);
         }
 
-        [Test]
+        [Fact]
         public void IsBool_WhenNotTypeOf_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42, ParamName).IsBool());
 
-            Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void IsBool_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor(true, ParamName).IsBool();
 
-            Assert.AreEqual(ParamName, returnedValue.Name);
-            Assert.AreEqual(typeof(bool), returnedValue.Type);
+            Assert.Equal(ParamName, returnedValue.Name);
+            Assert.Equal(typeof(bool), returnedValue.Type);
         }
 
-        [Test]
+        [Fact]
         public void IsDateTime_WhenNotTypeOf_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42, ParamName).IsDateTime());
 
-            Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void IsDateTime_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor(DateTime.Now, ParamName).IsDateTime();
 
-            Assert.AreEqual(ParamName, returnedValue.Name);
-            Assert.AreEqual(typeof(DateTime), returnedValue.Type);
+            Assert.Equal(ParamName, returnedValue.Name);
+            Assert.Equal(typeof(DateTime), returnedValue.Type);
         }
 
-        [Test]
+        [Fact]
         public void IsString_WhenNotTypeOf_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42, ParamName).IsString());
 
-            Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void IsString_WhenIsCorrectType_GivesValidResult()
         {
             var returnedValue = Ensure.ThatTypeFor("Gone fishing", ParamName).IsString();
 
-            Assert.AreEqual(ParamName, returnedValue.Name);
-            Assert.AreEqual(typeof(string), returnedValue.Type);
+            Assert.Equal(ParamName, returnedValue.Name);
+            Assert.Equal(typeof(string), returnedValue.Type);
         }
 
-        [Test]
+        [Fact]
         public void IsClass_WhenIsNotClass_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(typeof(int), ParamName).IsClass());
 
-            Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(string.Format(ExceptionMessages.EnsureExtensions_IsNotClass, typeof(int).FullName)
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotClass, typeof(int).FullName)
                             + "\r\nParameter name: test",
                             ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void IsClass_WhenPassingNull_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(null as Type, ParamName).IsClass());
 
-            Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(
                 ExceptionMessages.EnsureExtensions_IsNotClass_WasNull + "\r\nParameter name: test",
                 ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void IsClass_WhenIsClass_GivesValidResult()
         {
             var returnedValue = Ensure.That(typeof (MyClass), ParamName).IsClass();
 
-            Assert.AreEqual(ParamName, returnedValue.Name);
-            Assert.AreEqual(typeof(MyClass), returnedValue.Value);
+            Assert.Equal(ParamName, returnedValue.Name);
+            Assert.Equal(typeof(MyClass), returnedValue.Value);
         }
 
         private class MyClass
