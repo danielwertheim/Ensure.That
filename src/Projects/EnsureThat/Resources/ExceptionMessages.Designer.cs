@@ -61,6 +61,15 @@ namespace EnsureThat.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value &apos;{0}&apos; is not &apos;{1}&apos;..
+        /// </summary>
+        public static string EnsureExtensions_Is_Failed {
+            get {
+                return ResourceManager.GetString("EnsureExtensions_Is_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Empty collection is not allowed..
         /// </summary>
         public static string EnsureExtensions_IsEmptyCollection {
@@ -75,6 +84,15 @@ namespace EnsureThat.Resources {
         public static string EnsureExtensions_IsEmptyGuid {
             get {
                 return ResourceManager.GetString("EnsureExtensions_IsEmptyGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value &apos;{0}&apos; is &apos;{1}&apos;, which was not expected..
+        /// </summary>
+        public static string EnsureExtensions_IsNot_Failed {
+            get {
+                return ResourceManager.GetString("EnsureExtensions_IsNot_Failed", resourceCulture);
             }
         }
         
