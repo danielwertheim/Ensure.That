@@ -177,4 +177,10 @@
   <data name="EnsureExtensions_IsNotClass_WasNull" xml:space="preserve">
     <value>The param was expected to be a class, but was NULL.</value>
   </data>
+  <data name="EnsureExtensions_Is_Failed" xml:space="preserve">
+    <value>Value '{0}' is not '{1}'.</value>
+  </data>
+  <data name="EnsureExtensions_IsNot_Failed" xml:space="preserve">
+    <value>Value '{0}' is '{1}', which was not expected.</value>
+  </data>
 </root>

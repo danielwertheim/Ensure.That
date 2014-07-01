@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace EnsureThat
 {
     internal static class StringExtensions
@@ -9,7 +11,7 @@ namespace EnsureThat
 
         internal static string Inject(this string format, params string[] formattingArgs)
         {
-            return string.Format(format, formattingArgs);
+            return string.Format(format, formattingArgs.Select(a => a as object).ToArray());
         }
     }
 }

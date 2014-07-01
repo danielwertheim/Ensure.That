@@ -43,19 +43,16 @@
     <Compile Include="..\..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ComparableExtensions.cs" />
     <Compile Include="CustomMessageExtensions.cs" />
     <Compile Include="Ensure.cs" />
     <Compile Include="EnsureBoolExtensions.cs" />
     <Compile Include="EnsureCollectionExtensions.cs" />
     <Compile Include="EnsureDateTimeExtensions.cs" />
-    <Compile Include="EnsureDecimalExtensions.cs" />
-    <Compile Include="EnsureDoubleExtensions.cs" />
     <Compile Include="EnsureGuidExtensions.cs" />
-    <Compile Include="EnsureIntExtensions.cs" />
-    <Compile Include="EnsureLongExtensions.cs" />
+    <Compile Include="EnsureComparableExtensions.cs" />
     <Compile Include="EnsureNullableValueTypeExtensions.cs" />
     <Compile Include="EnsureObjectExtensions.cs" />
-    <Compile Include="EnsureShortExtensions.cs" />
     <Compile Include="EnsureStringExtensions.cs" />
     <Compile Include="EnsureTypeExtensions.cs" />
     <Compile Include="ExceptionFactory.cs" />
