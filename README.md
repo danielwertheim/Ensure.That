@@ -8,15 +8,16 @@ Ensure.That is distributed via NuGet. Either [as a portable library](http://nuge
 The documentation is contained in the [project wiki](https://github.com/danielwertheim/ensure.that/wiki).
 
 # Get up and running with the source code #
-The Sample has been written using Visual Studio 2012, targetting multiple platforms using a portable class library (PCL). Please note. **No NuGet packages are checked in**. To get your project up and running you need to install the missing NuGet packages using the provided PowerShell script:
+The main solution is maintained using Visual Studio 2013, but you should be able to use Visual Studio 2012, targetting multiple platforms using a portable class library (PCL).
 
-    ps:> .\setup-devenv.ps1
+Please note. **No NuGet packages are checked in**. If you are using the latest version of NuGet (v2.7.1+) **you should be able to just build and the packages will be restored**. If this does not work, you could install the missing NuGet packages using a simple PowerShell script [as covered here](http://danielwertheim.se/2013/08/12/nuget-restore-powershell-vs-rake)
 
-or
+Unit-tests are written using `xUnit` and there are no integration tests, hence you should just be able to: `Pull`-`Compile`&`Run the tests`.
 
-    cmd:> powershell -executionpolicy unrestricted .\setup-devenv.ps1
+## How-to Contribute ##
+This is described in the wiki, under: ["How-to Contribute"](https://github.com/danielwertheim/Ensure.That/wiki/how-to-contribute).
 
-For the script to work, you need to have [the NuGet command line](http://nuget.codeplex.com/releases) `(NuGet.exe) registrered in the environment path`, or you need to tweak the script so it knows where it will find your NuGet.exe.
+Pull request should be against the `develop` **branch**
 
 ## Issues, questions, etc ##
 So you have issues or questions... Great! That means someone is using it. Use the issues function here at the project page or contact me via mail: firstname@lastname.se; or Twitter: [@danielwertheim](https://twitter.com/danielwertheim)
@@ -31,8 +32,3 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-## Contribute
-Unit-tests are written using `NUnit` and there are no integration tests, hence you should just be able to: `Pull`-`Compile`&`Run the tests`.
-
-Pull request should be against the **Develop branch**
