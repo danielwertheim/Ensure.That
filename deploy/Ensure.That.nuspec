@@ -8,8 +8,9 @@
         <copyright>©Daniel Wertheim</copyright>
         <summary>Yet another guard clause project.</summary>
         <description>
-        A simple guard clause project helping you with validation and uniformed exception throwing when validating args.
-        This is the portable class library distribution. There is also a source package, Ensure.That.Source.
+        A simple guard clause project helping you with validation and uniformed exception throwing when validating arguments.
+        
+        This is the portable class library distribution for for .Net4+, Silverlight, Windows Phone, WinRT. There is also a source package, Ensure.That.Source.
         </description>
         <projectUrl>https://github.com/danielwertheim/ensure.that</projectUrl>
         <licenseUrl>https://github.com/danielwertheim/Ensure.That#license</licenseUrl>
