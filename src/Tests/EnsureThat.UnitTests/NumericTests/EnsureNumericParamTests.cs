@@ -2,7 +2,7 @@ using System;
 using EnsureThat.Resources;
 using Xunit;
 
-namespace EnsureThat.Tests.UnitTests.NumericTests
+namespace EnsureThat.UnitTests.NumericTests
 {
     public abstract class EnsureNumericParamTests<T> : UnitTestBase where T : struct
     {

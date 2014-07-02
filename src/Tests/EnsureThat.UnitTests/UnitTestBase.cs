@@ -1,4 +1,4 @@
-﻿namespace EnsureThat.Tests.UnitTests
+﻿namespace EnsureThat.UnitTests
 {
     public abstract class UnitTestBase
     {

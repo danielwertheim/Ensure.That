@@ -1,4 +1,4 @@
-namespace EnsureThat.Tests.UnitTests.NumericTests
+namespace EnsureThat.UnitTests.NumericTests
 {
     public class EnsureIntParamTests : EnsureNumericParamTests<int>
     {

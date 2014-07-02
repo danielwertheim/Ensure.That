@@ -2,7 +2,7 @@
 using EnsureThat.Resources;
 using Xunit;
 
-namespace EnsureThat.Tests.UnitTests
+namespace EnsureThat.UnitTests
 {
     public class EnsureBoolParamTests : UnitTestBase
     {

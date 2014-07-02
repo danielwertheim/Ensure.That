@@ -1,6 +1,6 @@
 using System;
 
-namespace EnsureThat.Tests.UnitTests.NumericTests
+namespace EnsureThat.UnitTests.NumericTests
 {
     public class EnsureDateTimeParamTests : EnsureNumericParamTests<DateTime>
     {
