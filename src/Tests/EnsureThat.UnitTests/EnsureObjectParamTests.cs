@@ -1,15 +1,14 @@
 using System;
 using EnsureThat.Resources;
-using NUnit.Framework;
+using Xunit;
 
-namespace EnsureThat.Tests.UnitTests
+namespace EnsureThat.UnitTests
 {
-    [TestFixture]
     public class EnsureObjectParamTests : UnitTestBase
     {
         private const string ParamName = "test";
 
-        [Test]
+        [Fact]
         public void IsNotNull_WhenRefTypeIsNull_ThrowsArgumentNullException()
         {
             object value = null;
@@ -17,21 +16,21 @@ namespace EnsureThat.Tests.UnitTests
             var ex = Assert.Throws<ArgumentNullException>(
                 () => Ensure.That(value, ParamName).IsNotNull());
 
-            Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotNull
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(ExceptionMessages.EnsureExtensions_IsNotNull
                 + "\r\nParameter name: test",
                 ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void IsNotNull_WhenRefTypeIsNotNull_ReturnsPassedObjectInstance()
         {
             var item = new { Value = 42 };
 
             var returnedItem = Ensure.That(item, ParamName).IsNotNull();
 
-            Assert.AreEqual(ParamName, returnedItem.Name);
-            Assert.AreEqual(item, returnedItem.Value);
+            Assert.Equal(ParamName, returnedItem.Name);
+            Assert.Equal(item, returnedItem.Value);
         }        
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using EnsureThat.Resources;
@@ -55,6 +56,40 @@ namespace EnsureThat
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_NoMatch.Inject(param.Value, match));
             }
             return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<string> SizeIs(this Param<string> param, int expected)
+        {
+            if (param.Value.Length != expected)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Length));
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<string> IsEqualTo(this Param<string> param, string expected, StringComparison? comparison = null)
+        {
+           if (!StringEquals(param.Value, expected, comparison))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_Is_Failed.Inject(param.Value, expected));
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<string> IsNotEqualTo(this Param<string> param, string expected, StringComparison? comparison = null)
+        {
+            if (StringEquals(param.Value, expected, comparison))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNot_Failed.Inject(param.Value, expected));
+
+            return param;
+        }
+
+        private static bool StringEquals(string x, string y, StringComparison? comparison = null)
+        {
+            return comparison.HasValue
+                ? string.Equals(x, y, comparison.Value)
+                : string.Equals(x, y);
         }
     }
 }

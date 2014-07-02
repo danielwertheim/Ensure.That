@@ -1,35 +1,34 @@
 using System;
 using EnsureThat.Resources;
-using NUnit.Framework;
+using Xunit;
 
-namespace EnsureThat.Tests.UnitTests
+namespace EnsureThat.UnitTests
 {
-    [TestFixture]
     public class EnsureGuidParamTests : UnitTestBase
     {
         private const string ParamName = "test";
 
-        [Test]
+        [Fact]
         public void IsNotEmpty_WhenEmptyGuid_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(Guid.Empty, ParamName).IsNotEmpty());
 
-            Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(
                 ExceptionMessages.EnsureExtensions_IsEmptyGuid + "\r\nParameter name: test",
                 ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void IsNotEmpty_WhenNonEmptyGuid_ReturnsPassedGuid()
         {
             var guid = Guid.NewGuid();
 
             var returnedValue = Ensure.That(guid, ParamName).IsNotEmpty();
 
-            Assert.AreEqual(ParamName, returnedValue.Name);
-            Assert.AreEqual(guid, returnedValue.Value);
+            Assert.Equal(ParamName, returnedValue.Name);
+            Assert.Equal(guid, returnedValue.Value);
         }
     }
 }

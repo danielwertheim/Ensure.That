@@ -1,15 +1,14 @@
 using System;
 using EnsureThat.Resources;
-using NUnit.Framework;
+using Xunit;
 
-namespace EnsureThat.Tests.UnitTests
+namespace EnsureThat.UnitTests
 {
-    [TestFixture]
     public class CustomMessageTests : UnitTestBase
     {
         private const string ParamName = "test";
 
-        [Test]
+        [Fact]
         public void WithCustomMessageOf_WhenSpecifyingExtraMessage_ItGetsAppendedOnTheEnd()
         {
             object value = null;
@@ -18,8 +17,8 @@ namespace EnsureThat.Tests.UnitTests
                 .WithExtraMessageOf(() => "Foo bar is some dummy text.")
                 .IsNotNull());
 
-            Assert.AreEqual(ParamName, ex.ParamName);
-            Assert.AreEqual(ExceptionMessages.EnsureExtensions_IsNotNull
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(ExceptionMessages.EnsureExtensions_IsNotNull
                             + "\r\nFoo bar is some dummy text."            
                             + "\r\nParameter name: test",
                             ex.Message);

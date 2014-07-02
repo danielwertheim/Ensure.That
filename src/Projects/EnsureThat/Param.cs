@@ -20,7 +20,7 @@ namespace EnsureThat
     {
         public readonly T Value;
 
-        internal Param(string name, T value, Func<string> extraMessageFn = null)
+        public Param(string name, T value, Func<string> extraMessageFn = null)
             : base(name, extraMessageFn)
         {
             Value = value;
