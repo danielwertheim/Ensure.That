@@ -15,6 +15,7 @@
         <projectUrl>https://github.com/danielwertheim/ensure.that</projectUrl>
         <licenseUrl>https://github.com/danielwertheim/Ensure.That#license</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <releaseNotes>https://github.com/danielwertheim/Ensure.That/wiki/Release-notes</releaseNotes>
         <tags>argument validation guard clause</tags>
     </metadata>
     <files>

@@ -11,6 +11,9 @@ You can also easily extend it to use `lambdas`. Please note though, that you wil
 Ensure.That(() => myString).IsNotNullOrWhiteSpace()
 ```
 
+## Release notes ##
+Available from `v2.0.0`, https://github.com/danielwertheim/Ensure.That/wiki/Release-notes
+
 ## Portable libary or Source via NuGet #
 Ensure.That is distributed via NuGet. Either [as a portable library](http://nuget.org/packages/ensure.that) (`for .Net4+, Silverlight, Windows Phone, WinRT`) or as [an includable source package](http://nuget.org/packages/ensure.that.source).
 
