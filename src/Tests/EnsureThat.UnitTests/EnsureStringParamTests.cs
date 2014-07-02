@@ -262,5 +262,69 @@ namespace EnsureThat.UnitTests
                 + "\r\nParameter name: test",
                 ex.Message);
         }
+
+        [Fact]
+        public void IsEqualTo_When_same_values_It_returns_passed_value()
+        {
+            const string value = "The value";
+            const string expected = value;
+
+            var returnedValue = Ensure.That(value, ParamName).IsEqualTo(expected);
+
+            Assert.Equal(ParamName, returnedValue.Name);
+            Assert.Equal(value, returnedValue.Value);
+        }
+
+        [Fact]
+        public void IsEqualTo_When_same_values_by_specific_compare_It_returns_passed_value()
+        {
+            const string value = "The value";
+            const string expected = "the value";
+
+            var returnedValue = Ensure.That(value, ParamName).IsEqualTo(expected, StringComparison.OrdinalIgnoreCase);
+
+            Assert.Equal(ParamName, returnedValue.Name);
+            Assert.Equal(value, returnedValue.Value);
+        }
+
+        [Fact]
+        public void IsEqualTo_When_different_values_It_throws_ArgumentException()
+        {
+            var value = "The value";
+            const string expected = "Other value";
+
+            var ex = Assert.Throws<ArgumentException>(() => Ensure.That(value, ParamName).IsEqualTo(expected));
+
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_Is_Failed, value, expected)
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
+
+        [Fact]
+        public void IsNotEqualTo_When_different_values_It_returns_passed_value()
+        {
+            var value = "The value";
+            const string expected = "Other value";
+
+            var returnedValue = Ensure.That(value, ParamName).IsNotEqualTo(expected);
+
+            Assert.Equal(ParamName, returnedValue.Name);
+            Assert.Equal(value, returnedValue.Value);
+        }
+
+        [Fact]
+        public void IsNotEqualTo_When_same_values_It_throws_ArgumentException()
+        {
+            const string value = "The value";
+            const string expected = value;
+
+            var ex = Assert.Throws<ArgumentException>(() => Ensure.That(value, ParamName).IsNotEqualTo(expected));
+
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNot_Failed, value, expected)
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
     }
 }
