@@ -250,6 +250,15 @@ namespace EnsureThat.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expected size &apos;{0}&apos; but found &apos;{1}&apos;..
+        /// </summary>
+        public static string EnsureExtensions_SizeIs_Wrong {
+            get {
+                return ResourceManager.GetString("EnsureExtensions_SizeIs_Wrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No MemberExpression found in expression: &apos;{0}&apos;..
         /// </summary>
         public static string ExpressionUtils_GetRightMostMember_NoMemberFound {

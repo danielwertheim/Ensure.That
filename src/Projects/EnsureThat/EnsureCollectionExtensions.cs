@@ -70,5 +70,41 @@ namespace EnsureThat
 
             return param;
         }
+
+        [DebuggerStepThrough]
+        public static Param<T[]> SizeIs<T>(this Param<T[]> param, int expected)
+        {
+            if (param.Value.Length != expected)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Length));
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<T[]> SizeIs<T>(this Param<T[]> param, long expected)
+        {
+            if (param.Value.Length != expected)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Length));
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<T> SizeIs<T>(this Param<T> param, int expected) where T : ICollection
+        {
+            if (param.Value.Count != expected)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<T> SizeIs<T>(this Param<T> param, long expected) where T : ICollection
+        {
+            if (param.Value.Count != expected)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+
+            return param;
+        }
     }
 }

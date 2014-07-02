@@ -143,10 +143,10 @@ namespace EnsureThat.UnitTests
         {
             var list = new List<int> { 1, 2, 3 };
 
-            var returnedArray = Ensure.That(list, ParamName).HasItems();
+            var returned = Ensure.That(list, ParamName).HasItems();
 
-            Assert.Equal(ParamName, returnedArray.Name);
-            Assert.Equal(list, returnedArray.Value);
+            Assert.Equal(ParamName, returned.Name);
+            Assert.Equal(list, returned.Value);
         }
 
         [Fact]
@@ -197,6 +197,56 @@ namespace EnsureThat.UnitTests
 
             Assert.Equal(ParamName, returnedArray.Name);
             Assert.Equal(dict, returnedArray.Value);
+        }
+
+        [Fact]
+        public void SizeIs_When_matching_length_of_array_It_returns_passed_values()
+        {
+            var array = new[] { 1, 2, 3 };
+
+            var returned = Ensure.That(array, ParamName).SizeIs(array.Length);
+
+            Assert.Equal(ParamName, returned.Name);
+            Assert.Equal(array, returned.Value);
+        }
+
+        [Fact]
+        public void SizeIs_When_non_matching_length_of_array_It_throws_ArgumentException()
+        {
+            var array = new[] { 1, 2, 3 };
+            var expected = array.Length + 1;
+
+            var ex = Assert.Throws<ArgumentException>(() => Ensure.That(array, ParamName).SizeIs(expected));
+
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_SizeIs_Wrong, expected, array.Length)
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
+
+        [Fact]
+        public void SizeIs_When_matching_count_of_collection_It_returns_passed_values()
+        {
+            var values = new List<int> {1, 2, 3};
+
+            var returned = Ensure.That(values, ParamName).SizeIs(values.Count);
+
+            Assert.Equal(ParamName, returned.Name);
+            Assert.Equal(values, returned.Value);
+        }
+
+        [Fact]
+        public void SizeIs_When_non_matching_count_of_collection_It_throws_ArgumentException()
+        {
+            var values = new List<int> { 1, 2, 3 };
+            var expected = values.Count + 1;
+
+            var ex = Assert.Throws<ArgumentException>(() => Ensure.That(values, ParamName).SizeIs(expected));
+
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_SizeIs_Wrong, expected, values.Count)
+                + "\r\nParameter name: test",
+                ex.Message);
         }
     }
 }

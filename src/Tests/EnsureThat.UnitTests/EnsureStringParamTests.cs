@@ -237,5 +237,30 @@ namespace EnsureThat.UnitTests
             Assert.Equal(ParamName, returnedValue.Name);
             Assert.Equal(value, returnedValue.Value);
         }
+
+        [Fact]
+        public void SizeIs_When_matching_length_of_array_It_returns_passed_values()
+        {
+            var value = "Some string";
+
+            var returned = Ensure.That(value, ParamName).SizeIs(value.Length);
+
+            Assert.Equal(ParamName, returned.Name);
+            Assert.Equal(value, returned.Value);
+        }
+
+        [Fact]
+        public void SizeIs_When_non_matching_length_of_string_It_throws_ArgumentException()
+        {
+            var value = "Some string";
+            var expected = value.Length + 1;
+
+            var ex = Assert.Throws<ArgumentException>(() => Ensure.That(value, ParamName).SizeIs(expected));
+
+            Assert.Equal(ParamName, ex.ParamName);
+            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_SizeIs_Wrong, expected, value.Length)
+                + "\r\nParameter name: test",
+                ex.Message);
+        }
     }
 }

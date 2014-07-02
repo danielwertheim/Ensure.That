@@ -56,5 +56,14 @@ namespace EnsureThat
             }
             return param;
         }
+
+        [DebuggerStepThrough]
+        public static Param<string> SizeIs(this Param<string> param, int expected)
+        {
+            if (param.Value.Length != expected)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Length));
+
+            return param;
+        }
     }
 }
