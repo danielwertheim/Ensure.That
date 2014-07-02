@@ -53,6 +53,9 @@
     <Compile Include="..\..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="CompareParamTests\EnsureFloatParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureUIntParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureUlongParamTests.cs" />
     <Compile Include="CustomMessageTests.cs" />
     <Compile Include="EnsureNullableValueTypeParamTests.cs" />
     <Compile Include="CompareParamTests\EnsureDateTimeParamTests.cs" />
