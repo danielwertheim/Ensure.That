@@ -55,18 +55,18 @@
     </Compile>
     <Compile Include="CustomMessageTests.cs" />
     <Compile Include="EnsureNullableValueTypeParamTests.cs" />
-    <Compile Include="NumericTests\EnsureDateTimeParamTests.cs" />
-    <Compile Include="NumericTests\EnsureLongParamTests.cs" />
-    <Compile Include="NumericTests\EnsureShortParamTests.cs" />
-    <Compile Include="NumericTests\EnsureDoubleParamTests.cs" />
-    <Compile Include="NumericTests\EnsureDecimalParamTests.cs" />
-    <Compile Include="NumericTests\EnsureIntParamTests.cs" />
-    <Compile Include="NumericTests\NumericParamTestSpec.cs" />
+    <Compile Include="CompareParamTests\EnsureDateTimeParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureLongParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureShortParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureDoubleParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureDecimalParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureIntParamTests.cs" />
+    <Compile Include="CompareParamTests\CompareParamTestSpec.cs" />
     <Compile Include="UnitTestBase.cs" />
     <Compile Include="EnsureBoolParamTests.cs" />
     <Compile Include="EnsureCollectionParamsTests.cs" />
     <Compile Include="EnsureGuidParamTests.cs" />
-    <Compile Include="NumericTests\EnsureNumericParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureCompareParamTests.cs" />
     <Compile Include="EnsureObjectParamTests.cs" />
     <Compile Include="EnsureStringParamTests.cs" />
     <Compile Include="EnsureTypeParamTests.cs" />

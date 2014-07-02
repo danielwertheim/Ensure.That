@@ -1,6 +1,6 @@
-namespace EnsureThat.UnitTests.NumericTests
+namespace EnsureThat.UnitTests.CompareParamTests
 {
-    public class NumericParamTestSpec<T> where T : struct
+    public class CompareParamTestSpec<T> where T : struct
     {
         public T Limit { get; set; }
 
