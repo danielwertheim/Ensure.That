@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using EnsureThat.Resources;
 using Xunit;
 
-namespace EnsureThat.Tests.UnitTests
+namespace EnsureThat.UnitTests
 {
     public class EnsureCollectionParamsTests : UnitTestBase
     {

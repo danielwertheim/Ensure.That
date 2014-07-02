@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace EnsureThat.Tests.UnitTests
+namespace EnsureThat.UnitTests
 {
     public class ParamCreationTests : UnitTestBase
     {
