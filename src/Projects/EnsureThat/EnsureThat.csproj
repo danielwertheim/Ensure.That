@@ -57,6 +57,7 @@
     <Compile Include="EnsureStringExtensions.cs" />
     <Compile Include="EnsureTypeExtensions.cs" />
     <Compile Include="ExceptionFactory.cs" />
+    <Compile Include="FluentExtensions.cs" />
     <Compile Include="JetBrains.cs" />
     <Compile Include="Param.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
