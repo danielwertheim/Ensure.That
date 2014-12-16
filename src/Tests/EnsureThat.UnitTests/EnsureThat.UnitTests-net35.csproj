@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B819F092-F369-4819-AD2F-E5DABE1A0D92}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EnsureThat.UnitTests</RootNamespace>
+    <AssemblyName>EnsureThat.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin35\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin35\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Deploy|AnyCPU'">
+    <OutputPath>bin35\Deploy\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="xunit">
+      <HintPath>..\..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="CompareParamTests\EnsureFloatParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureUIntParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureUlongParamTests.cs" />
+    <Compile Include="CustomMessageTests.cs" />
+    <Compile Include="EnsureNullableValueTypeParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureDateTimeParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureLongParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureShortParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureDoubleParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureDecimalParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureIntParamTests.cs" />
+    <Compile Include="CompareParamTests\CompareParamTestSpec.cs" />
+    <Compile Include="UnitTestBase.cs" />
+    <Compile Include="EnsureBoolParamTests.cs" />
+    <Compile Include="EnsureCollectionParamsTests.cs" />
+    <Compile Include="EnsureGuidParamTests.cs" />
+    <Compile Include="CompareParamTests\EnsureCompareParamTests.cs" />
+    <Compile Include="EnsureObjectParamTests.cs" />
+    <Compile Include="EnsureStringParamTests.cs" />
+    <Compile Include="EnsureTypeParamTests.cs" />
+    <Compile Include="ParamCreationTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.EnsureThat.UnitTests-net35.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Projects\EnsureThat\EnsureThat-net35.csproj">
+      <Project>{84c64fbf-a7d0-4057-b437-762a646457a2}</Project>
+      <Name>EnsureThat</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

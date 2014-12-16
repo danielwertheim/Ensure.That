@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using EnsureThat.Resources;
+using EnsureThat.Extensions;
 
 namespace EnsureThat
 {
@@ -10,7 +11,7 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<string> IsNotNullOrWhiteSpace(this Param<string> param)
         {
-            if (string.IsNullOrWhiteSpace(param.Value))
+            if (param.Value.IsNullOrWhiteSpace())
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace);
 
             return param;
