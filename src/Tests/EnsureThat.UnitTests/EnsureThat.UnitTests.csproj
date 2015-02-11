@@ -65,6 +65,7 @@
     <Compile Include="CompareParamTests\EnsureDecimalParamTests.cs" />
     <Compile Include="CompareParamTests\EnsureIntParamTests.cs" />
     <Compile Include="CompareParamTests\CompareParamTestSpec.cs" />
+    <Compile Include="StringExtensions.cs" />
     <Compile Include="UnitTestBase.cs" />
     <Compile Include="EnsureBoolParamTests.cs" />
     <Compile Include="EnsureCollectionParamsTests.cs" />
