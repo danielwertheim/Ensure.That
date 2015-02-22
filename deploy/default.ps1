@@ -10,11 +10,18 @@ Properties {
     $build_config = "Release"
     $build_name = "${project_name}-v${build_version}-${build_config}"
     $build_dir_path = "${builds_dir_path}\${build_name}"
-    $testrunner = "xunit.console.exe"
+    $tools_dir_path = "tools"
+    $testrunner = "$tools_dir_path\xunit.runners.1.9.2\tools\xunit.console.clr4.exe"
     $nuget = "nuget.exe"
 }
 
-task default -depends Clean, Build, Copy, Tests-UnitTest, Nuget-Pack
+task Default -depends Clean, Build, Copy, Tests-UnitTest
+
+task CI -depends InitTools, Clean, Build, Copy, Tests-UnitTest, Nuget-Pack
+
+task InitTools {
+    & $nuget restore $tools_dir_path/packages.config -o $tools_dir_path
+}
 
 task Clean {
     Clean-Directory("$build_dir_path")
