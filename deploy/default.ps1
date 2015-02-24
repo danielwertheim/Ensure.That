@@ -1,39 +1,43 @@
 Framework "4.5.1"
 
 Properties {
-    $solution_name = "Ensure.That"
-    $solution_dir_path = "..\src"
-    $solution_path = "$solution_dir_path\$solution_name.sln"
-    $project_name = "EnsureThat"
-    $builds_dir_path = "builds"
     $build_version = "2.0.0"
     $build_config = "Release"
-    $build_name = "${project_name}-v${build_version}-${build_config}"
-    $build_dir_path = "${builds_dir_path}\${build_name}"
-    $tools_dir_path = "tools"
-    $testrunner = "$tools_dir_path\xunit.runners.1.9.2\tools\xunit.console.clr4.exe"
-    $nuget = "nuget.exe"
+    $builds_dir_path = "builds"
 }
 
-task Default -depends Clean, Build, Copy, Tests-UnitTest
+task Configure {
+    $script:solution_name = "Ensure.That"
+    $script:solution_dir_path = "..\src"
+    $script:solution_path = "$solution_dir_path\$solution_name.sln"
+    $script:project_name = "EnsureThat"
+    $script:build_name = "$project_name-v$build_version-$build_config"
+    $script:build_dir_path = "$builds_dir_path\$build_name"
+    $script:tools_dir_path = "tools"
+    $script:testrunner = "$tools_dir_path\xunit.runners.1.9.2\tools\xunit.console.clr4.exe"
+    $script:nuget = "nuget.exe"
+}
 
-task CI -depends InitTools, Clean, Build, Copy, Tests-UnitTest, Nuget-Pack
+task Default -Depends Configure, InitTools, Clean, Build, Copy, Tests-UnitTest
+
+task CI -Depends Default, Nuget-Pack
 
 task InitTools {
-    & $nuget restore $tools_dir_path/packages.config -o $tools_dir_path
+    Exec { & $nuget restore "$tools_dir_path/packages.config" -o $tools_dir_path }
 }
 
 task Clean {
-    Clean-Directory("$build_dir_path")
+    Clean-Directory($build_dir_path)
 }
 
 task Build {
+    Exec { & $nuget restore $solution_path }
     Exec { msbuild "$solution_path" /t:Clean /p:Configuration=$build_config /v:quiet }
     Exec { msbuild "$solution_path" /t:Build /p:Configuration=$build_config /v:quiet }
 }
 
 task Copy {
-    CopyTo-Build("$project_name")
+    CopyTo-Build($project_name)
 }
 
 task Tests-UnitTest {
@@ -46,11 +50,11 @@ task NuGet-Pack {
 }
 
 Function UnitTest-Project($t) {
-    & $testrunner "$solution_dir_path\tests\$t.UnitTests\bin\$build_config\$t.UnitTests.dll"
+    Exec { & $testrunner "$solution_dir_path\tests\$t.UnitTests\bin\$build_config\$t.UnitTests.dll" }
 }
 
 Function NuGet-Pack-Project($t, $p) {
-    & $nuget pack "$t.nuspec" -version $build_version -basepath $p -outputdirectory $builds_dir_path
+    Exec { & $nuget pack "$t.nuspec" -version $build_version -basepath $p -outputdirectory $build_dir_path }
 }
 
 Function EnsureClean-Directory($dir) {
@@ -58,13 +62,13 @@ Function EnsureClean-Directory($dir) {
     Create-Directory($dir)
 }
 
-Function Clean-Directory($dir){
+Function Clean-Directory($dir) {
 	if (Test-Path -path $dir) {
         rmdir $dir -recurse -force
     }
 }
 
-Function Create-Directory($dir){
+Function Create-Directory($dir) {
 	if (!(Test-Path -path $dir)) {
         new-item $dir -force -type directory
     }
