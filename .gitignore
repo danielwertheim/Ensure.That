@@ -1,4 +1,7 @@
-# v2015-02-22.1
+# v2015-02-26.1
+# node
+node_modules/
+
 # vs
 [Aa]pp_[Dd]ata/
 [Bb]in/
