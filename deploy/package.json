@@ -5,6 +5,7 @@
   "dependencies": {
     "del": "^1.1.1",
     "gulp": "^3.8.11",
+    "gulp-dotnet-assembly-info": "^0.1.10",
     "gulp-flatten": "^0.0.4",
     "gulp-msbuild": "^0.2.7",
     "gulp-shell": "^0.3.0",

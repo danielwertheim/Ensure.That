@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     shell = require('gulp-shell'),
     del = require('del'),
     msbuild = require('gulp-msbuild'),
+    assemblyInfo = require('gulp-dotnet-assembly-info'),
     argv = require('yargs').argv;
 
 var config = {
@@ -11,7 +12,8 @@ var config = {
   src: './../src/',
   build: {
     outdir: './build/',
-    version: argv.buildversion || '2.0.0',
+    version: '2.0.0',
+    revision: argv.buildrevision || '*',
     profile: 'Release'
   }
 };
@@ -30,14 +32,24 @@ gulp.task('clean', function(cb) {
   });
 });
 
+gulp.task('assemblyinfo', function() {
+  return gulp
+    .src(config.src + 'SharedAssemblyInfo.cs')
+    .pipe(assemblyInfo({
+      version: config.build.version + '.' + config.build.revision,
+      fileVersion: config.build.version,
+    }))
+    .pipe(gulp.dest(config.src));
+});
+
 gulp.task('build', function() {
   return gulp.src(config.src + config.slnname + '.sln', { read: false })
     .pipe(msbuild({
-        toolsVersion: 12.0,
-        configuration: config.build.profile,
-        targets: ['Clean', 'Build'],
-        errorOnFail: true,
-        stdout: true
+      toolsVersion: 12.0,
+      configuration: config.build.profile,
+      targets: ['Clean', 'Build'],
+      errorOnFail: true,
+      stdout: true
     }));
 });
 
