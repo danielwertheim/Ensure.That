@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     del = require('del'),
     msbuild = require('gulp-msbuild'),
     assemblyInfo = require('gulp-dotnet-assembly-info'),
-    argv = require('yargs').argv;
+    argv = require('yargs').argv,
+    sequence = require('run-sequence');
 
 var config = {
   slnname: 'Ensure.That',
@@ -14,22 +15,33 @@ var config = {
     outdir: './build/',
     version: '2.0.0',
     revision: argv.buildrevision || '*',
-    profile: 'Release'
+    profile: argv.buildprofile || 'Release'
   }
 };
 
-gulp.task('default', ['clean', 'build', 'copy', 'unit-test']);
+gulp.task('default', function (cb) {
+  sequence(
+    ['clean', 'assemblyinfo'],
+    'build', 'copy', 'unit-test', cb);
+});
 
-gulp.task('ci', ['init-tools', 'default', 'nuget-pack']);
+gulp.task('ci', function (cb) {
+  sequence(
+    ['init-tools', 'clean', 'assemblyinfo', 'nuget-restore'],
+    'build', 'copy', 'unit-test', 'nuget-pack', cb);
+});
 
 gulp.task('init-tools', shell.task([
   'nuget restore ./tools/packages.config -o ./tools/']
 ));
 
+gulp.task('nuget-restore', function () {
+  return gulp.src(config.src + '*.sln', { read: false })
+    .pipe(shell('nuget restore <%= file.path %>'));
+});
+
 gulp.task('clean', function(cb) {
-  del([config.build.outdir], function (){
-    process.nextTick(cb);    
-  });
+  del(config.build.outdir, cb);
 });
 
 gulp.task('assemblyinfo', function() {
@@ -43,24 +55,25 @@ gulp.task('assemblyinfo', function() {
 });
 
 gulp.task('build', function() {
-  return gulp.src(config.src + config.slnname + '.sln', { read: false })
+  return gulp.src(config.src + '*.sln')
     .pipe(msbuild({
       toolsVersion: 12.0,
       configuration: config.build.profile,
       targets: ['Clean', 'Build'],
       errorOnFail: true,
-      stdout: true
+      stdout: true,
+      verbosity: 'minimal'
     }));
 });
 
-gulp.task('copy', function(cb) {
+gulp.task('copy', function() {
   return gulp.src(config.src + 'projects/**/bin/' + config.build.profile + '/*.{dll,XML}')
     .pipe(flatten())
     .pipe(gulp.dest(config.build.outdir));
 });
 
 gulp.task('unit-test', function () {
-  return gulp.src(config.src + 'tests/**/bin/' + config.build.profile + '/*.UnitTests.dll', { read: false })
+  return gulp.src(config.src + 'tests/**/bin/' + config.build.profile + '/*.UnitTests.dll')
     .pipe(shell('xunit.console.clr4.exe <%= file.path %> /silent /noshadow', { cwd: './tools/xunit.runners.1.9.2/tools/' }));
 });
 
