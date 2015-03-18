@@ -81,6 +81,18 @@ namespace EnsureThat
         {
             if (StringEquals(param.Value, expected, comparison))
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNot_Failed.Inject(param.Value, expected));
+            
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<string> IsGuid(this Param<string> param)
+        {
+            Guid guid;
+            if (!Guid.TryParse(param.Value, out guid))
+            {
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotGuid.Inject(param.Value));
+            }
 
             return param;
         }

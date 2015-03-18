@@ -186,4 +186,7 @@
   <data name="EnsureExtensions_SizeIs_Wrong" xml:space="preserve">
     <value>Expected size '{0}' but found '{1}'.</value>
   </data>
+  <data name="EnsureExtensions_IsNotGuid" xml:space="preserve">
+    <value>Value '{0}' is not valid GUID.</value>
+  </data>
 </root>
