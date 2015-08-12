@@ -53,25 +53,16 @@
     <Compile Include="..\..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="CompareParamTests\EnsureFloatParamTests.cs" />
-    <Compile Include="CompareParamTests\EnsureUIntParamTests.cs" />
-    <Compile Include="CompareParamTests\EnsureUlongParamTests.cs" />
     <Compile Include="CustomMessageTests.cs" />
     <Compile Include="EnsureNullableValueTypeParamTests.cs" />
-    <Compile Include="CompareParamTests\EnsureDateTimeParamTests.cs" />
-    <Compile Include="CompareParamTests\EnsureLongParamTests.cs" />
-    <Compile Include="CompareParamTests\EnsureShortParamTests.cs" />
-    <Compile Include="CompareParamTests\EnsureDoubleParamTests.cs" />
-    <Compile Include="CompareParamTests\EnsureDecimalParamTests.cs" />
-    <Compile Include="CompareParamTests\EnsureIntParamTests.cs" />
-    <Compile Include="CompareParamTests\CompareParamTestSpec.cs" />
+    <Compile Include="CompareParamTestSpec.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="ThrowsTests.cs" />
     <Compile Include="UnitTestBase.cs" />
     <Compile Include="EnsureBoolParamTests.cs" />
     <Compile Include="EnsureCollectionParamsTests.cs" />
     <Compile Include="EnsureGuidParamTests.cs" />
-    <Compile Include="CompareParamTests\EnsureCompareParamTests.cs" />
+    <Compile Include="EnsureComparableParamTests.cs" />
     <Compile Include="EnsureObjectParamTests.cs" />
     <Compile Include="EnsureStringParamTests.cs" />
     <Compile Include="EnsureTypeParamTests.cs" />

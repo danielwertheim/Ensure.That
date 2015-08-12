@@ -1,4 +1,4 @@
-namespace EnsureThat.UnitTests.CompareParamTests
+namespace EnsureThat.UnitTests
 {
     public class CompareParamTestSpec<T> where T : struct
     {
