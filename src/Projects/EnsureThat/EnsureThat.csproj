@@ -51,7 +51,6 @@
     <Compile Include="Ensure.cs" />
     <Compile Include="EnsureBoolExtensions.cs" />
     <Compile Include="EnsureCollectionExtensions.cs" />
-    <Compile Include="EnsureDateTimeExtensions.cs" />
     <Compile Include="EnsureGuidExtensions.cs" />
     <Compile Include="EnsureComparableExtensions.cs" />
     <Compile Include="EnsureNullableValueTypeExtensions.cs" />
