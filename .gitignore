@@ -1,8 +1,8 @@
-# v2015-02-26.1
 # node
 node_modules/
 
 # vs
+.vs
 [Aa]pp_[Dd]ata/
 [Bb]in/
 [D]ebug/
