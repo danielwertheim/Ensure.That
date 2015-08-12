@@ -21,5 +21,15 @@ namespace EnsureThat
                     ? message 
                     : string.Concat(message, Environment.NewLine, param.ExtraMessageFn()));
         }
+
+        public static InvalidOperationException CreateForInvalidOperation(Param param, string message)
+        {
+            var msg = string.Format(message, param.Name);
+
+            return new InvalidOperationException(
+                param.ExtraMessageFn == null
+                    ? msg
+                    : string.Concat(msg, Environment.NewLine, param.ExtraMessageFn()));
+        }
     }
 }

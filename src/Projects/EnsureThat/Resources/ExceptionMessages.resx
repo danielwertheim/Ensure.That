@@ -186,4 +186,7 @@
   <data name="EnsureExtensions_SizeIs_Wrong" xml:space="preserve">
     <value>Expected size '{0}' but found '{1}'.</value>
   </data>
+  <data name="EnsureExtensions_InvalidOperationException" xml:space="preserve">
+    <value>Could not perform operation due to invalid state of '{0}'.</value>
+  </data>
 </root>
