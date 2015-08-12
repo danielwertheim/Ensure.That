@@ -8,19 +8,29 @@ namespace EnsureThat
     public static class EnsureStringExtensions
     {
         [DebuggerStepThrough]
-        public static Param<string> IsNotNullOrWhiteSpace(this Param<string> param)
+        public static Param<string> IsNotNullOrWhiteSpace(this Param<string> param, Throws<string>.ExceptionFnConfig exceptionFn = null)
         {
             if (string.IsNullOrWhiteSpace(param.Value))
+            {
+                if (exceptionFn != null)
+                    throw exceptionFn(Throws<string>.Instance)(param);
+
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace);
+            }
 
             return param;
         }
 
         [DebuggerStepThrough]
-        public static Param<string> IsNotNullOrEmpty(this Param<string> param)
+        public static Param<string> IsNotNullOrEmpty(this Param<string> param, Throws<string>.ExceptionFnConfig exceptionFn = null)
         {
             if (string.IsNullOrEmpty(param.Value))
+            {
+                if (exceptionFn != null)
+                    throw exceptionFn(Throws<string>.Instance)(param);
+
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty);
+            }
 
             return param;
         }
@@ -52,9 +62,8 @@ namespace EnsureThat
         public static Param<string> Matches(this Param<string> param, Regex match)
         {
             if (!match.IsMatch(param.Value))
-            {
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_NoMatch.Inject(param.Value, match));
-            }
+
             return param;
         }
 
