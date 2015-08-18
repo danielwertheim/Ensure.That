@@ -48,8 +48,7 @@ gulp.task('assemblyinfo', function() {
   return gulp
     .src(config.src + 'SharedAssemblyInfo.cs')
     .pipe(assemblyInfo({
-      version: config.build.version,
-      fileVersion: config.build.version + '.' + config.build.revision,
+      version: config.build.version + '.' + config.build.revision,
     }))
     .pipe(gulp.dest(config.src));
 });
