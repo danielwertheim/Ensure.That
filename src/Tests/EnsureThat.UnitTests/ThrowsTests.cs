@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using EnsureThat.Resources;
 using Xunit;
 
 namespace EnsureThat.UnitTests
