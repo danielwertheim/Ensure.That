@@ -17,15 +17,21 @@ Available from `v2.0.0`, https://github.com/danielwertheim/Ensure.That/wiki/Rele
 ## Portable libary or Source via NuGet #
 Ensure.That is distributed via NuGet. Either [as a portable library](http://nuget.org/packages/ensure.that) (`for .Net4+, Silverlight, Windows Phone, WinRT`) or as [an includable source package](http://nuget.org/packages/ensure.that.source).
 
+### vNext ###
+Since `v3.0.0` there's included support for **vNext**. And honestly, I currently find the whole writing libs and publishing NuGets for vNext thingie a bit....hmm...well...funky, the result might be just that.
+
 ## Documentation ##
 The documentation is contained in the [project wiki](https://github.com/danielwertheim/ensure.that/wiki).
 
 # Get up and running with the source code #
-The main solution is maintained using Visual Studio 2013, but you should be able to use Visual Studio 2012, targetting multiple platforms using a portable class library (PCL).
+The main solution is maintained using Visual Studio 2015.
 
 Please note. **No NuGet packages are checked in**. If you are using the latest version of NuGet (v2.7.1+) **you should be able to just build and the packages will be restored**. If this does not work, you could install the missing NuGet packages using a simple PowerShell script [as covered here](http://danielwertheim.se/2013/08/12/nuget-restore-powershell-vs-rake)
 
 Unit-tests are written using `xUnit` and there are no integration tests, hence you should just be able to: `Pull`-`Compile`&`Run the tests`.
+
+## Deploy ##
+There's a `gulp.js` file under `.\deploy`. It requires that you have `nuget.exe` in your path. Other than that, you should be able to run the tasks to restore tools, build, run tests and pack NuPkgs.
 
 ## How-to Contribute ##
 This is described in the wiki, under: ["How-to Contribute"](https://github.com/danielwertheim/Ensure.That/wiki/how-to-contribute).
