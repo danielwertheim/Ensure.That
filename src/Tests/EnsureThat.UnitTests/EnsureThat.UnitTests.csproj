@@ -73,9 +73,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Projects\EnsureThat\EnsureThat.csproj">
-      <Project>{84c64fbf-a7d0-4057-b437-762a646457a2}</Project>
-      <Name>EnsureThat</Name>
+    <ProjectReference Include="..\..\projects\EnsureThat.vDinasour\EnsureThat.vDinasour.csproj">
+      <Project>{172b11de-0176-4bbf-998e-e22b244f4dda}</Project>
+      <Name>EnsureThat.vDinasour</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

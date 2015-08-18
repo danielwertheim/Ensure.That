@@ -1,6 +1,5 @@
 using System;
 using System.Text.RegularExpressions;
-using EnsureThat.Resources;
 using Xunit;
 
 namespace EnsureThat.UnitTests

@@ -1,6 +1,6 @@
 using System;
 using System.Diagnostics;
-using EnsureThat.Resources;
+using System.Reflection;
 
 namespace EnsureThat
 {
@@ -86,14 +86,19 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<Type> IsClass(this Param<Type> param)
         {
-            if(param.Value == null)
+            if (param.Value == null)
                 throw ExceptionFactory.CreateForParamValidation(param,
                     ExceptionMessages.EnsureExtensions_IsNotClass_WasNull);
 
+#if vDinasour
             if (!param.Value.IsClass)
                 throw ExceptionFactory.CreateForParamValidation(param,
                     ExceptionMessages.EnsureExtensions_IsNotClass.Inject(param.Value.FullName));
-
+#elif vNext
+            if (!param.Value.GetTypeInfo().IsClass)
+                throw ExceptionFactory.CreateForParamValidation(param,
+                    ExceptionMessages.EnsureExtensions_IsNotClass.Inject(param.Value.FullName));
+#endif
             return param;
         }
     }

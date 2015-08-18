@@ -13,7 +13,7 @@ var config = {
   src: './../src/',
   build: {
     outdir: './build/',
-    version: '2.0.0',
+    version: '3.0.0',
     revision: argv.buildrevision || '*',
     profile: argv.buildprofile || 'Release'
   }
@@ -48,8 +48,7 @@ gulp.task('assemblyinfo', function() {
   return gulp
     .src(config.src + 'SharedAssemblyInfo.cs')
     .pipe(assemblyInfo({
-      version: config.build.version,
-      fileVersion: config.build.version + '.' + config.build.revision,
+      version: config.build.version + '.' + config.build.revision,
     }))
     .pipe(gulp.dest(config.src));
 });
@@ -57,7 +56,7 @@ gulp.task('assemblyinfo', function() {
 gulp.task('build', function() {
   return gulp.src(config.src + '*.sln')
     .pipe(msbuild({
-      toolsVersion: 12.0,
+      toolsVersion: 14.0,
       configuration: config.build.profile,
       targets: ['Clean', 'Build'],
       errorOnFail: true,

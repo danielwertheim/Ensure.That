@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using EnsureThat.Resources;
 
 namespace EnsureThat
 {
