@@ -56,7 +56,7 @@ gulp.task('assemblyinfo', function() {
 gulp.task('build', function() {
   return gulp.src(config.src + '*.sln')
     .pipe(msbuild({
-      toolsVersion: 12.0,
+      toolsVersion: 14.0,
       configuration: config.build.profile,
       targets: ['Clean', 'Build'],
       errorOnFail: true,
