@@ -1,0 +1,16 @@
+{
+  "name": "deploy",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-debug": "^2.0.1",
+    "gulp-dotnet-assembly-info": "^0.1.10",
+    "gulp-flatten": "^0.0.4",
+    "gulp-msbuild": "^0.2.7",
+    "gulp-shell": "^0.3.0",
+    "run-sequence": "^1.0.2",
+    "yargs": "^3.3.1"
+  }
+}

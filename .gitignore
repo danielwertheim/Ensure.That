@@ -1,8 +1,12 @@
-# v2013-08-09.1
+# node
+node_modules/
+
 # vs
+.vs
 [Aa]pp_[Dd]ata/
 [Bb]in/
 [D]ebug/
+[Aa]rtifacts/
 [Oo]bj/
 [Tt]est[Rr]esult/
 [Tt]emp/
@@ -15,6 +19,8 @@
 # deploy
 deploy/build
 deploy/builds
+deploy/tools/
+!deploy/tools/packages.config
 
 # misc
 *~

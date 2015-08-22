@@ -14,5 +14,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright © Daniel Wertheim")]
 [assembly: AssemblyTrademark("")]
 
-[assembly: AssemblyVersion("2.0.0.*")]
-[assembly: AssemblyFileVersion("2.0.0")]
+[assembly: AssemblyVersion("0.0.0.*")]

@@ -1,5 +1,4 @@
 using System;
-using EnsureThat.Resources;
 using Xunit;
 
 namespace EnsureThat.UnitTests
@@ -31,6 +30,6 @@ namespace EnsureThat.UnitTests
 
             Assert.Equal(ParamName, returnedItem.Name);
             Assert.Equal(item, returnedItem.Value);
-        }        
+        }
     }
 }

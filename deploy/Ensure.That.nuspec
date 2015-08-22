@@ -19,7 +19,9 @@
         <tags>argument validation guard clause</tags>
     </metadata>
     <files>
-        <file src="*\EnsureThat.dll" target="lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\EnsureThat.dll"/>
-        <file src="*\EnsureThat.xml" target="lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\EnsureThat.xml"/>
+        <file src="EnsureThat.vDinasour.dll" target="lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\EnsureThat.vDinasour.dll"/>
+        <file src="EnsureThat.vDinasour.xml" target="lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\EnsureThat.vDinasour.xml"/>
+        <file src="EnsureThat.vNext.dll" target="lib\dotnet\EnsureThat.vNext.dll"/>
+        <file src="EnsureThat.vNext.xml" target="lib\dotnet\EnsureThat.vNext.xml"/>
     </files>
 </package>
