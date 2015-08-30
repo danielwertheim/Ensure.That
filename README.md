@@ -5,10 +5,17 @@ Ensure.That is a simple guard clause argument validation lib, that helps you wit
 Ensure.That(myString, "myString").IsNotNullOrWhiteSpace();
 ```
 
-You can also easily extend it to use `lambdas`. Please note though, that you will lose performance, but look in the wiki and I'll show you how to enable it:
+From `v3.1.0` support for lambdas to extract the param-name and/or value has been added, hence you can now do:
 
 ```csharp
-Ensure.That(() => myString).IsNotNullOrWhiteSpace()
+//Note! Makes a compile of the lambda to get the value. Also extracts the param name "person.Name" from the expression.
+Ensure.That(() => person.Name).IsNotNullOrWhiteSpace();
+
+//Note! Makes a compile of the lambda to get the value. Does NOT extract the param name "person.Name" from the expression.
+Ensure.That(() => person.Name, "The name param").IsNotNullOrWhiteSpace();
+
+//Note! Does NOT make a compile of the lambda. Only parses the expression to get the param name "person.Name" from the expression.
+Ensure.That(person.Name, () => person.Name).IsNotNullOrWhiteSpace();
 ```
 
 ## Release notes ##
@@ -18,7 +25,7 @@ Available from `v2.0.0`, https://github.com/danielwertheim/Ensure.That/wiki/Rele
 Ensure.That is distributed via NuGet. Either [as a portable library](http://nuget.org/packages/ensure.that) (`for .Net4+, Silverlight, Windows Phone, WinRT`) or as [an includable source package](http://nuget.org/packages/ensure.that.source).
 
 ### vNext ###
-Since `v3.0.0` there's included support for **vNext**. And honestly, I currently find the whole writing libs and publishing NuGets for vNext thingie a bit....hmm...well...funky, the result might be just that.
+Since `v3.0.0` there's included support for **vNext**.
 
 ## Documentation ##
 The documentation is contained in the [project wiki](https://github.com/danielwertheim/ensure.that/wiki).
