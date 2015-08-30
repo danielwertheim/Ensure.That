@@ -98,7 +98,10 @@ namespace EnsureThat
             if (!param.Value.GetTypeInfo().IsClass)
                 throw ExceptionFactory.CreateForParamValidation(param,
                     ExceptionMessages.EnsureExtensions_IsNotClass.Inject(param.Value.FullName));
+#else
+            throw new NotSupportedException("Hmm. Looks like I don't support this framework of yours.");
 #endif
+
             return param;
         }
     }
