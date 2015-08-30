@@ -13,7 +13,7 @@ var config = {
   src: './../src/',
   build: {
     outdir: './build/',
-    version: '3.0.0',
+    version: '3.1.0',
     revision: argv.buildrevision || '*',
     profile: argv.buildprofile || 'Release'
   }

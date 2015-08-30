@@ -39,5 +39,72 @@ namespace EnsureThat.UnitTests
             Assert.Equal("theString", param.Name);
             Assert.Equal(typeof(string), param.Type);
         }
+
+        [Fact]
+        public void WhenThat_IsCalledWithLambdaForStringVariable_ThenParamCouldBeCreated()
+        {
+            var theString = "My string";
+
+            var param = Ensure.That(() => theString);
+
+            Assert.Equal("theString", param.Name);
+            Assert.Equal("My string", param.Value);
+        }
+
+        [Fact]
+        public void WhenThat_IsCalledWithLambdaForStringField_ThenParamCouldBeCreated()
+        {
+            var item = new Dummy();
+
+            var param = Ensure.That(() => item.StringField);
+
+            Assert.Equal("item.StringField", param.Name);
+            Assert.Equal(item.StringField, param.Value);
+        }
+
+        [Fact]
+        public void WhenThat_IsCalledWithLambdaForStringProp_ThenParamCouldBeCreated()
+        {
+            var item = new Dummy();
+
+            var param = Ensure.That(() => item.StringProp);
+
+            Assert.Equal("item.StringProp", param.Name);
+            Assert.Equal(item.StringProp, param.Value);
+        }
+
+        [Fact]
+        public void WhenThat_IsCalledWithLambdaForNestedString_ThenParamCouldBeCreated()
+        {
+            var item = new Dummy();
+
+            var param = Ensure.That(() => item.Nested.StringProp);
+
+            Assert.Equal("item.Nested.StringProp", param.Name);
+            Assert.Equal(item.Nested.StringProp, param.Value);
+        }
+
+        private class Dummy
+        {
+            public string StringField = "The String field";
+
+            public string StringProp
+            {
+                get { return "The String prop."; }
+            }
+
+            public Nested Nested
+            {
+                get { return new Nested(); }
+            }
+        }
+
+        private class Nested
+        {
+            public string StringProp
+            {
+                get { return "The Nested string prop."; }
+            }
+        }
     }
 }
