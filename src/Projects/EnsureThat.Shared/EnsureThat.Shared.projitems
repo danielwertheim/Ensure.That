@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)EnsureTypeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionMessages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExpressionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FluentExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)JetBrains.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Param.cs" />
