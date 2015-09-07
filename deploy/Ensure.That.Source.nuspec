@@ -17,6 +17,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <releaseNotes>https://github.com/danielwertheim/Ensure.That/wiki/Release-notes</releaseNotes>
         <tags>argument validation guard clause</tags>
+        <developmentDependency>true</developmentDependency>
     </metadata>
     <files>
         <file src="Projects\EnsureThat.Shared\**\*.cs" target="Content\EnsureThat" exclude="Projects\EnsureThat\Properties\**\*.cs" />
