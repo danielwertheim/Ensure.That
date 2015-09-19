@@ -21,6 +21,8 @@
     <files>
         <file src="EnsureThat.vDinasour.dll" target="lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\EnsureThat.vDinasour.dll"/>
         <file src="EnsureThat.vDinasour.xml" target="lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\EnsureThat.vDinasour.xml"/>
+        <file src="EnsureThat.vDinasour.dll" target="lib\net45\EnsureThat.vDinasour.dll"/>
+        <file src="EnsureThat.vDinasour.xml" target="lib\net45\EnsureThat.vDinasour.xml"/>
         <file src="EnsureThat.vNext.dll" target="lib\net46\EnsureThat.vNext.dll"/>
         <file src="EnsureThat.vNext.xml" target="lib\net46\EnsureThat.vNext.xml"/>
         <file src="EnsureThat.vNext.dll" target="lib\dotnet\EnsureThat.vNext.dll"/>

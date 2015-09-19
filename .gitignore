@@ -2,7 +2,7 @@
 node_modules/
 
 # vs
-.vs
+.vs/
 [Aa]pp_[Dd]ata/
 [Bb]in/
 [D]ebug/
@@ -15,6 +15,10 @@ node_modules/
 *.vssscc
 *.suo
 *.cache
+
+# dnx
+project.lock.json
+artifacts/
 
 # deploy
 deploy/build
@@ -38,6 +42,7 @@ deploy/tools/
 _ReSharper.*
 *.resharper*
 *.[Rr]e[Ss]harper.user
+*.DotSettings.user
 
 #windows stuff
 Thumbs.db
