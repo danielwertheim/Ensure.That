@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace EnsureThat.Shared
+namespace EnsureThat
 {
     internal static class ExpressionExtensions
     {
