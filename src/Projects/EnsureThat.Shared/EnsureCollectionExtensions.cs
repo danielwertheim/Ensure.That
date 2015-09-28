@@ -105,5 +105,24 @@ namespace EnsureThat
 
             return param;
         }
+
+        [DebuggerStepThrough]
+        public static Param<IDictionary<TKey, TValue>> ContainsKey<TKey, TValue>(this Param<IDictionary<TKey, TValue>> param, TKey key)
+        {
+            if (!param.Value.ContainsKey(key))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_ContainsKey.Inject(key));
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<Dictionary<TKey, TValue>> ContainsKey<TKey, TValue>(this Param<Dictionary<TKey, TValue>> param, TKey key)
+        {
+            if (!param.Value.ContainsKey(key))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_ContainsKey.Inject(key));
+
+            return param;
+        }
+
     }
 }

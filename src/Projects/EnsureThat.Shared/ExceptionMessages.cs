@@ -25,5 +25,6 @@
         public static string EnsureExtensions_IsNotClass { get; private set; } = "The param was expected to be a class, but was type of: '{0}'.";
         public static string EnsureExtensions_InvalidOperationException { get; private set; } = "Could not perform operation due to invalid state of '{0}'.";
         public static string EnsureExtensions_IsEmptyGuid { get; private set; } = "Empty Guid is not allowed.";
+        public static string EnsureExtensions_ContainsKey { get; private set; } = "Key '{0}' does not exist.";
     }
 }
