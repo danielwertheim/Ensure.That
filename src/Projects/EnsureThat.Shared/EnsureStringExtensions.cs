@@ -93,6 +93,16 @@ namespace EnsureThat
             return param;
         }
 
+        [DebuggerStepThrough]
+        public static Param<string> IsGuid(this Param<string> param)
+        {
+            Guid guid;
+            if (!Guid.TryParse(param.Value, out guid))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotGuid.Inject(param.Value));
+
+            return param;
+        }
+
         private static bool StringEquals(string x, string y, StringComparison? comparison = null)
         {
             return comparison.HasValue

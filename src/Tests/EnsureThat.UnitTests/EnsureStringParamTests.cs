@@ -276,5 +276,24 @@ namespace EnsureThat.UnitTests
 
             AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNot_Failed, value, expected);
         }
+
+        [Fact]
+        public void IsGuid_When_is_not_Guid_throws_ArgumentException()
+        {
+            var value = "324-3243-123-23";
+            var ex = Assert.Throws<ArgumentException>(() => Ensure.That(value, ParamName).IsGuid());
+
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotGuid, value);
+        }
+
+        [Fact]
+        public void IsGuid_When_valid_Guid_returns_Guid()
+        {
+            var value = Guid.NewGuid().ToString();
+
+            var returnedValue = Ensure.That(value, ParamName).IsGuid();
+
+            AssertReturnedAsExpected(returnedValue, value);
+        }
     }
 }
