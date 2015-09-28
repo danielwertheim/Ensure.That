@@ -5,8 +5,6 @@ namespace EnsureThat.UnitTests
 {
     public class CustomMessageTests : UnitTestBase
     {
-        private const string ParamName = "test";
-
         [Fact]
         public void WithCustomMessageOf_WhenSpecifyingExtraMessage_ItGetsAppendedOnTheEnd()
         {
@@ -16,11 +14,8 @@ namespace EnsureThat.UnitTests
                 .WithExtraMessageOf(() => "Foo bar is some dummy text.")
                 .IsNotNull());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsNotNull
-                            + "\r\nFoo bar is some dummy text."            
-                            + "\r\nParameter name: test",
-                            ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNull
+                + "\r\nFoo bar is some dummy text.");
         }
     }
 }

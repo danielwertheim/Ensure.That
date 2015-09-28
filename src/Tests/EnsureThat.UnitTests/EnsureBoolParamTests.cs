@@ -5,18 +5,13 @@ namespace EnsureThat.UnitTests
 {
     public class EnsureBoolParamTests : UnitTestBase
     {
-        private const string ParamName = "test";
-
         [Fact]
         public void IsTrue_WhenFalseExpression_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(false, ParamName).IsTrue());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsNotTrue
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotTrue);
         }
 
         [Fact]
@@ -24,8 +19,7 @@ namespace EnsureThat.UnitTests
         {
             var returnedValue = Ensure.That(true, ParamName).IsTrue();
 
-            Assert.Equal(ParamName, returnedValue.Name);
-            Assert.True(returnedValue.Value);
+            AssertReturnedAsExpected(returnedValue, true);
         }
 
         [Fact]
@@ -34,10 +28,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(true, ParamName).IsFalse());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsNotFalse
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotFalse);
         }
 
         [Fact]
@@ -45,8 +36,7 @@ namespace EnsureThat.UnitTests
         {
             var returnedValue = Ensure.That(false, ParamName).IsFalse();
 
-            Assert.Equal(ParamName, returnedValue.Name);
-            Assert.False(returnedValue.Value);
+            AssertReturnedAsExpected(returnedValue, false);
         }
     }
 }

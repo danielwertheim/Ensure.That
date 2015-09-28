@@ -6,8 +6,6 @@ namespace EnsureThat.UnitTests
 {
     public class ThrowsTests : UnitTestBase
     {
-        private const string ParamName = "test";
-
         [Fact]
         public void CustomFn_ReturnsCreatedException()
         {

@@ -5,8 +5,6 @@ namespace EnsureThat.UnitTests
 {
     public class EnsureNullableValueTypeParamTests : UnitTestBase
     {
-        private const string ParamName = "test";
-
         [Fact]
         public void IsNotNull_WhenNullInt_ThrowsArgumentException()
         {
@@ -84,18 +82,14 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentNullException>(
                 () => Ensure.That((T?)null, ParamName).IsNotNull());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsNotNull
-                            + "\r\nParameter name: test",
-                            ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNull);
         }
 
         private void Assert_IsNotNull_WhenNonNullInt_ReturnsPassedValue<T>(T? value) where T : struct 
         {
             var returnedValue = Ensure.That(value, ParamName).IsNotNull();
 
-            Assert.Equal(ParamName, returnedValue.Name);
-            Assert.Equal(value, returnedValue.Value);
+            AssertReturnedAsExpected(returnedValue, value);
         }
     }
 }
