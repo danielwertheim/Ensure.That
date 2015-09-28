@@ -5,8 +5,6 @@ namespace EnsureThat.UnitTests
 {
     public class EnsureObjectParamTests : UnitTestBase
     {
-        private const string ParamName = "test";
-
         [Fact]
         public void IsNotNull_WhenRefTypeIsNull_ThrowsArgumentNullException()
         {
@@ -15,10 +13,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentNullException>(
                 () => Ensure.That(value, ParamName).IsNotNull());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsNotNull
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNull);
         }
 
         [Fact]
@@ -28,8 +23,7 @@ namespace EnsureThat.UnitTests
 
             var returnedItem = Ensure.That(item, ParamName).IsNotNull();
 
-            Assert.Equal(ParamName, returnedItem.Name);
-            Assert.Equal(item, returnedItem.Value);
+            AssertReturnedAsExpected(returnedItem, item);
         }
     }
 }

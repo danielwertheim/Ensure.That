@@ -7,8 +7,6 @@ namespace EnsureThat.UnitTests
 {
     public class EnsureCollectionParamsTests : UnitTestBase
     {
-        private const string ParamName = "test";
-
         [Fact]
         public void HasItems_WhenEmptyICollection_ThrowsArgumentException()
         {
@@ -17,10 +15,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(emptyCollection, ParamName).HasItems());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsEmptyCollection
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
         }
 
         [Fact]
@@ -28,10 +23,9 @@ namespace EnsureThat.UnitTests
         {
             ICollection<int> collection = new Collection<int> { 1, 2, 3 };
 
-            var returnedCollection = Ensure.That(collection, ParamName).HasItems();
+            var returned = Ensure.That(collection, ParamName).HasItems();
 
-            Assert.Equal(ParamName, returnedCollection.Name);
-            Assert.Equal(collection, returnedCollection.Value);
+            AssertReturnedAsExpected(returned, collection);
         }
 
         [Fact]
@@ -42,10 +36,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(emptyCollection, ParamName).HasItems());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsEmptyCollection
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
         }
 
         [Fact]
@@ -53,10 +44,9 @@ namespace EnsureThat.UnitTests
         {
             var collection = new Collection<int> { 1, 2, 3 };
 
-            var returnedCollection = Ensure.That(collection, ParamName).HasItems();
+            var returned = Ensure.That(collection, ParamName).HasItems();
 
-            Assert.Equal(ParamName, returnedCollection.Name);
-            Assert.Equal(collection, returnedCollection.Value);
+            AssertReturnedAsExpected(returned, collection);
         }
 
         [Fact]
@@ -67,10 +57,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(nullArray, ParamName).HasItems());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsEmptyCollection
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
         }
 
         [Fact]
@@ -81,21 +68,17 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(emptyArray, ParamName).HasItems());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsEmptyCollection
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
         }
 
         [Fact]
         public void HasItems_WhenNonEmptyArray_ReturnsPassedValues()
         {
-            var array = new[] { 1, 2, 3 };
+            var values = new[] { 1, 2, 3 };
 
-            var returnedArray = Ensure.That(array, ParamName).HasItems();
+            var returned = Ensure.That(values, ParamName).HasItems();
 
-            Assert.Equal(ParamName, returnedArray.Name);
-            Assert.Equal(array, returnedArray.Value);
+            AssertReturnedAsExpected(returned, values);
         }
 
         [Fact]
@@ -106,21 +89,17 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(emptyList, ParamName).HasItems());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsEmptyCollection
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
         }
 
         [Fact]
         public void HasItems_WhenNonEmptyIList_ReturnsPassedValues()
         {
-            IList<int> list = new List<int> { 1, 2, 3 };
+            IList<int> values = new List<int> { 1, 2, 3 };
 
-            var returnedArray = Ensure.That(list, ParamName).HasItems();
+            var returned = Ensure.That(values, ParamName).HasItems();
 
-            Assert.Equal(ParamName, returnedArray.Name);
-            Assert.Equal(list, returnedArray.Value);
+            AssertReturnedAsExpected(returned, values);
         }
 
         [Fact]
@@ -131,21 +110,17 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(emptyList, ParamName).HasItems());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsEmptyCollection
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
         }
 
         [Fact]
         public void HasItems_WhenNonEmptyList_ReturnsPassedValues()
         {
-            var list = new List<int> { 1, 2, 3 };
+            var values = new List<int> { 1, 2, 3 };
 
-            var returned = Ensure.That(list, ParamName).HasItems();
+            var returned = Ensure.That(values, ParamName).HasItems();
 
-            Assert.Equal(ParamName, returned.Name);
-            Assert.Equal(list, returned.Value);
+            AssertReturnedAsExpected(returned, values);
         }
 
         [Fact]
@@ -156,10 +131,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(emptyDict, ParamName).HasItems());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsEmptyCollection
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
         }
 
         [Fact]
@@ -167,10 +139,9 @@ namespace EnsureThat.UnitTests
         {
             IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
 
-            var returnedArray = Ensure.That(dict, ParamName).HasItems();
+            var returned = Ensure.That(dict, ParamName).HasItems();
 
-            Assert.Equal(ParamName, returnedArray.Name);
-            Assert.Equal(dict, returnedArray.Value);
+            AssertReturnedAsExpected(returned, dict);
         }
 
         [Fact]
@@ -181,10 +152,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(emptyDict, ParamName).HasItems());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsEmptyCollection
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
         }
 
         [Fact]
@@ -192,21 +160,20 @@ namespace EnsureThat.UnitTests
         {
             var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
 
-            var returnedArray = Ensure.That(dict, ParamName).HasItems();
+            var returned = Ensure.That(dict, ParamName).HasItems();
 
-            Assert.Equal(ParamName, returnedArray.Name);
-            Assert.Equal(dict, returnedArray.Value);
+            Assert.Equal(ParamName, returned.Name);
+            Assert.Equal(dict, returned.Value);
         }
 
         [Fact]
         public void SizeIs_When_matching_length_of_array_It_returns_passed_values()
         {
-            var array = new[] { 1, 2, 3 };
+            var values = new[] { 1, 2, 3 };
 
-            var returned = Ensure.That(array, ParamName).SizeIs(array.Length);
+            var returned = Ensure.That(values, ParamName).SizeIs(values.Length);
 
-            Assert.Equal(ParamName, returned.Name);
-            Assert.Equal(array, returned.Value);
+            AssertReturnedAsExpected(returned, values);
         }
 
         [Fact]
@@ -217,21 +184,17 @@ namespace EnsureThat.UnitTests
 
             var ex = Assert.Throws<ArgumentException>(() => Ensure.That(array, ParamName).SizeIs(expected));
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_SizeIs_Wrong, expected, array.Length)
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_SizeIs_Wrong, expected, array.Length);
         }
 
         [Fact]
         public void SizeIs_When_matching_count_of_collection_It_returns_passed_values()
         {
-            var values = new List<int> {1, 2, 3};
+            var values = new List<int> { 1, 2, 3 };
 
             var returned = Ensure.That(values, ParamName).SizeIs(values.Count);
 
-            Assert.Equal(ParamName, returned.Name);
-            Assert.Equal(values, returned.Value);
+            AssertReturnedAsExpected(returned, values);
         }
 
         [Fact]
@@ -242,10 +205,154 @@ namespace EnsureThat.UnitTests
 
             var ex = Assert.Throws<ArgumentException>(() => Ensure.That(values, ParamName).SizeIs(expected));
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_SizeIs_Wrong, expected, values.Count)
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_SizeIs_Wrong, expected, values.Count);
+        }
+
+        [Fact]
+        public void ContainsKey_When_key_does_not_exist_in_Dictionary_It_throws_ArgumentException()
+        {
+            var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(dict, ParamName).ContainsKey("Foo"));
+
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_ContainsKey, "Foo");
+        }
+
+        [Fact]
+        public void ContainsKey_When_key_exists_in_Dictionary_It_returns_passed_values()
+        {
+            var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            var returned = Ensure.That(dict, ParamName).ContainsKey("B");
+
+            AssertReturnedAsExpected(returned, dict);
+        }
+
+        [Fact]
+        public void ContainsKey_When_key_does_not_exist_in_IDictionary_It_throws_ArgumentException()
+        {
+            IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(dict, ParamName).ContainsKey("Foo"));
+
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_ContainsKey, "Foo");
+        }
+
+        [Fact]
+        public void ContainsKey_When_key_exists_in_IDictionary_It_returns_passed_values()
+        {
+            IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            var returned = Ensure.That(dict, ParamName).ContainsKey("B");
+
+            AssertReturnedAsExpected(returned, dict);
+        }
+
+        [Fact]
+        public void Any_When_IList_predicate_yields_none_It_throws_ArgumentException()
+        {
+            IList<int> values = new List<int> { 1, 2, 3, 4 };
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(values, ParamName).Any(i => i == 0));
+
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+        }
+
+        [Fact]
+        public void Any_When_IList_predicate_yields_something_It_returns_passed_values()
+        {
+            IList<int> values = new List<int> { 1, 2, 3, 4 };
+
+            var returned = Ensure.That(values, ParamName).Any(i => i == 1);
+
+            AssertReturnedAsExpected(returned, values);
+        }
+
+        [Fact]
+        public void Any_When_List_predicate_yields_none_It_throws_ArgumentException()
+        {
+            var values = new List<int> { 1, 2, 3, 4 };
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(values, ParamName).Any(i => i == 0));
+
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+        }
+
+        [Fact]
+        public void Any_When_List_predicate_yields_something_It_returns_passed_values()
+        {
+            var values = new List<int> { 1, 2, 3, 4 };
+
+            var returned = Ensure.That(values, ParamName).Any(i => i == 1);
+
+            AssertReturnedAsExpected(returned, values);
+        }
+
+        [Fact]
+        public void Any_When_ICollection_predicate_yields_none_It_throws_ArgumentException()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3, 4 };
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(values, ParamName).Any(i => i == 0));
+
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+        }
+
+        [Fact]
+        public void Any_When_ICollection_predicate_yields_something_It_returns_passed_values()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3, 4 };
+
+            var returned = Ensure.That(values, ParamName).Any(i => i == 1);
+
+            AssertReturnedAsExpected(returned, values);
+        }
+
+        [Fact]
+        public void Any_When_Collection_predicate_yields_none_It_throws_ArgumentException()
+        {
+            var values = new Collection<int> { 1, 2, 3, 4 };
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(values, ParamName).Any(i => i == 0));
+
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+        }
+
+        [Fact]
+        public void Any_When_Collection_predicate_yields_something_It_returns_passed_values()
+        {
+            var values = new Collection<int> { 1, 2, 3, 4 };
+
+            var returned = Ensure.That(values, ParamName).Any(i => i == 1);
+
+            AssertReturnedAsExpected(returned, values);
+        }
+
+        [Fact]
+        public void Any_When_Array_predicate_yields_none_It_throws_ArgumentException()
+        {
+            var values = new[] { 1, 2, 3, 4 };
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(values, ParamName).Any(i => i == 0));
+
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+        }
+
+        [Fact]
+        public void Any_When_Array_predicate_yields_something_It_returns_passed_values()
+        {
+            var values = new [] { 1, 2, 3, 4 };
+
+            var returned = Ensure.That(values, ParamName).Any(i => i == 1);
+
+            AssertReturnedAsExpected(returned, values);
         }
     }
 }

@@ -6,8 +6,6 @@ namespace EnsureThat.UnitTests
 {
     public class EnsureStringParamTests : UnitTestBase
     {
-        private const string ParamName = "test";
-
         [Fact]
         public void IsNotNull_WhenStringIsNull_ThrowsArgumentNullException()
         {
@@ -16,10 +14,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentNullException>(
                 () => Ensure.That(value, ParamName).IsNotNull());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsNotNull
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNull);
         }
 
         [Fact]
@@ -29,8 +24,7 @@ namespace EnsureThat.UnitTests
 
             var returnedValue = Ensure.That(value, ParamName).IsNotNull();
 
-            Assert.Equal(ParamName, returnedValue.Name);
-            Assert.Equal(value, returnedValue.Value);
+            AssertReturnedAsExpected(returnedValue, value);
         }
 
         [Fact]
@@ -41,10 +35,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(value, ParamName).IsNotNullOrEmpty());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty);
         }
 
         [Fact]
@@ -55,10 +46,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(value, ParamName).IsNotNullOrEmpty());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty);
         }
 
         [Fact]
@@ -68,8 +56,7 @@ namespace EnsureThat.UnitTests
 
             var returnedValue = Ensure.That(value, ParamName).IsNotNull();
 
-            Assert.Equal(ParamName, returnedValue.Name);
-            Assert.Equal(value, returnedValue.Value);
+            AssertReturnedAsExpected(returnedValue, value);
         }
 
         [Fact]
@@ -80,10 +67,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(value, ParamName).IsNotNullOrWhiteSpace());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace);
         }
 
         [Fact]
@@ -94,10 +78,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(value, ParamName).IsNotNullOrWhiteSpace());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace);
         }
 
         [Fact]
@@ -108,10 +89,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(value, ParamName).IsNotNullOrWhiteSpace());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace);
         }
 
         [Fact]
@@ -121,8 +99,7 @@ namespace EnsureThat.UnitTests
 
             var returnedValue = Ensure.That(value, ParamName).IsNotNullOrWhiteSpace();
 
-            Assert.Equal(ParamName, returnedValue.Name);
-            Assert.Equal(value, returnedValue.Value);
+            AssertReturnedAsExpected(returnedValue, value);
         }
 
         [Fact]
@@ -133,10 +110,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(value, ParamName).HasLengthBetween(1, 2));
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty);
         }
 
         [Fact]
@@ -147,10 +121,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(value, ParamName).HasLengthBetween(2, 4));
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(String.Format(ExceptionMessages.EnsureExtensions_IsNotInRange_ToShort, 2, 4, 1)
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotInRange_ToShort, 2, 4, 1);
         }
 
         [Fact]
@@ -161,10 +132,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(value, ParamName).HasLengthBetween(2, 4));
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(String.Format(ExceptionMessages.EnsureExtensions_IsNotInRange_ToLong, 2, 4, 5)
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotInRange_ToLong, 2, 4, 5);
         }
 
         [Fact]
@@ -174,8 +142,7 @@ namespace EnsureThat.UnitTests
 
             var returnedValue = Ensure.That(value, ParamName).HasLengthBetween(2, 4);
 
-            Assert.Equal(ParamName, returnedValue.Name);
-            Assert.Equal(value, returnedValue.Value);
+            AssertReturnedAsExpected(returnedValue, value);
         }
 
         [Fact]
@@ -185,8 +152,7 @@ namespace EnsureThat.UnitTests
 
             var returnedValue = Ensure.That(value, ParamName).HasLengthBetween(2, 4);
 
-            Assert.Equal(ParamName, returnedValue.Name);
-            Assert.Equal(value, returnedValue.Value);
+            AssertReturnedAsExpected(returnedValue, value);
         }
 
         [Fact]
@@ -194,13 +160,11 @@ namespace EnsureThat.UnitTests
         {
             var value = @"incorrect";
             var match = @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*";
+
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(value, ParamName).Matches(match));
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(String.Format(ExceptionMessages.EnsureExtensions_NoMatch, value, match)
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_NoMatch, value, match);
         }
 
         [Fact]
@@ -208,13 +172,11 @@ namespace EnsureThat.UnitTests
         {
             var value = @"incorrect";
             var match = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*");
+
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(value, ParamName).Matches(match));
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(String.Format(ExceptionMessages.EnsureExtensions_NoMatch, value, match)
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_NoMatch, value, match);
         }
 
         [Fact]
@@ -222,9 +184,10 @@ namespace EnsureThat.UnitTests
         {
             var value = @"http://google.com:8080";
             var match = @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*";
+
             var returnedValue = Ensure.That(value, ParamName).Matches(match);
-            Assert.Equal(ParamName, returnedValue.Name);
-            Assert.Equal(value, returnedValue.Value);
+
+            AssertReturnedAsExpected(returnedValue, value);
         }
 
         [Fact]
@@ -232,9 +195,10 @@ namespace EnsureThat.UnitTests
         {
             var value = @"http://google.com:8080";
             var match = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*");
+
             var returnedValue = Ensure.That(value, ParamName).Matches(match);
-            Assert.Equal(ParamName, returnedValue.Name);
-            Assert.Equal(value, returnedValue.Value);
+
+            AssertReturnedAsExpected(returnedValue, value);
         }
 
         [Fact]
@@ -244,8 +208,7 @@ namespace EnsureThat.UnitTests
 
             var returned = Ensure.That(value, ParamName).SizeIs(value.Length);
 
-            Assert.Equal(ParamName, returned.Name);
-            Assert.Equal(value, returned.Value);
+            AssertReturnedAsExpected(returned, value);
         }
 
         [Fact]
@@ -256,10 +219,7 @@ namespace EnsureThat.UnitTests
 
             var ex = Assert.Throws<ArgumentException>(() => Ensure.That(value, ParamName).SizeIs(expected));
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_SizeIs_Wrong, expected, value.Length)
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_SizeIs_Wrong, expected, value.Length);
         }
 
         [Fact]
@@ -270,8 +230,7 @@ namespace EnsureThat.UnitTests
 
             var returnedValue = Ensure.That(value, ParamName).IsEqualTo(expected);
 
-            Assert.Equal(ParamName, returnedValue.Name);
-            Assert.Equal(value, returnedValue.Value);
+            AssertReturnedAsExpected(returnedValue, value);
         }
 
         [Fact]
@@ -282,8 +241,7 @@ namespace EnsureThat.UnitTests
 
             var returnedValue = Ensure.That(value, ParamName).IsEqualTo(expected, StringComparison.OrdinalIgnoreCase);
 
-            Assert.Equal(ParamName, returnedValue.Name);
-            Assert.Equal(value, returnedValue.Value);
+            AssertReturnedAsExpected(returnedValue, value);
         }
 
         [Fact]
@@ -294,10 +252,7 @@ namespace EnsureThat.UnitTests
 
             var ex = Assert.Throws<ArgumentException>(() => Ensure.That(value, ParamName).IsEqualTo(expected));
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_Is_Failed, value, expected)
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_Is_Failed, value, expected);
         }
 
         [Fact]
@@ -308,8 +263,7 @@ namespace EnsureThat.UnitTests
 
             var returnedValue = Ensure.That(value, ParamName).IsNotEqualTo(expected);
 
-            Assert.Equal(ParamName, returnedValue.Name);
-            Assert.Equal(value, returnedValue.Value);
+            AssertReturnedAsExpected(returnedValue, value);
         }
 
         [Fact]
@@ -320,10 +274,26 @@ namespace EnsureThat.UnitTests
 
             var ex = Assert.Throws<ArgumentException>(() => Ensure.That(value, ParamName).IsNotEqualTo(expected));
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNot_Failed, value, expected)
-                + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNot_Failed, value, expected);
+        }
+
+        [Fact]
+        public void IsGuid_When_is_not_Guid_throws_ArgumentException()
+        {
+            var value = "324-3243-123-23";
+            var ex = Assert.Throws<ArgumentException>(() => Ensure.That(value, ParamName).IsGuid());
+
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotGuid, value);
+        }
+
+        [Fact]
+        public void IsGuid_When_valid_Guid_returns_Guid()
+        {
+            var value = Guid.NewGuid().ToString();
+
+            var returnedValue = Ensure.That(value, ParamName).IsGuid();
+
+            AssertReturnedAsExpected(returnedValue, value);
         }
     }
 }

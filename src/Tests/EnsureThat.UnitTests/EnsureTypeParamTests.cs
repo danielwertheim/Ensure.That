@@ -5,8 +5,6 @@ namespace EnsureThat.UnitTests
 {
     public class EnsureTypeParamTests : UnitTestBase
     {
-        private const string ParamName = "test";
-
         private class Bogus { }
 
         private class NonBogus { }
@@ -21,10 +19,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(new Bogus(), ParamName).IsOfType(NonBogusType));
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, BogusType.FullName)
-                            + "\r\nParameter name: test",
-                            ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotOfType, BogusType.FullName);
         }
 
         [Fact]
@@ -42,10 +37,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42m, ParamName).IsInt());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(decimal).FullName)
-                            + "\r\nParameter name: test",
-                            ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(decimal).FullName);
         }
 
         [Fact]
@@ -63,10 +55,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42, ParamName).IsShort());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
-                            + "\r\nParameter name: test",
-                            ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName);
         }
 
         [Fact]
@@ -84,10 +73,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42, ParamName).IsDecimal());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
-                            + "\r\nParameter name: test",
-                            ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName);
         }
 
         [Fact]
@@ -105,10 +91,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42, ParamName).IsDouble());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
-                            + "\r\nParameter name: test",
-                            ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName);
         }
 
         [Fact]
@@ -126,10 +109,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42, ParamName).IsFloat());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
-                            + "\r\nParameter name: test",
-                            ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName);
         }
 
         [Fact]
@@ -147,10 +127,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42, ParamName).IsBool());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
-                            + "\r\nParameter name: test",
-                            ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName);
         }
 
         [Fact]
@@ -168,10 +145,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42, ParamName).IsDateTime());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
-                            + "\r\nParameter name: test",
-                            ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName);
         }
 
         [Fact]
@@ -189,10 +163,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.ThatTypeFor(42, ParamName).IsString());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName)
-                            + "\r\nParameter name: test",
-                            ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotOfType, typeof(int).FullName);
         }
 
         [Fact]
@@ -210,10 +181,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(typeof(int), ParamName).IsClass());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(string.Format(ExceptionMessages.EnsureExtensions_IsNotClass, typeof(int).FullName)
-                            + "\r\nParameter name: test",
-                            ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotClass, typeof(int).FullName);
         }
 
         [Fact]
@@ -222,10 +190,7 @@ namespace EnsureThat.UnitTests
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(null as Type, ParamName).IsClass());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(
-                ExceptionMessages.EnsureExtensions_IsNotClass_WasNull + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotClass_WasNull);
         }
 
         [Fact]

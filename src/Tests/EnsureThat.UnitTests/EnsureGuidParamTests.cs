@@ -5,18 +5,13 @@ namespace EnsureThat.UnitTests
 {
     public class EnsureGuidParamTests : UnitTestBase
     {
-        private const string ParamName = "test";
-
         [Fact]
         public void IsNotEmpty_WhenEmptyGuid_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(
                 () => Ensure.That(Guid.Empty, ParamName).IsNotEmpty());
 
-            Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(
-                ExceptionMessages.EnsureExtensions_IsEmptyGuid + "\r\nParameter name: test",
-                ex.Message);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsEmptyGuid);
         }
 
         [Fact]
@@ -26,8 +21,7 @@ namespace EnsureThat.UnitTests
 
             var returnedValue = Ensure.That(guid, ParamName).IsNotEmpty();
 
-            Assert.Equal(ParamName, returnedValue.Name);
-            Assert.Equal(guid, returnedValue.Value);
+            AssertReturnedAsExpected(returnedValue, guid);
         }
     }
 }
