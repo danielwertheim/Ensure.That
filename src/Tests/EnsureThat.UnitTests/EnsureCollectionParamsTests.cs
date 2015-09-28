@@ -250,6 +250,109 @@ namespace EnsureThat.UnitTests
             AssertReturnedAsExpected(returned, dict);
         }
 
+        [Fact]
+        public void Any_When_IList_predicate_yields_none_It_throws_ArgumentException()
+        {
+            IList<int> values = new List<int> { 1, 2, 3, 4 };
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(values, ParamName).Any(i => i == 0));
+
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+        }
+
+        [Fact]
+        public void Any_When_IList_predicate_yields_something_It_returns_passed_values()
+        {
+            IList<int> values = new List<int> { 1, 2, 3, 4 };
+
+            var returned = Ensure.That(values, ParamName).Any(i => i == 1);
+
+            AssertReturnedAsExpected(returned, values);
+        }
+
+        [Fact]
+        public void Any_When_List_predicate_yields_none_It_throws_ArgumentException()
+        {
+            var values = new List<int> { 1, 2, 3, 4 };
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(values, ParamName).Any(i => i == 0));
+
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+        }
+
+        [Fact]
+        public void Any_When_List_predicate_yields_something_It_returns_passed_values()
+        {
+            var values = new List<int> { 1, 2, 3, 4 };
+
+            var returned = Ensure.That(values, ParamName).Any(i => i == 1);
+
+            AssertReturnedAsExpected(returned, values);
+        }
+
+        [Fact]
+        public void Any_When_ICollection_predicate_yields_none_It_throws_ArgumentException()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3, 4 };
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(values, ParamName).Any(i => i == 0));
+
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+        }
+
+        [Fact]
+        public void Any_When_ICollection_predicate_yields_something_It_returns_passed_values()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3, 4 };
+
+            var returned = Ensure.That(values, ParamName).Any(i => i == 1);
+
+            AssertReturnedAsExpected(returned, values);
+        }
+
+        [Fact]
+        public void Any_When_Collection_predicate_yields_none_It_throws_ArgumentException()
+        {
+            var values = new Collection<int> { 1, 2, 3, 4 };
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(values, ParamName).Any(i => i == 0));
+
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+        }
+
+        [Fact]
+        public void Any_When_Collection_predicate_yields_something_It_returns_passed_values()
+        {
+            var values = new Collection<int> { 1, 2, 3, 4 };
+
+            var returned = Ensure.That(values, ParamName).Any(i => i == 1);
+
+            AssertReturnedAsExpected(returned, values);
+        }
+
+        [Fact]
+        public void Any_When_Array_predicate_yields_none_It_throws_ArgumentException()
+        {
+            var values = new[] { 1, 2, 3, 4 };
+
+            var ex = Assert.Throws<ArgumentException>(
+                () => Ensure.That(values, ParamName).Any(i => i == 0));
+
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+        }
+
+        [Fact]
+        public void Any_When_Array_predicate_yields_something_It_returns_passed_values()
+        {
+            var values = new [] { 1, 2, 3, 4 };
+
+            var returned = Ensure.That(values, ParamName).Any(i => i == 1);
+
+            AssertReturnedAsExpected(returned, values);
         }
     }
 }

@@ -26,5 +26,6 @@
         public static string EnsureExtensions_InvalidOperationException { get; private set; } = "Could not perform operation due to invalid state of '{0}'.";
         public static string EnsureExtensions_IsEmptyGuid { get; private set; } = "Empty Guid is not allowed.";
         public static string EnsureExtensions_ContainsKey { get; private set; } = "Key '{0}' does not exist.";
+        public static string EnsureExtensions_AnyPredicateYieldedNone { get; private set; } = "The predicate did not match any elements.";
     }
 }

@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 
 namespace EnsureThat
 {
@@ -124,5 +126,49 @@ namespace EnsureThat
             return param;
         }
 
+        [DebuggerStepThrough]
+        public static Param<IList<T>> Any<T>(this Param<IList<T>> param, Func<T, bool> predicate)
+        {
+            if (!param.Value.Any(predicate))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<List<T>> Any<T>(this Param<List<T>> param, Func<T, bool> predicate)
+        {
+            if (!param.Value.Any(predicate))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<ICollection<T>> Any<T>(this Param<ICollection<T>> param, Func<T, bool> predicate)
+        {
+            if (!param.Value.Any(predicate))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<Collection<T>> Any<T>(this Param<Collection<T>> param, Func<T, bool> predicate)
+        {
+            if (!param.Value.Any(predicate))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<T[]> Any<T>(this Param<T[]> param, Func<T, bool> predicate)
+        {
+            if (!param.Value.Any(predicate))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+
+            return param;
+        }
     }
 }
