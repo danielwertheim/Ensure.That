@@ -27,5 +27,6 @@
         public static string EnsureExtensions_IsEmptyGuid { get; private set; } = "Empty Guid is not allowed.";
         public static string EnsureExtensions_ContainsKey { get; private set; } = "Key '{0}' does not exist.";
         public static string EnsureExtensions_AnyPredicateYieldedNone { get; private set; } = "The predicate did not match any elements.";
+        public static string EnsureExtensions_IsNotGuid { get; private set; } = "Value '{0}' is not a valid GUID.";
     }
 }
