@@ -7,6 +7,18 @@ namespace EnsureThat
 {
     public static class Ensure
     {
+        public static bool IsActive { get; private set; } = true;
+
+        public static void Off()
+        {
+            IsActive = false;
+        }
+
+        public static void On()
+        {
+            IsActive = true;
+        }
+
         [DebuggerStepThrough]
         public static Param<T> That<T>([NoEnumeration]T value, string name = Param.DefaultName)
         {

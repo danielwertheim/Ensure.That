@@ -7,6 +7,9 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<T> IsNotNull<T>(this Param<T> param, Throws<T>.ExceptionFnConfig exceptionFn = null) where T : class
         {
+            if (!Ensure.IsActive)
+                return param;
+
             if (param.Value == null)
             {
                 if (exceptionFn != null)

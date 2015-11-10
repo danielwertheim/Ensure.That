@@ -1,9 +1,23 @@
 # Ensure.That
 Ensure.That is a simple guard clause argument validation lib, that helps you with validation of your arguments.
 
+## Turn On/Off - default is On
+Could be used with different profiles. Like `Debug` and `CI` is `On` while `Release` is `Off`.
+
 ```csharp
-Ensure.That(myString, "myString").IsNotNullOrWhiteSpace();
+#if RELEASE
+    Ensure.Off()
+#endif
 ```
+
+## Samples
+```csharp
+Ensure.That(myString, nameof(myArg)).IsNotNullOrWhiteSpace();
+
+Ensure.That(myString, "myArg").IsNotNullOrWhiteSpace();
+```
+
+**NOTE!** I personally would not use the lambda version below to get the name of the argument. I would rather use the `nameof` construct (read more)[https://msdn.microsoft.com/en-us/library/dn986596.aspx] or manually defining the name of the argument.
 
 From `v3.1.0` support for lambdas to extract the param-name and/or value has been added, hence you can now do:
 
