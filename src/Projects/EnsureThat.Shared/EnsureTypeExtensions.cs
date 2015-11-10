@@ -76,7 +76,10 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static TypeParam IsOfType(this TypeParam param, Type type)
         {
-            if (!param.Type.Equals(type))
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Type != type)
                 throw ExceptionFactory.CreateForParamValidation(param,
                     ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(param.Type.FullName));
 
@@ -86,6 +89,9 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<Type> IsClass(this Param<Type> param)
         {
+            if (!Ensure.IsActive)
+                return param;
+
             if (param.Value == null)
                 throw ExceptionFactory.CreateForParamValidation(param,
                     ExceptionMessages.EnsureExtensions_IsNotClass_WasNull);

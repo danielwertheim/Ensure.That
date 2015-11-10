@@ -1,9 +1,31 @@
 # Ensure.That
 Ensure.That is a simple guard clause argument validation lib, that helps you with validation of your arguments.
 
+**NuGet(dll)**
+
+[![Nuget](https://img.shields.io/nuget/v/ensure.that.svg)](https://www.nuget.org/packages/ensure.that/) [![Users](https://img.shields.io/nuget/dt/ensure.that.svg)](https://www.nuget.org/packages/ensure.that/)
+
+**NuGet(src)**
+
+[![Nuget](https://img.shields.io/nuget/v/ensure.that.source.svg)](https://www.nuget.org/packages/ensure.that.source/) [![Users](https://img.shields.io/nuget/dt/ensure.that.source.svg)](https://www.nuget.org/packages/ensure.that.source/)
+
+## Turn On/Off - default is On
+Could be used with different profiles. Like `Debug` and `CI` is `On` while `Release` is `Off`.
+
 ```csharp
-Ensure.That(myString, "myString").IsNotNullOrWhiteSpace();
+#if RELEASE
+    Ensure.Off()
+#endif
 ```
+
+## Samples
+```csharp
+Ensure.That(myString, nameof(myArg)).IsNotNullOrWhiteSpace();
+
+Ensure.That(myString, "myArg").IsNotNullOrWhiteSpace();
+```
+
+**NOTE!** I personally would not use the lambda version below to get the name of the argument. I would rather use the `nameof` [construct](https://msdn.microsoft.com/en-us/library/dn986596.aspx) or manually defining the name of the argument.
 
 From `v3.1.0` support for lambdas to extract the param-name and/or value has been added, hence you can now do:
 
@@ -47,14 +69,3 @@ Pull request should be against the `develop` **branch**
 
 ## Issues, questions, etc ##
 So you have issues or questions... Great! That means someone is using it. Use the issues function here at the project page or contact me via mail: firstname@lastname.se; or Twitter: [@danielwertheim](https://twitter.com/danielwertheim)
-
-## License ##
-The MIT License (MIT)
-
-Copyright (c) 2013 Daniel Wertheim
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

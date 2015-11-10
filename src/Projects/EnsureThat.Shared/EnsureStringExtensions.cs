@@ -9,6 +9,9 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<string> IsNotNullOrWhiteSpace(this Param<string> param, Throws<string>.ExceptionFnConfig exceptionFn = null)
         {
+            if (!Ensure.IsActive)
+                return param;
+
             if (string.IsNullOrWhiteSpace(param.Value))
             {
                 if (exceptionFn != null)

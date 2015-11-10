@@ -13,7 +13,7 @@ var config = {
   src: './../src/',
   build: {
     outdir: './build/',
-    version: '3.2.0',
+    version: '3.3.0',
     revision: argv.buildrevision || '*',
     profile: argv.buildprofile || 'Release'
   }
@@ -72,8 +72,8 @@ gulp.task('copy', function() {
 });
 
 gulp.task('unit-test', function () {
-  return gulp.src(config.src + 'tests/**/bin/' + config.build.profile + '/*.UnitTests.dll')
-    .pipe(shell('xunit.console.clr4.exe <%= file.path %> /silent /noshadow', { cwd: './tools/xunit.runners.1.9.2/tools/' }));
+  return gulp.src(config.src + 'Tests/**/bin/' + config.build.profile + '/*.UnitTests.dll')
+    .pipe(shell('xunit.console.exe <%= file.path %> -noshadow', { cwd: './tools/xunit.runner.console.2.1.0/tools/' }));
 });
 
 gulp.task('nuget-pack', shell.task([
