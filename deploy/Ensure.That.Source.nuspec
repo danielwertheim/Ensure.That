@@ -13,7 +13,7 @@
         This is the source distribution. There is also a portable class library package, Ensure.That, for .Net4+, Silverlight, Windows Phone, WinRT.
         </description>
         <projectUrl>https://github.com/danielwertheim/ensure.that</projectUrl>
-        <licenseUrl>https://github.com/danielwertheim/Ensure.That#license</licenseUrl>
+        <licenseUrl>https://raw.githubusercontent.com/danielwertheim/Ensure.That/master/LICENSE.txt</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <releaseNotes>https://github.com/danielwertheim/Ensure.That/wiki/Release-notes</releaseNotes>
         <tags>argument validation guard clause</tags>
