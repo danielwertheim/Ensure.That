@@ -79,7 +79,7 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return param;
 
-            if (!param.Type.Equals(type))
+            if (param.Type != type)
                 throw ExceptionFactory.CreateForParamValidation(param,
                     ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(param.Type.FullName));
 
