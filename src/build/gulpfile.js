@@ -11,7 +11,7 @@ var gulp = require('gulp'),
 var ver = '4.0.0',
     config = {
         srcdir: './../',
-        projects: ['EnsureThat.vNext', 'EnsureThat.vDinasour'],
+        projects: ['EnsureThat', 'EnsureThat.vNext'],
         build: {
             outdir: './artifacts/',
             semver: ver, //suffix e.g. 'rc-1'
