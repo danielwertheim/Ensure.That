@@ -70,7 +70,7 @@ gulp.task('build', function() {
 
 gulp.task('copy', function() {
     var tasks = config.projects.map(function (name) {
-        return gulp.src(config.srcdir + 'projects/' + name + '/bin/' + config.build.profile + '/*.{dll,XML}')
+        return gulp.src(config.srcdir + 'projects/' + name + '/bin/' + config.build.profile + '/*.{dll,xml}')
             .pipe(flatten())
             .pipe(gulp.dest(config.build.outdir + '/' + name));
     });
