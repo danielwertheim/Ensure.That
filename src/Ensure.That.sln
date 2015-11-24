@@ -16,7 +16,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EnsureThat.Shared", "projec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnsureThat.vNext", "projects\EnsureThat.vNext\EnsureThat.vNext.csproj", "{241836E3-88E0-410D-83C2-FD2578FD8C2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnsureThat.vDinasour", "projects\EnsureThat.vDinasour\EnsureThat.vDinasour.csproj", "{172B11DE-0176-4BBF-998E-E22B244F4DDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnsureThat", "projects\EnsureThat\EnsureThat.csproj", "{172B11DE-0176-4BBF-998E-E22B244F4DDA}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

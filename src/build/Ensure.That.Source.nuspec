@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package>
     <metadata>
-        <id>Ensure.That.Source</id>    
+        <id>Ensure.That.Source</id>
         <title>Ensure.That (source)</title>
         <version>$version$</version>
         <authors>danielwertheim</authors>
@@ -9,7 +9,7 @@
         <summary>Yet another guard clause project.</summary>
         <description>
         A simple guard clause project helping you with validation and uniformed exception throwing when validating arguments.
-        
+
         This is the source distribution. There is also a portable class library package, Ensure.That, for .Net4+, Silverlight, Windows Phone, WinRT.
         </description>
         <projectUrl>https://github.com/danielwertheim/ensure.that</projectUrl>
@@ -20,6 +20,6 @@
         <developmentDependency>true</developmentDependency>
     </metadata>
     <files>
-        <file src="Projects\EnsureThat.Shared\**\*.cs" target="Content\EnsureThat" exclude="Projects\EnsureThat\Properties\**\*.cs" />
+        <file src="..\..\Projects\EnsureThat.Shared\**\*.cs" target="Content\EnsureThat" exclude="Projects\EnsureThat\Properties\**\*.cs" />
     </files>
 </package>
