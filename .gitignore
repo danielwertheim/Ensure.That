@@ -1,6 +1,3 @@
-# node
-node_modules/
-
 # vs
 .vs/
 [Aa]pp_[Dd]ata/
@@ -16,7 +13,7 @@ node_modules/
 *.suo
 *.cache
 
-# dnx
+# dotnetcore
 project.lock.json
 artifacts/
 
@@ -34,9 +31,6 @@ src/build/tools/
 
 # nuget
 [Pp]ackages/
-
-# approvals#
-*.received.txt
 
 # resharper
 _ReSharper.*

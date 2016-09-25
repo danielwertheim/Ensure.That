@@ -23,7 +23,8 @@
             "url": "https://github.com/danielwertheim/ensure.that"
         },
         "requireLicenseAcceptance": false,
-        "licenseUrl": "https://raw.githubusercontent.com/danielwertheim/Ensure.That/master/LICENSE.txt"
+        "licenseUrl": "https://raw.githubusercontent.com/danielwertheim/Ensure.That/master/LICENSE.txt",
+        "releaseNotes": "https://github.com/danielwertheim/ensure.that/blob/master/ReleaseNotes.md"
     },
     "dependencies": {},
 
