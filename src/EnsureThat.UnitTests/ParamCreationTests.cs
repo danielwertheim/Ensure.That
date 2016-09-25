@@ -47,7 +47,7 @@ namespace EnsureThat.UnitTests
 
             var param = Ensure.That(() => theString);
 
-            Assert.Equal("theString", param.Name);
+            Assert.Equal(Param.DefaultName, param.Name);
             Assert.Equal("My string", param.Value);
         }
 
@@ -58,7 +58,7 @@ namespace EnsureThat.UnitTests
 
             var param = Ensure.That(() => item.StringField);
 
-            Assert.Equal("item.StringField", param.Name);
+            Assert.Equal(Param.DefaultName, param.Name);
             Assert.Equal(item.StringField, param.Value);
         }
 
@@ -69,7 +69,7 @@ namespace EnsureThat.UnitTests
 
             var param = Ensure.That(() => item.StringProp);
 
-            Assert.Equal("item.StringProp", param.Name);
+            Assert.Equal(Param.DefaultName, param.Name);
             Assert.Equal(item.StringProp, param.Value);
         }
 
@@ -80,7 +80,7 @@ namespace EnsureThat.UnitTests
 
             var param = Ensure.That(() => item.Nested.StringProp);
 
-            Assert.Equal("item.Nested.StringProp", param.Name);
+            Assert.Equal(Param.DefaultName, param.Name);
             Assert.Equal(item.Nested.StringProp, param.Value);
         }
 

@@ -25,12 +25,6 @@ namespace EnsureThat
             return new Param<T>(name, value);
         }
 
-        [DebuggerStepThrough]
-        public static TypeParam ThatTypeFor<T>(T value, string name = Param.DefaultName)
-        {
-            return new TypeParam(name, value.GetType());
-        }
-
         /// <summary>
         /// Defines what to validate. Please read remarks.
         /// </summary>
@@ -44,34 +38,18 @@ namespace EnsureThat
         /// where you pass the value explicitly.
         /// </remarks>
         [DebuggerStepThrough]
-        public static Param<T> That<T>(Expression<Func<T>> expression, string name = Param.DefaultName)
+        public static Param<T> That<T>(Func<T> expression, string name = Param.DefaultName)
         {
-            if (name == Param.DefaultName)
-            {
-                var memberExpression = expression.GetRightMostMember();
-                name = memberExpression.ToPath();
-            }
-
             return new Param<T>(
                 name,
-                expression.Compile().Invoke());
+                expression.Invoke());
         }
 
-        /// <summary>
-        /// Defines what to validate.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="value"></param>
-        /// <param name="expression">Used to extract the calling path, to get which member that is being validated. Used as param name.</param>
-        /// <returns></returns>
-        [DebuggerStepThrough]
-        public static Param<T> That<T>([NoEnumeration]T value, Expression<Func<T>> expression)
-        {
-            var memberExpression = expression.GetRightMostMember();
 
-            return new Param<T>(
-                memberExpression.ToPath(),
-                value);
+        [DebuggerStepThrough]
+        public static TypeParam ThatTypeFor<T>(T value, string name = Param.DefaultName)
+        {
+            return new TypeParam(name, value.GetType());
         }
     }
 }

@@ -8,7 +8,7 @@ namespace EnsureThat
     {
         private static class Types
         {
-            internal static readonly Type IntType = typeof (int);
+            internal static readonly Type IntType = typeof(int);
 
             internal static readonly Type ShortType = typeof(short);
 
@@ -96,17 +96,9 @@ namespace EnsureThat
                 throw ExceptionFactory.CreateForParamValidation(param,
                     ExceptionMessages.EnsureExtensions_IsNotClass_WasNull);
 
-#if vDinasour
-            if (!param.Value.IsClass)
-                throw ExceptionFactory.CreateForParamValidation(param,
-                    ExceptionMessages.EnsureExtensions_IsNotClass.Inject(param.Value.FullName));
-#elif vNext
             if (!param.Value.GetTypeInfo().IsClass)
                 throw ExceptionFactory.CreateForParamValidation(param,
                     ExceptionMessages.EnsureExtensions_IsNotClass.Inject(param.Value.FullName));
-#else
-            throw new NotSupportedException("Hmm. Looks like I don't support this framework of yours.");
-#endif
 
             return param;
         }

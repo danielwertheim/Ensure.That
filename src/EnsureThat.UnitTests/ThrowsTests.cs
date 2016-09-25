@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using FluentAssertions;
 using Xunit;
 
 namespace EnsureThat.UnitTests
@@ -24,7 +25,9 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void Object_IsNotNull_When_not_null_Does_not_throw()
         {
-            Assert.DoesNotThrow(() => Ensure.That(new object(), ParamName).IsNotNull(throws => throws.InvalidOperationException));
+            Action a = () => Ensure.That(new object(), ParamName).IsNotNull(throws => throws.InvalidOperationException);
+
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -36,7 +39,9 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void String_IsNotNullOrEmpty_When_non_empty_string_Does_not_throw()
         {
-            Assert.DoesNotThrow(() => Ensure.That("test value", ParamName).IsNotNullOrEmpty(throws => throws.InvalidOperationException));
+            Action a = () => Ensure.That("test value", ParamName).IsNotNullOrEmpty(throws => throws.InvalidOperationException);
+
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -48,7 +53,9 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void String_IsNotNullOrWhiteSpace_When_non_empty_string_Does_not_throw()
         {
-            Assert.DoesNotThrow(() => Ensure.That("test value", ParamName).IsNotNullOrWhiteSpace(throws => throws.InvalidOperationException));
+            Action a = () => Ensure.That("test value", ParamName).IsNotNullOrWhiteSpace(throws => throws.InvalidOperationException);
+
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -60,7 +67,9 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void Comparable_Is_When_matching_Does_not_throw()
         {
-            Assert.DoesNotThrow(() => Ensure.That(42, ParamName).Is(42, throws => throws.InvalidOperationException));
+            Action a = () => Ensure.That(42, ParamName).Is(42, throws => throws.InvalidOperationException);
+
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -72,7 +81,9 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void Comparable_IsNot_When_non_matching_Does_not_throw()
         {
-            Assert.DoesNotThrow(() => Ensure.That(42, ParamName).IsNot(41, throws => throws.InvalidOperationException));
+            Action a = () => Ensure.That(42, ParamName).IsNot(41, throws => throws.InvalidOperationException);
+
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -84,7 +95,9 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void Comparable_IsLt_When_lt_Does_not_throw()
         {
-            Assert.DoesNotThrow(() => Ensure.That(42, ParamName).IsLt(43, throws => throws.InvalidOperationException));
+            Action a = () => Ensure.That(42, ParamName).IsLt(43, throws => throws.InvalidOperationException);
+
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -96,7 +109,9 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void Comparable_IsLte_When_lte_Does_not_throw()
         {
-            Assert.DoesNotThrow(() => Ensure.That(42, ParamName).IsLte(42, throws => throws.InvalidOperationException));
+            Action a = () => Ensure.That(42, ParamName).IsLte(42, throws => throws.InvalidOperationException);
+
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -108,7 +123,9 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void Comparable_IsLt_When_gt_Does_not_throw()
         {
-            Assert.DoesNotThrow(() => Ensure.That(42, ParamName).IsGt(41, throws => throws.InvalidOperationException));
+            Action a = () => Ensure.That(42, ParamName).IsGt(41, throws => throws.InvalidOperationException);
+
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -120,7 +137,9 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void Comparable_IsGte_When_gte_Does_not_throw()
         {
-            Assert.DoesNotThrow(() => Ensure.That(42, ParamName).IsGte(42, throws => throws.InvalidOperationException));
+            Action a = () => Ensure.That(42, ParamName).IsGte(42, throws => throws.InvalidOperationException);
+
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -132,10 +151,12 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void Comparable_IsInRange_When_in_range_Does_not_throw()
         {
-            Assert.DoesNotThrow(() => Ensure.That(42, ParamName).IsInRange(40, 45, throws => throws.InvalidOperationException));
+            Action a = () => Ensure.That(42, ParamName).IsInRange(40, 45, throws => throws.InvalidOperationException);
+
+            a.ShouldNotThrow();
         }
 
-        private static void AssertInvalidOperationExceptionIsThrown(Assert.ThrowsDelegate action)
+        private static void AssertInvalidOperationExceptionIsThrown(Action action)
         {
             var ex = Assert.Throws<InvalidOperationException>(action);
 
