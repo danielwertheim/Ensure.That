@@ -107,10 +107,10 @@ namespace EnsureThat.UnitTests
         {
             string value = null;
 
-            var ex = Assert.Throws<ArgumentException>(
+            var ex = Assert.Throws<ArgumentNullException>(
                 () => Ensure.That(value, ParamName).HasLengthBetween(1, 2));
 
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNull);
         }
 
         [Fact]
