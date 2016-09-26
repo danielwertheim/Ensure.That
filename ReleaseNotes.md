@@ -3,7 +3,17 @@ _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should b
 
 ## v5.0.0 - 2016-09-xx
 **[New]:** Now using DotNetCore and targetting .NetStandard1.1 as well as "normal" .Net4.5-.Net4.6.1
+
+**[New]:** New flavour of API added, with less overhead. See README.md for mor info. But basically:
+
+```csharp
+EnsureArg.IsNotNullOrEmpty(myString)
+```
+
+The old flavour is still in.
+
 **[Removed]:** Source package. If you want it. It's in the repo.
+
 **[Removed]:** Removed support for extracting the name for params using a compiled lambda. Only reason people want it is for refactoring friendlyness. Use `nameof(myparam)` instead.
 
 ## v4.0.0 - 2015-11-24

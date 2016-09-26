@@ -5,6 +5,38 @@ Ensure.That is a simple guard clause argument validation lib, that helps you wit
 
 [![Nuget](https://img.shields.io/nuget/v/ensure.that.svg)](https://www.nuget.org/packages/ensure.that/)
 
+## NuGet
+Ensure.That is distributed via NuGet and since `v5.0.0` it's being built using DotNetCore and targes the frameworks:
+
+* .NetStandard1.1
+* .Net4.5+
+
+```
+install-package Ensure.That
+```
+
+## Samples (two different APIs)
+
+### Using static simple methods
+This flavour was added in the `v5.0.0` release and **this is my prefered way**, because it has less overhead (read more below).
+
+```csharp
+EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
+
+EnsureArg.IsNotNullOrWhiteSpace(myString, "myArg");
+```
+
+### Using extension methods
+This is the initial way of doing validation, but **this IS NOT my prefered way**. Why? Well because it will
+create a new instance of `Param<T>` wrapping the value being passed, so that the context-aware extension
+methods can target correct type.
+
+```csharp
+Ensure.That(myString, nameof(myArg)).IsNotNullOrWhiteSpace();
+
+Ensure.That(myString, "myArg").IsNotNullOrWhiteSpace();
+```
+
 ## Turn On/Off - default is On
 Could be used with different profiles. Like `Debug` and `CI` is `On` while `Release` is `Off`.
 
@@ -14,21 +46,8 @@ Could be used with different profiles. Like `Debug` and `CI` is `On` while `Rele
 #endif
 ```
 
-## Samples
-```csharp
-Ensure.That(myString, nameof(myArg)).IsNotNullOrWhiteSpace();
-
-Ensure.That(myString, "myArg").IsNotNullOrWhiteSpace();
-```
-
 ## Release notes
 Available from `v2.0.0`, https://github.com/danielwertheim/ensure.that/blob/master/ReleaseNotes.md
-
-## NuGet
-Ensure.That is distributed via NuGet and since `v5.0.0` it's being build using DotNetCore and targes the frameworks:
-
-* .NetStandard1.1
-* .Net4.5+
 
 ## Documentation
 The documentation is contained in the [project wiki](https://github.com/danielwertheim/ensure.that/wiki).
