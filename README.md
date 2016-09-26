@@ -16,14 +16,20 @@ install-package Ensure.That
 ```
 
 ## Samples (two different APIs)
+Samples below just list one validation method, but the API contains validation methods for e.g.:
+
+* Strings
+* Numerics
+* Collections (arrays, lists, collections, dictionaries)
+* Booleans
+* Guids
 
 ### Using static simple methods
 This flavour was added in the `v5.0.0` release and **this is my prefered way**, because it has less overhead (read more below).
 
 ```csharp
+EnsureArg.IsNotNullOrWhiteSpace(myString);
 EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
-
-EnsureArg.IsNotNullOrWhiteSpace(myString, "myArg");
 ```
 
 ### Using extension methods
@@ -32,9 +38,15 @@ create a new instance of `Param<T>` wrapping the value being passed, so that the
 methods can target correct type.
 
 ```csharp
+Ensure.That(myString).IsNotNullOrWhiteSpace();
 Ensure.That(myString, nameof(myArg)).IsNotNullOrWhiteSpace();
+```
 
-Ensure.That(myString, "myArg").IsNotNullOrWhiteSpace();
+```csharp
+Ensure
+    .That(myString, nameof(myString))
+    .WithExtraMessageOf(p => "Some more details")
+    .IsNotNullOrWhiteSpace();
 ```
 
 ## Turn On/Off - default is On
@@ -48,9 +60,6 @@ Could be used with different profiles. Like `Debug` and `CI` is `On` while `Rele
 
 ## Release notes
 Available from `v2.0.0`, https://github.com/danielwertheim/ensure.that/blob/master/ReleaseNotes.md
-
-## Documentation
-The documentation is contained in the [project wiki](https://github.com/danielwertheim/ensure.that/wiki).
 
 # Get up and running with the source code #
 The main solution is maintained using Visual Studio 2015.

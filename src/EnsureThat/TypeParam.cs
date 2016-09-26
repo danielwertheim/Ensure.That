@@ -6,8 +6,8 @@ namespace EnsureThat
     {
         public readonly Type Type;
 
-        internal TypeParam(string name, Type type, Func<string> extraMessageFn = null)
-            : base(name, extraMessageFn)
+        internal TypeParam(string name, Type type)
+            : base(name)
         {
             Type = type;
         }

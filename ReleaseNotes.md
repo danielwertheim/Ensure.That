@@ -16,6 +16,24 @@ The old flavour is still in.
 
 **[Removed]:** Removed support for extracting the name for params using a compiled lambda. Only reason people want it is for refactoring friendlyness. Use `nameof(myparam)` instead.
 
+**[Changed]:** `WithExtraMessageOf` now takes param as arg so:
+
+```csharp
+Ensure
+    .That(myString, nameof(myString))
+    .WithCustomMessageOf(() => "Some more details")
+    .IsNotNullOrEmpty();
+```
+
+Becomes
+
+```csharp
+Ensure
+    .That(myString, nameof(myString))
+    .WithCustomMessageOf(p => "Some more details")
+    .IsNotNullOrEmpty();
+```
+
 ## v4.0.0 - 2015-11-24
 **No API change**. The `dll` for pre-vNext has been renamed from `EnsureThat.vDinasour.dll` to `EnsureThat.dll`
 
