@@ -10,6 +10,7 @@ namespace EnsureThat.UnitTests
         {
             object value = null;
 
+            // ReSharper disable once ExpressionIsAlwaysNull
             var ex = Assert.Throws<ArgumentNullException>(() => Ensure.That(value, ParamName)
                 .WithExtraMessageOf(() => "Foo bar is some dummy text.")
                 .IsNotNull());
