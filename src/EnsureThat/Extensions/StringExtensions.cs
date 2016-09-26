@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace EnsureThat
+namespace EnsureThat.Extensions
 {
     internal static class StringExtensions
     {

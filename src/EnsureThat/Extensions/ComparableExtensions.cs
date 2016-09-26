@@ -1,6 +1,6 @@
 using System;
 
-namespace EnsureThat
+namespace EnsureThat.Extensions
 {
     internal static class ComparableExtensions
     {
