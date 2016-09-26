@@ -54,10 +54,10 @@ namespace EnsureThat.UnitTests
         {
             var nullArray = null as int[];
 
-            var ex = Assert.Throws<ArgumentException>(
+            var ex = Assert.Throws<ArgumentNullException>(
                 () => Ensure.That(nullArray, ParamName).HasItems());
 
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
+            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNull);
         }
 
         [Fact]
