@@ -4,6 +4,11 @@ namespace EnsureThat
 {
     public static class ParamExtensions
     {
+        public static Param<T> And<T>(this Param<T> param)
+        {
+            return param;
+        }
+
         public static Param<T> WithExtraMessageOf<T>(this Param<T> param, Func<Param<T>, string> messageFn)
         {
             param.ExtraMessageFn = messageFn;
