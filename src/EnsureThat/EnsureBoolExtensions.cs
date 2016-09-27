@@ -7,7 +7,11 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<bool> IsTrue(this Param<bool> param)
         {
-            EnsureArg.IsTrue(param.Value, param.Name);
+            if (!Ensure.IsActive)
+                return param;
+
+            if (!param.Value)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotTrue);
 
             return param;
         }
@@ -15,7 +19,11 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<bool> IsFalse(this Param<bool> param)
         {
-            EnsureArg.IsFalse(param.Value, param.Name);
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Value)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotFalse);
 
             return param;
         }

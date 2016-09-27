@@ -18,11 +18,11 @@ namespace EnsureThat
     {
         public readonly T Value;
         public Func<Param<T>, string> ExtraMessageFn;
+        public Func<Param<T>, Exception> ExceptionFn;
 
-        public Param(string name, T value, Func<Param<T>, string> extraMessageFn = null) : base(name)
+        public Param(string name, T value) : base(name)
         {
             Value = value;
-            ExtraMessageFn = extraMessageFn;
         }
     }
 }

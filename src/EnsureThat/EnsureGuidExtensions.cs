@@ -8,7 +8,11 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<Guid> IsNotEmpty(this Param<Guid> param)
         {
-            EnsureArg.IsNotEmpty(param.Value, param.Name);
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Value.Equals(Guid.Empty))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyGuid);
 
             return param;
         }

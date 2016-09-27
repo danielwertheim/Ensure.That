@@ -3,7 +3,7 @@ using Xunit;
 
 namespace EnsureThat.UnitTests
 {
-    public class CustomMessageTests : UnitTestBase
+    public class WithExtraMessageOfTests : UnitTestBase
     {
         [Fact]
         public void WithExtraMessageOf_WhenSpecifyingExtraMessage_ItGetsAppendedOnTheEnd()

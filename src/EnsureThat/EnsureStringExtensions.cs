@@ -1,41 +1,29 @@
 using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using EnsureThat.Extensions;
 
 namespace EnsureThat
 {
     public static class EnsureStringExtensions
     {
         [DebuggerStepThrough]
-        public static Param<string> IsNotNullOrWhiteSpace(this Param<string> param, Throws<string>.ExceptionFnConfig exceptionFn = null)
+        public static Param<string> IsNotNullOrWhiteSpace(this Param<string> param)
         {
             if (!Ensure.IsActive)
                 return param;
 
             if (string.IsNullOrWhiteSpace(param.Value))
-            {
-                if (exceptionFn != null)
-                    throw exceptionFn(Throws<string>.Instance)(param);
-
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace);
-            }
 
             return param;
         }
 
         [DebuggerStepThrough]
-        public static Param<string> IsNotNullOrEmpty(this Param<string> param, Throws<string>.ExceptionFnConfig exceptionFn = null)
+        public static Param<string> IsNotNullOrEmpty(this Param<string> param)
         {
-            if (!Ensure.IsActive)
-                return param;
-
             if (string.IsNullOrEmpty(param.Value))
-            {
-                if (exceptionFn != null)
-                    throw exceptionFn(Throws<string>.Instance)(param);
-
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty);
-            }
 
             return param;
         }
@@ -43,7 +31,16 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<string> HasLengthBetween(this Param<string> param, int minLength, int maxLength)
         {
-            EnsureArg.HasLengthBetween(param.Value, minLength, maxLength, param.Name);
+            if (param.Value == null)
+                throw ExceptionFactory.CreateForParamNullValidation(param, ExceptionMessages.EnsureExtensions_IsNotNull);
+
+            var length = param.Value.Length;
+
+            if (length < minLength)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotInRange_ToShort.Inject(minLength, maxLength, length));
+
+            if (length > maxLength)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotInRange_ToLong.Inject(minLength, maxLength, length));
 
             return param;
         }
@@ -51,15 +48,14 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<string> Matches(this Param<string> param, string match)
         {
-            EnsureArg.Matches(param.Value, match, param.Name);
-
-            return param;
+            return Matches(param, new Regex(match));
         }
 
         [DebuggerStepThrough]
         public static Param<string> Matches(this Param<string> param, Regex match)
         {
-            EnsureArg.Matches(param.Value, match, param.Name);
+            if (!match.IsMatch(param.Value))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_NoMatch.Inject(param.Value, match));
 
             return param;
         }
@@ -67,7 +63,8 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<string> SizeIs(this Param<string> param, int expected)
         {
-            EnsureArg.SizeIs(param.Value, expected, param.Name);
+            if (param.Value.Length != expected)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Length));
 
             return param;
         }
@@ -75,7 +72,8 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<string> IsEqualTo(this Param<string> param, string expected, StringComparison? comparison = null)
         {
-            EnsureArg.IsEqualTo(param.Value, expected, comparison, param.Name);
+            if (!StringEquals(param.Value, expected, comparison))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_Is_Failed.Inject(param.Value, expected));
 
             return param;
         }
@@ -83,7 +81,8 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<string> IsNotEqualTo(this Param<string> param, string expected, StringComparison? comparison = null)
         {
-            EnsureArg.IsNotEqualTo(param.Value, expected, comparison, param.Name);
+            if (StringEquals(param.Value, expected, comparison))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNot_Failed.Inject(param.Value, expected));
 
             return param;
         }
@@ -91,9 +90,18 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<string> IsGuid(this Param<string> param)
         {
-            EnsureArg.IsGuid(param.Value, param.Name);
+            Guid guid;
+            if (!Guid.TryParse(param.Value, out guid))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotGuid.Inject(param.Value));
 
             return param;
+        }
+
+        private static bool StringEquals(string x, string y, StringComparison? comparison = null)
+        {
+            return comparison.HasValue
+                ? string.Equals(x, y, comparison.Value)
+                : string.Equals(x, y);
         }
     }
 }

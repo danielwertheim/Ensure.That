@@ -13,7 +13,11 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<T> HasItems<T>(this Param<T> param) where T : class, ICollection
         {
-            EnsureArg.HasItems(param.Value, param.Name);
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Value == null || param.Value.Count < 1)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
 
             return param;
         }
@@ -21,7 +25,11 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<Collection<T>> HasItems<T>(this Param<Collection<T>> param)
         {
-            EnsureArg.HasItems(param.Value, param.Name);
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Value == null || param.Value.Count < 1)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
 
             return param;
         }
@@ -29,7 +37,11 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<ICollection<T>> HasItems<T>(this Param<ICollection<T>> param)
         {
-            EnsureArg.HasItems(param.Value, param.Name);
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Value == null || param.Value.Count < 1)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
 
             return param;
         }
@@ -37,7 +49,14 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<T[]> HasItems<T>(this Param<T[]> param)
         {
-            EnsureArg.HasItems(param.Value, param.Name);
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Value == null)
+                throw ExceptionFactory.CreateForParamNullValidation(param, ExceptionMessages.EnsureExtensions_IsNotNull);
+
+            if (param.Value.Length < 1)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
 
             return param;
         }
@@ -45,7 +64,11 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<List<T>> HasItems<T>(this Param<List<T>> param)
         {
-            EnsureArg.HasItems(param.Value, param.Name);
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Value == null || param.Value.Count < 1)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
 
             return param;
         }
@@ -53,7 +76,11 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<IList<T>> HasItems<T>(this Param<IList<T>> param)
         {
-            EnsureArg.HasItems(param.Value, param.Name);
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Value == null || param.Value.Count < 1)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
 
             return param;
         }
@@ -61,7 +88,11 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<IDictionary<TKey, TValue>> HasItems<TKey, TValue>(this Param<IDictionary<TKey, TValue>> param)
         {
-            EnsureArg.HasItems(param.Value, param.Name);
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Value == null || param.Value.Count < 1)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
 
             return param;
         }
