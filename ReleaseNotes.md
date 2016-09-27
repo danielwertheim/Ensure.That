@@ -34,6 +34,21 @@ Ensure
     .IsNotNullOrEmpty();
 ```
 
+**[Replaced]:** Construct where you could pass an extra `Throws argument`. This is now replaced with `WithException`.
+
+```csharp
+Ensure.That(myString, nameof(myString)).IsNotNullOrEmpty(throws => throws.Custom(...));
+```
+
+Becomes
+
+```csharp
+Ensure
+    .That(myString, nameof(myString))
+    .WithException(param => new Exception())
+    .IsNotNullOrEmpty();
+```
+
 ## v4.0.0 - 2015-11-24
 **No API change**. The `dll` for pre-vNext has been renamed from `EnsureThat.vDinasour.dll` to `EnsureThat.dll`
 
