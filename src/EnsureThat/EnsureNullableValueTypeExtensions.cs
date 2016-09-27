@@ -10,7 +10,7 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return param;
 
-            if (param.Value == null || !param.Value.HasValue)
+            if (param.Value == null)
                 throw ExceptionFactory.CreateForParamNullValidation(param, ExceptionMessages.EnsureExtensions_IsNotNull);
 
             return param;
