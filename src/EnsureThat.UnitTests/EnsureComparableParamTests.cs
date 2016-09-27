@@ -287,5 +287,16 @@ namespace EnsureThat.UnitTests
         {
             return new CompareParamTestSpec<int> { LowerLimit = 40, UpperLimit = 50, Value = 51 };
         }
+
+        public class CompareParamTestSpec<T> where T : struct
+        {
+            public T Limit { get; set; }
+
+            public T LowerLimit { get; set; }
+
+            public T UpperLimit { get; set; }
+
+            public T Value { get; set; }
+        }
     }
 }

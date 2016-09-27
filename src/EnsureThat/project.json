@@ -1,6 +1,6 @@
 ﻿{
     "title": "Ensure.That",
-    "version": "4.0.0-*",
+    "version": "5.0.0-*",
     "authors": [ "danielwertheim" ],
     "copyright": "danielwertheim",
     "buildOptions": {
