@@ -157,26 +157,26 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static void ContainsKey<TKey, TValue>(IDictionary<TKey, TValue> value, TKey key, string paramName = Param.DefaultName)
+        public static void ContainsKey<TKey, TValue>(IDictionary<TKey, TValue> value, TKey expectedKey, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return;
 
-            if (!value.ContainsKey(key))
+            if (!value.ContainsKey(expectedKey))
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_ContainsKey.Inject(key),
+                    ExceptionMessages.EnsureExtensions_ContainsKey.Inject(expectedKey),
                     paramName);
         }
 
         [DebuggerStepThrough]
-        public static void ContainsKey<TKey, TValue>(Dictionary<TKey, TValue> value, TKey key, string paramName = Param.DefaultName)
+        public static void ContainsKey<TKey, TValue>(Dictionary<TKey, TValue> value, TKey expectedKey, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return;
 
-            if (!value.ContainsKey(key))
+            if (!value.ContainsKey(expectedKey))
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_ContainsKey.Inject(key),
+                    ExceptionMessages.EnsureExtensions_ContainsKey.Inject(expectedKey),
                     paramName);
         }
 

@@ -8,10 +8,11 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsTrue_WhenFalseExpression_ThrowsArgumentException()
         {
-            var ex = Assert.Throws<ArgumentException>(
-                () => Ensure.That(false, ParamName).IsTrue());
-
+            var ex = Assert.Throws<ArgumentException>(() => Ensure.That(false, ParamName).IsTrue());
             AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotTrue);
+
+            var ex2 = Assert.Throws<ArgumentException>(() => EnsureArg.IsTrue(false, ParamName));
+            AssertThrowedAsExpected(ex2, ExceptionMessages.EnsureExtensions_IsNotTrue);
         }
 
         [Fact]
@@ -25,10 +26,11 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsFalse_WhenTrueExpression_ThrowsArgumentException()
         {
-            var ex = Assert.Throws<ArgumentException>(
-                () => Ensure.That(true, ParamName).IsFalse());
-
+            var ex = Assert.Throws<ArgumentException>(() => Ensure.That(true, ParamName).IsFalse());
             AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotFalse);
+
+            var ex2 = Assert.Throws<ArgumentException>(() => EnsureArg.IsFalse(true, ParamName));
+            AssertThrowedAsExpected(ex2, ExceptionMessages.EnsureExtensions_IsNotFalse);
         }
 
         [Fact]
