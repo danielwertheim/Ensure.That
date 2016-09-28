@@ -22,5 +22,14 @@ namespace EnsureThat.UnitTests
             Assert.Equal(ParamName, returned.Name);
             Assert.Equal(expected, returned.Value);
         }
+
+        protected static void AssertAll<TEx>(string expectedMessage, params Action[] actions) where TEx : ArgumentException
+        {
+            foreach (var action in actions)
+            {
+                var ex = Assert.Throws<TEx>(action);
+                AssertThrowedAsExpected(ex, expectedMessage);
+            }
+        }
     }
 }

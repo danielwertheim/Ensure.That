@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using FluentAssertions;
@@ -522,14 +521,5 @@ namespace EnsureThat.UnitTests
             => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_ContainsKey, expectedKey), actions);
 
         private void AssertAnyPredicateYieldedNone(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone, actions);
-
-        private void AssertAll<TEx>(string expectedMessage, params Action[] actions) where TEx : ArgumentException
-        {
-            foreach (var action in actions)
-            {
-                var ex = Assert.Throws<TEx>(action);
-                AssertThrowedAsExpected(ex, expectedMessage);
-            }
-        }
     }
 }
