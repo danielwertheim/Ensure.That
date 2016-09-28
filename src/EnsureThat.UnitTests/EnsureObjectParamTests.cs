@@ -1,3 +1,4 @@
+using FluentAssertions;
 using System;
 using Xunit;
 
@@ -10,10 +11,10 @@ namespace EnsureThat.UnitTests
         {
             object value = null;
 
-            var ex = Assert.Throws<ArgumentNullException>(
-                () => Ensure.That(value, ParamName).IsNotNull());
-
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNull);
+            AssertAll<ArgumentNullException>(
+                ExceptionMessages.EnsureExtensions_IsNotNull,
+                () => Ensure.That(value, ParamName).IsNotNull(),
+                () => EnsureArg.IsNotNull(value, ParamName));
         }
 
         [Fact]
@@ -22,8 +23,10 @@ namespace EnsureThat.UnitTests
             var item = new { Value = 42 };
 
             var returnedItem = Ensure.That(item, ParamName).IsNotNull();
-
             AssertReturnedAsExpected(returnedItem, item);
+
+            Action a = () => EnsureArg.IsNotNull(item, ParamName);
+            a.ShouldNotThrow();
         }
     }
 }
