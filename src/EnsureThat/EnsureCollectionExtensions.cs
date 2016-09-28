@@ -146,6 +146,78 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
+        public static Param<ICollection<T>> SizeIs<T>(this Param<ICollection<T>> param, int expected)
+        {
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Value.Count != expected)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<ICollection<T>> SizeIs<T>(this Param<ICollection<T>> param, long expected)
+        {
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Value.Count != expected)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<IList<T>> SizeIs<T>(this Param<IList<T>> param, int expected)
+        {
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Value.Count != expected)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<IList<T>> SizeIs<T>(this Param<IList<T>> param, long expected)
+        {
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Value.Count != expected)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<IDictionary<TKey, TValue>> SizeIs<TKey, TValue>(this Param<IDictionary<TKey, TValue>> param, int expected)
+        {
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Value.Count != expected)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<IDictionary<TKey, TValue>> SizeIs<TKey, TValue>(this Param<IDictionary<TKey, TValue>> param, long expected)
+        {
+            if (!Ensure.IsActive)
+                return param;
+
+            if (param.Value.Count != expected)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
         public static Param<IDictionary<TKey, TValue>> ContainsKey<TKey, TValue>(this Param<IDictionary<TKey, TValue>> param, TKey key)
         {
             if (!Ensure.IsActive)

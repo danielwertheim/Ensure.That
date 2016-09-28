@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using FluentAssertions;
@@ -210,7 +211,7 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void SizeIs_When_non_matching_count_of_collection_It_throws_ArgumentException()
+        public void SizeIs_When_non_matching_count_of_List_It_throws_ArgumentException()
         {
             var values = new List<int> { 1, 2, 3 };
             var expected = values.Count + 1;
@@ -220,6 +221,131 @@ namespace EnsureThat.UnitTests
                 expected,
                 () => Ensure.That(values, ParamName).SizeIs(expected),
                 () => EnsureArg.SizeIs(values, expected, ParamName));
+        }
+
+        [Fact]
+        public void SizeIs_When_matching_count_of_IList_It_should_not_throw()
+        {
+            IList<int> values = new List<int> { 1, 2, 3 };
+
+            var returned = Ensure.That(values, ParamName).SizeIs(values.Count);
+            AssertReturnedAsExpected(returned, values);
+
+            Action a = () => EnsureArg.SizeIs(values, values.Count, ParamName);
+            a.ShouldNotThrow();
+        }
+
+        [Fact]
+        public void SizeIs_When_non_matching_count_of_IList_It_throws_ArgumentException()
+        {
+            IList<int> values = new List<int> { 1, 2, 3 };
+            var expected = values.Count + 1;
+
+            AssertSizeIsWrong(
+                values.Count,
+                expected,
+                () => Ensure.That(values, ParamName).SizeIs(expected),
+                () => EnsureArg.SizeIs(values, expected, ParamName));
+        }
+
+        [Fact]
+        public void SizeIs_When_matching_count_of_Collection_It_should_not_throw()
+        {
+            var values = new Collection<int> { 1, 2, 3 };
+
+            var returned = Ensure.That(values, ParamName).SizeIs(values.Count);
+            AssertReturnedAsExpected(returned, values);
+
+            Action a = () => EnsureArg.SizeIs(values, values.Count, ParamName);
+            a.ShouldNotThrow();
+        }
+
+        [Fact]
+        public void SizeIs_When_non_matching_count_of_Collection_It_throws_ArgumentException()
+        {
+            var values = new Collection<int> { 1, 2, 3 };
+            var expected = values.Count + 1;
+
+            AssertSizeIsWrong(
+                values.Count,
+                expected,
+                () => Ensure.That(values, ParamName).SizeIs(expected),
+                () => EnsureArg.SizeIs(values, expected, ParamName));
+        }
+
+        [Fact]
+        public void SizeIs_When_matching_count_of_ICollection_It_should_not_throw()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3 };
+
+            var returned = Ensure.That(values, ParamName).SizeIs(values.Count);
+            AssertReturnedAsExpected(returned, values);
+
+            Action a = () => EnsureArg.SizeIs(values, values.Count, ParamName);
+            a.ShouldNotThrow();
+        }
+
+        [Fact]
+        public void SizeIs_When_non_matching_count_of_ICollection_It_throws_ArgumentException()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3 };
+            var expected = values.Count + 1;
+
+            AssertSizeIsWrong(
+                values.Count,
+                expected,
+                () => Ensure.That(values, ParamName).SizeIs(expected),
+                () => EnsureArg.SizeIs(values, expected, ParamName));
+        }
+
+        [Fact]
+        public void SizeIs_When_matching_count_of_Dictionary_It_should_not_throw()
+        {
+            var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            var returned = Ensure.That(dict, ParamName).SizeIs(dict.Count);
+            AssertReturnedAsExpected(returned, dict);
+
+            Action a = () => EnsureArg.SizeIs(dict, dict.Count, ParamName);
+            a.ShouldNotThrow();
+        }
+
+        [Fact]
+        public void SizeIs_When_non_matching_count_of_Dictionary_It_throws_ArgumentException()
+        {
+            var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } }; ;
+            var expected = dict.Count + 1;
+
+            AssertSizeIsWrong(
+                dict.Count,
+                expected,
+                () => Ensure.That(dict, ParamName).SizeIs(expected),
+                () => EnsureArg.SizeIs(dict, expected, ParamName));
+        }
+
+        [Fact]
+        public void SizeIs_When_matching_count_of_IDictionary_It_should_not_throw()
+        {
+            IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
+
+            var returned = Ensure.That(dict, ParamName).SizeIs(dict.Count);
+            AssertReturnedAsExpected(returned, dict);
+
+            Action a = () => EnsureArg.SizeIs(dict, dict.Count, ParamName);
+            a.ShouldNotThrow();
+        }
+
+        [Fact]
+        public void SizeIs_When_non_matching_count_of_IDictionary_It_throws_ArgumentException()
+        {
+            IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } }; ;
+            var expected = dict.Count + 1;
+
+            AssertSizeIsWrong(
+                dict.Count,
+                expected,
+                () => Ensure.That(dict, ParamName).SizeIs(expected),
+                () => EnsureArg.SizeIs(dict, expected, ParamName));
         }
 
         [Fact]
