@@ -180,7 +180,7 @@ namespace EnsureThat.UnitTests
             var returned = Ensure.That(values, ParamName).SizeIs(values.Length);
             AssertReturnedAsExpected(returned, values);
 
-            Action a = () => EnsureArg.HasItems(values, ParamName);
+            Action a = () => EnsureArg.SizeIs(values, values.Length, ParamName);
             a.ShouldNotThrow();
         }
 
@@ -198,14 +198,14 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void SizeIs_When_matching_count_of_collection_It_should_not_throw()
+        public void SizeIs_When_matching_count_of_List_It_should_not_throw()
         {
             var values = new List<int> { 1, 2, 3 };
 
             var returned = Ensure.That(values, ParamName).SizeIs(values.Count);
             AssertReturnedAsExpected(returned, values);
 
-            Action a = () => EnsureArg.HasItems(values, ParamName);
+            Action a = () => EnsureArg.SizeIs(values, values.Count, ParamName);
             a.ShouldNotThrow();
         }
 
