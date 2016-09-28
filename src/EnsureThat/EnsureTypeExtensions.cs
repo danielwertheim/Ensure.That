@@ -27,52 +27,28 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static TypeParam IsInt(this TypeParam param)
-        {
-            return IsOfType(param, Types.IntType);
-        }
+        public static TypeParam IsInt(this TypeParam param) => IsOfType(param, Types.IntType);
 
         [DebuggerStepThrough]
-        public static TypeParam IsShort(this TypeParam param)
-        {
-            return IsOfType(param, Types.ShortType);
-        }
+        public static TypeParam IsShort(this TypeParam param) => IsOfType(param, Types.ShortType);
 
         [DebuggerStepThrough]
-        public static TypeParam IsDecimal(this TypeParam param)
-        {
-            return IsOfType(param, Types.DecimalType);
-        }
+        public static TypeParam IsDecimal(this TypeParam param) => IsOfType(param, Types.DecimalType);
 
         [DebuggerStepThrough]
-        public static TypeParam IsDouble(this TypeParam param)
-        {
-            return IsOfType(param, Types.DoubleType);
-        }
+        public static TypeParam IsDouble(this TypeParam param) => IsOfType(param, Types.DoubleType);
 
         [DebuggerStepThrough]
-        public static TypeParam IsFloat(this TypeParam param)
-        {
-            return IsOfType(param, Types.FloatType);
-        }
+        public static TypeParam IsFloat(this TypeParam param) => IsOfType(param, Types.FloatType);
 
         [DebuggerStepThrough]
-        public static TypeParam IsBool(this TypeParam param)
-        {
-            return IsOfType(param, Types.BoolType);
-        }
+        public static TypeParam IsBool(this TypeParam param) => IsOfType(param, Types.BoolType);
 
         [DebuggerStepThrough]
-        public static TypeParam IsDateTime(this TypeParam param)
-        {
-            return IsOfType(param, Types.DateTimeType);
-        }
+        public static TypeParam IsDateTime(this TypeParam param) => IsOfType(param, Types.DateTimeType);
 
         [DebuggerStepThrough]
-        public static TypeParam IsString(this TypeParam param)
-        {
-            return IsOfType(param, Types.StringType);
-        }
+        public static TypeParam IsString(this TypeParam param) => IsOfType(param, Types.StringType);
 
         [DebuggerStepThrough]
         public static TypeParam IsOfType(this TypeParam param, Type type)
@@ -94,7 +70,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value == null)
-                throw ExceptionFactory.CreateForParamValidation(param,
+                throw ExceptionFactory.CreateForParamNullValidation(param,
                     ExceptionMessages.EnsureExtensions_IsNotClass_WasNull);
 
             if (!param.Value.GetTypeInfo().IsClass)

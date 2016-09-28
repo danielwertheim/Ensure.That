@@ -185,9 +185,9 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void IsClass_WhenPassingNull_ThrowsArgumentException()
+        public void IsClass_WhenPassingNull_ThrowsArgumentNullException()
         {
-            var ex = Assert.Throws<ArgumentException>(
+            var ex = Assert.Throws<ArgumentNullException>(
                 () => Ensure.That(null as Type, ParamName).IsClass());
 
             AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotClass_WasNull);
