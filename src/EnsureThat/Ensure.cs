@@ -20,7 +20,6 @@ namespace EnsureThat
             name,
             expression.Invoke());
 
-
         [DebuggerStepThrough]
         public static TypeParam ThatTypeFor<T>(T value, string name = Param.DefaultName) => new TypeParam(name, value.GetType());
     }

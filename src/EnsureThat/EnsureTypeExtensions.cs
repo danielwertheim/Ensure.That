@@ -58,7 +58,7 @@ namespace EnsureThat
 
             if (param.Type != type)
                 throw ExceptionFactory.CreateForParamValidation(param,
-                    ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(param.Type.FullName));
+                    ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(type.FullName, param.Type.FullName));
 
             return param;
         }
@@ -76,6 +76,19 @@ namespace EnsureThat
             if (!param.Value.GetTypeInfo().IsClass)
                 throw ExceptionFactory.CreateForParamValidation(param,
                     ExceptionMessages.EnsureExtensions_IsNotClass.Inject(param.Value.FullName));
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static TypeParam IsClass(this TypeParam param)
+        {
+            if (!Ensure.IsActive)
+                return param;
+
+            if (!param.Type.GetTypeInfo().IsClass)
+                throw ExceptionFactory.CreateForParamValidation(param,
+                    ExceptionMessages.EnsureExtensions_IsNotClass.Inject(param.Type.FullName));
 
             return param;
         }

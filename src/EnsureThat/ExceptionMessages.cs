@@ -20,7 +20,7 @@
         public static string EnsureExtensions_IsNotInRange_ToShort { get; private set; } = "The string is not long enough. Must be between '{0}' and '{1}' but was '{2}' characters long.";
         public static string EnsureExtensions_IsNotInRange_ToLong { get; private set; } = "The string is too long. Must be between '{0}' and  '{1}'. Must be between '{0}' and '{1}' but was '{2}' characters long.";
         public static string EnsureExtensions_NoMatch { get; private set; } = "value '{0}' does not match '{1}'";
-        public static string EnsureExtensions_IsNotOfType { get; private set; } = "The param is not of expected type: '{0}'.";
+        public static string EnsureExtensions_IsNotOfType { get; private set; } = "The param is not of expected type. Expected: '{0}'. Got: '{1}'.";
         public static string EnsureExtensions_IsNotClass_WasNull { get; private set; } = "The param was expected to be a class, but was NULL.";
         public static string EnsureExtensions_IsNotClass { get; private set; } = "The param was expected to be a class, but was type of: '{0}'.";
         public static string EnsureExtensions_InvalidOperationException { get; private set; } = "Could not perform operation due to invalid state of '{0}'.";

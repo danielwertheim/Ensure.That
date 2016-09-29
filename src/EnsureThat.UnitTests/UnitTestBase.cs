@@ -23,6 +23,12 @@ namespace EnsureThat.UnitTests
             Assert.Equal(expected, returned.Value);
         }
 
+        protected static void AssertReturnedAsExpected(TypeParam returned, Type expected)
+        {
+            Assert.Equal(ParamName, returned.Name);
+            Assert.Equal(expected, returned.Type);
+        }
+
         protected static void AssertAll<TEx>(string expectedMessage, params Action[] actions) where TEx : ArgumentException
         {
             foreach (var action in actions)

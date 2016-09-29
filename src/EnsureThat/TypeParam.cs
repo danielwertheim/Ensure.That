@@ -6,7 +6,7 @@ namespace EnsureThat
     {
         public readonly Type Type;
 
-        internal TypeParam(string name, Type type)
+        public TypeParam(string name, Type type)
             : base(name)
         {
             Type = type;
