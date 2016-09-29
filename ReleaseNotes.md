@@ -16,21 +16,12 @@ The old flavour is still in.
 
 **[Removed]:** Removed support for extracting the name for params using a compiled lambda. Only reason people want it is for refactoring friendlyness. Use `nameof(myparam)` instead.
 
-**[Changed]:** `WithExtraMessageOf` now takes param as arg so:
+**[New]:** `WithExtraMessageOf` now has an overload that takes the `Param<T>` as an arg so:
 
 ```csharp
 Ensure
     .That(myString, nameof(myString))
-    .WithCustomMessageOf(() => "Some more details")
-    .IsNotNullOrEmpty();
-```
-
-Becomes
-
-```csharp
-Ensure
-    .That(myString, nameof(myString))
-    .WithCustomMessageOf(p => "Some more details")
+    .WithExtraMessageOf(p => "Some more details")
     .IsNotNullOrEmpty();
 ```
 
