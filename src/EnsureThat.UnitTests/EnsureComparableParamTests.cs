@@ -1,4 +1,5 @@
 using System;
+using FluentAssertions;
 using Xunit;
 
 namespace EnsureThat.UnitTests
@@ -10,10 +11,9 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_gt_than_limit();
 
-            var ex = Assert.Throws<ArgumentException>(
-                () => IsLt(spec));
-
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotLt, spec.Value, spec.Limit);
+            AssertIsLtScenario(spec.Value, spec.Limit,
+                () => Ensure.That(spec.Value, ParamName).IsLt(spec.Limit),
+                () => EnsureArg.IsLt(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
@@ -21,10 +21,9 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_equal_to_limit();
 
-            var ex = Assert.Throws<ArgumentException>(
-                () => IsLt(spec));
-
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotLt, spec.Value, spec.Limit);
+            AssertIsLtScenario(spec.Value, spec.Limit,
+                () => Ensure.That(spec.Value, ParamName).IsLt(spec.Limit),
+                () => EnsureArg.IsLt(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
@@ -32,9 +31,11 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_lt_than_limit();
 
-            var returnedValue = IsLt(spec);
-
+            var returnedValue = Ensure.That(spec.Value, ParamName).IsLt(spec.Limit);
             AssertReturnedAsExpected(returnedValue, spec.Value);
+
+            Action a = () => EnsureArg.IsLt(spec.Value, spec.Limit, ParamName);
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -42,10 +43,9 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_equal_to_limit();
 
-            var ex = Assert.Throws<ArgumentException>(
-                () => IsGt(spec));
-
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotGt, spec.Value, spec.Limit);
+            AssertIsGtScenario(spec.Value, spec.Limit,
+                () => Ensure.That(spec.Value, ParamName).IsGt(spec.Limit),
+                () => EnsureArg.IsGt(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
@@ -53,10 +53,9 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_lt_than_limit();
 
-            var ex = Assert.Throws<ArgumentException>(
-                () => IsGt(spec));
-
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotGt, spec.Value, spec.Limit);
+            AssertIsGtScenario(spec.Value, spec.Limit,
+                () => Ensure.That(spec.Value, ParamName).IsGt(spec.Limit),
+                () => EnsureArg.IsGt(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
@@ -64,9 +63,11 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_gt_than_limit();
 
-            var returnedValue = IsGt(spec);
-
+            var returnedValue = Ensure.That(spec.Value, ParamName).IsGt(spec.Limit);
             AssertReturnedAsExpected(returnedValue, spec.Value);
+
+            Action a = () => EnsureArg.IsGt(spec.Value, spec.Limit, ParamName);
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -74,9 +75,11 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_equal_to_limit();
 
-            var returnedValue = IsLte(spec);
-
+            var returnedValue = Ensure.That(spec.Value, ParamName).IsLte(spec.Limit);
             AssertReturnedAsExpected(returnedValue, spec.Value);
+
+            Action a = () => EnsureArg.IsLte(spec.Value, spec.Limit, ParamName);
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -84,10 +87,9 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_gt_than_limit();
 
-            var ex = Assert.Throws<ArgumentException>(
-                () => IsLte(spec));
-
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotLte, spec.Value, spec.Limit);
+            AssertIsLteScenario(spec.Value, spec.Limit,
+                () => Ensure.That(spec.Value, ParamName).IsLte(spec.Limit),
+                () => EnsureArg.IsLte(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
@@ -95,9 +97,11 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_lt_than_limit();
 
-            var returnedValue = IsLte(spec);
-
+            var returnedValue = Ensure.That(spec.Value, ParamName).IsLte(spec.Limit);
             AssertReturnedAsExpected(returnedValue, spec.Value);
+
+            Action a = () => EnsureArg.IsLte(spec.Value, spec.Limit, ParamName);
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -105,9 +109,11 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_equal_to_limit();
 
-            var returnedValue = IsGte(spec);
-
+            var returnedValue = Ensure.That(spec.Value, ParamName).IsGte(spec.Limit);
             AssertReturnedAsExpected(returnedValue, spec.Value);
+
+            Action a = () => EnsureArg.IsGte(spec.Value, spec.Limit, ParamName);
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -115,10 +121,9 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_lt_than_limit();
 
-            var ex = Assert.Throws<ArgumentException>(
-                () => IsGte(spec));
-
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotGte, spec.Value, spec.Limit);
+            AssertIsGteScenario(spec.Value, spec.Limit,
+                () => Ensure.That(spec.Value, ParamName).IsGte(spec.Limit),
+                () => EnsureArg.IsGte(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
@@ -126,9 +131,11 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_gt_than_limit();
 
-            var returnedValue = IsGte(spec);
-
+            var returnedValue = Ensure.That(spec.Value, ParamName).IsGte(spec.Limit);
             AssertReturnedAsExpected(returnedValue, spec.Value);
+
+            Action a = () => EnsureArg.IsGte(spec.Value, spec.Limit, ParamName);
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -136,9 +143,11 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_lower_limit();
 
-            var returnedValue = IsInRange(spec);
-
+            var returnedValue = Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit);
             AssertReturnedAsExpected(returnedValue, spec.Value);
+
+            Action a = () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName);
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -146,9 +155,11 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_upper_limit();
 
-            var returnedValue = IsInRange(spec);
-
+            var returnedValue = Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit);
             AssertReturnedAsExpected(returnedValue, spec.Value);
+
+            Action a = () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName);
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -156,9 +167,11 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_between_limits();
 
-            var returnedValue = IsInRange(spec);
-
+            var returnedValue = Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit);
             AssertReturnedAsExpected(returnedValue, spec.Value);
+
+            Action a = () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName);
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -166,10 +179,9 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_lower_than_lower_limit();
 
-            var ex = Assert.Throws<ArgumentException>(
-                () => IsInRange(spec));
-
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotInRange_ToLow, spec.Value, spec.LowerLimit);
+            AssertIsRangeToLowScenario(spec.Value, spec.LowerLimit,
+                () => Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit),
+                () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName));
         }
 
         [Fact]
@@ -177,10 +189,9 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_greater_than_upper_limit();
 
-            var ex = Assert.Throws<ArgumentException>(
-                () => IsInRange(spec));
-
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotInRange_ToHigh, spec.Value, spec.UpperLimit);
+            AssertIsRangeToHighScenario(spec.Value, spec.UpperLimit,
+                () => Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit),
+                () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName));
         }
 
         [Fact]
@@ -189,8 +200,10 @@ namespace EnsureThat.UnitTests
             var spec = When_value_is_equal_to_limit();
 
             var returnedValue = Ensure.That(spec.Value, ParamName).Is(spec.Limit);
-
             AssertReturnedAsExpected(returnedValue, spec.Value);
+
+            Action a = () => EnsureArg.Is(spec.Value, spec.Limit, ParamName);
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -198,9 +211,10 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_lt_than_limit();
 
-            var ex = Assert.Throws<ArgumentException>(() => Ensure.That(spec.Value, ParamName).Is(spec.Limit));
-
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_Is_Failed, spec.Value, spec.Limit);
+            AssertAll<ArgumentException>(
+                string.Format(ExceptionMessages.EnsureExtensions_Is_Failed, spec.Value, spec.Limit),
+                () => Ensure.That(spec.Value, ParamName).Is(spec.Limit),
+                () => EnsureArg.Is(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
@@ -209,8 +223,10 @@ namespace EnsureThat.UnitTests
             var spec = When_value_is_lt_than_limit();
 
             var returnedValue = Ensure.That(spec.Value, ParamName).IsNot(spec.Limit);
-
             AssertReturnedAsExpected(returnedValue, spec.Value);
+
+            Action a = () => EnsureArg.IsNot(spec.Value, spec.Limit, ParamName);
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -218,14 +234,10 @@ namespace EnsureThat.UnitTests
         {
             var spec = When_value_is_equal_to_limit();
 
-            var ex = Assert.Throws<ArgumentException>(() => Ensure.That(spec.Value, ParamName).IsNot(spec.Limit));
-
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNot_Failed, spec.Value, spec.Limit);
-        }
-
-        private Param<int> IsLt(CompareParamTestSpec<int> spec)
-        {
-            return Ensure.That(spec.Value, ParamName).IsLt(spec.Limit);
+            AssertAll<ArgumentException>(
+                string.Format(ExceptionMessages.EnsureExtensions_IsNot_Failed, spec.Value, spec.Limit),
+                () => Ensure.That(spec.Value, ParamName).IsNot(spec.Limit),
+                () => EnsureArg.IsNot(spec.Value, spec.Limit, ParamName));
         }
 
         private CompareParamTestSpec<int> When_value_is_gt_than_limit()
@@ -241,26 +253,6 @@ namespace EnsureThat.UnitTests
         private CompareParamTestSpec<int> When_value_is_lt_than_limit()
         {
             return new CompareParamTestSpec<int> { Limit = 42, Value = 41 };
-        }
-
-        private Param<int> IsGt(CompareParamTestSpec<int> spec)
-        {
-            return Ensure.That(spec.Value, ParamName).IsGt(spec.Limit);
-        }
-
-        private Param<int> IsLte(CompareParamTestSpec<int> spec)
-        {
-            return Ensure.That(spec.Value, ParamName).IsLte(spec.Limit);
-        }
-
-        private Param<int> IsGte(CompareParamTestSpec<int> spec)
-        {
-            return Ensure.That(spec.Value, ParamName).IsGte(spec.Limit);
-        }
-
-        private Param<int> IsInRange(CompareParamTestSpec<int> spec)
-        {
-            return Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit);
         }
 
         private CompareParamTestSpec<int> When_value_is_lower_limit()
@@ -287,6 +279,24 @@ namespace EnsureThat.UnitTests
         {
             return new CompareParamTestSpec<int> { LowerLimit = 40, UpperLimit = 50, Value = 51 };
         }
+
+        public void AssertIsLtScenario(int value, int limit, params Action[] actions)
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_IsNotLt, value, limit), actions);
+
+        public void AssertIsGtScenario(int value, int limit, params Action[] actions)
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_IsNotGt, value, limit), actions);
+
+        public void AssertIsLteScenario(int value, int limit, params Action[] actions)
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_IsNotLte, value, limit), actions);
+
+        public void AssertIsGteScenario(int value, int limit, params Action[] actions)
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_IsNotGte, value, limit), actions);
+
+        public void AssertIsRangeToLowScenario(int value, int limit, params Action[] actions)
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_IsNotInRange_ToLow, value, limit), actions);
+
+        public void AssertIsRangeToHighScenario(int value, int limit, params Action[] actions)
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_IsNotInRange_ToHigh, value, limit), actions);
 
         public class CompareParamTestSpec<T> where T : struct
         {

@@ -13,7 +13,7 @@ namespace EnsureThat
                 return;
 
             if (!param.IsEq(expected))
-                throw new ArgumentException(ExceptionMessages.EnsureExtensions_Is_Failed.Inject(param, expected));
+                throw new ArgumentException(ExceptionMessages.EnsureExtensions_Is_Failed.Inject(param, expected), paramName);
         }
 
         [DebuggerStepThrough]
@@ -23,7 +23,7 @@ namespace EnsureThat
                 return;
 
             if (param.IsEq(expected))
-                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNot_Failed.Inject(param, expected));
+                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNot_Failed.Inject(param, expected), paramName);
         }
 
         [DebuggerStepThrough]
@@ -33,7 +33,7 @@ namespace EnsureThat
                 return;
 
             if (!param.IsLt(limit))
-                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNotLt.Inject(param, limit));
+                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNotLt.Inject(param, limit), paramName);
         }
 
         [DebuggerStepThrough]
@@ -43,7 +43,7 @@ namespace EnsureThat
                 return;
 
             if (param.IsGt(limit))
-                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNotLte.Inject(param, limit));
+                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNotLte.Inject(param, limit), paramName);
         }
 
         [DebuggerStepThrough]
@@ -53,7 +53,7 @@ namespace EnsureThat
                 return;
 
             if (!param.IsGt(limit))
-                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNotGt.Inject(param, limit));
+                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNotGt.Inject(param, limit), paramName);
         }
 
         [DebuggerStepThrough]
@@ -63,7 +63,7 @@ namespace EnsureThat
                 return;
 
             if (param.IsLt(limit))
-                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNotGte.Inject(param, limit));
+                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNotGte.Inject(param, limit), paramName);
         }
 
         [DebuggerStepThrough]
@@ -73,10 +73,10 @@ namespace EnsureThat
                 return;
 
             if (param.IsLt(min))
-                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNotInRange_ToLow.Inject(param, min));
+                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNotInRange_ToLow.Inject(param, min), paramName);
 
             if (param.IsGt(max))
-                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNotInRange_ToHigh.Inject(param, max));
+                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNotInRange_ToHigh.Inject(param, max), paramName);
         }
     }
 }
