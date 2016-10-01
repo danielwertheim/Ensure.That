@@ -510,16 +510,16 @@ namespace EnsureThat.UnitTests
             a.ShouldNotThrow();
         }
 
-        private void AssertIsEmptyCollection(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.EnsureExtensions_IsEmptyCollection, actions);
+        private void AssertIsEmptyCollection(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.Collections_HasItemsFailed, actions);
 
-        private void AssertIsNotNull(params Action[] actions) => AssertAll<ArgumentNullException>(ExceptionMessages.EnsureExtensions_IsNotNull, actions);
+        private void AssertIsNotNull(params Action[] actions) => AssertAll<ArgumentNullException>(ExceptionMessages.Common_IsNotNull_Failed, actions);
 
         private void AssertSizeIsWrong(int actualSize, int expectedSize, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_SizeIs_Wrong, expectedSize, actualSize), actions);
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIs_Failed, expectedSize, actualSize), actions);
 
         private void AssertContainsKey(string expectedKey, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_ContainsKey, expectedKey), actions);
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Collections_ContainsKey_Failed, expectedKey), actions);
 
-        private void AssertAnyPredicateYieldedNone(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone, actions);
+        private void AssertAnyPredicateYieldedNone(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.Collections_Any_Failed, actions);
     }
 }

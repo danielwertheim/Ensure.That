@@ -12,7 +12,7 @@ namespace EnsureThat.UnitTests
             object value = null;
 
             AssertAll<ArgumentNullException>(
-                ExceptionMessages.EnsureExtensions_IsNotNull,
+                ExceptionMessages.Common_IsNotNull_Failed,
                 () => Ensure.That(value, ParamName).IsNotNull(),
                 () => EnsureArg.IsNotNull(value, ParamName));
         }

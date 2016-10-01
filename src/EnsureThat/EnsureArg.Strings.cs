@@ -16,9 +16,7 @@ namespace EnsureThat
             IsNotNull(value, paramName);
 
             if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace,
-                    paramName);
+                throw new ArgumentException(ExceptionMessages.Strings_IsNotNullOrWhiteSpace_Failed, paramName);
         }
 
         [DebuggerStepThrough]
@@ -30,9 +28,7 @@ namespace EnsureThat
             IsNotNull(value, paramName);
 
             if (string.IsNullOrEmpty(value))
-                throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty,
-                    paramName);
+                throw new ArgumentException(ExceptionMessages.Strings_IsNotNullOrEmpty_Failed, paramName);
         }
 
         [DebuggerStepThrough]
@@ -42,9 +38,7 @@ namespace EnsureThat
                 return;
 
             if (value == null)
-                throw new ArgumentNullException(
-                    paramName,
-                    ExceptionMessages.EnsureExtensions_IsNotNull);
+                throw new ArgumentNullException(paramName, ExceptionMessages.Common_IsNotNull_Failed);
         }
 
         [DebuggerStepThrough]
@@ -54,9 +48,7 @@ namespace EnsureThat
                 return;
 
             if (string.Empty.Equals(value))
-                throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsEmptyString,
-                    paramName);
+                throw new ArgumentException(ExceptionMessages.Strings_IsNotEmpty_Failed, paramName);
         }
 
         [DebuggerStepThrough]
@@ -70,18 +62,15 @@ namespace EnsureThat
             var length = value.Length;
 
             if (length < minLength)
-                throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsNotInRange_ToShort.Inject(minLength, maxLength, length),
-                    paramName);
+                throw new ArgumentException(ExceptionMessages.Strings_HasLengthBetween_Failed_ToShort.Inject(minLength, maxLength, length), paramName);
 
             if (length > maxLength)
-                throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsNotInRange_ToLong.Inject(minLength, maxLength, length),
-                    paramName);
+                throw new ArgumentException(ExceptionMessages.Strings_HasLengthBetween_Failed_ToLong.Inject(minLength, maxLength, length), paramName);
         }
 
         [DebuggerStepThrough]
-        public static void Matches(string value, string match, string paramName = Param.DefaultName) => Matches(value, new Regex(match), paramName);
+        public static void Matches(string value, string match, string paramName = Param.DefaultName)
+            => Matches(value, new Regex(match), paramName);
 
         [DebuggerStepThrough]
         public static void Matches(string value, Regex match, string paramName = Param.DefaultName)
@@ -90,9 +79,7 @@ namespace EnsureThat
                 return;
 
             if (!match.IsMatch(value))
-                throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_NoMatch.Inject(value, match),
-                    paramName);
+                throw new ArgumentException(ExceptionMessages.Strings_Matches_Failed.Inject(value, match), paramName);
         }
 
         [DebuggerStepThrough]
@@ -104,9 +91,7 @@ namespace EnsureThat
             IsNotNull(value, paramName);
 
             if (value.Length != expected)
-                throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, value.Length),
-                    paramName);
+                throw new ArgumentException(ExceptionMessages.Strings_SizeIs_Failed.Inject(expected, value.Length), paramName);
         }
 
         [DebuggerStepThrough]
@@ -116,9 +101,7 @@ namespace EnsureThat
                 return;
 
             if (!StringEquals(value, expected))
-                throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_Is_Failed.Inject(value, expected),
-                    paramName);
+                throw new ArgumentException(ExceptionMessages.Strings_IsEqualTo_Failed.Inject(value, expected), paramName);
         }
 
         [DebuggerStepThrough]
@@ -128,9 +111,7 @@ namespace EnsureThat
                 return;
 
             if (!StringEquals(value, expected, comparison))
-                throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_Is_Failed.Inject(value, expected),
-                    paramName);
+                throw new ArgumentException(ExceptionMessages.Strings_IsEqualTo_Failed.Inject(value, expected), paramName);
         }
 
         [DebuggerStepThrough]
@@ -140,9 +121,7 @@ namespace EnsureThat
                 return;
 
             if (StringEquals(value, expected))
-                throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsNot_Failed.Inject(value, expected),
-                    paramName);
+                throw new ArgumentException(ExceptionMessages.Strings_IsNotEqualTo_Failed.Inject(value, expected), paramName);
         }
 
         [DebuggerStepThrough]
@@ -152,9 +131,7 @@ namespace EnsureThat
                 return;
 
             if (StringEquals(value, expected, comparison))
-                throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsNot_Failed.Inject(value, expected),
-                    paramName);
+                throw new ArgumentException(ExceptionMessages.Strings_IsNotEqualTo_Failed.Inject(value, expected), paramName);
         }
 
         [DebuggerStepThrough]
@@ -165,9 +142,7 @@ namespace EnsureThat
 
             Guid guid;
             if (!Guid.TryParse(value, out guid))
-                throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsGuid_Failed.Inject(value),
-                    paramName);
+                throw new ArgumentException(ExceptionMessages.Strings_IsGuid_Failed.Inject(value), paramName);
         }
 
         private static bool StringEquals(string x, string y, StringComparison? comparison = null)

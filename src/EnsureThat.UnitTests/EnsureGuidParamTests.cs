@@ -10,7 +10,7 @@ namespace EnsureThat.UnitTests
         public void IsNotEmpty_WhenEmptyGuid_ThrowsArgumentException()
         {
             AssertAll<ArgumentException>(
-                ExceptionMessages.EnsureExtensions_IsEmptyGuid,
+                ExceptionMessages.Guids_IsNotEmpty_Failed,
                 () => Ensure.That(Guid.Empty, ParamName).IsNotEmpty(),
                 () => EnsureArg.IsNotEmpty(Guid.Empty, ParamName));
         }

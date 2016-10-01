@@ -19,7 +19,7 @@ namespace EnsureThat
 
             if (value.Count < 1)
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsEmptyCollection,
+                    ExceptionMessages.Collections_HasItemsFailed,
                     paramName);
         }
 
@@ -33,7 +33,7 @@ namespace EnsureThat
 
             if (value.Count < 1)
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsEmptyCollection,
+                    ExceptionMessages.Collections_HasItemsFailed,
                     paramName);
         }
 
@@ -47,12 +47,13 @@ namespace EnsureThat
 
             if (value.Length < 1)
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsEmptyCollection,
+                    ExceptionMessages.Collections_HasItemsFailed,
                     paramName);
         }
 
         [DebuggerStepThrough]
-        public static void HasItems<T>(IList<T> value, string paramName = Param.DefaultName) => HasItems(value as ICollection<T>, paramName);
+        public static void HasItems<T>(IList<T> value, string paramName = Param.DefaultName)
+            => HasItems(value as ICollection<T>, paramName);
 
         [DebuggerStepThrough]
         public static void HasItems<TKey, TValue>(IDictionary<TKey, TValue> value, string paramName = Param.DefaultName)
@@ -64,7 +65,7 @@ namespace EnsureThat
 
             if (value.Count < 1)
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsEmptyCollection,
+                    ExceptionMessages.Collections_HasItemsFailed,
                     paramName);
         }
 
@@ -76,7 +77,7 @@ namespace EnsureThat
 
             if (value.Length != expected)
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, value.Length),
+                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Length),
                     paramName);
         }
 
@@ -88,7 +89,7 @@ namespace EnsureThat
 
             if (value.Length != expected)
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, value.Length),
+                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Length),
                     paramName);
         }
 
@@ -100,7 +101,7 @@ namespace EnsureThat
 
             if (value.Count != expected)
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, value.Count),
+                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Count),
                     paramName);
         }
 
@@ -112,7 +113,7 @@ namespace EnsureThat
 
             if (value.Count != expected)
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, value.Count),
+                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Count),
                     paramName);
         }
 
@@ -124,7 +125,7 @@ namespace EnsureThat
 
             if (value.Count != expected)
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, value.Count),
+                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Count),
                     paramName);
         }
 
@@ -136,15 +137,17 @@ namespace EnsureThat
 
             if (value.Count != expected)
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, value.Count),
+                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Count),
                     paramName);
         }
 
         [DebuggerStepThrough]
-        public static void SizeIs<T>(IList<T> value, int expected, string paramName = Param.DefaultName) => SizeIs(value as ICollection<T>, expected, paramName);
+        public static void SizeIs<T>(IList<T> value, int expected, string paramName = Param.DefaultName)
+            => SizeIs(value as ICollection<T>, expected, paramName);
 
         [DebuggerStepThrough]
-        public static void SizeIs<T>(IList<T> value, long expected, string paramName = Param.DefaultName) => SizeIs(value as ICollection<T>, expected, paramName);
+        public static void SizeIs<T>(IList<T> value, long expected, string paramName = Param.DefaultName)
+            => SizeIs(value as ICollection<T>, expected, paramName);
 
         [DebuggerStepThrough]
         public static void SizeIs<TKey, TValue>(IDictionary<TKey, TValue> value, int expected, string paramName = Param.DefaultName)
@@ -154,7 +157,7 @@ namespace EnsureThat
 
             if (value.Count != expected)
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, value.Count),
+                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Count),
                     paramName);
         }
 
@@ -166,7 +169,7 @@ namespace EnsureThat
 
             if (value.Count != expected)
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, value.Count),
+                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Count),
                     paramName);
         }
 
@@ -178,7 +181,7 @@ namespace EnsureThat
 
             if (!value.ContainsKey(expectedKey))
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_ContainsKey.Inject(expectedKey),
+                    ExceptionMessages.Collections_ContainsKey_Failed.Inject(expectedKey),
                     paramName);
         }
 
@@ -192,7 +195,7 @@ namespace EnsureThat
                 return;
 
             if (!value.Any(predicate))
-                throw new ArgumentException(ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone, paramName);
+                throw new ArgumentException(ExceptionMessages.Collections_Any_Failed, paramName);
         }
 
         [DebuggerStepThrough]
@@ -202,7 +205,7 @@ namespace EnsureThat
                 return;
 
             if (!value.Any(predicate))
-                throw new ArgumentException(ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone, paramName);
+                throw new ArgumentException(ExceptionMessages.Collections_Any_Failed, paramName);
         }
     }
 }

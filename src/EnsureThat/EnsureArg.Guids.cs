@@ -13,7 +13,7 @@ namespace EnsureThat
 
             if (value.Equals(Guid.Empty))
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsEmptyGuid,
+                    ExceptionMessages.Guids_IsNotEmpty_Failed,
                     paramName);
         }
     }

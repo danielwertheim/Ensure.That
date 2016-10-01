@@ -17,7 +17,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value == null || param.Value.Count < 1)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
 
             return param;
         }
@@ -29,7 +29,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value == null || param.Value.Count < 1)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
 
             return param;
         }
@@ -41,7 +41,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value == null || param.Value.Count < 1)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
 
             return param;
         }
@@ -53,10 +53,10 @@ namespace EnsureThat
                 return param;
 
             if (param.Value == null)
-                throw ExceptionFactory.CreateForParamNullValidation(param, ExceptionMessages.EnsureExtensions_IsNotNull);
+                throw ExceptionFactory.CreateForParamNullValidation(param, ExceptionMessages.Common_IsNotNull_Failed);
 
             if (param.Value.Length < 1)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
 
             return param;
         }
@@ -68,7 +68,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value == null || param.Value.Count < 1)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
 
             return param;
         }
@@ -80,7 +80,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value == null || param.Value.Count < 1)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
 
             return param;
         }
@@ -92,7 +92,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value == null || param.Value.Count < 1)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyCollection);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
 
             return param;
         }
@@ -104,7 +104,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value.Length != expected)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Length));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Length));
 
             return param;
         }
@@ -116,7 +116,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value.Length != expected)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Length));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Length));
 
             return param;
         }
@@ -128,7 +128,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value.Count != expected)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
 
             return param;
         }
@@ -140,7 +140,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value.Count != expected)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
 
             return param;
         }
@@ -152,7 +152,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value.Count != expected)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
 
             return param;
         }
@@ -164,7 +164,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value.Count != expected)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
 
             return param;
         }
@@ -176,7 +176,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value.Count != expected)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
 
             return param;
         }
@@ -188,7 +188,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value.Count != expected)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
 
             return param;
         }
@@ -200,7 +200,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value.Count != expected)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
 
             return param;
         }
@@ -212,7 +212,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value.Count != expected)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_SizeIs_Wrong.Inject(expected, param.Value.Count));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
 
             return param;
         }
@@ -224,7 +224,7 @@ namespace EnsureThat
                 return param;
 
             if (!param.Value.ContainsKey(key))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_ContainsKey.Inject(key));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_ContainsKey_Failed.Inject(key));
 
             return param;
         }
@@ -236,7 +236,7 @@ namespace EnsureThat
                 return param;
 
             if (!param.Value.ContainsKey(key))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_ContainsKey.Inject(key));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_ContainsKey_Failed.Inject(key));
 
             return param;
         }
@@ -248,7 +248,7 @@ namespace EnsureThat
                 return param;
 
             if (!param.Value.Any(predicate))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Any_Failed);
 
             return param;
         }
@@ -260,7 +260,7 @@ namespace EnsureThat
                 return param;
 
             if (!param.Value.Any(predicate))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Any_Failed);
 
             return param;
         }
@@ -272,7 +272,7 @@ namespace EnsureThat
                 return param;
 
             if (!param.Value.Any(predicate))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Any_Failed);
 
             return param;
         }
@@ -284,7 +284,7 @@ namespace EnsureThat
                 return param;
 
             if (!param.Value.Any(predicate))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Any_Failed);
 
             return param;
         }
@@ -296,7 +296,7 @@ namespace EnsureThat
                 return param;
 
             if (!param.Value.Any(predicate))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_AnyPredicateYieldedNone);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Any_Failed);
 
             return param;
         }

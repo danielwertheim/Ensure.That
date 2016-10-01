@@ -15,7 +15,7 @@ namespace EnsureThat.UnitTests
                 .WithExtraMessageOf(p => "Foo bar is some dummy text.")
                 .IsNotNull());
 
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNull
+            AssertThrowedAsExpected(ex, ExceptionMessages.Common_IsNotNull_Failed
                 + "\r\nFoo bar is some dummy text.");
         }
     }

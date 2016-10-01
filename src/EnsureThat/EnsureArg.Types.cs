@@ -90,7 +90,7 @@ namespace EnsureThat
                 return;
 
             if (param != expectedType)
-                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(expectedType.FullName, param.FullName), paramName);
+                throw new ArgumentException(ExceptionMessages.Types_IsOfType_Failed.Inject(expectedType.FullName, param.FullName), paramName);
         }
 
         [DebuggerStepThrough]
@@ -100,7 +100,7 @@ namespace EnsureThat
                 return;
 
             if (param == null)
-                throw new ArgumentNullException(paramName, ExceptionMessages.EnsureExtensions_IsNotClass_WasNull);
+                throw new ArgumentNullException(paramName, ExceptionMessages.Types_IsClass_Failed_Null);
 
             IsClass(param.GetType(), paramName);
         }
@@ -112,10 +112,10 @@ namespace EnsureThat
                 return;
 
             if (param == null)
-                throw new ArgumentNullException(paramName, ExceptionMessages.EnsureExtensions_IsNotClass_WasNull);
+                throw new ArgumentNullException(paramName, ExceptionMessages.Types_IsClass_Failed_Null);
 
             if (!param.GetTypeInfo().IsClass)
-                throw new ArgumentException(ExceptionMessages.EnsureExtensions_IsNotClass.Inject(param.FullName), paramName);
+                throw new ArgumentException(ExceptionMessages.Types_IsClass_Failed.Inject(param.FullName), paramName);
         }
     }
 }

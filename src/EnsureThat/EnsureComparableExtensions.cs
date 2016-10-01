@@ -13,7 +13,7 @@ namespace EnsureThat
                 return param;
 
             if (!param.Value.IsEq(expected))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_Is_Failed.Inject(param.Value, expected));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Comp_Is_Failed.Inject(param.Value, expected));
 
             return param;
         }
@@ -25,7 +25,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value.IsEq(expected))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNot_Failed.Inject(param.Value, expected));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Comp_IsNot_Failed.Inject(param.Value, expected));
 
             return param;
         }
@@ -37,7 +37,7 @@ namespace EnsureThat
                 return param;
 
             if (!param.Value.IsLt(limit))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotLt.Inject(param.Value, limit));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Comp_IsNotLt.Inject(param.Value, limit));
 
             return param;
         }
@@ -49,7 +49,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value.IsGt(limit))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotLte.Inject(param.Value, limit));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Comp_IsNotLte.Inject(param.Value, limit));
 
             return param;
         }
@@ -61,7 +61,7 @@ namespace EnsureThat
                 return param;
 
             if (!param.Value.IsGt(limit))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotGt.Inject(param.Value, limit));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Comp_IsNotGt.Inject(param.Value, limit));
 
             return param;
         }
@@ -73,7 +73,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value.IsLt(limit))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotGte.Inject(param.Value, limit));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Comp_IsNotGte.Inject(param.Value, limit));
 
             return param;
         }
@@ -85,10 +85,10 @@ namespace EnsureThat
                 return param;
 
             if (param.Value.IsLt(min))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotInRange_ToLow.Inject(param.Value, min));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Comp_IsNotInRange_ToLow.Inject(param.Value, min));
 
             if (param.Value.IsGt(max))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotInRange_ToHigh.Inject(param.Value, max));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Comp_IsNotInRange_ToHigh.Inject(param.Value, max));
 
             return param;
         }

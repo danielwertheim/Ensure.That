@@ -12,7 +12,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value.Equals(Guid.Empty))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyGuid);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Guids_IsNotEmpty_Failed);
 
             return param;
         }

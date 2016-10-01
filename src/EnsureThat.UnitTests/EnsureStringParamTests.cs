@@ -7,13 +7,13 @@ namespace EnsureThat.UnitTests
 {
     public class EnsureStringParamTests : UnitTestBase
     {
-        private void AssertIsNotNull(params Action[] actions) => AssertAll<ArgumentNullException>(ExceptionMessages.EnsureExtensions_IsNotNull, actions);
+        private void AssertIsNotNull(params Action[] actions) => AssertAll<ArgumentNullException>(ExceptionMessages.Common_IsNotNull_Failed, actions);
 
-        private void AssertIsNotEmpty(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.EnsureExtensions_IsEmptyString, actions);
+        private void AssertIsNotEmpty(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.Strings_IsNotEmpty_Failed, actions);
 
-        private void AssertIsNotNullOrEmpty(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty, actions);
+        private void AssertIsNotNullOrEmpty(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.Strings_IsNotNullOrEmpty_Failed, actions);
 
-        private void AssertIsNotNullOrWhiteSpace(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace, actions);
+        private void AssertIsNotNullOrWhiteSpace(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.Strings_IsNotNullOrWhiteSpace_Failed, actions);
 
         [Fact]
         public void IsNotNull_WhenStringIsNull_ThrowsArgumentNullException()
@@ -141,7 +141,7 @@ namespace EnsureThat.UnitTests
             var value = new string('a', low - 1);
 
             AssertAll<ArgumentException>(
-                string.Format(ExceptionMessages.EnsureExtensions_IsNotInRange_ToShort, low, high, value.Length),
+                string.Format(ExceptionMessages.Strings_HasLengthBetween_Failed_ToShort, low, high, value.Length),
                 () => Ensure.That(value, ParamName).HasLengthBetween(2, high),
                 () => EnsureArg.HasLengthBetween(value, low, high, ParamName));
         }
@@ -154,7 +154,7 @@ namespace EnsureThat.UnitTests
             var value = new string('a', high + 1);
 
             AssertAll<ArgumentException>(
-                string.Format(ExceptionMessages.EnsureExtensions_IsNotInRange_ToLong, low, high, value.Length),
+                string.Format(ExceptionMessages.Strings_HasLengthBetween_Failed_ToLong, low, high, value.Length),
                 () => Ensure.That(value, ParamName).HasLengthBetween(2, high),
                 () => EnsureArg.HasLengthBetween(value, low, high, ParamName));
         }
@@ -194,7 +194,7 @@ namespace EnsureThat.UnitTests
             const string match = @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*";
 
             AssertAll<ArgumentException>(
-                string.Format(ExceptionMessages.EnsureExtensions_NoMatch, value, match),
+                string.Format(ExceptionMessages.Strings_Matches_Failed, value, match),
                 () => Ensure.That(value, ParamName).Matches(match),
                 () => EnsureArg.Matches(value, match, ParamName));
         }
@@ -206,7 +206,7 @@ namespace EnsureThat.UnitTests
             var match = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*");
 
             AssertAll<ArgumentException>(
-                string.Format(ExceptionMessages.EnsureExtensions_NoMatch, value, match),
+                string.Format(ExceptionMessages.Strings_Matches_Failed, value, match),
                 () => Ensure.That(value, ParamName).Matches(match),
                 () => EnsureArg.Matches(value, match, ParamName));
         }
@@ -244,7 +244,7 @@ namespace EnsureThat.UnitTests
             var expected = value.Length + 1;
 
             AssertAll<ArgumentException>(
-                string.Format(ExceptionMessages.EnsureExtensions_SizeIs_Wrong, expected, value.Length),
+                string.Format(ExceptionMessages.Strings_SizeIs_Failed, expected, value.Length),
                 () => Ensure.That(value, ParamName).SizeIs(expected),
                 () => EnsureArg.SizeIs(value, expected, ParamName));
         }
@@ -268,7 +268,7 @@ namespace EnsureThat.UnitTests
             const string expected = "Other value";
 
             AssertAll<ArgumentException>(
-                string.Format(ExceptionMessages.EnsureExtensions_IsEqualTo_Failed, value, expected),
+                string.Format(ExceptionMessages.Strings_IsEqualTo_Failed, value, expected),
                 () => Ensure.That(value, ParamName).IsEqualTo(expected),
                 () => EnsureArg.IsEqualTo(value, expected, ParamName));
         }
@@ -305,7 +305,7 @@ namespace EnsureThat.UnitTests
             const string value = "The value";
 
             AssertAll<ArgumentException>(
-                string.Format(ExceptionMessages.EnsureExtensions_IsNot_Failed, value, value),
+                string.Format(ExceptionMessages.Comp_IsNot_Failed, value, value),
                 () => Ensure.That(value, ParamName).IsNotEqualTo(value),
                 () => EnsureArg.IsNotEqualTo(value, value, ParamName));
         }
@@ -317,7 +317,7 @@ namespace EnsureThat.UnitTests
             var compareTo = value.ToLower();
 
             AssertAll<ArgumentException>(
-                string.Format(ExceptionMessages.EnsureExtensions_IsNot_Failed, value, compareTo),
+                string.Format(ExceptionMessages.Comp_IsNot_Failed, value, compareTo),
                 () => Ensure.That(value, ParamName).IsNotEqualTo(compareTo, StringComparison.OrdinalIgnoreCase),
                 () => EnsureArg.IsNotEqualTo(value, compareTo, StringComparison.OrdinalIgnoreCase, ParamName));
         }
@@ -352,7 +352,7 @@ namespace EnsureThat.UnitTests
             const string value = "324-3243-123-23";
 
             AssertAll<ArgumentException>(
-                string.Format(ExceptionMessages.EnsureExtensions_IsGuid_Failed, value),
+                string.Format(ExceptionMessages.Strings_IsGuid_Failed, value),
                 () => Ensure.That(value, ParamName).IsGuid(),
                 () => EnsureArg.IsGuid(value, ParamName));
         }

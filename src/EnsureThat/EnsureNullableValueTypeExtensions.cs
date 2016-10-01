@@ -11,7 +11,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value == null)
-                throw ExceptionFactory.CreateForParamNullValidation(param, ExceptionMessages.EnsureExtensions_IsNotNull);
+                throw ExceptionFactory.CreateForParamNullValidation(param, ExceptionMessages.Common_IsNotNull_Failed);
 
             return param;
         }

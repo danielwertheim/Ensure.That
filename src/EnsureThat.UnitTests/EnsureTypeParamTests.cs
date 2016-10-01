@@ -244,7 +244,7 @@ namespace EnsureThat.UnitTests
         public void IsClass_WhenPassingNull_ThrowsArgumentNullException()
         {
             AssertAll<ArgumentNullException>(
-                ExceptionMessages.EnsureExtensions_IsNotClass_WasNull,
+                ExceptionMessages.Types_IsClass_Failed_Null,
                 () => Ensure.That(null as Type, ParamName).IsClass(),
                 () => EnsureArg.IsClass(null, ParamName),
                 () => EnsureArg.IsClass((Type)null, ParamName));
@@ -266,10 +266,10 @@ namespace EnsureThat.UnitTests
         }
 
         private static void AssertIsNotOfType(Type expected, Type actual, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_IsNotOfType, expected.FullName, actual.FullName), actions);
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Types_IsOfType_Failed, expected.FullName, actual.FullName), actions);
 
         private static void AssertIsNotClass(Type type, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_IsNotClass, type.FullName), actions);
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Types_IsClass_Failed, type.FullName), actions);
 
         private class MyClass { }
     }

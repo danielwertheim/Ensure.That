@@ -58,7 +58,7 @@ namespace EnsureThat
 
             if (param.Type != type)
                 throw ExceptionFactory.CreateForParamValidation(param,
-                    ExceptionMessages.EnsureExtensions_IsNotOfType.Inject(type.FullName, param.Type.FullName));
+                    ExceptionMessages.Types_IsOfType_Failed.Inject(type.FullName, param.Type.FullName));
 
             return param;
         }
@@ -71,11 +71,11 @@ namespace EnsureThat
 
             if (param.Value == null)
                 throw ExceptionFactory.CreateForParamNullValidation(param,
-                    ExceptionMessages.EnsureExtensions_IsNotClass_WasNull);
+                    ExceptionMessages.Types_IsClass_Failed_Null);
 
             if (!param.Value.GetTypeInfo().IsClass)
                 throw ExceptionFactory.CreateForParamValidation(param,
-                    ExceptionMessages.EnsureExtensions_IsNotClass.Inject(param.Value.FullName));
+                    ExceptionMessages.Types_IsClass_Failed.Inject(param.Value.FullName));
 
             return param;
         }
@@ -88,7 +88,7 @@ namespace EnsureThat
 
             if (!param.Type.GetTypeInfo().IsClass)
                 throw ExceptionFactory.CreateForParamValidation(param,
-                    ExceptionMessages.EnsureExtensions_IsNotClass.Inject(param.Type.FullName));
+                    ExceptionMessages.Types_IsClass_Failed.Inject(param.Type.FullName));
 
             return param;
         }

@@ -13,7 +13,7 @@ namespace EnsureThat
 
             if (!value)
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsNotTrue,
+                    ExceptionMessages.Booleans_IsTrueFailed,
                     paramName);
         }
 
@@ -25,7 +25,7 @@ namespace EnsureThat
 
             if (value)
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsNotFalse,
+                    ExceptionMessages.Booleans_IsFalseFailed,
                     paramName);
         }
     }

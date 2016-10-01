@@ -11,7 +11,7 @@ namespace EnsureThat
                 return param;
 
             if (!param.Value)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotTrue);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Booleans_IsTrueFailed);
 
             return param;
         }
@@ -23,7 +23,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Value)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotFalse);
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Booleans_IsFalseFailed);
 
             return param;
         }

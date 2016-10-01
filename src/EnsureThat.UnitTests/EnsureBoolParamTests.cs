@@ -10,10 +10,10 @@ namespace EnsureThat.UnitTests
         public void IsTrue_WhenFalseExpression_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(() => Ensure.That(false, ParamName).IsTrue());
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotTrue);
+            AssertThrowedAsExpected(ex, ExceptionMessages.Booleans_IsTrueFailed);
 
             var ex2 = Assert.Throws<ArgumentException>(() => EnsureArg.IsTrue(false, ParamName));
-            AssertThrowedAsExpected(ex2, ExceptionMessages.EnsureExtensions_IsNotTrue);
+            AssertThrowedAsExpected(ex2, ExceptionMessages.Booleans_IsTrueFailed);
         }
 
         [Fact]
@@ -30,10 +30,10 @@ namespace EnsureThat.UnitTests
         public void IsFalse_WhenTrueExpression_ThrowsArgumentException()
         {
             var ex = Assert.Throws<ArgumentException>(() => Ensure.That(true, ParamName).IsFalse());
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotFalse);
+            AssertThrowedAsExpected(ex, ExceptionMessages.Booleans_IsFalseFailed);
 
             var ex2 = Assert.Throws<ArgumentException>(() => EnsureArg.IsFalse(true, ParamName));
-            AssertThrowedAsExpected(ex2, ExceptionMessages.EnsureExtensions_IsNotFalse);
+            AssertThrowedAsExpected(ex2, ExceptionMessages.Booleans_IsFalseFailed);
         }
 
         [Fact]

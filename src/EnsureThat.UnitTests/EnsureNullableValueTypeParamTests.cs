@@ -81,7 +81,7 @@ namespace EnsureThat.UnitTests
         private void Assert_IsNotNull_WhenNullInt_ThrowsArgumentException<T>() where T : struct 
         {
             AssertAll<ArgumentNullException>(
-                ExceptionMessages.EnsureExtensions_IsNotNull,
+                ExceptionMessages.Common_IsNotNull_Failed,
                 () => Ensure.That((T?)null, ParamName).IsNotNull(),
                 () => EnsureArg.IsNotNull((T?)null, ParamName));
         }

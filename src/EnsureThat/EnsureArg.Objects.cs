@@ -12,7 +12,7 @@ namespace EnsureThat
                 return;
 
             if (value == null)
-                throw new ArgumentNullException(paramName, ExceptionMessages.EnsureExtensions_IsNotNull);
+                throw new ArgumentNullException(paramName, ExceptionMessages.Common_IsNotNull_Failed);
         }
     }
 }

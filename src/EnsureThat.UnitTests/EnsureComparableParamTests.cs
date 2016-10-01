@@ -212,7 +212,7 @@ namespace EnsureThat.UnitTests
             var spec = When_value_is_lt_than_limit();
 
             AssertAll<ArgumentException>(
-                string.Format(ExceptionMessages.EnsureExtensions_Is_Failed, spec.Value, spec.Limit),
+                string.Format(ExceptionMessages.Comp_Is_Failed, spec.Value, spec.Limit),
                 () => Ensure.That(spec.Value, ParamName).Is(spec.Limit),
                 () => EnsureArg.Is(spec.Value, spec.Limit, ParamName));
         }
@@ -235,7 +235,7 @@ namespace EnsureThat.UnitTests
             var spec = When_value_is_equal_to_limit();
 
             AssertAll<ArgumentException>(
-                string.Format(ExceptionMessages.EnsureExtensions_IsNot_Failed, spec.Value, spec.Limit),
+                string.Format(ExceptionMessages.Comp_IsNot_Failed, spec.Value, spec.Limit),
                 () => Ensure.That(spec.Value, ParamName).IsNot(spec.Limit),
                 () => EnsureArg.IsNot(spec.Value, spec.Limit, ParamName));
         }
@@ -281,22 +281,22 @@ namespace EnsureThat.UnitTests
         }
 
         public void AssertIsLtScenario(int value, int limit, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_IsNotLt, value, limit), actions);
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), actions);
 
         public void AssertIsGtScenario(int value, int limit, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_IsNotGt, value, limit), actions);
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), actions);
 
         public void AssertIsLteScenario(int value, int limit, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_IsNotLte, value, limit), actions);
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), actions);
 
         public void AssertIsGteScenario(int value, int limit, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_IsNotGte, value, limit), actions);
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), actions);
 
         public void AssertIsRangeToLowScenario(int value, int limit, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_IsNotInRange_ToLow, value, limit), actions);
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, limit), actions);
 
         public void AssertIsRangeToHighScenario(int value, int limit, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.EnsureExtensions_IsNotInRange_ToHigh, value, limit), actions);
+            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, limit), actions);
 
         public class CompareParamTestSpec<T> where T : struct
         {
