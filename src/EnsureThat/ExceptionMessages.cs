@@ -21,6 +21,8 @@
         public static string Comp_IsNotInRange_ToLow { get; private set; } = "value '{0}' is < min '{1}'.";
         public static string Comp_IsNotInRange_ToHigh { get; private set; } = "value '{0}' is > max '{1}'.";
 
+        public static string Guids_IsNotEmpty_Failed { get; private set; } = "Empty Guid is not allowed.";
+
         public static string Strings_IsEqualTo_Failed { get; private set; } = "Value '{0}' is not '{1}'.";
         public static string Strings_IsNotEqualTo_Failed { get; private set; } = "Value '{0}' is '{1}', which was not expected.";
         public static string Strings_SizeIs_Failed { get; private set; } = "Expected length '{0}' but found '{1}'.";
@@ -37,6 +39,6 @@
         public static string Types_IsClass_Failed_Null { get; private set; } = "The param was expected to be a class, but was NULL.";
         public static string Types_IsClass_Failed { get; private set; } = "The param was expected to be a class, but was type of: '{0}'.";
 
-        public static string Guids_IsNotEmpty_Failed { get; private set; } = "Empty Guid is not allowed.";
+        public static string ValueTypes_IsNotDefault_Failed { get; private set; } = "The param was expected to not be of default value.";
     }
 }
