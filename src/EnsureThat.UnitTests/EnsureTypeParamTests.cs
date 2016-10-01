@@ -17,7 +17,7 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsOfType_WhenNotTypeOf_ThrowsArgumentException()
         {
-            AssertIsNotOfType(
+            AssertIsOfTypeScenario(
                 NonBogusType, BogusType,
                 () => Ensure.ThatTypeFor(new Bogus(), ParamName).IsOfType(NonBogusType),
                 () => EnsureArg.IsOfType(typeof(Bogus), NonBogusType, ParamName),
@@ -38,9 +38,32 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
+        public void IsNotOfType_WhenTypeOf_ThrowsArgumentException()
+        {
+            AssertAll<ArgumentException>(
+                string.Format(ExceptionMessages.Types_IsNotOfType_Failed, BogusType),
+                () => Ensure.ThatTypeFor(new Bogus(), ParamName).IsNotOfType(BogusType),
+                () => EnsureArg.IsNotOfType(typeof(Bogus), BogusType, ParamName),
+                () => EnsureArg.IsNotOfType(new Bogus(), BogusType, ParamName));
+        }
+
+        [Fact]
+        public void IsNotOfType_WhenIsNotTheType_It_should_not_throw()
+        {
+            var returnedValue = Ensure.ThatTypeFor(new Bogus(), ParamName).IsNotOfType(NonBogusType);
+            AssertReturnedAsExpected(returnedValue, NonBogusType);
+
+            Action a = () => EnsureArg.IsNotOfType(BogusType, NonBogusType, ParamName);
+            a.ShouldNotThrow();
+
+            Action b = () => EnsureArg.IsNotOfType(new Bogus(), NonBogusType, ParamName);
+            b.ShouldNotThrow();
+        }
+
+        [Fact]
         public void IsInt_WhenNotTypeOf_ThrowsArgumentException()
         {
-            AssertIsNotOfType(
+            AssertIsOfTypeScenario(
                 typeof(int), typeof(decimal),
                 () => Ensure.ThatTypeFor(42m, ParamName).IsInt(),
                 () => EnsureArg.IsInt(typeof(decimal), ParamName),
@@ -63,7 +86,7 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsShort_WhenNotTypeOf_ThrowsArgumentException()
         {
-            AssertIsNotOfType(
+            AssertIsOfTypeScenario(
                 typeof(short), typeof(int),
                 () => Ensure.ThatTypeFor(42, ParamName).IsShort(),
                 () => EnsureArg.IsShort(typeof(int), ParamName),
@@ -86,7 +109,7 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsDecimal_WhenNotTypeOf_ThrowsArgumentException()
         {
-            AssertIsNotOfType(
+            AssertIsOfTypeScenario(
                 typeof(decimal), typeof(int),
                 () => Ensure.ThatTypeFor(42, ParamName).IsDecimal(),
                 () => EnsureArg.IsDecimal(typeof(int), ParamName),
@@ -109,7 +132,7 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsDouble_WhenNotTypeOf_ThrowsArgumentException()
         {
-            AssertIsNotOfType(
+            AssertIsOfTypeScenario(
                 typeof(double), typeof(int),
                 () => Ensure.ThatTypeFor(42, ParamName).IsDouble(),
                 () => EnsureArg.IsDouble(typeof(int), ParamName),
@@ -132,7 +155,7 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsFloat_WhenNotTypeOf_ThrowsArgumentException()
         {
-            AssertIsNotOfType(
+            AssertIsOfTypeScenario(
                 typeof(float), typeof(int),
                 () => Ensure.ThatTypeFor(42, ParamName).IsFloat(),
                 () => EnsureArg.IsFloat(typeof(int), ParamName),
@@ -157,7 +180,7 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsBool_WhenNotTypeOf_ThrowsArgumentException()
         {
-            AssertIsNotOfType(
+            AssertIsOfTypeScenario(
                 typeof(bool), typeof(int),
                 () => Ensure.ThatTypeFor(42, ParamName).IsBool(),
                 () => EnsureArg.IsBool(typeof(int), ParamName),
@@ -182,7 +205,7 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsDateTime_WhenNotTypeOf_ThrowsArgumentException()
         {
-            AssertIsNotOfType(
+            AssertIsOfTypeScenario(
                 typeof(DateTime), typeof(int),
                 () => Ensure.ThatTypeFor(42, ParamName).IsDateTime(),
                 () => EnsureArg.IsDateTime(typeof(int), ParamName),
@@ -207,7 +230,7 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsString_WhenNotTypeOf_ThrowsArgumentException()
         {
-            AssertIsNotOfType(
+            AssertIsOfTypeScenario(
                 typeof(string), typeof(int),
                 () => Ensure.ThatTypeFor(42, ParamName).IsString(),
                 () => EnsureArg.IsString(typeof(int), ParamName),
@@ -265,7 +288,7 @@ namespace EnsureThat.UnitTests
             b.ShouldNotThrow();
         }
 
-        private static void AssertIsNotOfType(Type expected, Type actual, params Action[] actions)
+        private static void AssertIsOfTypeScenario(Type expected, Type actual, params Action[] actions)
             => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Types_IsOfType_Failed, expected.FullName, actual.FullName), actions);
 
         private static void AssertIsNotClass(Type type, params Action[] actions)

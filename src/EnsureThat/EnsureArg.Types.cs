@@ -94,6 +94,25 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
+        public static void IsNotOfType<T>(T param, Type nonExpectedType, string paramName = Param.DefaultName)
+        {
+            if (!Ensure.IsActive)
+                return;
+
+            IsNotOfType(param.GetType(), nonExpectedType, paramName);
+        }
+
+        [DebuggerStepThrough]
+        public static void IsNotOfType(Type param, Type nonExpectedType, string paramName = Param.DefaultName)
+        {
+            if (!Ensure.IsActive)
+                return;
+
+            if (param == nonExpectedType)
+                throw new ArgumentException(ExceptionMessages.Types_IsNotOfType_Failed.Inject(nonExpectedType.FullName), paramName);
+        }
+
+        [DebuggerStepThrough]
         public static void IsClass<T>(T param, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
