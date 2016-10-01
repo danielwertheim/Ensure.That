@@ -13,6 +13,9 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return param;
 
+            if(param.Value == null)
+                throw ExceptionFactory.CreateForParamNullValidation(param, ExceptionMessages.EnsureExtensions_IsNotNull);
+
             if (string.IsNullOrWhiteSpace(param.Value))
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace);
 
@@ -22,8 +25,20 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static Param<string> IsNotNullOrEmpty(this Param<string> param)
         {
+            if (param.Value == null)
+                throw ExceptionFactory.CreateForParamNullValidation(param, ExceptionMessages.EnsureExtensions_IsNotNull);
+
             if (string.IsNullOrEmpty(param.Value))
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty);
+
+            return param;
+        }
+
+        [DebuggerStepThrough]
+        public static Param<string> IsNotEmpty(this Param<string> param)
+        {
+            if (string.Empty.Equals(param.Value))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEmptyString);
 
             return param;
         }
@@ -73,7 +88,7 @@ namespace EnsureThat
         public static Param<string> IsEqualTo(this Param<string> param, string expected, StringComparison? comparison = null)
         {
             if (!StringEquals(param.Value, expected, comparison))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_Is_Failed.Inject(param.Value, expected));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsEqualTo_Failed.Inject(param.Value, expected));
 
             return param;
         }
@@ -82,7 +97,7 @@ namespace EnsureThat
         public static Param<string> IsNotEqualTo(this Param<string> param, string expected, StringComparison? comparison = null)
         {
             if (StringEquals(param.Value, expected, comparison))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNot_Failed.Inject(param.Value, expected));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotEqualTo_Failed.Inject(param.Value, expected));
 
             return param;
         }
@@ -92,7 +107,7 @@ namespace EnsureThat
         {
             Guid guid;
             if (!Guid.TryParse(param.Value, out guid))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsNotGuid.Inject(param.Value));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.EnsureExtensions_IsGuid_Failed.Inject(param.Value));
 
             return param;
         }

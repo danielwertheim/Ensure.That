@@ -13,12 +13,12 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
+            IsNotNull(value, paramName);
+
             if (string.IsNullOrWhiteSpace(value))
-            {
                 throw new ArgumentException(
                     ExceptionMessages.EnsureExtensions_IsNotNullOrWhiteSpace,
                     paramName);
-            }
         }
 
         [DebuggerStepThrough]
@@ -27,12 +27,12 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
-            if (string.IsNullOrWhiteSpace(value))
-            {
+            IsNotNull(value, paramName);
+
+            if (string.IsNullOrEmpty(value))
                 throw new ArgumentException(
                     ExceptionMessages.EnsureExtensions_IsNotNullOrEmpty,
                     paramName);
-            }
         }
 
         [DebuggerStepThrough]
@@ -42,11 +42,9 @@ namespace EnsureThat
                 return;
 
             if (value == null)
-            {
                 throw new ArgumentNullException(
                     paramName,
                     ExceptionMessages.EnsureExtensions_IsNotNull);
-            }
         }
 
         [DebuggerStepThrough]
@@ -55,12 +53,10 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
-            if (value == null)
-            {
+            if (string.Empty.Equals(value))
                 throw new ArgumentException(
-                    paramName,
-                    ExceptionMessages.EnsureExtensions_IsEmptyString);
-            }
+                    ExceptionMessages.EnsureExtensions_IsEmptyString,
+                    paramName);
         }
 
         [DebuggerStepThrough]
@@ -114,7 +110,19 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static void IsEqualTo(string value, string expected, StringComparison? comparison = null, string paramName = Param.DefaultName)
+        public static void IsEqualTo(string value, string expected, string paramName = Param.DefaultName)
+        {
+            if (!Ensure.IsActive)
+                return;
+
+            if (!StringEquals(value, expected))
+                throw new ArgumentException(
+                    ExceptionMessages.EnsureExtensions_Is_Failed.Inject(value, expected),
+                    paramName);
+        }
+
+        [DebuggerStepThrough]
+        public static void IsEqualTo(string value, string expected, StringComparison comparison, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return;
@@ -126,7 +134,19 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static void IsNotEqualTo(string value, string expected, StringComparison? comparison = null, string paramName = Param.DefaultName)
+        public static void IsNotEqualTo(string value, string expected, string paramName = Param.DefaultName)
+        {
+            if (!Ensure.IsActive)
+                return;
+
+            if (StringEquals(value, expected))
+                throw new ArgumentException(
+                    ExceptionMessages.EnsureExtensions_IsNot_Failed.Inject(value, expected),
+                    paramName);
+        }
+
+        [DebuggerStepThrough]
+        public static void IsNotEqualTo(string value, string expected, StringComparison comparison, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return;
@@ -146,7 +166,7 @@ namespace EnsureThat
             Guid guid;
             if (!Guid.TryParse(value, out guid))
                 throw new ArgumentException(
-                    ExceptionMessages.EnsureExtensions_IsNotGuid.Inject(value),
+                    ExceptionMessages.EnsureExtensions_IsGuid_Failed.Inject(value),
                     paramName);
         }
 

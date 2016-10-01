@@ -18,7 +18,7 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void IsNotNull_WhenRefTypeIsNotNull_ReturnsPassedObjectInstance()
+        public void IsNotNull_WhenRefTypeIsNotNull_ShouldNotThrow()
         {
             var item = new { Value = 42 };
 

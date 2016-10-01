@@ -7,7 +7,9 @@
         public static string EnsureExtensions_IsEmptyCollection { get; private set; } = "Empty collection is not allowed.";
         public static string EnsureExtensions_SizeIs_Wrong { get; private set; } = "Expected size '{0}' but found '{1}'.";
         public static string EnsureExtensions_Is_Failed { get; private set; } = "Value '{0}' is not '{1}'.";
+        public static string EnsureExtensions_IsEqualTo_Failed { get; private set; } = "Value '{0}' is not '{1}'.";
         public static string EnsureExtensions_IsNot_Failed { get; private set; } ="Value '{0}' is '{1}', which was not expected.";
+        public static string EnsureExtensions_IsNotEqualTo_Failed { get; private set; } = "Value '{0}' is '{1}', which was not expected.";
         public static string EnsureExtensions_IsNotLt { get; private set; } = "value '{0}' is not lower than limit '{1}'.";
         public static string EnsureExtensions_IsNotLte { get; private set; } = "value '{0}' is not lower than or equal to limit '{1}'.";
         public static string EnsureExtensions_IsNotGt { get; private set; } = "value '{0}' is not greater than limit '{1}'.";
@@ -28,6 +30,6 @@
         public static string EnsureExtensions_IsEmptyString { get; private set; } = "Empty String is not allowed.";
         public static string EnsureExtensions_ContainsKey { get; private set; } = "Key '{0}' does not exist.";
         public static string EnsureExtensions_AnyPredicateYieldedNone { get; private set; } = "The predicate did not match any elements.";
-        public static string EnsureExtensions_IsNotGuid { get; private set; } = "Value '{0}' is not a valid GUID.";
+        public static string EnsureExtensions_IsGuid_Failed { get; private set; } = "Value '{0}' is not a valid GUID.";
     }
 }

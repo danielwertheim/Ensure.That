@@ -16,7 +16,7 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void IsNotEmpty_WhenNonEmptyGuid_ReturnsPassedGuid()
+        public void IsNotEmpty_WhenNonEmptyGuid_ShouldNotThrow()
         {
             var guid = Guid.NewGuid();
 

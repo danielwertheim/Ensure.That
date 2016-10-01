@@ -25,7 +25,7 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void IsOfType_WhenIsCorrectType_GivesValidResult()
+        public void IsOfType_WhenIsCorrectType_It_should_not_throw()
         {
             var returnedValue = Ensure.ThatTypeFor(new Bogus(), ParamName).IsOfType(BogusType);
             AssertReturnedAsExpected(returnedValue, BogusType);
@@ -48,7 +48,7 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void IsInt_WhenIsCorrectType_GivesValidResult()
+        public void IsInt_WhenIsCorrectType_It_should_not_throw()
         {
             var returnedValue = Ensure.ThatTypeFor(42, ParamName).IsInt();
             AssertReturnedAsExpected(returnedValue, typeof(int));
@@ -71,7 +71,7 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void IsShort_WhenIsCorrectType_GivesValidResult()
+        public void IsShort_WhenIsCorrectType_It_should_not_throw()
         {
             var returnedValue = Ensure.ThatTypeFor((short)42, ParamName).IsShort();
             AssertReturnedAsExpected(returnedValue, typeof(short));
@@ -94,7 +94,7 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void IsDecimal_WhenIsCorrectType_GivesValidResult()
+        public void IsDecimal_WhenIsCorrectType_It_should_not_throw()
         {
             var returnedValue = Ensure.ThatTypeFor(42.33m, ParamName).IsDecimal();
             AssertReturnedAsExpected(returnedValue, typeof(decimal));
@@ -117,7 +117,7 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void IsDouble_WhenIsCorrectType_GivesValidResult()
+        public void IsDouble_WhenIsCorrectType_It_should_not_throw()
         {
             var returnedValue = Ensure.ThatTypeFor(42.33, ParamName).IsDouble();
             AssertReturnedAsExpected(returnedValue, typeof(double));
@@ -140,7 +140,7 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void IsFloat_WhenIsCorrectType_GivesValidResult()
+        public void IsFloat_WhenIsCorrectType_It_should_not_throw()
         {
             const float value = (float) 42.33;
 
@@ -165,7 +165,7 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void IsBool_WhenIsCorrectType_GivesValidResult()
+        public void IsBool_WhenIsCorrectType_It_should_not_throw()
         {
             const bool value = true;
 
@@ -190,7 +190,7 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void IsDateTime_WhenIsCorrectType_GivesValidResult()
+        public void IsDateTime_WhenIsCorrectType_It_should_not_throw()
         {
             var value = DateTime.Now;
 
@@ -215,7 +215,7 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void IsString_WhenIsCorrectType_GivesValidResult()
+        public void IsString_WhenIsCorrectType_It_should_not_throw()
         {
             var value = string.Empty;
 
@@ -251,7 +251,7 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void IsClass_WhenIsClass_GivesValidResult()
+        public void IsClass_WhenIsClass_It_should_not_throw()
         {
             var value = new MyClass();
 

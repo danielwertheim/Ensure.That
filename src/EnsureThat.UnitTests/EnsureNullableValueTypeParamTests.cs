@@ -1,4 +1,5 @@
 using System;
+using FluentAssertions;
 using Xunit;
 
 namespace EnsureThat.UnitTests
@@ -14,7 +15,7 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsNotNull_WhenNonNullInt_ReturnsPassedValue()
         {
-            Assert_IsNotNull_WhenNonNullInt_ReturnsPassedValue<int>(42);
+            Assert_IsNotNull_WhenNonNullInt_ShouldNotThrow<int>(42);
         }
 
         [Fact]
@@ -26,7 +27,7 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsNotNull_WhenNonNullLong_ReturnsPassedValue()
         {
-            Assert_IsNotNull_WhenNonNullInt_ReturnsPassedValue<long>(42);
+            Assert_IsNotNull_WhenNonNullInt_ShouldNotThrow<long>(42);
         }
 
         [Fact]
@@ -38,7 +39,7 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsNotNull_WhenNonNullDouble_ReturnsPassedValue()
         {
-            Assert_IsNotNull_WhenNonNullInt_ReturnsPassedValue<double>(3.14);
+            Assert_IsNotNull_WhenNonNullInt_ShouldNotThrow<double>(3.14);
         }
 
         [Fact]
@@ -50,7 +51,7 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsNotNull_WhenNonNullDecimal_ReturnsPassedValue()
         {
-            Assert_IsNotNull_WhenNonNullInt_ReturnsPassedValue<decimal>(3.14m);
+            Assert_IsNotNull_WhenNonNullInt_ShouldNotThrow<decimal>(3.14m);
         }
 
         [Fact]
@@ -62,7 +63,7 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsNotNull_WhenNonNullDateTime_ReturnsPassedValue()
         {
-            Assert_IsNotNull_WhenNonNullInt_ReturnsPassedValue<DateTime>(new DateTime(2000, 1, 1));
+            Assert_IsNotNull_WhenNonNullInt_ShouldNotThrow<DateTime>(new DateTime(2000, 1, 1));
         }
 
         [Fact]
@@ -74,22 +75,24 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsNotNull_WhenNonNullBool_ReturnsPassedValue()
         {
-            Assert_IsNotNull_WhenNonNullInt_ReturnsPassedValue<bool>(true);
+            Assert_IsNotNull_WhenNonNullInt_ShouldNotThrow<bool>(true);
         }
 
         private void Assert_IsNotNull_WhenNullInt_ThrowsArgumentException<T>() where T : struct 
         {
-            var ex = Assert.Throws<ArgumentNullException>(
-                () => Ensure.That((T?)null, ParamName).IsNotNull());
-
-            AssertThrowedAsExpected(ex, ExceptionMessages.EnsureExtensions_IsNotNull);
+            AssertAll<ArgumentNullException>(
+                ExceptionMessages.EnsureExtensions_IsNotNull,
+                () => Ensure.That((T?)null, ParamName).IsNotNull(),
+                () => EnsureArg.IsNotNull((T?)null, ParamName));
         }
 
-        private void Assert_IsNotNull_WhenNonNullInt_ReturnsPassedValue<T>(T? value) where T : struct 
+        private void Assert_IsNotNull_WhenNonNullInt_ShouldNotThrow<T>(T? value) where T : struct 
         {
             var returnedValue = Ensure.That(value, ParamName).IsNotNull();
-
             AssertReturnedAsExpected(returnedValue, value);
+
+            Action a = () => EnsureArg.IsNotNull(value, ParamName);
+            a.ShouldNotThrow();
         }
     }
 }

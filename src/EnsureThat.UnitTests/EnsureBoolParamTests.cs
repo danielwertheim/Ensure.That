@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentAssertions;
+using System;
 using Xunit;
 
 namespace EnsureThat.UnitTests
@@ -16,11 +17,13 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void IsTrue_WhenTrueExpression_ReturnsPassedValue()
+        public void IsTrue_WhenTrueExpression_ShouldNotThrow()
         {
             var returnedValue = Ensure.That(true, ParamName).IsTrue();
-
             AssertReturnedAsExpected(returnedValue, true);
+
+            Action a = () => EnsureArg.IsTrue(true, ParamName);
+            a.ShouldNotThrow();
         }
 
         [Fact]
@@ -34,11 +37,13 @@ namespace EnsureThat.UnitTests
         }
 
         [Fact]
-        public void IsFalse_WhenFalseExpression_ReturnsPassedValue()
+        public void IsFalse_WhenFalseExpression_ShouldNotThrow()
         {
             var returnedValue = Ensure.That(false, ParamName).IsFalse();
-
             AssertReturnedAsExpected(returnedValue, false);
+
+            Action a = () => EnsureArg.IsFalse(false, ParamName);
+            a.ShouldNotThrow();
         }
     }
 }
