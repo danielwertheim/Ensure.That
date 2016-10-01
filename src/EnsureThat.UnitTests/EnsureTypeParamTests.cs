@@ -51,7 +51,7 @@ namespace EnsureThat.UnitTests
         public void IsNotOfType_WhenIsNotTheType_It_should_not_throw()
         {
             var returnedValue = Ensure.ThatTypeFor(new Bogus(), ParamName).IsNotOfType(NonBogusType);
-            AssertReturnedAsExpected(returnedValue, NonBogusType);
+            AssertReturnedAsExpected(returnedValue, BogusType);
 
             Action a = () => EnsureArg.IsNotOfType(BogusType, NonBogusType, ParamName);
             a.ShouldNotThrow();

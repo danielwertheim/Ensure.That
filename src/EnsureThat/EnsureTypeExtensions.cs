@@ -57,8 +57,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Type != type)
-                throw ExceptionFactory.CreateForParamValidation(param,
-                    ExceptionMessages.Types_IsOfType_Failed.Inject(type.FullName, param.Type.FullName));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Types_IsOfType_Failed.Inject(type.FullName, param.Type.FullName));
 
             return param;
         }
@@ -70,8 +69,7 @@ namespace EnsureThat
                 return param;
 
             if (param.Type == type)
-                throw ExceptionFactory.CreateForParamValidation(param,
-                    ExceptionMessages.Types_IsNotOfType_Failed.Inject(type.FullName));
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Types_IsNotOfType_Failed.Inject(type.FullName));
 
             return param;
         }
