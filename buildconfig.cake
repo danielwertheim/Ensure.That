@@ -7,7 +7,6 @@ public class BuildConfig
     
     public string Target { get; private set; }
     public string SemVer { get; private set; }
-    public string BuildVersion { get; private set; }
     public string BuildProfile { get; private set; }
     public bool IsTeamCityBuild { get; private set; }
     
@@ -26,7 +25,6 @@ public class BuildConfig
         {
             Target = target,
             SemVer = Version + (branchIsRelease ? string.Empty : "-b" + buildRevision),
-            BuildVersion = Version + "." + buildRevision,
             BuildProfile = context.Argument("configuration", "Release"),
             IsTeamCityBuild = buildSystem.TeamCity.IsRunningOnTeamCity
         };

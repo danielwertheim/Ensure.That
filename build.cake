@@ -39,7 +39,7 @@ Task("Bump")
                         if(line == null)
                             continue;
 
-                        line = regExVersion.Replace(line, "\"version\": \"1.0.0-*\",");
+                        line = regExVersion.Replace(line, string.Format("\"version\": \"{0}\",", config.SemVer));
 
                         trg.AppendLine(line);
                     }
