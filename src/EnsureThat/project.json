@@ -30,14 +30,17 @@
 
     "frameworks": {
         "netstandard1.1": {
+            "buildOptions": {
+                "define": [ "DOTNETCORE" ]
+            },
             "dependencies": {
                 "NETStandard.Library": "1.6.0"
             }
         },
-        "net45": {},
-        "net451": {},
-        "net452": {},
-        "net46": {},
-        "net461": {}
+        "net45": {
+            "buildOptions": {
+                "define": ["NET"]
+            }
+        }
     }
 }
