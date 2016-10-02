@@ -70,8 +70,5 @@ Unit-tests are written using `xUnit` and there are no integration tests, hence y
 dotnet test
 ```
 
-## Deploy
-Needs info as switching for Cake build.
-
 ## Issues, questions, etc.
 So you have issues or questions... Great! That means someone is using it. Use the issues function here at the project page or contact me via mail: firstname@lastname.se; or Twitter: [@danielwertheim](https://twitter.com/danielwertheim)
