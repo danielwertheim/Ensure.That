@@ -18,10 +18,9 @@ project.lock.json
 artifacts/
 
 # deploy
-src/build/artifacts/
-src/build/node_modules/
-src/build/tools/
-!src/build/tools/packages.config
+build/
+tools/
+!tools/packages.config
 
 # misc
 *~
