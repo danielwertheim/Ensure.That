@@ -1,5 +1,6 @@
 ﻿{
     "title": "Ensure.That",
+    "description": "A simple guard clause project helping you with validation and uniformed exception throwing when validating arguments.",
     "version": "0.0.0-*",
     "authors": [ "danielwertheim" ],
     "copyright": "danielwertheim",
@@ -11,7 +12,7 @@
             "buildOptions": {
                 "optimize": true
             }
-        } 
+        }
     },
     "packOptions": {
         "summary": "Yet another guard clause project",
@@ -39,7 +40,7 @@
         },
         "net45": {
             "buildOptions": {
-                "define": ["NET"]
+                "define": [ "NET" ]
             }
         }
     }
