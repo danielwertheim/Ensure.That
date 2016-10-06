@@ -1,10 +1,6 @@
 # Ensure.That
 Ensure.That is a simple guard clause argument validation lib, that helps you with validation of your arguments.
 
-**NuGet(dll)**
-
-[![Nuget](https://img.shields.io/nuget/v/ensure.that.svg)](https://www.nuget.org/packages/ensure.that/)
-
 ## NuGet
 Ensure.That is distributed via NuGet and since `v5.0.0` it's being built using DotNetCore and targes the frameworks:
 
