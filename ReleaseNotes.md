@@ -1,7 +1,7 @@
 Semantic versioning is used. See http://semver.org for more info. Basically this means that version format is:
 _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should be able to update without any breaking API changes.
 
-## v5.0.0 - 2016-10-06
+## v5.0.0 - 2016-10-08
 **[New]:** Now using DotNetCore and targetting .NetStandard1.1 as well as "normal" .Net4.5-.Net4.6.1
 
 **[New]:** New flavour of API added, with less overhead. See README.md for mor info. But basically:
