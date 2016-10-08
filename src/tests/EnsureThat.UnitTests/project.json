@@ -1,7 +1,11 @@
 ﻿{
     "version": "0.0.0-*",
     "buildOptions": {
-        "emitEntryPoint": false
+        "emitEntryPoint": false,
+        "platform": "anycpu",
+        "compile": {
+            "includeFiles": [ "../../GlobalAssemblyInfo.cs" ]
+        }
     },
     "testRunner": "xunit",
     "dependencies": {

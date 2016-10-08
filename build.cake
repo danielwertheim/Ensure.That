@@ -8,8 +8,8 @@ Information("SemVer: " + config.SemVer);
 
 Task("Default")
     .IsDependentOn("InitOutDir")
-    .IsDependentOn("Bump")
     .IsDependentOn("Restore")
+    .IsDependentOn("Bump")
     .IsDependentOn("Build")
     .IsDependentOn("UnitTest");
 
@@ -25,7 +25,7 @@ Task("InitOutDir")
 
 Task("Bump")
     .Does(() => {
-        var files = GetFiles(config.SrcDir + "**/project.json");
+        var files = GetFiles(config.SrcDir + "projects/**/project.json");
         foreach(var file in files)
         {
             Information("Processing: {0}", file);
@@ -68,16 +68,13 @@ Task("UnitTest").Does(() => {
     var settings = new DotNetCoreTestSettings {
         Configuration = config.BuildProfile
     };
-    foreach(var testProj in GetFiles(config.SrcDir + "**/*.UnitTests/project.json")) {
+    foreach(var testProj in GetFiles(config.SrcDir + "tests/**/*.UnitTests/project.json")) {
         DotNetCoreTest(testProj.FullPath, settings);
     }
 });
 
 Task("Pack").Does(() => {
-    Func<IFileSystemInfo, bool> excludeTests = f => {
-        return !f.Path.FullPath.Contains("Tests");
-    };
-    foreach(var proj in GetFiles(config.SrcDir + "**/project.json", excludeTests)) {
+    foreach(var proj in GetFiles(config.SrcDir + "projects/**/project.json")) {
         DotNetCorePack(proj.FullPath, new DotNetCorePackSettings {
             Configuration = config.BuildProfile,
             OutputDirectory = config.OutDir

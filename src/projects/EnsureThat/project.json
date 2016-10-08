@@ -1,11 +1,15 @@
 ﻿{
+    "name": "Ensure.That",
     "title": "Ensure.That",
     "description": "A simple guard clause project helping you with validation and uniformed exception throwing when validating arguments.",
     "version": "0.0.0-*",
     "authors": [ "danielwertheim" ],
     "copyright": "danielwertheim",
     "buildOptions": {
-        "platform": "anycpu"
+        "platform": "anycpu",
+        "compile": {
+            "includeFiles": [ "../../GlobalAssemblyInfo.cs" ]
+        }
     },
     "configurations": {
         "Release": {
