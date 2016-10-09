@@ -2,7 +2,7 @@
 Ensure.That is a simple guard clause argument validation lib, that helps you with validation of your arguments.
 
 ## NuGet
-Ensure.That is distributed via NuGet and since `v5.0.0` it's being built using DotNetCore and targes the frameworks:
+Ensure.That is distributed via [NuGet](https://www.nuget.org/packages/ensure.that/) and since `v5.0.0` it's being built using DotNetCore and targes the frameworks:
 
 * .NetStandard1.1
 * .Net4.5+
