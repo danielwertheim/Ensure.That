@@ -45,6 +45,13 @@ Ensure
     .IsNotNullOrWhiteSpace();
 ```
 
+```csharp
+Ensure
+    .That(myString, nameof(myString))
+    .WithException(param => new Exception())
+    .IsNotNullOrEmpty();
+```
+
 ## Turn On/Off - default is On
 Could be used with different profiles. Like `Debug` and `CI` is `On` while `Release` is `Off`.
 
