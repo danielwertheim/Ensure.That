@@ -61,8 +61,10 @@ Task("UnitTests").Does(() => {
 });
 
 Task("Pack").Does(() => {
-    foreach(var sln in GetFiles(config.SrcDir + "projects/**/*.csproj")) {
-        DotNetBuild(sln, settings =>
+    DeleteFiles(config.SrcDir + "projects/**/*.nupkg");
+
+    foreach(var proj in GetFiles(config.SrcDir + "projects/**/*.csproj")) {
+        DotNetBuild(proj, settings =>
             settings
                 .SetConfiguration(config.BuildProfile)
                 .SetVerbosity(Verbosity.Minimal)
