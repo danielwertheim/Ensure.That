@@ -1,8 +1,9 @@
-﻿using FluentAssertions;
-using System;
+﻿using System;
+using EnsureThat;
+using FluentAssertions;
 using Xunit;
 
-namespace EnsureThat.UnitTests
+namespace UnitTests
 {
     public class EnsureBoolParamTests : UnitTestBase
     {

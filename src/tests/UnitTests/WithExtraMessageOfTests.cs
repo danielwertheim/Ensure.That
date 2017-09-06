@@ -1,7 +1,8 @@
 using System;
+using EnsureThat;
 using Xunit;
 
-namespace EnsureThat.UnitTests
+namespace UnitTests
 {
     public class WithExtraMessageOfTests : UnitTestBase
     {

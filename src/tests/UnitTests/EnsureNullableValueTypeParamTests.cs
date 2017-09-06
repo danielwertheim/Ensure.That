@@ -1,8 +1,9 @@
 using System;
+using EnsureThat;
 using FluentAssertions;
 using Xunit;
 
-namespace EnsureThat.UnitTests
+namespace UnitTests
 {
     public class EnsureNullableValueTypeParamTests : UnitTestBase
     {

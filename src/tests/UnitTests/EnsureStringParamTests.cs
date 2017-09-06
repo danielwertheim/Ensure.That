@@ -1,9 +1,10 @@
 using System;
 using System.Text.RegularExpressions;
+using EnsureThat;
 using FluentAssertions;
 using Xunit;
 
-namespace EnsureThat.UnitTests
+namespace UnitTests
 {
     public class EnsureStringParamTests : UnitTestBase
     {

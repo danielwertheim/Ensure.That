@@ -1,3 +1,6 @@
+# node
+node_modules/
+
 # vs
 .vs/
 [Aa]pp_[Dd]ata/
@@ -12,10 +15,7 @@
 *.vssscc
 *.suo
 *.cache
-
-# dotnetcore
 project.lock.json
-artifacts/
 
 # deploy
 build/
@@ -27,9 +27,7 @@ tools/
 *.swp
 *.sdf
 *.orig
-
-# nuget
-[Pp]ackages/
+*.pfx
 
 # resharper
 _ReSharper.*

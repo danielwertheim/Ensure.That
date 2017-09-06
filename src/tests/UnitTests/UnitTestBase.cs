@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
+using EnsureThat;
 using Xunit;
 
-namespace EnsureThat.UnitTests
+namespace UnitTests
 {
     public abstract class UnitTestBase
     {
