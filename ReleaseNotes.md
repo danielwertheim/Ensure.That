@@ -4,6 +4,7 @@ _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should b
 ## v6.0.0 - PRERELEASE
 
 **[Changed]:** Now developed as a .NET Standard 1.1 project.
+
 **[New]:** Added JetBrain's attribute `[NoEnumeration]` on `IsNotNull` to get rid of warning. Thanks @megafinz
 
 ## v5.0.0 - 2016-10-08
