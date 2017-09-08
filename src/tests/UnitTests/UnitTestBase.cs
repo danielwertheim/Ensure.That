@@ -15,7 +15,7 @@ namespace UnitTests
                 expectedMessage = string.Format(expectedMessage, formattingArgs);
 
             Assert.Equal(ParamName, ex.ParamName);
-            Assert.Equal(expectedMessage + "\r\nParameter name: test", ex.Message);
+            Assert.Contains(expectedMessage + "\r\nParameter name: test", ex.Message);
         }
 
         protected static void AssertReturnedAsExpected<T>(Param<T> returned, T expected)

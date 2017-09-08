@@ -282,22 +282,22 @@ namespace UnitTests
         }
 
         public void AssertIsLtScenario(int value, int limit, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), actions);
+            => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), actions);
 
         public void AssertIsGtScenario(int value, int limit, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), actions);
+            => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), actions);
 
         public void AssertIsLteScenario(int value, int limit, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), actions);
+            => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), actions);
 
         public void AssertIsGteScenario(int value, int limit, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), actions);
+            => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), actions);
 
         public void AssertIsRangeToLowScenario(int value, int limit, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, limit), actions);
+            => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, limit), actions);
 
         public void AssertIsRangeToHighScenario(int value, int limit, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, limit), actions);
+            => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, limit), actions);
 
         public class CompareParamTestSpec<T> where T : struct
         {

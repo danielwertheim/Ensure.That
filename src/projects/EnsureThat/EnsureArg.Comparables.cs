@@ -33,7 +33,7 @@ namespace EnsureThat
                 return;
 
             if (!param.IsLt(limit))
-                throw new ArgumentException(ExceptionMessages.Comp_IsNotLt.Inject(param, limit), paramName);
+                throw new ArgumentOutOfRangeException(paramName, param, ExceptionMessages.Comp_IsNotLt.Inject(param, limit));
         }
 
         [DebuggerStepThrough]
@@ -43,7 +43,7 @@ namespace EnsureThat
                 return;
 
             if (param.IsGt(limit))
-                throw new ArgumentException(ExceptionMessages.Comp_IsNotLte.Inject(param, limit), paramName);
+                throw new ArgumentOutOfRangeException(paramName, param, ExceptionMessages.Comp_IsNotLte.Inject(param, limit));
         }
 
         [DebuggerStepThrough]
@@ -53,7 +53,7 @@ namespace EnsureThat
                 return;
 
             if (!param.IsGt(limit))
-                throw new ArgumentException(ExceptionMessages.Comp_IsNotGt.Inject(param, limit), paramName);
+                throw new ArgumentOutOfRangeException(paramName, param, ExceptionMessages.Comp_IsNotGt.Inject(param, limit));
         }
 
         [DebuggerStepThrough]
@@ -63,7 +63,7 @@ namespace EnsureThat
                 return;
 
             if (param.IsLt(limit))
-                throw new ArgumentException(ExceptionMessages.Comp_IsNotGte.Inject(param, limit), paramName);
+                throw new ArgumentOutOfRangeException(paramName, param, ExceptionMessages.Comp_IsNotGte.Inject(param, limit));
         }
 
         [DebuggerStepThrough]
@@ -73,10 +73,10 @@ namespace EnsureThat
                 return;
 
             if (param.IsLt(min))
-                throw new ArgumentException(ExceptionMessages.Comp_IsNotInRange_ToLow.Inject(param, min), paramName);
+                throw new ArgumentOutOfRangeException(paramName, param, ExceptionMessages.Comp_IsNotInRange_ToLow.Inject(param, min));
 
             if (param.IsGt(max))
-                throw new ArgumentException(ExceptionMessages.Comp_IsNotInRange_ToHigh.Inject(param, max), paramName);
+                throw new ArgumentOutOfRangeException(paramName, param, ExceptionMessages.Comp_IsNotInRange_ToHigh.Inject(param, max));
         }
     }
 }
