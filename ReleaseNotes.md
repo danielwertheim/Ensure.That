@@ -5,7 +5,10 @@ _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should b
 
 **[Changed]:** Now developed as a .NET Standard 1.1 project.
 
+**[Changed]:** When using comparing validation checks, e.g.`Lt`, `Gt`, `Between` etc.; An `ArgumentOutOfRangeException` is thrown instead of an `ArgumentException`.
+
 **[New]:** Added JetBrain's attribute `[NoEnumeration]` on `IsNotNull` to get rid of warning. Thanks @megafinz
+
 
 ## v5.0.0 - 2016-10-08
 **[New]:** Now using DotNetCore and targetting .NetStandard1.1 as well as "normal" .Net4.5-.Net4.6.1
