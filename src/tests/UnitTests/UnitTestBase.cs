@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using EnsureThat;
+using FluentAssertions;
 using Xunit;
 
 namespace UnitTests
@@ -18,25 +18,19 @@ namespace UnitTests
             Assert.Contains(expectedMessage + "\r\nParameter name: test", ex.Message);
         }
 
-        protected static void AssertReturnedAsExpected<T>(Param<T> returned, T expected)
-        {
-            Assert.Equal(ParamName, returned.Name);
-            Assert.Equal(expected, returned.Value);
-        }
-
-        protected static void AssertReturnedAsExpected(TypeParam returned, Type expected)
-        {
-            Assert.Equal(ParamName, returned.Name);
-            Assert.Equal(expected, returned.Type);
-        }
-
-        protected static void AssertAll<TEx>(string expectedMessage, params Action[] actions) where TEx : ArgumentException
+        protected static void ShouldThrow<TEx>(string expectedMessage, params Action[] actions) where TEx : ArgumentException
         {
             foreach (var action in actions)
             {
                 var ex = Assert.Throws<TEx>(action);
                 AssertThrowedAsExpected(ex, expectedMessage);
             }
+        }
+
+        protected static void ShouldNotThrow(params Action[] actions)
+        {
+            foreach (var action in actions)
+                action.ShouldNotThrow();
         }
     }
 }

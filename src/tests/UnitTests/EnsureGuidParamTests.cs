@@ -1,6 +1,5 @@
 using System;
 using EnsureThat;
-using FluentAssertions;
 using Xunit;
 
 namespace UnitTests
@@ -10,7 +9,7 @@ namespace UnitTests
         [Fact]
         public void IsNotEmpty_WhenEmptyGuid_ThrowsArgumentException()
         {
-            AssertAll<ArgumentException>(
+            ShouldThrow<ArgumentException>(
                 ExceptionMessages.Guids_IsNotEmpty_Failed,
                 () => Ensure.That(Guid.Empty, ParamName).IsNotEmpty(),
                 () => EnsureArg.IsNotEmpty(Guid.Empty, ParamName));
@@ -21,11 +20,9 @@ namespace UnitTests
         {
             var guid = Guid.NewGuid();
 
-            var returnedValue = Ensure.That(guid, ParamName).IsNotEmpty();
-            AssertReturnedAsExpected(returnedValue, guid);
-
-            Action a = () => EnsureArg.IsNotEmpty(guid, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(guid, ParamName).IsNotEmpty(),
+                () => EnsureArg.IsNotEmpty(guid, ParamName));
         }
     }
 }

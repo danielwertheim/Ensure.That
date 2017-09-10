@@ -1,6 +1,5 @@
 using System;
 using EnsureThat;
-using FluentAssertions;
 using Xunit;
 
 namespace UnitTests
@@ -79,21 +78,19 @@ namespace UnitTests
             Assert_IsNotNull_WhenNonNullInt_ShouldNotThrow<bool>(true);
         }
 
-        private void Assert_IsNotNull_WhenNullInt_ThrowsArgumentException<T>() where T : struct 
+        private void Assert_IsNotNull_WhenNullInt_ThrowsArgumentException<T>() where T : struct
         {
-            AssertAll<ArgumentNullException>(
+            ShouldThrow<ArgumentNullException>(
                 ExceptionMessages.Common_IsNotNull_Failed,
                 () => Ensure.That((T?)null, ParamName).IsNotNull(),
                 () => EnsureArg.IsNotNull((T?)null, ParamName));
         }
 
-        private void Assert_IsNotNull_WhenNonNullInt_ShouldNotThrow<T>(T? value) where T : struct 
+        private void Assert_IsNotNull_WhenNonNullInt_ShouldNotThrow<T>(T? value) where T : struct
         {
-            var returnedValue = Ensure.That(value, ParamName).IsNotNull();
-            AssertReturnedAsExpected(returnedValue, value);
-
-            Action a = () => EnsureArg.IsNotNull(value, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).IsNotNull(),
+                () => EnsureArg.IsNotNull(value, ParamName));
         }
     }
 }

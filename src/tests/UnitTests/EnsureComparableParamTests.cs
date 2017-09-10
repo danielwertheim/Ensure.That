@@ -1,6 +1,5 @@
 using System;
 using EnsureThat;
-using FluentAssertions;
 using Xunit;
 
 namespace UnitTests
@@ -28,15 +27,13 @@ namespace UnitTests
         }
 
         [Fact]
-        public void IsLt_When_value_is_lt_than_limit_It_returns_passed_values()
+        public void IsLt_When_value_is_lt_than_limit_It_should_not_throw()
         {
             var spec = When_value_is_lt_than_limit();
 
-            var returnedValue = Ensure.That(spec.Value, ParamName).IsLt(spec.Limit);
-            AssertReturnedAsExpected(returnedValue, spec.Value);
-
-            Action a = () => EnsureArg.IsLt(spec.Value, spec.Limit, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(spec.Value, ParamName).IsLt(spec.Limit),
+                () => EnsureArg.IsLt(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
@@ -60,27 +57,23 @@ namespace UnitTests
         }
 
         [Fact]
-        public void IsGt_When_value_is_gt_than_limit_It_returns_passed_value()
+        public void IsGt_When_value_is_gt_than_limit_It_should_not_throw()
         {
             var spec = When_value_is_gt_than_limit();
 
-            var returnedValue = Ensure.That(spec.Value, ParamName).IsGt(spec.Limit);
-            AssertReturnedAsExpected(returnedValue, spec.Value);
-
-            Action a = () => EnsureArg.IsGt(spec.Value, spec.Limit, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(spec.Value, ParamName).IsGt(spec.Limit),
+                () => EnsureArg.IsGt(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
-        public void IsLte_When_value_is_equal_to_limit_It_returns_passed_value()
+        public void IsLte_When_value_is_equal_to_limit_It_should_not_throw()
         {
             var spec = When_value_is_equal_to_limit();
 
-            var returnedValue = Ensure.That(spec.Value, ParamName).IsLte(spec.Limit);
-            AssertReturnedAsExpected(returnedValue, spec.Value);
-
-            Action a = () => EnsureArg.IsLte(spec.Value, spec.Limit, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(spec.Value, ParamName).IsLte(spec.Limit),
+                () => EnsureArg.IsLte(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
@@ -94,27 +87,23 @@ namespace UnitTests
         }
 
         [Fact]
-        public void IsLte_When_value_is_lt_than_limit_It_returns_passed_value()
+        public void IsLte_When_value_is_lt_than_limit_It_should_not_throw()
         {
             var spec = When_value_is_lt_than_limit();
 
-            var returnedValue = Ensure.That(spec.Value, ParamName).IsLte(spec.Limit);
-            AssertReturnedAsExpected(returnedValue, spec.Value);
-
-            Action a = () => EnsureArg.IsLte(spec.Value, spec.Limit, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(spec.Value, ParamName).IsLte(spec.Limit),
+                () => EnsureArg.IsLte(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
-        public void IsGte_When_value_is_equal_to_limit_It_returns_passed_value()
+        public void IsGte_When_value_is_equal_to_limit_It_should_not_throw()
         {
             var spec = When_value_is_equal_to_limit();
 
-            var returnedValue = Ensure.That(spec.Value, ParamName).IsGte(spec.Limit);
-            AssertReturnedAsExpected(returnedValue, spec.Value);
-
-            Action a = () => EnsureArg.IsGte(spec.Value, spec.Limit, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(spec.Value, ParamName).IsGte(spec.Limit),
+                () => EnsureArg.IsGte(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
@@ -128,51 +117,43 @@ namespace UnitTests
         }
 
         [Fact]
-        public void IsGte_When_value_is_gt_than_limit_It_returns_passed_value()
+        public void IsGte_When_value_is_gt_than_limit_It_should_not_throw()
         {
             var spec = When_value_is_gt_than_limit();
 
-            var returnedValue = Ensure.That(spec.Value, ParamName).IsGte(spec.Limit);
-            AssertReturnedAsExpected(returnedValue, spec.Value);
-
-            Action a = () => EnsureArg.IsGte(spec.Value, spec.Limit, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(spec.Value, ParamName).IsGte(spec.Limit),
+                () => EnsureArg.IsGte(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
-        public void IsInRange_When_value_is_lower_limit_It_returns_passed_value()
+        public void IsInRange_When_value_is_lower_limit_It_should_not_throw()
         {
             var spec = When_value_is_lower_limit();
 
-            var returnedValue = Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit);
-            AssertReturnedAsExpected(returnedValue, spec.Value);
-
-            Action a = () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit),
+                () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName));
         }
 
         [Fact]
-        public void IsInRange_When_value_is_upper_limit_It_returns_passed_value()
+        public void IsInRange_When_value_is_upper_limit_It_should_not_throw()
         {
             var spec = When_value_is_upper_limit();
 
-            var returnedValue = Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit);
-            AssertReturnedAsExpected(returnedValue, spec.Value);
-
-            Action a = () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit),
+                () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName));
         }
 
         [Fact]
-        public void IsInRange_When_value_is_between_limits_It_returns_passed_value()
+        public void IsInRange_When_value_is_between_limits_It_should_not_throw()
         {
             var spec = When_value_is_between_limits();
 
-            var returnedValue = Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit);
-            AssertReturnedAsExpected(returnedValue, spec.Value);
-
-            Action a = () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit),
+                () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName));
         }
 
         [Fact]
@@ -196,15 +177,13 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Is_When_same_values_It_returns_passed_value()
+        public void Is_When_same_values_It_should_not_throw()
         {
             var spec = When_value_is_equal_to_limit();
 
-            var returnedValue = Ensure.That(spec.Value, ParamName).Is(spec.Limit);
-            AssertReturnedAsExpected(returnedValue, spec.Value);
-
-            Action a = () => EnsureArg.Is(spec.Value, spec.Limit, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(spec.Value, ParamName).Is(spec.Limit),
+                () => EnsureArg.Is(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
@@ -212,22 +191,20 @@ namespace UnitTests
         {
             var spec = When_value_is_lt_than_limit();
 
-            AssertAll<ArgumentException>(
+            ShouldThrow<ArgumentException>(
                 string.Format(ExceptionMessages.Comp_Is_Failed, spec.Value, spec.Limit),
                 () => Ensure.That(spec.Value, ParamName).Is(spec.Limit),
                 () => EnsureArg.Is(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
-        public void IsNot_When_different_values_It_returns_passed_value()
+        public void IsNot_When_different_values_It_should_not_throw()
         {
             var spec = When_value_is_lt_than_limit();
 
-            var returnedValue = Ensure.That(spec.Value, ParamName).IsNot(spec.Limit);
-            AssertReturnedAsExpected(returnedValue, spec.Value);
-
-            Action a = () => EnsureArg.IsNot(spec.Value, spec.Limit, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(spec.Value, ParamName).IsNot(spec.Limit),
+                () => EnsureArg.IsNot(spec.Value, spec.Limit, ParamName));
         }
 
         [Fact]
@@ -235,7 +212,7 @@ namespace UnitTests
         {
             var spec = When_value_is_equal_to_limit();
 
-            AssertAll<ArgumentException>(
+            ShouldThrow<ArgumentException>(
                 string.Format(ExceptionMessages.Comp_IsNot_Failed, spec.Value, spec.Limit),
                 () => Ensure.That(spec.Value, ParamName).IsNot(spec.Limit),
                 () => EnsureArg.IsNot(spec.Value, spec.Limit, ParamName));
@@ -283,22 +260,22 @@ namespace UnitTests
         }
 
         public void AssertIsLtScenario<T>(T value, T limit, params Action[] actions)
-            => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), actions);
+            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), actions);
 
         public void AssertIsGtScenario<T>(T value, T limit, params Action[] actions)
-            => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), actions);
+            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), actions);
 
         public void AssertIsLteScenario<T>(T value, T limit, params Action[] actions)
-            => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), actions);
+            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), actions);
 
         public void AssertIsGteScenario<T>(T value, T limit, params Action[] actions)
-            => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), actions);
+            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), actions);
 
         public void AssertIsRangeToLowScenario<T>(T value, T limit, params Action[] actions)
-            => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, limit), actions);
+            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, limit), actions);
 
         public void AssertIsRangeToHighScenario<T>(T value, T limit, params Action[] actions)
-            => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, limit), actions);
+            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, limit), actions);
 
         public class CustomComparable : IComparable<CustomComparable>
         {
