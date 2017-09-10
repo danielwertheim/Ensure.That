@@ -241,73 +241,91 @@ namespace UnitTests
                 () => EnsureArg.IsNot(spec.Value, spec.Limit, ParamName));
         }
 
-        private CompareParamTestSpec<int> When_value_is_gt_than_limit()
+        private CompareParamTestSpec When_value_is_gt_than_limit() => new CompareParamTestSpec
         {
-            return new CompareParamTestSpec<int> { Limit = 42, Value = 43 };
+            Limit = 42,
+            Value = 43
+        };
+
+        private CompareParamTestSpec When_value_is_equal_to_limit()
+        {
+            return new CompareParamTestSpec { Limit = 42, Value = 42 };
         }
 
-        private CompareParamTestSpec<int> When_value_is_equal_to_limit()
+        private CompareParamTestSpec When_value_is_lt_than_limit()
         {
-            return new CompareParamTestSpec<int> { Limit = 42, Value = 42 };
+            return new CompareParamTestSpec { Limit = 42, Value = 41 };
         }
 
-        private CompareParamTestSpec<int> When_value_is_lt_than_limit()
+        private CompareParamTestSpec When_value_is_lower_limit()
         {
-            return new CompareParamTestSpec<int> { Limit = 42, Value = 41 };
+            return new CompareParamTestSpec { LowerLimit = 42, UpperLimit = 50, Value = 42 };
         }
 
-        private CompareParamTestSpec<int> When_value_is_lower_limit()
+        private CompareParamTestSpec When_value_is_upper_limit()
         {
-            return new CompareParamTestSpec<int> { LowerLimit = 42, UpperLimit = 50, Value = 42 };
+            return new CompareParamTestSpec { LowerLimit = 42, UpperLimit = 50, Value = 50 };
         }
 
-        private CompareParamTestSpec<int> When_value_is_upper_limit()
+        private CompareParamTestSpec When_value_is_between_limits()
         {
-            return new CompareParamTestSpec<int> { LowerLimit = 42, UpperLimit = 50, Value = 50 };
+            return new CompareParamTestSpec { LowerLimit = 40, UpperLimit = 50, Value = 45 };
         }
 
-        private CompareParamTestSpec<int> When_value_is_between_limits()
+        private CompareParamTestSpec When_value_is_lower_than_lower_limit()
         {
-            return new CompareParamTestSpec<int> { LowerLimit = 40, UpperLimit = 50, Value = 45 };
+            return new CompareParamTestSpec { LowerLimit = 40, UpperLimit = 50, Value = 39 };
         }
 
-        private CompareParamTestSpec<int> When_value_is_lower_than_lower_limit()
+        private CompareParamTestSpec When_value_is_greater_than_upper_limit()
         {
-            return new CompareParamTestSpec<int> { LowerLimit = 40, UpperLimit = 50, Value = 39 };
+            return new CompareParamTestSpec { LowerLimit = 40, UpperLimit = 50, Value = 51 };
         }
 
-        private CompareParamTestSpec<int> When_value_is_greater_than_upper_limit()
-        {
-            return new CompareParamTestSpec<int> { LowerLimit = 40, UpperLimit = 50, Value = 51 };
-        }
-
-        public void AssertIsLtScenario(int value, int limit, params Action[] actions)
+        public void AssertIsLtScenario<T>(T value, T limit, params Action[] actions)
             => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), actions);
 
-        public void AssertIsGtScenario(int value, int limit, params Action[] actions)
+        public void AssertIsGtScenario<T>(T value, T limit, params Action[] actions)
             => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), actions);
 
-        public void AssertIsLteScenario(int value, int limit, params Action[] actions)
+        public void AssertIsLteScenario<T>(T value, T limit, params Action[] actions)
             => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), actions);
 
-        public void AssertIsGteScenario(int value, int limit, params Action[] actions)
+        public void AssertIsGteScenario<T>(T value, T limit, params Action[] actions)
             => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), actions);
 
-        public void AssertIsRangeToLowScenario(int value, int limit, params Action[] actions)
+        public void AssertIsRangeToLowScenario<T>(T value, T limit, params Action[] actions)
             => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, limit), actions);
 
-        public void AssertIsRangeToHighScenario(int value, int limit, params Action[] actions)
+        public void AssertIsRangeToHighScenario<T>(T value, T limit, params Action[] actions)
             => AssertAll<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, limit), actions);
 
-        public class CompareParamTestSpec<T> where T : struct
+        public class CustomComparable : IComparable<CustomComparable>
         {
-            public T Limit { get; set; }
+            private readonly int _value;
 
-            public T LowerLimit { get; set; }
+            public CustomComparable(int value)
+            {
+                _value = value;
+            }
 
-            public T UpperLimit { get; set; }
+            public int CompareTo(CustomComparable other)
+            {
+                var x = _value;
+                var y = other._value;
 
-            public T Value { get; set; }
+                return x.CompareTo(y);
+            }
+
+            public static implicit operator CustomComparable(int value) => new CustomComparable(value);
+        }
+
+        public class CompareParamTestSpec
+        {
+            public CustomComparable Limit { get; set; }
+            public CustomComparable LowerLimit { get; set; }
+            public CustomComparable UpperLimit { get; set; }
+            public CustomComparable Value { get; set; }
         }
     }
 }

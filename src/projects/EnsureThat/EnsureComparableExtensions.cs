@@ -7,7 +7,7 @@ namespace EnsureThat
     public static class EnsureComparableExtensions
     {
         [DebuggerStepThrough]
-        public static Param<T> Is<T>(this Param<T> param, T expected) where T : struct, IComparable<T>
+        public static Param<T> Is<T>(this Param<T> param, T expected) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
                 return param;
@@ -19,7 +19,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static Param<T> IsNot<T>(this Param<T> param, T expected) where T : struct, IComparable<T>
+        public static Param<T> IsNot<T>(this Param<T> param, T expected) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
                 return param;
@@ -31,7 +31,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static Param<T> IsLt<T>(this Param<T> param, T limit) where T : struct, IComparable<T>
+        public static Param<T> IsLt<T>(this Param<T> param, T limit) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
                 return param;
@@ -43,7 +43,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static Param<T> IsLte<T>(this Param<T> param, T limit) where T : struct, IComparable<T>
+        public static Param<T> IsLte<T>(this Param<T> param, T limit) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
                 return param;
@@ -55,7 +55,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static Param<T> IsGt<T>(this Param<T> param, T limit) where T : struct, IComparable<T>
+        public static Param<T> IsGt<T>(this Param<T> param, T limit) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
                 return param;
@@ -67,7 +67,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static Param<T> IsGte<T>(this Param<T> param, T limit) where T : struct, IComparable<T>
+        public static Param<T> IsGte<T>(this Param<T> param, T limit) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
                 return param;
@@ -79,7 +79,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static Param<T> IsInRange<T>(this Param<T> param, T min, T max) where T : struct, IComparable<T>
+        public static Param<T> IsInRange<T>(this Param<T> param, T min, T max) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
                 return param;
