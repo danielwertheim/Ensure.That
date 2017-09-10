@@ -7,6 +7,8 @@ _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should b
 
 **[Changed]:** When using comparing validation checks, e.g.`Lt`, `Gt`, `Between` etc.; An `ArgumentOutOfRangeException` is thrown instead of an `ArgumentException`.
 
+**[Changed]:** Comparable validations e.g. `Lt`, `Gt` etc.; are not tied to `struct` anymore. Only against `IComparable<T>`.
+
 **[New]:** Added JetBrain's attribute `[NoEnumeration]` on `IsNotNull` to get rid of warning. Thanks @megafinz
 
 
