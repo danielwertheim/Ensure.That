@@ -7,7 +7,7 @@
     <Company>danielwertheim</Company>
     <PackageId>Ensure.That</PackageId>
     <Product>Ensure.That</Product>
-    <Description>A simple guard clause project helping you with validation and uniformed exception throwing when validating arguments.</Description>
+    <Description>Argument validation made simple and unified. It ensures arguments conforms to simple validation rules and provides an uniformed exception throwing strategy if arguments are invalid.</Description>
     <Copyright>danielwertheim</Copyright>
     <PackageLicenseUrl>https://raw.githubusercontent.com/danielwertheim/Ensure.That/master/LICENSE.txt</PackageLicenseUrl>
     <PackageReleaseNotes>https://github.com/danielwertheim/ensure.that/blob/master/ReleaseNotes.md</PackageReleaseNotes>
