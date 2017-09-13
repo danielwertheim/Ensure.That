@@ -44,6 +44,7 @@ Task("Build").Does(() => {
                 .SetVerbosity(Verbosity.Minimal)
                 .WithTarget("Rebuild")
                 .WithProperty("TreatWarningsAsErrors", "true")
+                .WithProperty("NoRestore", "true")
                 .WithProperty("Version", config.SemVer)
                 .WithProperty("AssemblyVersion", config.BuildVersion)
                 .WithProperty("FileVersion", config.BuildVersion));
@@ -70,6 +71,8 @@ Task("Pack").Does(() => {
                 .SetVerbosity(Verbosity.Minimal)
                 .WithTarget("Pack")
                 .WithProperty("TreatWarningsAsErrors", "true")
+                .WithProperty("NoRestore", "true")
+                .WithProperty("NoBuild", "true")
                 .WithProperty("Version", config.SemVer));
     }
 
