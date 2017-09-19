@@ -1,9 +1,9 @@
 Semantic versioning is used. See http://semver.org for more info. Basically this means that version format is:
 _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should be able to update without any breaking API changes.
 
-## v6.0.0 - PRERELEASE
+## v6.0.0 - 2017-09-19
 
-**[Changed]:** Now developed as a .NET Standard 1.1 project.
+**[Changed]:** Now developed as only a .NET Standard 1.1 project.
 
 **[Changed]:** When using comparing validation checks, e.g.`Lt`, `Gt`, `Between` etc.; An `ArgumentOutOfRangeException` is thrown instead of an `ArgumentException`.
 
