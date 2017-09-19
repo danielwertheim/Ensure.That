@@ -1,17 +1,17 @@
-using FluentAssertions;
 using System;
+using EnsureThat;
 using Xunit;
 
-namespace EnsureThat.UnitTests
+namespace UnitTests
 {
     public class EnsureValueTypeParamTests : UnitTestBase
     {
         [Fact]
         public void IsNotDefault_WhenDefault_ThrowsArgumentException()
         {
-            int value = default(int);
+            const int value = default(int);
 
-            AssertAll<ArgumentException>(
+            ShouldThrow<ArgumentException>(
                 ExceptionMessages.ValueTypes_IsNotDefault_Failed,
                 () => Ensure.That(value, ParamName).IsNotDefault(),
                 () => EnsureArg.IsNotDefault(value, ParamName));
@@ -20,13 +20,11 @@ namespace EnsureThat.UnitTests
         [Fact]
         public void IsNotDefault_WhenIsNotDefault_It_should_not_throw()
         {
-            var value = 42;
+            const int value = 42;
 
-            var returned = Ensure.That(value, ParamName).IsNotDefault();
-            AssertReturnedAsExpected(returned, value);
-
-            Action a = () => EnsureArg.IsNotDefault(value, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).IsNotDefault(),
+                () => EnsureArg.IsNotDefault(value, ParamName));
         }
     }
 }

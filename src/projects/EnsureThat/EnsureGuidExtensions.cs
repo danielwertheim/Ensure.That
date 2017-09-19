@@ -6,15 +6,13 @@ namespace EnsureThat
     public static class EnsureGuidExtensions
     {
         [DebuggerStepThrough]
-        public static Param<Guid> IsNotEmpty(this Param<Guid> param)
+        public static void IsNotEmpty(this Param<Guid> param)
         {
             if (!Ensure.IsActive)
-                return param;
+                return;
 
             if (param.Value.Equals(Guid.Empty))
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Guids_IsNotEmpty_Failed);
-
-            return param;
         }
     }
 }

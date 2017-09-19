@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using FluentAssertions;
+using EnsureThat;
 using Xunit;
 
-namespace EnsureThat.UnitTests
+namespace UnitTests
 {
     public class EnsureCollectionParamsTests : UnitTestBase
     {
@@ -23,11 +23,9 @@ namespace EnsureThat.UnitTests
         {
             ICollection<int> collection = new Collection<int> { 1, 2, 3 };
 
-            var returned = Ensure.That(collection, ParamName).HasItems();
-            AssertReturnedAsExpected(returned, collection);
-
-            Action a = () => EnsureArg.HasItems(collection, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(collection, ParamName).HasItems(),
+                () => EnsureArg.HasItems(collection, ParamName));
         }
 
         [Fact]
@@ -45,11 +43,9 @@ namespace EnsureThat.UnitTests
         {
             var collection = new Collection<int> { 1, 2, 3 };
 
-            var returned = Ensure.That(collection, ParamName).HasItems();
-            AssertReturnedAsExpected(returned, collection);
-
-            Action a = () => EnsureArg.HasItems(collection, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(collection, ParamName).HasItems(),
+                () => EnsureArg.HasItems(collection, ParamName));
         }
 
         [Fact]
@@ -77,11 +73,9 @@ namespace EnsureThat.UnitTests
         {
             var values = new[] { 1, 2, 3 };
 
-            var returned = Ensure.That(values, ParamName).HasItems();
-            AssertReturnedAsExpected(returned, values);
-
-            Action a = () => EnsureArg.HasItems(values, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).HasItems(),
+                () => EnsureArg.HasItems(values, ParamName));
         }
 
         [Fact]
@@ -99,11 +93,9 @@ namespace EnsureThat.UnitTests
         {
             IList<int> values = new List<int> { 1, 2, 3 };
 
-            var returned = Ensure.That(values, ParamName).HasItems();
-            AssertReturnedAsExpected(returned, values);
-
-            Action a = () => EnsureArg.HasItems(values, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).HasItems(),
+                () => EnsureArg.HasItems(values, ParamName));
         }
 
         [Fact]
@@ -121,11 +113,9 @@ namespace EnsureThat.UnitTests
         {
             var values = new List<int> { 1, 2, 3 };
 
-            var returned = Ensure.That(values, ParamName).HasItems();
-            AssertReturnedAsExpected(returned, values);
-
-            Action a = () => EnsureArg.HasItems(values, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).HasItems(),
+                () => EnsureArg.HasItems(values, ParamName));
         }
 
         [Fact]
@@ -143,11 +133,9 @@ namespace EnsureThat.UnitTests
         {
             IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
 
-            var returned = Ensure.That(dict, ParamName).HasItems();
-            AssertReturnedAsExpected(returned, dict);
-
-            Action a = () => EnsureArg.HasItems(dict, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(dict, ParamName).HasItems(),
+                () => EnsureArg.HasItems(dict, ParamName));
         }
 
         [Fact]
@@ -165,11 +153,9 @@ namespace EnsureThat.UnitTests
         {
             var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
 
-            var returned = Ensure.That(dict, ParamName).HasItems();
-            AssertReturnedAsExpected(returned, dict);
-
-            Action a = () => EnsureArg.HasItems(dict, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(dict, ParamName).HasItems(),
+                () => EnsureArg.HasItems(dict, ParamName));
         }
 
         [Fact]
@@ -177,11 +163,9 @@ namespace EnsureThat.UnitTests
         {
             var values = new[] { 1, 2, 3 };
 
-            var returned = Ensure.That(values, ParamName).SizeIs(values.Length);
-            AssertReturnedAsExpected(returned, values);
-
-            Action a = () => EnsureArg.SizeIs(values, values.Length, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).SizeIs(values.Length),
+                () => EnsureArg.SizeIs(values, values.Length, ParamName));
         }
 
         [Fact]
@@ -202,11 +186,9 @@ namespace EnsureThat.UnitTests
         {
             var values = new List<int> { 1, 2, 3 };
 
-            var returned = Ensure.That(values, ParamName).SizeIs(values.Count);
-            AssertReturnedAsExpected(returned, values);
-
-            Action a = () => EnsureArg.SizeIs(values, values.Count, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).SizeIs(values.Count),
+                () => EnsureArg.SizeIs(values, values.Count, ParamName));
         }
 
         [Fact]
@@ -227,11 +209,9 @@ namespace EnsureThat.UnitTests
         {
             IList<int> values = new List<int> { 1, 2, 3 };
 
-            var returned = Ensure.That(values, ParamName).SizeIs(values.Count);
-            AssertReturnedAsExpected(returned, values);
-
-            Action a = () => EnsureArg.SizeIs(values, values.Count, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).SizeIs(values.Count),
+                () => EnsureArg.SizeIs(values, values.Count, ParamName));
         }
 
         [Fact]
@@ -252,11 +232,9 @@ namespace EnsureThat.UnitTests
         {
             var values = new Collection<int> { 1, 2, 3 };
 
-            var returned = Ensure.That(values, ParamName).SizeIs(values.Count);
-            AssertReturnedAsExpected(returned, values);
-
-            Action a = () => EnsureArg.SizeIs(values, values.Count, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).SizeIs(values.Count),
+                () => EnsureArg.SizeIs(values, values.Count, ParamName));
         }
 
         [Fact]
@@ -277,11 +255,9 @@ namespace EnsureThat.UnitTests
         {
             ICollection<int> values = new Collection<int> { 1, 2, 3 };
 
-            var returned = Ensure.That(values, ParamName).SizeIs(values.Count);
-            AssertReturnedAsExpected(returned, values);
-
-            Action a = () => EnsureArg.SizeIs(values, values.Count, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).SizeIs(values.Count),
+                () => EnsureArg.SizeIs(values, values.Count, ParamName));
         }
 
         [Fact]
@@ -302,11 +278,9 @@ namespace EnsureThat.UnitTests
         {
             var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
 
-            var returned = Ensure.That(dict, ParamName).SizeIs(dict.Count);
-            AssertReturnedAsExpected(returned, dict);
-
-            Action a = () => EnsureArg.SizeIs(dict, dict.Count, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(dict, ParamName).SizeIs(dict.Count),
+                () => EnsureArg.SizeIs(dict, dict.Count, ParamName));
         }
 
         [Fact]
@@ -327,11 +301,9 @@ namespace EnsureThat.UnitTests
         {
             IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
 
-            var returned = Ensure.That(dict, ParamName).SizeIs(dict.Count);
-            AssertReturnedAsExpected(returned, dict);
-
-            Action a = () => EnsureArg.SizeIs(dict, dict.Count, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(dict, ParamName).SizeIs(dict.Count),
+                () => EnsureArg.SizeIs(dict, dict.Count, ParamName));
         }
 
         [Fact]
@@ -364,11 +336,9 @@ namespace EnsureThat.UnitTests
         {
             var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
 
-            var returned = Ensure.That(dict, ParamName).ContainsKey("B");
-            AssertReturnedAsExpected(returned, dict);
-
-            Action a = () => EnsureArg.HasItems(dict, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(dict, ParamName).ContainsKey("B"),
+                () => EnsureArg.HasItems(dict, ParamName));
         }
 
         [Fact]
@@ -388,11 +358,9 @@ namespace EnsureThat.UnitTests
         {
             IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
 
-            var returned = Ensure.That(dict, ParamName).ContainsKey("B");
-            AssertReturnedAsExpected(returned, dict);
-
-            Action a = () => EnsureArg.HasItems(dict, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(dict, ParamName).ContainsKey("B"),
+                () => EnsureArg.HasItems(dict, ParamName));
         }
 
         [Fact]
@@ -411,11 +379,9 @@ namespace EnsureThat.UnitTests
         {
             IList<int> values = new List<int> { 1, 2, 3, 4 };
 
-            var returned = Ensure.That(values, ParamName).Any(i => i == 1);
-            AssertReturnedAsExpected(returned, values);
-
-            Action a = () => EnsureArg.HasItems(values, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).Any(i => i == 1),
+                () => EnsureArg.HasItems(values, ParamName));
         }
 
         [Fact]
@@ -434,11 +400,9 @@ namespace EnsureThat.UnitTests
         {
             var values = new List<int> { 1, 2, 3, 4 };
 
-            var returned = Ensure.That(values, ParamName).Any(i => i == 1);
-            AssertReturnedAsExpected(returned, values);
-
-            Action a = () => EnsureArg.HasItems(values, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).Any(i => i == 1),
+                () => EnsureArg.HasItems(values, ParamName));
         }
 
         [Fact]
@@ -457,11 +421,9 @@ namespace EnsureThat.UnitTests
         {
             ICollection<int> values = new Collection<int> { 1, 2, 3, 4 };
 
-            var returned = Ensure.That(values, ParamName).Any(i => i == 1);
-            AssertReturnedAsExpected(returned, values);
-
-            Action a = () => EnsureArg.HasItems(values, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).Any(i => i == 1),
+                () => EnsureArg.HasItems(values, ParamName));
         }
 
         [Fact]
@@ -480,11 +442,9 @@ namespace EnsureThat.UnitTests
         {
             var values = new Collection<int> { 1, 2, 3, 4 };
 
-            var returned = Ensure.That(values, ParamName).Any(i => i == 1);
-            AssertReturnedAsExpected(returned, values);
-
-            Action a = () => EnsureArg.HasItems(values, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).Any(i => i == 1),
+                () => EnsureArg.HasItems(values, ParamName));
         }
 
         [Fact]
@@ -503,23 +463,21 @@ namespace EnsureThat.UnitTests
         {
             var values = new[] { 1, 2, 3, 4 };
 
-            var returned = Ensure.That(values, ParamName).Any(i => i == 1);
-            AssertReturnedAsExpected(returned, values);
-
-            Action a = () => EnsureArg.HasItems(values, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).Any(i => i == 1),
+                () => EnsureArg.HasItems(values, ParamName));
         }
 
-        private void AssertIsEmptyCollection(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.Collections_HasItemsFailed, actions);
+        private void AssertIsEmptyCollection(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Collections_HasItemsFailed, actions);
 
-        private void AssertIsNotNull(params Action[] actions) => AssertAll<ArgumentNullException>(ExceptionMessages.Common_IsNotNull_Failed, actions);
+        private void AssertIsNotNull(params Action[] actions) => ShouldThrow<ArgumentNullException>(ExceptionMessages.Common_IsNotNull_Failed, actions);
 
         private void AssertSizeIsWrong(int actualSize, int expectedSize, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIs_Failed, expectedSize, actualSize), actions);
+            => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIs_Failed, expectedSize, actualSize), actions);
 
         private void AssertContainsKey(string expectedKey, params Action[] actions)
-            => AssertAll<ArgumentException>(string.Format(ExceptionMessages.Collections_ContainsKey_Failed, expectedKey), actions);
+            => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_ContainsKey_Failed, expectedKey), actions);
 
-        private void AssertAnyPredicateYieldedNone(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.Collections_Any_Failed, actions);
+        private void AssertAnyPredicateYieldedNone(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Collections_Any_Failed, actions);
     }
 }

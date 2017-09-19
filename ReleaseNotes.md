@@ -1,6 +1,19 @@
 Semantic versioning is used. See http://semver.org for more info. Basically this means that version format is:
 _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should be able to update without any breaking API changes.
 
+## v6.0.0 - 2017-09-19
+
+**[Changed]:** Now developed as only a .NET Standard 1.1 project.
+
+**[Changed]:** When using comparing validation checks, e.g.`Lt`, `Gt`, `Between` etc.; An `ArgumentOutOfRangeException` is thrown instead of an `ArgumentException`.
+
+**[Changed]:** Comparable validations e.g. `Lt`, `Gt` etc.; are not tied to `struct` anymore. Only against `IComparable<T>`.
+
+**[Changed]:** When using the `Ensure.That(arg)` construct, it allows you to use e.g `WithException(_ => new Exception("Foo"))`. This could be appended after an validation method e.g. `IsNotNull`. How-ever, doing so would not kick the custom exception factory as the call tree would get terminated before, in the `IsNotNull` method. From now on, you can not chain anything on the actual validation method.
+
+**[New]:** Added JetBrain's attribute `[NoEnumeration]` on `IsNotNull` to get rid of warning. Thanks @megafinz
+
+
 ## v5.0.0 - 2016-10-08
 **[New]:** Now using DotNetCore and targetting .NetStandard1.1 as well as "normal" .Net4.5-.Net4.6.1
 

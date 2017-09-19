@@ -1,13 +1,14 @@
 public class BuildConfig
 {
-    private const string Version = "5.0.0";
+    private const string Version = "6.0.0";
 
     public readonly string SrcDir = "./src/";
     public readonly string OutDir = "./build/";    
     
+    public bool IsDefaultBranch { get; private set; }
     public string Target { get; private set; }
-    public string Branch { get; private set; }
     public string SemVer { get; private set; }
+    public string BuildVersion { get; private set; }
     public string BuildProfile { get; private set; }
     public bool IsTeamCityBuild { get; private set; }
     
@@ -18,16 +19,16 @@ public class BuildConfig
         if (context == null)
             throw new ArgumentNullException("context");
 
-        var target = context.Argument("target", "Default");
-        var branch = context.Argument("branch", string.Empty);
-        var branchIsRelease = branch.ToLower() == "release";
+        var branch = context.Argument("branch", "master");
+        var isDefaultBranch = branch.ToLower() == "master";
         var buildRevision = context.Argument("buildrevision", "0");
 
         return new BuildConfig
         {
-            Target = target,
-            Branch = branch,
-            SemVer = Version + (branchIsRelease ? string.Empty : "-b" + buildRevision),
+            IsDefaultBranch = isDefaultBranch,
+            Target = context.Argument("target", "Default"),
+            SemVer = Version + (isDefaultBranch ? string.Empty : "-pre" + buildRevision),
+            BuildVersion = Version + "." + buildRevision,
             BuildProfile = context.Argument("configuration", "Release"),
             IsTeamCityBuild = buildSystem.TeamCity.IsRunningOnTeamCity
         };

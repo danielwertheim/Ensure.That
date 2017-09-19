@@ -1,19 +1,19 @@
 using System;
 using System.Text.RegularExpressions;
-using FluentAssertions;
+using EnsureThat;
 using Xunit;
 
-namespace EnsureThat.UnitTests
+namespace UnitTests
 {
     public class EnsureStringParamTests : UnitTestBase
     {
-        private void AssertIsNotNull(params Action[] actions) => AssertAll<ArgumentNullException>(ExceptionMessages.Common_IsNotNull_Failed, actions);
+        private static void AssertIsNotNull(params Action[] actions) => ShouldThrow<ArgumentNullException>(ExceptionMessages.Common_IsNotNull_Failed, actions);
 
-        private void AssertIsNotEmpty(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.Strings_IsNotEmpty_Failed, actions);
+        private static void AssertIsNotEmpty(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Strings_IsNotEmpty_Failed, actions);
 
-        private void AssertIsNotNullOrEmpty(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.Strings_IsNotNullOrEmpty_Failed, actions);
+        private static void AssertIsNotNullOrEmpty(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Strings_IsNotNullOrEmpty_Failed, actions);
 
-        private void AssertIsNotNullOrWhiteSpace(params Action[] actions) => AssertAll<ArgumentException>(ExceptionMessages.Strings_IsNotNullOrWhiteSpace_Failed, actions);
+        private static void AssertIsNotNullOrWhiteSpace(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Strings_IsNotNullOrWhiteSpace_Failed, actions);
 
         [Fact]
         public void IsNotNull_WhenStringIsNull_ThrowsArgumentNullException()
@@ -30,11 +30,9 @@ namespace EnsureThat.UnitTests
         {
             var value = string.Empty;
 
-            var returned = Ensure.That(value, ParamName).IsNotNull();
-            AssertReturnedAsExpected(returned, value);
-
-            Action a = () => EnsureArg.IsNotNull(value, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).IsNotNull(),
+                () => EnsureArg.IsNotNull(value, ParamName));
         }
 
         [Fact]
@@ -62,11 +60,9 @@ namespace EnsureThat.UnitTests
         {
             var value = " ";
 
-            var returned = Ensure.That(value, ParamName).IsNotNullOrEmpty();
-            AssertReturnedAsExpected(returned, value);
-
-            Action a = () => EnsureArg.IsNotNullOrEmpty(value, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).IsNotNullOrEmpty(),
+                () => EnsureArg.IsNotNullOrEmpty(value, ParamName));
         }
 
         [Fact]
@@ -94,11 +90,9 @@ namespace EnsureThat.UnitTests
         {
             var value = "delta";
 
-            var returned = Ensure.That(value, ParamName).IsNotNullOrWhiteSpace();
-            AssertReturnedAsExpected(returned, value);
-
-            Action a = () => EnsureArg.IsNotNullOrWhiteSpace(value, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).IsNotNullOrWhiteSpace(),
+                () => EnsureArg.IsNotNullOrWhiteSpace(value, ParamName));
         }
 
         [Fact]
@@ -116,11 +110,9 @@ namespace EnsureThat.UnitTests
         {
             var value = "delta";
 
-            var returned = Ensure.That(value, ParamName).IsNotEmpty();
-            AssertReturnedAsExpected(returned, value);
-
-            Action a = () => EnsureArg.IsNotEmpty(value, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).IsNotEmpty(),
+                () => EnsureArg.IsNotEmpty(value, ParamName));
         }
 
         [Fact]
@@ -140,7 +132,7 @@ namespace EnsureThat.UnitTests
             const int high = 4;
             var value = new string('a', low - 1);
 
-            AssertAll<ArgumentException>(
+            ShouldThrow<ArgumentException>(
                 string.Format(ExceptionMessages.Strings_HasLengthBetween_Failed_ToShort, low, high, value.Length),
                 () => Ensure.That(value, ParamName).HasLengthBetween(2, high),
                 () => EnsureArg.HasLengthBetween(value, low, high, ParamName));
@@ -153,7 +145,7 @@ namespace EnsureThat.UnitTests
             const int high = 4;
             var value = new string('a', high + 1);
 
-            AssertAll<ArgumentException>(
+            ShouldThrow<ArgumentException>(
                 string.Format(ExceptionMessages.Strings_HasLengthBetween_Failed_ToLong, low, high, value.Length),
                 () => Ensure.That(value, ParamName).HasLengthBetween(2, high),
                 () => EnsureArg.HasLengthBetween(value, low, high, ParamName));
@@ -166,11 +158,9 @@ namespace EnsureThat.UnitTests
             const int high = 4;
             var value = new string('a', low);
 
-            var returnedValue = Ensure.That(value, ParamName).HasLengthBetween(low, high);
-            AssertReturnedAsExpected(returnedValue, value);
-
-            Action a = () => EnsureArg.HasLengthBetween(value, low, high, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).HasLengthBetween(low, high),
+                () => EnsureArg.HasLengthBetween(value, low, high, ParamName));
         }
 
         [Fact]
@@ -180,11 +170,9 @@ namespace EnsureThat.UnitTests
             const int high = 4;
             var value = new string('a', high);
 
-            var returnedValue = Ensure.That(value, ParamName).HasLengthBetween(low, high);
-            AssertReturnedAsExpected(returnedValue, value);
-
-            Action a = () => EnsureArg.HasLengthBetween(value, low, high, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).HasLengthBetween(low, high),
+                () => EnsureArg.HasLengthBetween(value, low, high, ParamName));
         }
 
         [Fact]
@@ -193,7 +181,7 @@ namespace EnsureThat.UnitTests
             const string value = @"incorrect";
             const string match = @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*";
 
-            AssertAll<ArgumentException>(
+            ShouldThrow<ArgumentException>(
                 string.Format(ExceptionMessages.Strings_Matches_Failed, value, match),
                 () => Ensure.That(value, ParamName).Matches(match),
                 () => EnsureArg.Matches(value, match, ParamName));
@@ -205,7 +193,7 @@ namespace EnsureThat.UnitTests
             const string value = @"incorrect";
             var match = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*");
 
-            AssertAll<ArgumentException>(
+            ShouldThrow<ArgumentException>(
                 string.Format(ExceptionMessages.Strings_Matches_Failed, value, match),
                 () => Ensure.That(value, ParamName).Matches(match),
                 () => EnsureArg.Matches(value, match, ParamName));
@@ -217,11 +205,9 @@ namespace EnsureThat.UnitTests
             const string value = @"http://google.com:8080";
             const string match = @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*";
 
-            var returnedValue = Ensure.That(value, ParamName).Matches(match);
-            AssertReturnedAsExpected(returnedValue, value);
-
-            Action a = () => EnsureArg.Matches(value, match, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).Matches(match),
+                () => EnsureArg.Matches(value, match, ParamName));
         }
 
         [Fact]
@@ -230,11 +216,9 @@ namespace EnsureThat.UnitTests
             const string value = @"http://google.com:8080";
             var match = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*");
 
-            var returnedValue = Ensure.That(value, ParamName).Matches(match);
-            AssertReturnedAsExpected(returnedValue, value);
-
-            Action a = () => EnsureArg.Matches(value, match, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).Matches(match),
+                () => EnsureArg.Matches(value, match, ParamName));
         }
 
         [Fact]
@@ -243,7 +227,7 @@ namespace EnsureThat.UnitTests
             var value = "Some string";
             var expected = value.Length + 1;
 
-            AssertAll<ArgumentException>(
+            ShouldThrow<ArgumentException>(
                 string.Format(ExceptionMessages.Strings_SizeIs_Failed, expected, value.Length),
                 () => Ensure.That(value, ParamName).SizeIs(expected),
                 () => EnsureArg.SizeIs(value, expected, ParamName));
@@ -254,11 +238,9 @@ namespace EnsureThat.UnitTests
         {
             var value = "Some string";
 
-            var returned = Ensure.That(value, ParamName).SizeIs(value.Length);
-            AssertReturnedAsExpected(returned, value);
-
-            Action a = () => EnsureArg.SizeIs(value, value.Length, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).SizeIs(value.Length),
+                () => EnsureArg.SizeIs(value, value.Length, ParamName));
         }
 
         [Fact]
@@ -267,7 +249,7 @@ namespace EnsureThat.UnitTests
             const string value = "The value";
             const string expected = "Other value";
 
-            AssertAll<ArgumentException>(
+            ShouldThrow<ArgumentException>(
                 string.Format(ExceptionMessages.Strings_IsEqualTo_Failed, value, expected),
                 () => Ensure.That(value, ParamName).IsEqualTo(expected),
                 () => EnsureArg.IsEqualTo(value, expected, ParamName));
@@ -279,11 +261,9 @@ namespace EnsureThat.UnitTests
             const string value = "The value";
             const string expected = value;
 
-            var returnedValue = Ensure.That(value, ParamName).IsEqualTo(expected);
-            AssertReturnedAsExpected(returnedValue, value);
-
-            Action a = () => EnsureArg.IsEqualTo(value, expected, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).IsEqualTo(expected),
+                () => EnsureArg.IsEqualTo(value, expected, ParamName));
         }
 
         [Fact]
@@ -292,11 +272,9 @@ namespace EnsureThat.UnitTests
             const string value = "The value";
             const string expected = "the value";
 
-            var returnedValue = Ensure.That(value, ParamName).IsEqualTo(expected, StringComparison.OrdinalIgnoreCase);
-            AssertReturnedAsExpected(returnedValue, value);
-
-            Action a = () => EnsureArg.IsEqualTo(value, expected, StringComparison.OrdinalIgnoreCase, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).IsEqualTo(expected, StringComparison.OrdinalIgnoreCase),
+                () => EnsureArg.IsEqualTo(value, expected, StringComparison.OrdinalIgnoreCase, ParamName));
         }
 
         [Fact]
@@ -304,7 +282,7 @@ namespace EnsureThat.UnitTests
         {
             const string value = "The value";
 
-            AssertAll<ArgumentException>(
+            ShouldThrow<ArgumentException>(
                 string.Format(ExceptionMessages.Comp_IsNot_Failed, value, value),
                 () => Ensure.That(value, ParamName).IsNotEqualTo(value),
                 () => EnsureArg.IsNotEqualTo(value, value, ParamName));
@@ -316,7 +294,7 @@ namespace EnsureThat.UnitTests
             const string value = "The value";
             var compareTo = value.ToLower();
 
-            AssertAll<ArgumentException>(
+            ShouldThrow<ArgumentException>(
                 string.Format(ExceptionMessages.Comp_IsNot_Failed, value, compareTo),
                 () => Ensure.That(value, ParamName).IsNotEqualTo(compareTo, StringComparison.OrdinalIgnoreCase),
                 () => EnsureArg.IsNotEqualTo(value, compareTo, StringComparison.OrdinalIgnoreCase, ParamName));
@@ -327,11 +305,9 @@ namespace EnsureThat.UnitTests
         {
             var value = "The value";
 
-            var returnedValue = Ensure.That(value, ParamName).IsNotEqualTo(value + "a");
-            AssertReturnedAsExpected(returnedValue, value);
-
-            Action a = () => EnsureArg.IsNotEqualTo(value, value + "a", ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).IsNotEqualTo(value + "a"),
+                () => EnsureArg.IsNotEqualTo(value, value + "a", ParamName));
         }
 
         [Fact]
@@ -339,11 +315,9 @@ namespace EnsureThat.UnitTests
         {
             var value = "The value";
 
-            var returnedValue = Ensure.That(value, ParamName).IsNotEqualTo(value.ToLower(), StringComparison.Ordinal);
-            AssertReturnedAsExpected(returnedValue, value);
-
-            Action a = () => EnsureArg.IsNotEqualTo(value, value.ToLower(), StringComparison.Ordinal, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).IsNotEqualTo(value.ToLower(), StringComparison.Ordinal),
+                () => EnsureArg.IsNotEqualTo(value, value.ToLower(), StringComparison.Ordinal, ParamName));
         }
 
         [Fact]
@@ -351,7 +325,7 @@ namespace EnsureThat.UnitTests
         {
             const string value = "324-3243-123-23";
 
-            AssertAll<ArgumentException>(
+            ShouldThrow<ArgumentException>(
                 string.Format(ExceptionMessages.Strings_IsGuid_Failed, value),
                 () => Ensure.That(value, ParamName).IsGuid(),
                 () => EnsureArg.IsGuid(value, ParamName));
@@ -362,11 +336,9 @@ namespace EnsureThat.UnitTests
         {
             var value = Guid.NewGuid().ToString();
 
-            var returnedValue = Ensure.That(value, ParamName).IsGuid();
-            AssertReturnedAsExpected(returnedValue, value);
-
-            Action a = () => EnsureArg.IsGuid(value, ParamName);
-            a.ShouldNotThrow();
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).IsGuid(),
+                () => EnsureArg.IsGuid(value, ParamName));
         }
     }
 }
