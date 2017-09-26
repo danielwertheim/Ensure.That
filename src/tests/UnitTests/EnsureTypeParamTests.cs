@@ -176,8 +176,7 @@ namespace UnitTests
         public void IsClass_WhenPassingNull_ThrowsArgumentNullException() => ShouldThrow<ArgumentNullException>(
             ExceptionMessages.Types_IsClass_Failed_Null,
             () => Ensure.That(null as Type, ParamName).IsClass(),
-            () => EnsureArg.IsClass(null, ParamName),
-            () => EnsureArg.IsClass((Type)null, ParamName));
+            () => EnsureArg.IsClass(null, ParamName));
 
         [Fact]
         public void IsClass_WhenIsClass_It_should_not_throw()

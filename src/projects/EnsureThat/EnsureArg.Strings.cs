@@ -1,14 +1,16 @@
 using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using EnsureThat.Annotations;
 using EnsureThat.Extensions;
+using JetBrains.Annotations;
 
 namespace EnsureThat
 {
     public static partial class EnsureArg
     {
         [DebuggerStepThrough]
-        public static void IsNotNullOrWhiteSpace(string value, string paramName = Param.DefaultName)
+        public static void IsNotNullOrWhiteSpace([NotNull, ValidatedNotNull]string value, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return;
@@ -20,7 +22,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static void IsNotNullOrEmpty(string value, string paramName = Param.DefaultName)
+        public static void IsNotNullOrEmpty([NotNull, ValidatedNotNull]string value, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return;
@@ -32,7 +34,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static void IsNotNull(string value, string paramName = Param.DefaultName)
+        public static void IsNotNull([NotNull, ValidatedNotNull]string value, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return;
@@ -52,7 +54,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static void HasLengthBetween(string value, int minLength, int maxLength, string paramName = Param.DefaultName)
+        public static void HasLengthBetween([NotNull, ValidatedNotNull]string value, int minLength, int maxLength, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return;
@@ -69,21 +71,23 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static void Matches(string value, string match, string paramName = Param.DefaultName)
+        public static void Matches([NotNull, ValidatedNotNull]string value, string match, string paramName = Param.DefaultName)
             => Matches(value, new Regex(match), paramName);
 
         [DebuggerStepThrough]
-        public static void Matches(string value, Regex match, string paramName = Param.DefaultName)
+        public static void Matches([NotNull, ValidatedNotNull]string value, Regex match, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return;
+
+            IsNotNull(value, paramName);
 
             if (!match.IsMatch(value))
                 throw new ArgumentException(ExceptionMessages.Strings_Matches_Failed.Inject(value, match), paramName);
         }
 
         [DebuggerStepThrough]
-        public static void SizeIs(string value, int expected, string paramName)
+        public static void SizeIs([NotNull, ValidatedNotNull]string value, int expected, string paramName)
         {
             if (!Ensure.IsActive)
                 return;
@@ -135,21 +139,17 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static void IsGuid(string value, string paramName = Param.DefaultName)
+        public static void IsGuid([NotNull, ValidatedNotNull]string value, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return;
 
-            Guid guid;
-            if (!Guid.TryParse(value, out guid))
+            if (!Guid.TryParse(value, out _))
                 throw new ArgumentException(ExceptionMessages.Strings_IsGuid_Failed.Inject(value), paramName);
         }
 
-        private static bool StringEquals(string x, string y, StringComparison? comparison = null)
-        {
-            return comparison.HasValue
-                ? string.Equals(x, y, comparison.Value)
-                : string.Equals(x, y);
-        }
+        private static bool StringEquals(string x, string y, StringComparison? comparison = null) => comparison.HasValue
+            ? string.Equals(x, y, comparison.Value)
+            : string.Equals(x, y);
     }
 }

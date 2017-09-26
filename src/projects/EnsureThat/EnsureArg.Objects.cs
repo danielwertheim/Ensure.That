@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using EnsureThat.Annotations;
 using JetBrains.Annotations;
 
 namespace EnsureThat
@@ -7,7 +8,7 @@ namespace EnsureThat
     public static partial class EnsureArg
     {
         [DebuggerStepThrough]
-        public static void IsNotNull<T>([NoEnumeration] T value, string paramName = Param.DefaultName) where T : class
+        public static void IsNotNull<T>([NoEnumeration, NotNull, ValidatedNotNull] T value, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return;
