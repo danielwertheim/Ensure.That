@@ -11,12 +11,14 @@ namespace EnsureThat
     public static class EnsureCollectionExtensions
     {
         [DebuggerStepThrough]
-        public static void HasItems<T>(this Param<T> param) where T : class, ICollection
+        public static void HasItems<T>(this Param<T> param) where T : ICollection
         {
             if (!Ensure.IsActive)
                 return;
 
-            if (param.Value == null || param.Value.Count < 1)
+            param.IsNotNull();
+
+            if (param.Value.Count < 1)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
         }
 
@@ -26,7 +28,9 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
-            if (param.Value == null || param.Value.Count < 1)
+            param.IsNotNull();
+
+            if (param.Value.Count < 1)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
         }
 
@@ -36,7 +40,9 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
-            if (param.Value == null || param.Value.Count < 1)
+            param.IsNotNull();
+
+            if (param.Value.Count < 1)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
         }
 
@@ -46,8 +52,7 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
-            if (param.Value == null)
-                throw ExceptionFactory.CreateForParamNullValidation(param, ExceptionMessages.Common_IsNotNull_Failed);
+            param.IsNotNull();
 
             if (param.Value.Length < 1)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
@@ -59,7 +64,9 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
-            if (param.Value == null || param.Value.Count < 1)
+            param.IsNotNull();
+
+            if (param.Value.Count < 1)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
         }
 
@@ -69,7 +76,9 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
-            if (param.Value == null || param.Value.Count < 1)
+            param.IsNotNull();
+
+            if (param.Value.Count < 1)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
         }
 
@@ -79,7 +88,9 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
-            if (param.Value == null || param.Value.Count < 1)
+            param.IsNotNull();
+
+            if (param.Value.Count < 1)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
         }
 
@@ -88,6 +99,8 @@ namespace EnsureThat
         {
             if (!Ensure.IsActive)
                 return;
+
+            param.IsNotNull();
 
             if (param.Value.Length != expected)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Length));
@@ -99,6 +112,8 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
+            param.IsNotNull();
+
             if (param.Value.Length != expected)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Length));
         }
@@ -108,6 +123,8 @@ namespace EnsureThat
         {
             if (!Ensure.IsActive)
                 return;
+
+            param.IsNotNull();
 
             if (param.Value.Count != expected)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
@@ -119,6 +136,8 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
+            param.IsNotNull();
+
             if (param.Value.Count != expected)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
         }
@@ -128,6 +147,8 @@ namespace EnsureThat
         {
             if (!Ensure.IsActive)
                 return;
+
+            param.IsNotNull();
 
             if (param.Value.Count != expected)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
@@ -139,6 +160,8 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
+            param.IsNotNull();
+
             if (param.Value.Count != expected)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
         }
@@ -148,6 +171,8 @@ namespace EnsureThat
         {
             if (!Ensure.IsActive)
                 return;
+
+            param.IsNotNull();
 
             if (param.Value.Count != expected)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
@@ -159,6 +184,8 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
+            param.IsNotNull();
+
             if (param.Value.Count != expected)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
         }
@@ -168,6 +195,8 @@ namespace EnsureThat
         {
             if (!Ensure.IsActive)
                 return;
+
+            param.IsNotNull();
 
             if (param.Value.Count != expected)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
@@ -179,6 +208,8 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
+            param.IsNotNull();
+
             if (param.Value.Count != expected)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, param.Value.Count));
         }
@@ -188,6 +219,8 @@ namespace EnsureThat
         {
             if (!Ensure.IsActive)
                 return;
+
+            param.IsNotNull();
 
             if (!param.Value.ContainsKey(key))
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_ContainsKey_Failed.Inject(key));
@@ -199,6 +232,8 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
+            param.IsNotNull();
+
             if (!param.Value.ContainsKey(key))
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_ContainsKey_Failed.Inject(key));
         }
@@ -208,6 +243,8 @@ namespace EnsureThat
         {
             if (!Ensure.IsActive)
                 return;
+
+            param.IsNotNull();
 
             if (!param.Value.Any(predicate))
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Any_Failed);
@@ -219,6 +256,8 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
+            param.IsNotNull();
+
             if (!param.Value.Any(predicate))
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Any_Failed);
         }
@@ -228,6 +267,8 @@ namespace EnsureThat
         {
             if (!Ensure.IsActive)
                 return;
+
+            param.IsNotNull();
 
             if (!param.Value.Any(predicate))
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Any_Failed);
@@ -239,6 +280,32 @@ namespace EnsureThat
             if (!Ensure.IsActive)
                 return;
 
+            param.IsNotNull();
+
+            if (!param.Value.Any(predicate))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Any_Failed);
+        }
+
+        [DebuggerStepThrough]
+        public static void Any<TKey, TValue>(this Param<IDictionary<TKey, TValue>> param, Func<KeyValuePair<TKey, TValue>, bool> predicate)
+        {
+            if (!Ensure.IsActive)
+                return;
+
+            param.IsNotNull();
+
+            if (!param.Value.Any(predicate))
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Any_Failed);
+        }
+
+        [DebuggerStepThrough]
+        public static void Any<TKey, TValue>(this Param<Dictionary<TKey, TValue>> param, Func<KeyValuePair<TKey, TValue>, bool> predicate)
+        {
+            if (!Ensure.IsActive)
+                return;
+
+            param.IsNotNull();
+
             if (!param.Value.Any(predicate))
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Any_Failed);
         }
@@ -248,6 +315,8 @@ namespace EnsureThat
         {
             if (!Ensure.IsActive)
                 return;
+
+            param.IsNotNull();
 
             if (!param.Value.Any(predicate))
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Any_Failed);
