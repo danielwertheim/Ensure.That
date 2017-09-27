@@ -61,16 +61,14 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static void Matches([NotNull, ValidatedNotNull]string value, string match, string paramName = Param.DefaultName)
+        public static void Matches(string value, string match, string paramName = Param.DefaultName)
             => Matches(value, new Regex(match), paramName);
 
         [DebuggerStepThrough]
-        public static void Matches([NotNull, ValidatedNotNull]string value, Regex match, string paramName = Param.DefaultName)
+        public static void Matches(string value, Regex match, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return;
-
-            IsNotNull(value, paramName);
 
             if (!match.IsMatch(value))
                 throw new ArgumentException(ExceptionMessages.Strings_Matches_Failed.Inject(value, match), paramName);
