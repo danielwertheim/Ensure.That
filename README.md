@@ -8,17 +8,17 @@ Ensure.That is distributed via [NuGet](https://www.nuget.org/packages/ensure.tha
 install-package Ensure.That
 ```
 
-## Samples (two different APIs)
-Samples below just list one validation method, but the API contains validation methods for e.g.:
+## Turn On/Off - default is On
+Could be used with different profiles. Like `Debug` and `CI` is `On` while `Release` is `Off`.
 
-* Strings
-* Numerics
-* Collections (arrays, lists, collections, dictionaries)
-* Booleans
-* Guids
+```csharp
+#if RELEASE
+    Ensure.Off()
+#endif
+```
 
 ### Using static simple methods
-This flavour was added in the `v5.0.0` release and **this is my prefered way**, because it has less overhead (read more below).
+The `EnsureArg` flavour was added in the `v5.0.0` release and **this is my prefered way**, because it has less overhead (read more below) and is the API that will continue to exist.
 
 ```csharp
 EnsureArg.IsNotNullOrWhiteSpace(myString);
@@ -29,6 +29,8 @@ EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 This is the initial way of doing validation, but **this IS NOT my prefered way**. Why? Well because it will
 create a new instance of `Param<T>` wrapping the value being passed, so that the context-aware extension
 methods can target correct type.
+
+Since `v7.0.0` the `Ensure.That` flavour has been marked as `Obsolete` with a warning and will be removed in a future version.
 
 ```csharp
 Ensure.That(myString).IsNotNullOrWhiteSpace();
@@ -49,20 +51,20 @@ Ensure
     .IsNotNullOrEmpty();
 ```
 
-## Turn On/Off - default is On
-Could be used with different profiles. Like `Debug` and `CI` is `On` while `Release` is `Off`.
+## Samples (two different APIs)
+The Samples above just uses `string` validation, but there are more. E.g.:
 
-```csharp
-#if RELEASE
-    Ensure.Off()
-#endif
-```
+* Strings
+* Numerics
+* Collections (arrays, lists, collections, dictionaries)
+* Booleans
+* Guids
 
 ## Release notes
 Available from `v2.0.0`, https://github.com/danielwertheim/ensure.that/blob/master/ReleaseNotes.md
 
 # Get up and running with the source code #
-The main solution is maintained using Visual Studio 2015.
+The main solution is maintained using Visual Studio 2017.
 
 Unit-tests are written using `xUnit` and there are no integration tests, hence you should just be able to: `Pull`-`Compile`&`Run the tests`:
 
