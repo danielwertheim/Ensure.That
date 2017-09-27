@@ -12,24 +12,18 @@ namespace EnsureThat
 
         public static void On() => IsActive = true;
 
-#pragma warning disable 618
-        [Obsolete("Use EnsureArg instead. This version will eventually be removed.", false)]
         [DebuggerStepThrough]
+        [Obsolete("Use EnsureArg instead. This version will eventually be removed.", false)]
         public static Param<T> That<T>([NoEnumeration]T value, string name = Param.DefaultName) => new Param<T>(name, value);
-#pragma warning restore 618
 
-#pragma warning disable 618
-        [Obsolete("Use EnsureArg instead. This version will eventually be removed.", false)]
         [DebuggerStepThrough]
+        [Obsolete("Use EnsureArg instead. This version will eventually be removed.", false)]
         public static Param<T> That<T>(Func<T> expression, string name = Param.DefaultName) => new Param<T>(
             name,
             expression.Invoke());
-#pragma warning restore 618
 
-#pragma warning disable 618
-        [Obsolete("Use EnsureArg instead. This version will eventually be removed.", false)]
         [DebuggerStepThrough]
+        [Obsolete("Use EnsureArg instead. This version will eventually be removed.", false)]
         public static TypeParam ThatTypeFor<T>(T value, string name = Param.DefaultName) => new TypeParam(name, value.GetType());
-#pragma warning restore 618
     }
 }
