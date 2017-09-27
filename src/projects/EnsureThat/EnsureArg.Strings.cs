@@ -77,7 +77,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static void SizeIs([NotNull, ValidatedNotNull]string value, int expected, string paramName)
+        public static void SizeIs([NotNull, ValidatedNotNull]string value, int expected, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return;
