@@ -1,6 +1,19 @@
 Semantic versioning is used. See http://semver.org for more info. Basically this means that version format is:
 _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should be able to update without any breaking API changes.
 
+## v7.0.0 - PRE-RELEASE
+Upcoming changes (unless someone realy protests).
+
+**[New]:** When using `EnsureArg`, the param being evaluated is now decorated with JetBrains `NotNullAttribute` and custom `ValidatedNotNull` (to get rid of `CA1062`).
+
+**[New]:** `Any` for dictionaries.
+
+**[Changed]:** Where applicable, validation methods now ensures that the param `IsNotNull`. If it is, an `ArgumentNullException` is thrown. So there is no need to do both. How-ever, some calls are not applicable to this, like `EnsureArg.IsNotEmpty(myString)`.
+
+**[Changed]:** Not breaking seen to API but binary compatibility, `EnsureArg.Abcdefg(...)` methods now returns the value so that it can be assigned to e.g. fields: `_field = EnsureArg.IsNotNull(myArg, nameof(myArg))`.
+
+**[Obsolete warning]:** The "fluent" `Ensure.That` syntax has been marked as `Obsolete` in favour for `EnsureArg`. It will eventually be removed.
+
 ## v6.0.0 - 2017-09-19
 
 **[Changed]:** Now developed as only a .NET Standard 1.1 project.
