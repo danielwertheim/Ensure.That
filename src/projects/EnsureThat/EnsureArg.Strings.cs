@@ -34,16 +34,6 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static void IsNotNull([NotNull, ValidatedNotNull]string value, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            if (value == null)
-                throw new ArgumentNullException(paramName, ExceptionMessages.Common_IsNotNull_Failed);
-        }
-
-        [DebuggerStepThrough]
         public static void IsNotEmpty(string value, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
