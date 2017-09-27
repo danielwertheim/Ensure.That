@@ -116,6 +116,16 @@ namespace UnitTests
         }
 
         [Fact]
+        public void IsNotEmpty_WhenStringIsNull_It_should_not_throw()
+        {
+            string value = null;
+
+            ShouldNotThrow(
+                () => Ensure.That(value, ParamName).IsNotEmpty(),
+                () => EnsureArg.IsNotEmpty(value, ParamName));
+        }
+
+        [Fact]
         public void HasLengthBetween_WhenStringIsNull_ThrowsArgumentNullException()
         {
             string value = null;
@@ -222,6 +232,17 @@ namespace UnitTests
         }
 
         [Fact]
+        public void SizeIs_When_null_It_throws_ArgumentNullException()
+        {
+            string value = null;
+            var expected = 1;
+
+            AssertIsNotNull(
+                () => Ensure.That(value, ParamName).SizeIs(expected),
+                () => EnsureArg.SizeIs(value, expected, ParamName));
+        }
+
+        [Fact]
         public void SizeIs_When_non_matching_length_of_string_It_throws_ArgumentException()
         {
             var value = "Some string";
@@ -318,6 +339,27 @@ namespace UnitTests
             ShouldNotThrow(
                 () => Ensure.That(value, ParamName).IsNotEqualTo(value.ToLower(), StringComparison.Ordinal),
                 () => EnsureArg.IsNotEqualTo(value, value.ToLower(), StringComparison.Ordinal, ParamName));
+        }
+
+        [Fact]
+        public void IsGuid_When_null_It_should_not_throw_ArgumentNullException()
+        {
+            string value = null;
+
+            ShouldThrowButNot<ArgumentNullException>(
+                () => Ensure.That(value, ParamName).IsGuid(),
+                () => EnsureArg.IsGuid(value, ParamName));
+        }
+
+        [Fact]
+        public void IsGuid_When_null_It_should_throw_ArgumentException()
+        {
+            string value = null;
+
+            ShouldThrow<ArgumentException>(
+                string.Format(ExceptionMessages.Strings_IsGuid_Failed, value),
+                () => Ensure.That(value, ParamName).IsGuid(),
+                () => EnsureArg.IsGuid(value, ParamName));
         }
 
         [Fact]
