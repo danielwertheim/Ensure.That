@@ -6,27 +6,31 @@ namespace EnsureThat
     public static partial class EnsureArg
     {
         [DebuggerStepThrough]
-        public static void IsTrue(bool value, string paramName = Param.DefaultName)
+        public static bool IsTrue(bool value, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
-                return;
+                return value;
 
             if (!value)
                 throw new ArgumentException(
                     ExceptionMessages.Booleans_IsTrueFailed,
                     paramName);
+
+            return value;
         }
 
         [DebuggerStepThrough]
-        public static void IsFalse(bool value, string paramName = Param.DefaultName)
+        public static bool IsFalse(bool value, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
-                return;
+                return value;
 
             if (value)
                 throw new ArgumentException(
                     ExceptionMessages.Booleans_IsFalseFailed,
                     paramName);
+
+            return value;
         }
     }
 }

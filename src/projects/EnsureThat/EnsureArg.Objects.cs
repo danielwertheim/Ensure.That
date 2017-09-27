@@ -8,13 +8,15 @@ namespace EnsureThat
     public static partial class EnsureArg
     {
         [DebuggerStepThrough]
-        public static void IsNotNull<T>([NoEnumeration, NotNull, ValidatedNotNull] T value, string paramName = Param.DefaultName)
+        public static T IsNotNull<T>([NoEnumeration, NotNull, ValidatedNotNull] T value, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
-                return;
+                return value;
 
             if (value == null)
                 throw new ArgumentNullException(paramName, ExceptionMessages.Common_IsNotNull_Failed);
+
+            return value;
         }
     }
 }
