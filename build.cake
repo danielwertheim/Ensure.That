@@ -43,7 +43,7 @@ Task("Build").Does(() => {
                 .SetConfiguration(config.BuildProfile)
                 .SetVerbosity(Verbosity.Minimal)
                 .WithTarget("Rebuild")
-                .WithProperty("TreatWarningsAsErrors", "true")
+                .WithProperty("TreatWarningsAsErrors", "false") //true when obsolete flag is rem
                 .WithProperty("NoRestore", "true")
                 .WithProperty("Version", config.SemVer)
                 .WithProperty("AssemblyVersion", config.BuildVersion)
