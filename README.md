@@ -25,12 +25,19 @@ EnsureArg.IsNotNullOrWhiteSpace(myString);
 EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 ```
 
+the value is passed through so that you e.g. can assign it to a field:
+
+```csharp
+_arrayField = EnsureArg.SizeIs(myArray, 3, nameof(myArray));
+_dictionaryField = EnsureArg.ContainsKey(myDictionary, someKey, nameof(myDictionary));
+```
+
 ### Using extension methods
+Since `v7.0.0` the `Ensure.That` flavour has been marked as `Obsolete` with a warning and will be removed in mext major version.
+
 This is the initial way of doing validation, but **this IS NOT my prefered way**. Why? Well because it will
 create a new instance of `Param<T>` wrapping the value being passed, so that the context-aware extension
-methods can target correct type.
-
-Since `v7.0.0` the `Ensure.That` flavour has been marked as `Obsolete` with a warning and will be removed in a future version.
+methods can target correct type. *Imagine doing this in a loop...*
 
 ```csharp
 Ensure.That(myString).IsNotNullOrWhiteSpace();

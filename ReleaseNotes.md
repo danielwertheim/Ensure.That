@@ -8,9 +8,9 @@ Upcoming changes (unless someone realy protests).
 
 **[New]:** `Any` for dictionaries.
 
-**[Changed]:** Where applicable, validation methods now ensures that the param `IsNotNull`. If it is, an `ArgumentNullException` is thrown. So there is no need to do both. How-ever, some calls are not applicable to this, like `EnsureArg.IsNotEmpty(myString)`.
+**[New]:** `EnsureArg.Abcdefg(...)` methods now returns the value so that it can be assigned to e.g. fields: `_field = EnsureArg.IsNotNull(myArg, nameof(myArg))`.
 
-**[Changed]:** Not breaking seen to API but binary compatibility, `EnsureArg.Abcdefg(...)` methods now returns the value so that it can be assigned to e.g. fields: `_field = EnsureArg.IsNotNull(myArg, nameof(myArg))`.
+**[Changed]:** Where applicable, validation methods now ensures that the param `IsNotNull`. If it is, an `ArgumentNullException` is thrown. So there is no need to do both. How-ever, some calls are not applicable to this, like `EnsureArg.IsNotEmpty(myString)`.
 
 **[Obsolete warning]:** The "fluent" `Ensure.That` syntax has been marked as `Obsolete` in favour for `EnsureArg`. It will eventually be removed.
 
