@@ -8,15 +8,6 @@ Ensure.That is distributed via [NuGet](https://www.nuget.org/packages/ensure.tha
 install-package Ensure.That
 ```
 
-## Turn On/Off - default is On
-Could be used with different profiles. Like `Debug` and `CI` is `On` while `Release` is `Off`.
-
-```csharp
-#if RELEASE
-    Ensure.Off()
-#endif
-```
-
 ### Using static simple methods
 The `EnsureArg` flavour was added in the `v5.0.0` release and **this is my prefered way**, because it has less overhead (read more below) and is the API that will continue to exist.
 
@@ -28,12 +19,12 @@ EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 the value is passed through so that you e.g. can assign it to a field:
 
 ```csharp
-_arrayField = EnsureArg.SizeIs(myArray, 3, nameof(myArray));
-_dictionaryField = EnsureArg.ContainsKey(myDictionary, someKey, nameof(myDictionary));
+_field1 = EnsureArg.IsNotNullOrWhiteSpace(myString);
+_field2 = EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 ```
 
 ### Using extension methods
-Since `v7.0.0` the `Ensure.That` flavour has been marked as `Obsolete` with a warning and will be removed in mext major version.
+Since `v7.0.0` the `Ensure.That` flavour below has been marked as `Obsolete` with a warning and will be removed in mext major version.
 
 This is the initial way of doing validation, but **this IS NOT my prefered way**. Why? Well because it will
 create a new instance of `Param<T>` wrapping the value being passed, so that the context-aware extension
@@ -58,7 +49,16 @@ Ensure
     .IsNotNullOrEmpty();
 ```
 
-## Samples (two different APIs)
+## Turn On/Off - default is On
+Could be used with different profiles. Like `Debug` and `CI` is `On` while `Release` is `Off`.
+
+```csharp
+#if RELEASE
+    Ensure.Off()
+#endif
+```
+
+## Samples
 The Samples above just uses `string` validation, but there are more. E.g.:
 
 * Strings
@@ -66,9 +66,6 @@ The Samples above just uses `string` validation, but there are more. E.g.:
 * Collections (arrays, lists, collections, dictionaries)
 * Booleans
 * Guids
-
-## Release notes
-Available from `v2.0.0`, https://github.com/danielwertheim/ensure.that/blob/master/ReleaseNotes.md
 
 # Get up and running with the source code #
 The main solution is maintained using Visual Studio 2017.
@@ -78,6 +75,3 @@ Unit-tests are written using `xUnit` and there are no integration tests, hence y
 ```
 dotnet test
 ```
-
-## Issues, questions, etc.
-So you have issues or questions... Great! That means someone is using it. Use the issues function here at the project page or contact me via mail: firstname@lastname.se; or Twitter: [@danielwertheim](https://twitter.com/danielwertheim)
