@@ -20,7 +20,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <NoWarn>1701;1702;1705;1591</NoWarn>
-    <DocumentationFile>bin\Release\netstandard1.1\EnsureThat.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netstandard1.1\Ensure.That.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
