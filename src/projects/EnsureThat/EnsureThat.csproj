@@ -15,6 +15,7 @@
     <RepositoryType>Git</RepositoryType>
     <PackageProjectUrl>https://github.com/danielwertheim/ensure.that</PackageProjectUrl>
     <PackageTags>ensure argument validation guard clause contracts</PackageTags>
+    <AssemblyName>Ensure.That</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
