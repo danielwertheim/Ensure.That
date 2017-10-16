@@ -6,6 +6,7 @@
     <Authors>danielwertheim</Authors>
     <Company>danielwertheim</Company>
     <PackageId>Ensure.That</PackageId>
+    <Title>Ensure.That</Title>
     <Product>Ensure.That</Product>
     <Description>Argument validation made simple and unified. It ensures arguments conforms to simple validation rules and provides an uniformed exception throwing strategy if arguments are invalid.</Description>
     <Copyright>danielwertheim</Copyright>
