@@ -16,6 +16,10 @@ Upcoming changes (unless someone realy protests).
 
 **[Obsolete warning]:** The "fluent" `Ensure.That` syntax has been marked as `Obsolete` in favour for `EnsureArg`. It will eventually be removed.
 
+## v6.0.1 - 2017-10-04
+
+**[Fix]:** Corrected assembly name to be same as previous: `Ensure.That.dll` instead of `EnsureThat.dll`
+
 ## v6.0.0 - 2017-09-19
 
 **[Changed]:** Now developed as only a .NET Standard 1.1 project.
