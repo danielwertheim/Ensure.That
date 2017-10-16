@@ -4,6 +4,8 @@ _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should b
 ## v7.0.0 - PRE-RELEASE
 Upcoming changes (unless someone realy protests).
 
+**[New]:** Multiple .NET Standard target frameworks: `netstandard1.1` and `netstandard2.0`
+
 **[New]:** When using `EnsureArg`, the param being evaluated is now decorated with JetBrains `NotNullAttribute` and custom `ValidatedNotNull` (to get rid of `CA1062`).
 
 **[New]:** `Any` for dictionaries.
