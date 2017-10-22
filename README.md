@@ -1,12 +1,7 @@
 # Ensure.That
 Ensure.That is a simple guard clause argument validation lib, that helps you with validation of your arguments.
 
-## NuGet
-Ensure.That is distributed via [NuGet](https://www.nuget.org/packages/ensure.that/) and since `v6.0.0` it is developed as a .NET Standard project targetting v1.1
-
-```
-install-package Ensure.That
-```
+It's developed for .NET Standard 1.1 and .NET Standard 2.0 and available on [NuGet](https://www.nuget.org/packages/ensure.that/).
 
 ### Using static simple methods
 The `EnsureArg` flavour was added in the `v5.0.0` release and **this is my prefered way**, because it has less overhead (read more below) and is the API that will continue to exist.
@@ -24,18 +19,22 @@ _field2 = EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 ```
 
 ### Using extension methods
-Since `v7.0.0` the `Ensure.That` flavour below has been marked as `Obsolete` with a warning and will be removed in mext major version.
+Since `v7.0.0` the `Ensure.That` flavour below has been marked as **`Obsolete`** with a warning and will be removed in the next major version (`v8.0.0`).
 
 This is the initial way of doing validation, but **this IS NOT my prefered way**. Why? Well because it will
 create a new instance of `Param<T>` wrapping the value being passed, so that the context-aware extension
-methods can target correct type. *Imagine doing this in a loop...*
+methods can target correct type. *Imagine doing this in a loop on a multitude of instances...*
 
 ```csharp
+//PLEASE NOTE. This will be depricated in v8.0.0 in favour for EnsureArg.Is...()
+
 Ensure.That(myString).IsNotNullOrWhiteSpace();
 Ensure.That(myString, nameof(myArg)).IsNotNullOrWhiteSpace();
 ```
 
 ```csharp
+//PLEASE NOTE. This will be depricated in v8.0.0 in favour for EnsureArg.Is...()
+
 Ensure
     .That(myString, nameof(myString))
     .WithExtraMessageOf(p => "Some more details")
@@ -43,6 +42,8 @@ Ensure
 ```
 
 ```csharp
+//PLEASE NOTE. This will be depricated in v8.0.0 in favour for EnsureArg.Is...()
+
 Ensure
     .That(myString, nameof(myString))
     .WithException(param => new Exception())
