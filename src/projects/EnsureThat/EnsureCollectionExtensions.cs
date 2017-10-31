@@ -95,6 +95,30 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
+        public static void HasItems<T>(this Param<IReadOnlyCollection<T>> param)
+        {
+            if (!Ensure.IsActive)
+                return;
+
+            param.IsNotNull();
+
+            if (param.Value.Count < 1)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
+        }
+
+        [DebuggerStepThrough]
+        public static void HasItems<T>(this Param<IReadOnlyList<T>> param)
+        {
+            if (!Ensure.IsActive)
+                return;
+
+            param.IsNotNull();
+
+            if (param.Value.Count < 1)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_HasItemsFailed);
+        }
+
+        [DebuggerStepThrough]
         public static void SizeIs<T>(this Param<T[]> param, int expected)
         {
             if (!Ensure.IsActive)

@@ -9,6 +9,46 @@ namespace UnitTests
     public class EnsureCollectionParamsTests : UnitTestBase
     {
         [Fact]
+        public void HasItems_WhenEmptyIReadonlyCollection_ThrowsArgumentException()
+        {
+            IReadOnlyCollection<int> emptyCollection = new ReadOnlyCollection<int>(new List<int>());
+
+            AssertIsEmptyCollection(
+                () => Ensure.That(emptyCollection, ParamName).HasItems(),
+                () => EnsureArg.HasItems(emptyCollection, ParamName));
+        }
+
+        [Fact]
+        public void HasItems_WhenNonEmptyIReadOnlyCollection_ShouldNotThrow()
+        {
+            IReadOnlyCollection<int> collection = new ReadOnlyCollection<int>(new List<int> { 1, 2, 3 });
+
+            ShouldNotThrow(
+                () => Ensure.That(collection, ParamName).HasItems(),
+                () => EnsureArg.HasItems(collection, ParamName));
+        }
+
+        [Fact]
+        public void HasItems_WhenEmptyIReadOnlyList_ThrowsArgumentException()
+        {
+            IReadOnlyList<int> emptyList = new List<int>();
+
+            AssertIsEmptyCollection(
+                () => Ensure.That(emptyList, ParamName).HasItems(),
+                () => EnsureArg.HasItems(emptyList, ParamName));
+        }
+
+        [Fact]
+        public void HasItems_WhenNonEmptyIReadOnlyList_ShouldNotThrow()
+        {
+            IReadOnlyList<int> collection = new List<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => Ensure.That(collection, ParamName).HasItems(),
+                () => EnsureArg.HasItems(collection, ParamName));
+        }
+
+        [Fact]
         public void HasItems_WhenEmptyICollection_ThrowsArgumentException()
         {
             ICollection<int> emptyCollection = new Collection<int>();

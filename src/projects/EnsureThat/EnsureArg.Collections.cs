@@ -60,6 +60,22 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
+        public static IReadOnlyList<T> HasItems<T>([NotNull, ValidatedNotNull]IReadOnlyList<T> value, string paramName = Param.DefaultName)
+        {
+            if (!Ensure.IsActive)
+                return value;
+
+            IsNotNull(value, paramName);
+
+            if (value.Count < 1)
+                throw new ArgumentException(
+                    ExceptionMessages.Collections_HasItemsFailed,
+                    paramName);
+
+            return value;
+        }
+
+        [DebuggerStepThrough]
         public static ISet<T> HasItems<T>([NotNull, ValidatedNotNull]ISet<T> value, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
