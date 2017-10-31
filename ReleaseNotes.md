@@ -4,17 +4,19 @@ _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should b
 ## v7.0.0 - PRE-RELEASE
 Upcoming changes (unless someone realy protests).
 
+**[Obsolete warning]:** The "fluent" `Ensure.That` syntax has been marked as `Obsolete` in favour for `EnsureArg`. It will eventually be removed.
+
 **[New]:** Multiple .NET Standard target frameworks: `netstandard1.1` and `netstandard2.0`
 
 **[New]:** When using `EnsureArg`, the param being evaluated is now decorated with JetBrains `NotNullAttribute` and custom `ValidatedNotNull` (to get rid of `CA1062`).
 
 **[New]:** `Any` for dictionaries.
 
+**[New]:** `HasItems` for `IReadOnlyCollection` and `IReadOnlyList`.
+
 **[New]:** `EnsureArg.Abcdefg(...)` methods now returns the value so that it can be assigned to e.g. fields: `_field = EnsureArg.IsNotNull(myArg, nameof(myArg))`.
 
 **[Changed]:** Where applicable, validation methods now ensures that the param `IsNotNull`. If it is, an `ArgumentNullException` is thrown. So there is no need to do both. How-ever, some calls are not applicable to this, like `EnsureArg.IsNotEmpty(myString)`.
-
-**[Obsolete warning]:** The "fluent" `Ensure.That` syntax has been marked as `Obsolete` in favour for `EnsureArg`. It will eventually be removed.
 
 ## v6.0.1 - 2017-10-04
 
