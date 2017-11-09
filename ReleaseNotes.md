@@ -1,8 +1,7 @@
 Semantic versioning is used. See http://semver.org for more info. Basically this means that version format is:
 _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should be able to update without any breaking API changes.
 
-## v7.0.0 - PRE-RELEASE
-Upcoming changes (unless someone realy protests).
+## v7.0.0 - 2017-11-09
 
 **[Obsolete warning]:** The "fluent" `Ensure.That` syntax has been marked as `Obsolete` in favour for either the contextual validations: `Ensure.String.IsNotNull(..., ...);` or `EnsureArg.IsNotNull(..., ...);` The obsolete versions will be removed in next major version.
 
