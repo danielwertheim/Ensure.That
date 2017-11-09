@@ -6,7 +6,7 @@ Upcoming changes (unless someone realy protests).
 
 **[Obsolete warning]:** The "fluent" `Ensure.That` syntax has been marked as `Obsolete` in favour for `EnsureArg`. It will eventually be removed.
 
-**[New]:** Multiple .NET Standard target frameworks: `netstandard1.1` and `netstandard2.0`
+**[New]:** Multiple target frameworks: `net4.5.1` and `netstandard1.1` and `netstandard2.0`
 
 **[New]:** When using `EnsureArg`, the param being evaluated is now decorated with JetBrains `NotNullAttribute` and custom `ValidatedNotNull` (to get rid of `CA1062`).
 
