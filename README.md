@@ -33,7 +33,16 @@ _field1 = EnsureArg.IsNotNullOrWhiteSpace(myString);
 _field2 = EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 ```
 
-### Using extension methods
+## Turn On/Off - default is On
+Could be used with different profiles. Like `Debug` and `CI` is `On` while `Release` is `Off`.
+
+```csharp
+#if RELEASE
+    Ensure.Off()
+#endif
+```
+
+### Using extension methods (OBSOLETE)
 Since `v7.0.0` the `Ensure.That` flavour below has been marked as **`Obsolete`** with a warning and will be removed in the next major version (`v8.0.0`).
 
 This was the initial way of doing validation, but **this IS NOT my prefered way**. Why? Well because it will
@@ -63,15 +72,6 @@ Ensure
     .That(myString, nameof(myString))
     .WithException(param => new Exception())
     .IsNotNullOrEmpty();
-```
-
-## Turn On/Off - default is On
-Could be used with different profiles. Like `Debug` and `CI` is `On` while `Release` is `Off`.
-
-```csharp
-#if RELEASE
-    Ensure.Off()
-#endif
 ```
 
 ## Samples
