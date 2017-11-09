@@ -4,7 +4,7 @@ _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should b
 ## v7.0.0 - PRE-RELEASE
 Upcoming changes (unless someone realy protests).
 
-**[Obsolete warning]:** The "fluent" `Ensure.That` syntax has been marked as `Obsolete` in favour for `EnsureArg`. It will eventually be removed.
+**[Obsolete warning]:** The "fluent" `Ensure.That` syntax has been marked as `Obsolete` in favour for either the contextual validations: `Ensure.String.IsNotNull(..., ...);` or `EnsureArg.IsNotNull(..., ...);` The obsolete versions will be removed in next major version.
 
 **[New]:** Multiple target frameworks: `net4.5.1` and `netstandard1.1` and `netstandard2.0`
 
