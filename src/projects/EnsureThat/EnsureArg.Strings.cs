@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using EnsureThat.Annotations;
-using EnsureThat.Extensions;
 using JetBrains.Annotations;
 
 namespace EnsureThat
@@ -10,156 +9,51 @@ namespace EnsureThat
     public static partial class EnsureArg
     {
         [DebuggerStepThrough]
-        public static string IsNotNullOrWhiteSpace([NotNull, ValidatedNotNull]string value, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return value;
-
-            IsNotNull(value, paramName);
-
-            if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentException(ExceptionMessages.Strings_IsNotNullOrWhiteSpace_Failed, paramName);
-
-            return value;
-        }
+        public static string IsNotNullOrWhiteSpace([NotNull, ValidatedNotNull] string value, string paramName = Param.DefaultName)
+            => Ensure.String.IsNotNullOrWhiteSpace(value, paramName);
 
         [DebuggerStepThrough]
-        public static string IsNotNullOrEmpty([NotNull, ValidatedNotNull]string value, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return value;
-
-            IsNotNull(value, paramName);
-
-            if (string.IsNullOrEmpty(value))
-                throw new ArgumentException(ExceptionMessages.Strings_IsNotNullOrEmpty_Failed, paramName);
-
-            return value;
-        }
+        public static string IsNotNullOrEmpty([NotNull, ValidatedNotNull] string value, string paramName = Param.DefaultName)
+            => Ensure.String.IsNotNullOrEmpty(value, paramName);
 
         [DebuggerStepThrough]
         public static string IsNotEmpty(string value, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return value;
-
-            if (string.Empty.Equals(value))
-                throw new ArgumentException(ExceptionMessages.Strings_IsNotEmpty_Failed, paramName);
-
-            return value;
-        }
+            => Ensure.String.IsNotEmpty(value, paramName);
 
         [DebuggerStepThrough]
-        public static string HasLengthBetween([NotNull, ValidatedNotNull]string value, int minLength, int maxLength, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return value;
-
-            IsNotNull(value, paramName);
-
-            var length = value.Length;
-
-            if (length < minLength)
-                throw new ArgumentException(ExceptionMessages.Strings_HasLengthBetween_Failed_ToShort.Inject(minLength, maxLength, length), paramName);
-
-            if (length > maxLength)
-                throw new ArgumentException(ExceptionMessages.Strings_HasLengthBetween_Failed_ToLong.Inject(minLength, maxLength, length), paramName);
-
-            return value;
-        }
+        public static string HasLengthBetween([NotNull, ValidatedNotNull] string value, int minLength, int maxLength, string paramName = Param.DefaultName)
+            => Ensure.String.HasLengthBetween(value, minLength, maxLength, paramName);
 
         [DebuggerStepThrough]
         public static string Matches(string value, string match, string paramName = Param.DefaultName)
-            => Matches(value, new Regex(match), paramName);
+            => Ensure.String.Matches(value, match, paramName);
 
         [DebuggerStepThrough]
         public static string Matches(string value, Regex match, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return value;
-
-            if (!match.IsMatch(value))
-                throw new ArgumentException(ExceptionMessages.Strings_Matches_Failed.Inject(value, match), paramName);
-
-            return value;
-        }
+            => Ensure.String.Matches(value, match, paramName);
 
         [DebuggerStepThrough]
-        public static string SizeIs([NotNull, ValidatedNotNull]string value, int expected, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return value;
-
-            IsNotNull(value, paramName);
-
-            if (value.Length != expected)
-                throw new ArgumentException(ExceptionMessages.Strings_SizeIs_Failed.Inject(expected, value.Length), paramName);
-
-            return value;
-        }
+        public static string SizeIs([NotNull, ValidatedNotNull] string value, int expected, string paramName = Param.DefaultName)
+            => Ensure.String.SizeIs(value, expected, paramName);
 
         [DebuggerStepThrough]
         public static string IsEqualTo(string value, string expected, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return value;
-
-            if (!StringEquals(value, expected))
-                throw new ArgumentException(ExceptionMessages.Strings_IsEqualTo_Failed.Inject(value, expected), paramName);
-
-            return value;
-        }
+            => Ensure.String.IsEqualTo(value, expected, paramName);
 
         [DebuggerStepThrough]
         public static string IsEqualTo(string value, string expected, StringComparison comparison, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return value;
-
-            if (!StringEquals(value, expected, comparison))
-                throw new ArgumentException(ExceptionMessages.Strings_IsEqualTo_Failed.Inject(value, expected), paramName);
-
-            return value;
-        }
+            => Ensure.String.IsEqualTo(value, expected, comparison, paramName);
 
         [DebuggerStepThrough]
         public static string IsNotEqualTo(string value, string expected, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return value;
-
-            if (StringEquals(value, expected))
-                throw new ArgumentException(ExceptionMessages.Strings_IsNotEqualTo_Failed.Inject(value, expected), paramName);
-
-            return value;
-        }
+            => Ensure.String.IsNotEqualTo(value, expected, paramName);
 
         [DebuggerStepThrough]
         public static string IsNotEqualTo(string value, string expected, StringComparison comparison, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return value;
-
-            if (StringEquals(value, expected, comparison))
-                throw new ArgumentException(ExceptionMessages.Strings_IsNotEqualTo_Failed.Inject(value, expected), paramName);
-
-            return value;
-        }
+            => Ensure.String.IsNotEqualTo(value, expected, comparison, paramName);
 
         [DebuggerStepThrough]
-        public static string IsGuid([NotNull, ValidatedNotNull]string value, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return value;
-
-            if (!Guid.TryParse(value, out _))
-                throw new ArgumentException(ExceptionMessages.Strings_IsGuid_Failed.Inject(value), paramName);
-
-            return value;
-        }
-
-        private static bool StringEquals(string x, string y, StringComparison? comparison = null) => comparison.HasValue
-            ? string.Equals(x, y, comparison.Value)
-            : string.Equals(x, y);
+        public static string IsGuid([NotNull, ValidatedNotNull] string value, string paramName = Param.DefaultName)
+            => Ensure.String.IsGuid(value, paramName);
     }
 }

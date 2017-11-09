@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace EnsureThat
 {
@@ -7,14 +6,6 @@ namespace EnsureThat
     {
         [DebuggerStepThrough]
         public static T? IsNotNull<T>(T? value, string paramName = Param.DefaultName) where T : struct
-        {
-            if (!Ensure.IsActive)
-                return value;
-
-            if (value == null)
-                throw new ArgumentNullException(paramName, ExceptionMessages.Common_IsNotNull_Failed);
-
-            return value;
-        }
+            => Ensure.Any.IsNotNull(value, paramName);
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace EnsureThat
 {
@@ -7,14 +6,6 @@ namespace EnsureThat
     {
         [DebuggerStepThrough]
         public static T IsNotDefault<T>(T value, string paramName = Param.DefaultName) where T : struct
-        {
-            if (!Ensure.IsActive)
-                return value;
-
-            if (default(T).Equals(value))
-                throw new ArgumentException(ExceptionMessages.ValueTypes_IsNotDefault_Failed, paramName);
-
-            return value;
-        }
+            => Ensure.Any.IsNotDefault(value, paramName);
     }
 }
