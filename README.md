@@ -3,8 +3,23 @@ Ensure.That is a simple guard clause argument validation lib, that helps you wit
 
 It's developed for .NET 4.5.1 as well as .NET Standard 1.1 and .NET Standard 2.0 and available via [NuGet](https://www.nuget.org/packages/ensure.that/).
 
+### Using contextual validation
+This flavour was introduced in the `v7.0.0` release.
+
+```csharp
+Ensure.String.IsNotNullOrWhiteSpace(myString);
+Ensure.String.IsNotNullOrWhiteSpace(myString, nameof(myArg));
+```
+
+the value is passed through so that you e.g. can assign it to a field:
+
+```csharp
+_field1 = Ensure.String.IsNotNullOrWhiteSpace(myString);
+_field2 = Ensure.String.IsNotNullOrWhiteSpace(myString, nameof(myArg));
+```
+
 ### Using static simple methods
-The `EnsureArg` flavour was added in the `v5.0.0` release and **this is my prefered way**, because it has less overhead (read more below) and is the API that will continue to exist.
+The `EnsureArg` flavour was added in the `v5.0.0` release.
 
 ```csharp
 EnsureArg.IsNotNullOrWhiteSpace(myString);
@@ -21,7 +36,7 @@ _field2 = EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 ### Using extension methods
 Since `v7.0.0` the `Ensure.That` flavour below has been marked as **`Obsolete`** with a warning and will be removed in the next major version (`v8.0.0`).
 
-This is the initial way of doing validation, but **this IS NOT my prefered way**. Why? Well because it will
+This was the initial way of doing validation, but **this IS NOT my prefered way**. Why? Well because it will
 create a new instance of `Param<T>` wrapping the value being passed, so that the context-aware extension
 methods can target correct type. *Imagine doing this in a loop on a multitude of instances...*
 
