@@ -5,7 +5,7 @@ namespace EnsureThat
     public static class EnsureObjectExtensions
     {
         [DebuggerStepThrough]
-        public static void IsNotNull<T>(this Param<T> param) where T : class
+        public static void IsNotNull<T>(this Param<T> param)
         {
             if (!Ensure.IsActive)
                 return;

@@ -65,6 +65,9 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static void SizeIs(this Param<string> param, int expected)
         {
+            if (param.Value == null)
+                throw ExceptionFactory.CreateForParamNullValidation(param, ExceptionMessages.Common_IsNotNull_Failed);
+
             if (param.Value.Length != expected)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Strings_SizeIs_Failed.Inject(expected, param.Value.Length));
         }

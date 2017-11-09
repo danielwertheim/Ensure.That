@@ -1,52 +1,36 @@
 # Ensure.That
 Ensure.That is a simple guard clause argument validation lib, that helps you with validation of your arguments.
 
-## NuGet
-Ensure.That is distributed via [NuGet](https://www.nuget.org/packages/ensure.that/) and since `v6.0.0` it is developed as a .NET Standard project targetting v1.1
+It's developed for .NET 4.5.1 as well as .NET Standard 1.1 and .NET Standard 2.0 and available via [NuGet](https://www.nuget.org/packages/ensure.that/).
 
+### Using contextual validation
+This flavour was introduced in the `v7.0.0` release.
+
+```csharp
+Ensure.String.IsNotNullOrWhiteSpace(myString);
+Ensure.String.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 ```
-install-package Ensure.That
+
+the value is passed through so that you e.g. can assign it to a field:
+
+```csharp
+_field1 = Ensure.String.IsNotNullOrWhiteSpace(myString);
+_field2 = Ensure.String.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 ```
-
-## Samples (two different APIs)
-Samples below just list one validation method, but the API contains validation methods for e.g.:
-
-* Strings
-* Numerics
-* Collections (arrays, lists, collections, dictionaries)
-* Booleans
-* Guids
 
 ### Using static simple methods
-This flavour was added in the `v5.0.0` release and **this is my prefered way**, because it has less overhead (read more below).
+The `EnsureArg` flavour was added in the `v5.0.0` release.
 
 ```csharp
 EnsureArg.IsNotNullOrWhiteSpace(myString);
 EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 ```
 
-### Using extension methods
-This is the initial way of doing validation, but **this IS NOT my prefered way**. Why? Well because it will
-create a new instance of `Param<T>` wrapping the value being passed, so that the context-aware extension
-methods can target correct type.
+the value is passed through so that you e.g. can assign it to a field:
 
 ```csharp
-Ensure.That(myString).IsNotNullOrWhiteSpace();
-Ensure.That(myString, nameof(myArg)).IsNotNullOrWhiteSpace();
-```
-
-```csharp
-Ensure
-    .That(myString, nameof(myString))
-    .WithExtraMessageOf(p => "Some more details")
-    .IsNotNullOrWhiteSpace();
-```
-
-```csharp
-Ensure
-    .That(myString, nameof(myString))
-    .WithException(param => new Exception())
-    .IsNotNullOrEmpty();
+_field1 = EnsureArg.IsNotNullOrWhiteSpace(myString);
+_field2 = EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 ```
 
 ## Turn On/Off - default is On
@@ -58,17 +42,52 @@ Could be used with different profiles. Like `Debug` and `CI` is `On` while `Rele
 #endif
 ```
 
-## Release notes
-Available from `v2.0.0`, https://github.com/danielwertheim/ensure.that/blob/master/ReleaseNotes.md
+### Using extension methods (OBSOLETE)
+Since `v7.0.0` the `Ensure.That` flavour below has been marked as **`Obsolete`** with a warning and will be removed in the next major version (`v8.0.0`).
+
+This was the initial way of doing validation, but **this IS NOT my prefered way**. Why? Well because it will
+create a new instance of `Param<T>` wrapping the value being passed, so that the context-aware extension
+methods can target correct type. *Imagine doing this in a loop on a multitude of instances...*
+
+```csharp
+//PLEASE NOTE. This will be depricated in v8.0.0 in favour for EnsureArg.Is...()
+
+Ensure.That(myString).IsNotNullOrWhiteSpace();
+Ensure.That(myString, nameof(myArg)).IsNotNullOrWhiteSpace();
+```
+
+```csharp
+//PLEASE NOTE. This will be depricated in v8.0.0 in favour for EnsureArg.Is...()
+
+Ensure
+    .That(myString, nameof(myString))
+    .WithExtraMessageOf(p => "Some more details")
+    .IsNotNullOrWhiteSpace();
+```
+
+```csharp
+//PLEASE NOTE. This will be depricated in v8.0.0 in favour for EnsureArg.Is...()
+
+Ensure
+    .That(myString, nameof(myString))
+    .WithException(param => new Exception())
+    .IsNotNullOrEmpty();
+```
+
+## Samples
+The Samples above just uses `string` validation, but there are more. E.g.:
+
+* Strings
+* Numerics
+* Collections (arrays, lists, collections, dictionaries)
+* Booleans
+* Guids
 
 # Get up and running with the source code #
-The main solution is maintained using Visual Studio 2015.
+The main solution is maintained using Visual Studio 2017.
 
 Unit-tests are written using `xUnit` and there are no integration tests, hence you should just be able to: `Pull`-`Compile`&`Run the tests`:
 
 ```
 dotnet test
 ```
-
-## Issues, questions, etc.
-So you have issues or questions... Great! That means someone is using it. Use the issues function here at the project page or contact me via mail: firstname@lastname.se; or Twitter: [@danielwertheim](https://twitter.com/danielwertheim)

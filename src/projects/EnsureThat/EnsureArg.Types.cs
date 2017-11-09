@@ -1,140 +1,98 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Reflection;
-using EnsureThat.Extensions;
+using EnsureThat.Annotations;
+using JetBrains.Annotations;
 
 namespace EnsureThat
 {
     public static partial class EnsureArg
     {
-        private static class Types
-        {
-            internal static readonly Type IntType = typeof(int);
-
-            internal static readonly Type ShortType = typeof(short);
-
-            internal static readonly Type DecimalType = typeof(decimal);
-
-            internal static readonly Type DoubleType = typeof(double);
-
-            internal static readonly Type FloatType = typeof(float);
-
-            internal static readonly Type BoolType = typeof(bool);
-
-            internal static readonly Type DateTimeType = typeof(DateTime);
-
-            internal static readonly Type StringType = typeof(string);
-        }
+        [DebuggerStepThrough]
+        public static Type IsInt([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsInt(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsInt(Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.IntType, paramName);
+        public static T IsInt<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsInt(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsInt<T>(T param, string paramName = Param.DefaultName) => IsOfType(param, Types.IntType, paramName);
+        public static Type IsShort([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsShort(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsShort(Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.ShortType, paramName);
+        public static T IsShort<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsShort(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsShort<T>(T param, string paramName = Param.DefaultName) => IsOfType(param, Types.ShortType, paramName);
+        public static Type IsDecimal([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsDecimal(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsDecimal(Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.DecimalType, paramName);
+        public static T IsDecimal<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsDecimal(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsDecimal<T>(T param, string paramName = Param.DefaultName) => IsOfType(param, Types.DecimalType, paramName);
+        public static Type IsDouble([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsDouble(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsDouble(Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.DoubleType, paramName);
+        public static T IsDouble<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsDouble(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsDouble<T>(T param, string paramName = Param.DefaultName) => IsOfType(param, Types.DoubleType, paramName);
+        public static Type IsFloat([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsFloat(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsFloat(Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.FloatType, paramName);
+        public static T IsFloat<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsFloat(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsFloat<T>(T param, string paramName = Param.DefaultName) => IsOfType(param, Types.FloatType, paramName);
+        public static Type IsBool([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsBool(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsBool(Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.BoolType, paramName);
+        public static T IsBool<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsBool(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsBool<T>(T param, string paramName = Param.DefaultName) => IsOfType(param, Types.BoolType, paramName);
+        public static Type IsDateTime([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsDateTime(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsDateTime(Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.DateTimeType, paramName);
+        public static T IsDateTime<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsDateTime(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsDateTime<T>(T param, string paramName = Param.DefaultName) => IsOfType(param, Types.DateTimeType, paramName);
+        public static Type IsString([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsString(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsString(Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.StringType, paramName);
+        public static T IsString<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsString(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsString<T>(T param, string paramName = Param.DefaultName) => IsOfType(param, Types.StringType, paramName);
+        public static T IsOfType<T>([NotNull, ValidatedNotNull] T param, Type expectedType, string paramName = Param.DefaultName)
+            => Ensure.Type.IsOfType(param, expectedType, paramName);
 
         [DebuggerStepThrough]
-        public static void IsOfType<T>(T param, Type expectedType, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            IsOfType(param.GetType(), expectedType, paramName);
-        }
+        public static Type IsOfType([NotNull, ValidatedNotNull]Type param, Type expectedType, string paramName = Param.DefaultName)
+            => Ensure.Type.IsOfType(param, expectedType, paramName);
 
         [DebuggerStepThrough]
-        public static void IsOfType(Type param, Type expectedType, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            if (param != expectedType)
-                throw new ArgumentException(ExceptionMessages.Types_IsOfType_Failed.Inject(expectedType.FullName, param.FullName), paramName);
-        }
+        public static T IsNotOfType<T>([NotNull, ValidatedNotNull]T param, Type nonExpectedType, string paramName = Param.DefaultName)
+            => Ensure.Type.IsNotOfType(param, nonExpectedType, paramName);
 
         [DebuggerStepThrough]
-        public static void IsNotOfType<T>(T param, Type nonExpectedType, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            IsNotOfType(param.GetType(), nonExpectedType, paramName);
-        }
+        public static Type IsNotOfType([NotNull, ValidatedNotNull]Type param, Type nonExpectedType, string paramName = Param.DefaultName)
+            => Ensure.Type.IsNotOfType(param, nonExpectedType, paramName);
 
         [DebuggerStepThrough]
-        public static void IsNotOfType(Type param, Type nonExpectedType, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            if (param == nonExpectedType)
-                throw new ArgumentException(ExceptionMessages.Types_IsNotOfType_Failed.Inject(nonExpectedType.FullName), paramName);
-        }
+        public static T IsClass<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsClass(param, paramName);
 
         [DebuggerStepThrough]
-        public static void IsClass<T>(T param, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            if (param == null)
-                throw new ArgumentNullException(paramName, ExceptionMessages.Types_IsClass_Failed_Null);
-
-            IsClass(param.GetType(), paramName);
-        }
-
-        [DebuggerStepThrough]
-        public static void IsClass(Type param, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            if (param == null)
-                throw new ArgumentNullException(paramName, ExceptionMessages.Types_IsClass_Failed_Null);
-
-            if (!param.GetTypeInfo().IsClass)
-                throw new ArgumentException(ExceptionMessages.Types_IsClass_Failed.Inject(param.FullName), paramName);
-        }
+        public static Type IsClass([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName)
+            => Ensure.Type.IsClass(param, paramName);
     }
 }

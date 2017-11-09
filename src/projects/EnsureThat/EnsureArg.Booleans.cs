@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics;
 
 namespace EnsureThat
@@ -6,27 +5,11 @@ namespace EnsureThat
     public static partial class EnsureArg
     {
         [DebuggerStepThrough]
-        public static void IsTrue(bool value, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            if (!value)
-                throw new ArgumentException(
-                    ExceptionMessages.Booleans_IsTrueFailed,
-                    paramName);
-        }
+        public static bool IsTrue(bool value, string paramName = Param.DefaultName)
+            => Ensure.Bool.IsTrue(value, paramName);
 
         [DebuggerStepThrough]
-        public static void IsFalse(bool value, string paramName = Param.DefaultName)
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            if (value)
-                throw new ArgumentException(
-                    ExceptionMessages.Booleans_IsFalseFailed,
-                    paramName);
-        }
+        public static bool IsFalse(bool value, string paramName = Param.DefaultName)
+            => Ensure.Bool.IsFalse(value, paramName);
     }
 }

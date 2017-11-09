@@ -1,82 +1,36 @@
 ﻿using System;
 using System.Diagnostics;
-using EnsureThat.Extensions;
 
 namespace EnsureThat
 {
     public static partial class EnsureArg
     {
         [DebuggerStepThrough]
-        public static void Is<T>(T param, T expected, string paramName = Param.DefaultName) where T : IComparable<T>
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            if (!param.IsEq(expected))
-                throw new ArgumentException(ExceptionMessages.Comp_Is_Failed.Inject(param, expected), paramName);
-        }
+        public static T Is<T>(T value, T expected, string paramName = Param.DefaultName) where T : IComparable<T>
+            => Ensure.Comparable.Is(value, expected, paramName);
 
         [DebuggerStepThrough]
-        public static void IsNot<T>(T param, T expected, string paramName = Param.DefaultName) where T : IComparable<T>
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            if (param.IsEq(expected))
-                throw new ArgumentException(ExceptionMessages.Comp_IsNot_Failed.Inject(param, expected), paramName);
-        }
+        public static T IsNot<T>(T value, T expected, string paramName = Param.DefaultName) where T : IComparable<T>
+            => Ensure.Comparable.IsNot(value, expected, paramName);
 
         [DebuggerStepThrough]
-        public static void IsLt<T>(T param, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            if (!param.IsLt(limit))
-                throw new ArgumentOutOfRangeException(paramName, param, ExceptionMessages.Comp_IsNotLt.Inject(param, limit));
-        }
+        public static T IsLt<T>(T value, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
+            => Ensure.Comparable.IsLt(value, limit, paramName);
 
         [DebuggerStepThrough]
-        public static void IsLte<T>(T param, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            if (param.IsGt(limit))
-                throw new ArgumentOutOfRangeException(paramName, param, ExceptionMessages.Comp_IsNotLte.Inject(param, limit));
-        }
+        public static T IsLte<T>(T value, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
+            => Ensure.Comparable.IsLte(value, limit, paramName);
 
         [DebuggerStepThrough]
-        public static void IsGt<T>(T param, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            if (!param.IsGt(limit))
-                throw new ArgumentOutOfRangeException(paramName, param, ExceptionMessages.Comp_IsNotGt.Inject(param, limit));
-        }
+        public static T IsGt<T>(T value, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
+            => Ensure.Comparable.IsGt(value, limit, paramName);
 
         [DebuggerStepThrough]
-        public static void IsGte<T>(T param, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            if (param.IsLt(limit))
-                throw new ArgumentOutOfRangeException(paramName, param, ExceptionMessages.Comp_IsNotGte.Inject(param, limit));
-        }
+        public static T IsGte<T>(T value, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
+            => Ensure.Comparable.IsGte(value, limit, paramName);
 
         [DebuggerStepThrough]
-        public static void IsInRange<T>(T param, T min, T max, string paramName = Param.DefaultName) where T : IComparable<T>
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            if (param.IsLt(min))
-                throw new ArgumentOutOfRangeException(paramName, param, ExceptionMessages.Comp_IsNotInRange_ToLow.Inject(param, min));
-
-            if (param.IsGt(max))
-                throw new ArgumentOutOfRangeException(paramName, param, ExceptionMessages.Comp_IsNotInRange_ToHigh.Inject(param, max));
-        }
+        public static T IsInRange<T>(T value, T min, T max, string paramName = Param.DefaultName) where T : IComparable<T>
+            => Ensure.Comparable.IsInRange(value, min, max, paramName);
     }
 }
