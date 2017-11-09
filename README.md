@@ -1,7 +1,7 @@
 # Ensure.That
 Ensure.That is a simple guard clause argument validation lib, that helps you with validation of your arguments.
 
-It's developed for .NET Standard 1.1 and .NET Standard 2.0 and available on [NuGet](https://www.nuget.org/packages/ensure.that/).
+It's developed for .NET 4.5.1 as well as .NET Standard 1.1 and .NET Standard 2.0 and available via [NuGet](https://www.nuget.org/packages/ensure.that/).
 
 ### Using static simple methods
 The `EnsureArg` flavour was added in the `v5.0.0` release and **this is my prefered way**, because it has less overhead (read more below) and is the API that will continue to exist.
