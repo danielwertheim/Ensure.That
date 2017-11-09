@@ -8,6 +8,8 @@ Upcoming changes (unless someone realy protests).
 
 **[New]:** Multiple target frameworks: `net4.5.1` and `netstandard1.1` and `netstandard2.0`
 
+**[New]:** Contextual validation, e.g. `Ensure.String.IsNotNull(myString, nameof(myString));`
+
 **[New]:** When using `EnsureArg`, the param being evaluated is now decorated with JetBrains `NotNullAttribute` and custom `ValidatedNotNull` (to get rid of `CA1062`).
 
 **[New]:** `Any` for dictionaries.
