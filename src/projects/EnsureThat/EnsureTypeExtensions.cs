@@ -27,46 +27,46 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static void IsInt(this TypeParam param) => IsOfType(param, Types.IntType);
+        public static void IsInt(this Param<Type> param) => IsOfType(param, Types.IntType);
 
         [DebuggerStepThrough]
-        public static void IsShort(this TypeParam param) => IsOfType(param, Types.ShortType);
+        public static void IsShort(this Param<Type> param) => IsOfType(param, Types.ShortType);
 
         [DebuggerStepThrough]
-        public static void IsDecimal(this TypeParam param) => IsOfType(param, Types.DecimalType);
+        public static void IsDecimal(this Param<Type> param) => IsOfType(param, Types.DecimalType);
 
         [DebuggerStepThrough]
-        public static void IsDouble(this TypeParam param) => IsOfType(param, Types.DoubleType);
+        public static void IsDouble(this Param<Type> param) => IsOfType(param, Types.DoubleType);
 
         [DebuggerStepThrough]
-        public static void IsFloat(this TypeParam param) => IsOfType(param, Types.FloatType);
+        public static void IsFloat(this Param<Type> param) => IsOfType(param, Types.FloatType);
 
         [DebuggerStepThrough]
-        public static void IsBool(this TypeParam param) => IsOfType(param, Types.BoolType);
+        public static void IsBool(this Param<Type> param) => IsOfType(param, Types.BoolType);
 
         [DebuggerStepThrough]
-        public static void IsDateTime(this TypeParam param) => IsOfType(param, Types.DateTimeType);
+        public static void IsDateTime(this Param<Type> param) => IsOfType(param, Types.DateTimeType);
 
         [DebuggerStepThrough]
-        public static void IsString(this TypeParam param) => IsOfType(param, Types.StringType);
+        public static void IsString(this Param<Type> param) => IsOfType(param, Types.StringType);
 
         [DebuggerStepThrough]
-        public static void IsOfType(this TypeParam param, Type type)
+        public static void IsOfType(this Param<Type> param, Type type)
         {
             if (!Ensure.IsActive)
                 return;
 
-            if (param.Type != type)
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Types_IsOfType_Failed.Inject(type.FullName, param.Type.FullName));
+            if (param.Value != type)
+                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Types_IsOfType_Failed.Inject(type.FullName, param.Value.FullName));
         }
 
         [DebuggerStepThrough]
-        public static void IsNotOfType(this TypeParam param, Type type)
+        public static void IsNotOfType(this Param<Type> param, Type type)
         {
             if (!Ensure.IsActive)
                 return;
 
-            if (param.Type == type)
+            if (param.Value == type)
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Types_IsNotOfType_Failed.Inject(type.FullName));
         }
 
@@ -83,17 +83,6 @@ namespace EnsureThat
             if (!param.Value.GetTypeInfo().IsClass)
                 throw ExceptionFactory.CreateForParamValidation(param,
                     ExceptionMessages.Types_IsClass_Failed.Inject(param.Value.FullName));
-        }
-
-        [DebuggerStepThrough]
-        public static void IsClass(this TypeParam param)
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            if (!param.Type.GetTypeInfo().IsClass)
-                throw ExceptionFactory.CreateForParamValidation(param,
-                    ExceptionMessages.Types_IsClass_Failed.Inject(param.Type.FullName));
         }
     }
 }
