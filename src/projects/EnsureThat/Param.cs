@@ -11,13 +11,19 @@ namespace EnsureThat
     {
         public readonly string Name;
         public readonly T Value;
-        public Func<Param<T>, string> ExtraMessageFn;
-        public Func<Param<T>, Exception> ExceptionFn;
+        public readonly Func<Param<T>, string> ExtraMessageFn;
+        public readonly Func<Param<T>, Exception> ExceptionFn;
 
-        public Param(string name, T value)
+        public Param(
+            string name,
+            T value,
+            Func<Param<T>, string> extraMessageFn = null,
+            Func<Param<T>, Exception> exceptionFn = null)
         {
             Name = name;
             Value = value;
+            ExtraMessageFn = extraMessageFn;
+            ExceptionFn = exceptionFn;
         }
     }
 }
