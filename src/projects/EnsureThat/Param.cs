@@ -7,7 +7,7 @@ namespace EnsureThat
         public const string DefaultName = "";
     }
 
-    public sealed class Param<T>
+    public struct Param<T>
     {
         public readonly string Name;
         public readonly T Value;
