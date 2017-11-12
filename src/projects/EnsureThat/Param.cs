@@ -2,26 +2,21 @@ using System;
 
 namespace EnsureThat
 {
-    public abstract class Param
+    public static class Param
     {
         public const string DefaultName = "";
-
-        public readonly string Name;
-
-        protected Param(string name)
-        {
-            Name = name ?? DefaultName;
-        }
     }
 
-    public class Param<T> : Param
+    public sealed class Param<T>
     {
+        public readonly string Name;
         public readonly T Value;
         public Func<Param<T>, string> ExtraMessageFn;
         public Func<Param<T>, Exception> ExceptionFn;
 
-        public Param(string name, T value) : base(name)
+        public Param(string name, T value)
         {
+            Name = name;
             Value = value;
         }
     }
