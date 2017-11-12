@@ -29,55 +29,55 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public Type IsInt([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.IntType, paramName);
+        public Type IsInt([NotNull, ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.IntType, paramName);
 
         [DebuggerStepThrough]
-        public T IsInt<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName) => IsOfType(param, Types.IntType, paramName);
+        public T IsInt<T>([NotNull, ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.IntType, paramName);
 
         [DebuggerStepThrough]
-        public Type IsShort([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.ShortType, paramName);
+        public Type IsShort([NotNull, ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.ShortType, paramName);
 
         [DebuggerStepThrough]
-        public T IsShort<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName) => IsOfType(param, Types.ShortType, paramName);
+        public T IsShort<T>([NotNull, ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.ShortType, paramName);
 
         [DebuggerStepThrough]
-        public Type IsDecimal([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.DecimalType, paramName);
+        public Type IsDecimal([NotNull, ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.DecimalType, paramName);
 
         [DebuggerStepThrough]
-        public T IsDecimal<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName) => IsOfType(param, Types.DecimalType, paramName);
+        public T IsDecimal<T>([NotNull, ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.DecimalType, paramName);
 
         [DebuggerStepThrough]
-        public Type IsDouble([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.DoubleType, paramName);
+        public Type IsDouble([NotNull, ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.DoubleType, paramName);
 
         [DebuggerStepThrough]
-        public T IsDouble<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName) => IsOfType(param, Types.DoubleType, paramName);
+        public T IsDouble<T>([NotNull, ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.DoubleType, paramName);
 
         [DebuggerStepThrough]
-        public Type IsFloat([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.FloatType, paramName);
+        public Type IsFloat([NotNull, ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.FloatType, paramName);
 
         [DebuggerStepThrough]
-        public T IsFloat<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName) => IsOfType(param, Types.FloatType, paramName);
+        public T IsFloat<T>([NotNull, ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.FloatType, paramName);
 
         [DebuggerStepThrough]
-        public Type IsBool([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.BoolType, paramName);
+        public Type IsBool([NotNull, ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.BoolType, paramName);
 
         [DebuggerStepThrough]
-        public T IsBool<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName) => IsOfType(param, Types.BoolType, paramName);
+        public T IsBool<T>([NotNull, ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.BoolType, paramName);
 
         [DebuggerStepThrough]
-        public Type IsDateTime([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.DateTimeType, paramName);
+        public Type IsDateTime([NotNull, ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.DateTimeType, paramName);
 
         [DebuggerStepThrough]
-        public T IsDateTime<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName) => IsOfType(param, Types.DateTimeType, paramName);
+        public T IsDateTime<T>([NotNull, ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.DateTimeType, paramName);
 
         [DebuggerStepThrough]
-        public Type IsString([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName) => IsOfType(param, Types.StringType, paramName);
+        public Type IsString([NotNull, ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.StringType, paramName);
 
         [DebuggerStepThrough]
-        public T IsString<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName) => IsOfType(param, Types.StringType, paramName);
+        public T IsString<T>([NotNull, ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName) => IsOfType(param, Types.StringType, paramName);
 
         [DebuggerStepThrough]
-        public T IsOfType<T>([NotNull, ValidatedNotNull]T param, Type expectedType, string paramName = Param.DefaultName)
+        public T IsOfType<T>([NotNull, ValidatedNotNull]T param, Type expectedType, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return param;
@@ -90,7 +90,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public Type IsOfType([NotNull, ValidatedNotNull]Type param, Type expectedType, string paramName = Param.DefaultName)
+        public Type IsOfType([NotNull, ValidatedNotNull]Type param, Type expectedType, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return param;
@@ -105,7 +105,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T IsNotOfType<T>([NotNull, ValidatedNotNull]T param, Type nonExpectedType, string paramName = Param.DefaultName)
+        public T IsNotOfType<T>([NotNull, ValidatedNotNull]T param, Type nonExpectedType, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return param;
@@ -118,7 +118,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public Type IsNotOfType([NotNull, ValidatedNotNull]Type param, Type nonExpectedType, string paramName = Param.DefaultName)
+        public Type IsNotOfType([NotNull, ValidatedNotNull]Type param, Type nonExpectedType, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return param;
@@ -133,7 +133,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T IsClass<T>([NotNull, ValidatedNotNull]T param, string paramName = Param.DefaultName)
+        public T IsClass<T>([NotNull, ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return param;
@@ -147,7 +147,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public Type IsClass([NotNull, ValidatedNotNull]Type param, string paramName = Param.DefaultName)
+        public Type IsClass([NotNull, ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return param;

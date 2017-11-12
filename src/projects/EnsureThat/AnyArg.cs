@@ -8,7 +8,7 @@ namespace EnsureThat
     public class AnyArg
     {
         [DebuggerStepThrough]
-        public T IsNotNull<T>([NoEnumeration, NotNull, ValidatedNotNull] T value, string paramName = Param.DefaultName)
+        public T IsNotNull<T>([NoEnumeration, NotNull, ValidatedNotNull] T value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -20,7 +20,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T? IsNotNull<T>(T? value, string paramName = Param.DefaultName) where T : struct
+        public T? IsNotNull<T>(T? value, [InvokerParameterName] string paramName = Param.DefaultName) where T : struct
         {
             if (!Ensure.IsActive)
                 return value;
@@ -32,7 +32,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T IsNotDefault<T>(T value, string paramName = Param.DefaultName) where T : struct
+        public T IsNotDefault<T>(T value, [InvokerParameterName] string paramName = Param.DefaultName) where T : struct
         {
             if (!Ensure.IsActive)
                 return value;
