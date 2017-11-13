@@ -29,7 +29,7 @@ namespace UnitTests
             var param = Ensure.ThatTypeFor("My string");
 
             Assert.Equal(Param.DefaultName, param.Name);
-            Assert.Equal(typeof(string), param.Type);
+            Assert.Equal(typeof(string), param.Value);
         }
 
         [Fact]
@@ -38,7 +38,7 @@ namespace UnitTests
             var param = Ensure.ThatTypeFor("My string", "theString");
 
             Assert.Equal("theString", param.Name);
-            Assert.Equal(typeof(string), param.Type);
+            Assert.Equal(typeof(string), param.Value);
         }
 
         [Fact]
