@@ -12,7 +12,7 @@ namespace EnsureThat
     public class CollectionArg
     {
         [DebuggerStepThrough]
-        public T HasItems<T>([NotNull, ValidatedNotNull]T value, string paramName = Param.DefaultName) where T : ICollection
+        public T HasItems<T>([NotNull, ValidatedNotNull]T value, [InvokerParameterName] string paramName = Param.DefaultName) where T : ICollection
         {
             if (!Ensure.IsActive)
                 return value;
@@ -28,7 +28,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public ICollection<T> HasItems<T>([NotNull, ValidatedNotNull]ICollection<T> value, string paramName = Param.DefaultName)
+        public ICollection<T> HasItems<T>([NotNull, ValidatedNotNull]ICollection<T> value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -44,7 +44,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public IReadOnlyCollection<T> HasItems<T>([NotNull, ValidatedNotNull]IReadOnlyCollection<T> value, string paramName = Param.DefaultName)
+        public IReadOnlyCollection<T> HasItems<T>([NotNull, ValidatedNotNull]IReadOnlyCollection<T> value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -60,7 +60,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public IReadOnlyList<T> HasItems<T>([NotNull, ValidatedNotNull]IReadOnlyList<T> value, string paramName = Param.DefaultName)
+        public IReadOnlyList<T> HasItems<T>([NotNull, ValidatedNotNull]IReadOnlyList<T> value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -76,7 +76,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public ISet<T> HasItems<T>([NotNull, ValidatedNotNull]ISet<T> value, string paramName = Param.DefaultName)
+        public ISet<T> HasItems<T>([NotNull, ValidatedNotNull]ISet<T> value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -92,7 +92,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T[] HasItems<T>([NotNull, ValidatedNotNull]T[] value, string paramName = Param.DefaultName)
+        public T[] HasItems<T>([NotNull, ValidatedNotNull]T[] value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -108,7 +108,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public IList<T> HasItems<T>([NotNull, ValidatedNotNull] IList<T> value, string paramName = Param.DefaultName)
+        public IList<T> HasItems<T>([NotNull, ValidatedNotNull] IList<T> value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -124,7 +124,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public IDictionary<TKey, TValue> HasItems<TKey, TValue>([NotNull, ValidatedNotNull]IDictionary<TKey, TValue> value, string paramName = Param.DefaultName)
+        public IDictionary<TKey, TValue> HasItems<TKey, TValue>([NotNull, ValidatedNotNull]IDictionary<TKey, TValue> value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -140,7 +140,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T[] SizeIs<T>([NotNull, ValidatedNotNull]T[] value, int expected, string paramName = Param.DefaultName)
+        public T[] SizeIs<T>([NotNull, ValidatedNotNull]T[] value, int expected, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -156,7 +156,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T[] SizeIs<T>([NotNull, ValidatedNotNull]T[] value, long expected, string paramName = Param.DefaultName)
+        public T[] SizeIs<T>([NotNull, ValidatedNotNull]T[] value, long expected, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -172,7 +172,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T SizeIs<T>([NotNull, ValidatedNotNull]T value, int expected, string paramName = Param.DefaultName) where T : ICollection
+        public T SizeIs<T>([NotNull, ValidatedNotNull]T value, int expected, [InvokerParameterName] string paramName = Param.DefaultName) where T : ICollection
         {
             if (!Ensure.IsActive)
                 return value;
@@ -188,7 +188,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T SizeIs<T>([NotNull, ValidatedNotNull]T value, long expected, string paramName = Param.DefaultName) where T : ICollection
+        public T SizeIs<T>([NotNull, ValidatedNotNull]T value, long expected, [InvokerParameterName] string paramName = Param.DefaultName) where T : ICollection
         {
             if (!Ensure.IsActive)
                 return value;
@@ -204,7 +204,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public ICollection<T> SizeIs<T>([NotNull, ValidatedNotNull]ICollection<T> value, int expected, string paramName = Param.DefaultName)
+        public ICollection<T> SizeIs<T>([NotNull, ValidatedNotNull]ICollection<T> value, int expected, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -220,7 +220,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public ICollection<T> SizeIs<T>([NotNull, ValidatedNotNull]ICollection<T> value, long expected, string paramName = Param.DefaultName)
+        public ICollection<T> SizeIs<T>([NotNull, ValidatedNotNull]ICollection<T> value, long expected, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -236,7 +236,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public IList<T> SizeIs<T>([NotNull, ValidatedNotNull] IList<T> value, int expected, string paramName = Param.DefaultName)
+        public IList<T> SizeIs<T>([NotNull, ValidatedNotNull] IList<T> value, int expected, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -252,7 +252,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public IList<T> SizeIs<T>([NotNull, ValidatedNotNull]IList<T> value, long expected, string paramName = Param.DefaultName)
+        public IList<T> SizeIs<T>([NotNull, ValidatedNotNull]IList<T> value, long expected, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -268,7 +268,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public IDictionary<TKey, TValue> SizeIs<TKey, TValue>([NotNull, ValidatedNotNull]IDictionary<TKey, TValue> value, int expected, string paramName = Param.DefaultName)
+        public IDictionary<TKey, TValue> SizeIs<TKey, TValue>([NotNull, ValidatedNotNull]IDictionary<TKey, TValue> value, int expected, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -284,7 +284,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public IDictionary<TKey, TValue> SizeIs<TKey, TValue>([NotNull, ValidatedNotNull]IDictionary<TKey, TValue> value, long expected, string paramName = Param.DefaultName)
+        public IDictionary<TKey, TValue> SizeIs<TKey, TValue>([NotNull, ValidatedNotNull]IDictionary<TKey, TValue> value, long expected, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -300,7 +300,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public IDictionary<TKey, TValue> ContainsKey<TKey, TValue>([NotNull, ValidatedNotNull]IDictionary<TKey, TValue> value, TKey expectedKey, string paramName = Param.DefaultName)
+        public IDictionary<TKey, TValue> ContainsKey<TKey, TValue>([NotNull, ValidatedNotNull]IDictionary<TKey, TValue> value, TKey expectedKey, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -316,7 +316,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public IList<T> HasAny<T>([NotNull, ValidatedNotNull]IList<T> value, Func<T, bool> predicate, string paramName = Param.DefaultName)
+        public IList<T> HasAny<T>([NotNull, ValidatedNotNull]IList<T> value, Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -330,7 +330,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public ICollection<T> HasAny<T>([NotNull, ValidatedNotNull]ICollection<T> value, Func<T, bool> predicate, string paramName = Param.DefaultName)
+        public ICollection<T> HasAny<T>([NotNull, ValidatedNotNull]ICollection<T> value, Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -344,7 +344,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T[] HasAny<T>([NotNull, ValidatedNotNull]T[] value, Func<T, bool> predicate, string paramName = Param.DefaultName)
+        public T[] HasAny<T>([NotNull, ValidatedNotNull]T[] value, Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;

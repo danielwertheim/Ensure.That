@@ -1,12 +1,13 @@
 using System;
 using System.Diagnostics;
+using JetBrains.Annotations;
 
 namespace EnsureThat
 {
     public class BoolArg
     {
         [DebuggerStepThrough]
-        public bool IsTrue(bool value, string paramName = Param.DefaultName)
+        public bool IsTrue(bool value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -20,7 +21,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public bool IsFalse(bool value, string paramName = Param.DefaultName)
+        public bool IsFalse(bool value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
