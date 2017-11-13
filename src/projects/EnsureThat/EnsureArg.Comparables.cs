@@ -6,12 +6,12 @@ namespace EnsureThat
     public static partial class EnsureArg
     {
         [DebuggerStepThrough]
-        public static T Is<T>(T value, T expected, string paramName = Param.DefaultName) where T : IComparable<T>
-            => Ensure.Comparable.Is(value, expected, paramName);
+        public static T Is<T>(T value, T expected, string paramName = Param.DefaultName) where T : IEquatable<T>
+            => Ensure.Equatable.Is(value, expected, paramName);
 
         [DebuggerStepThrough]
-        public static T IsNot<T>(T value, T expected, string paramName = Param.DefaultName) where T : IComparable<T>
-            => Ensure.Comparable.IsNot(value, expected, paramName);
+        public static T IsNot<T>(T value, T expected, string paramName = Param.DefaultName) where T : IEquatable<T>
+            => Ensure.Equatable.IsNot(value, expected, paramName);
 
         [DebuggerStepThrough]
         public static T IsLt<T>(T value, T limit, string paramName = Param.DefaultName) where T : IComparable<T>

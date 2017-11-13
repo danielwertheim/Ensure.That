@@ -20,6 +20,8 @@ namespace EnsureThat
 
         public static ComparableArg Comparable { get; } = new ComparableArg();
 
+        public static EquatableArg Equatable { get; } = new EquatableArg();
+
         public static GuidArg Guid { get; } = new GuidArg();
 
         public static StringArg String { get; } = new StringArg();
