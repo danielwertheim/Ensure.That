@@ -69,7 +69,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public string Matches(string value, string match, [InvokerParameterName] string paramName = Param.DefaultName)
+        public string Matches(string value, [RegexPattern] string match, [InvokerParameterName] string paramName = Param.DefaultName)
             => Matches(value, new Regex(match), paramName);
 
         [DebuggerStepThrough]

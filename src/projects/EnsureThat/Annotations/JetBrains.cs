@@ -33,6 +33,12 @@ using System;
 namespace JetBrains.Annotations
 {
     /// <summary>
+    /// Indicates that parameter is regular expression pattern.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Parameter)]
+    internal sealed class RegexPatternAttribute : Attribute { }
+
+    /// <summary>
     /// Indicates that IEnumerable, passed as parameter, is not enumerated.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter)]
