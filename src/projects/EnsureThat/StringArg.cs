@@ -42,8 +42,8 @@ namespace EnsureThat
         {
             if (!Ensure.IsActive)
                 return value;
-
-            if (string.Empty.Equals(value))
+            
+            if (value?.Length == 0)
                 throw new ArgumentException(ExceptionMessages.Strings_IsNotEmpty_Failed, paramName);
 
             return value;
