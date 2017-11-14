@@ -25,7 +25,7 @@ namespace EnsureThat
             => Ensure.String.HasLengthBetween(value, minLength, maxLength, paramName);
 
         [DebuggerStepThrough]
-        public static string Matches(string value, string match, string paramName = Param.DefaultName)
+        public static string Matches(string value, [RegexPattern] string match, string paramName = Param.DefaultName)
             => Ensure.String.Matches(value, match, paramName);
 
         [DebuggerStepThrough]
