@@ -1,9 +1,12 @@
 using System;
+using JetBrains.Annotations;
 
 namespace EnsureThat
 {
+    // TODO: these will all be [Pure] when/if Param is immutable
     public static class ParamExtensions
     {
+        [Pure]
         public static Param<T> And<T>(this Param<T> param)
         {
             return param;

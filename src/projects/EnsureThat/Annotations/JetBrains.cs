@@ -51,4 +51,23 @@ namespace JetBrains.Annotations
         AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
         AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
     internal sealed class NotNullAttribute : Attribute { }
+    
+    /// <summary>
+    /// Indicates that a method does not make any observable state changes.
+    /// The same as <c>System.Diagnostics.Contracts.PureAttribute</c>.
+    /// </summary>
+    /// <example><code>
+    /// [Pure] int Multiply(int x, int y) => x * y;
+    /// 
+    /// void M() {
+    ///   Multiply(123, 42); // Waring: Return value of pure method is not used
+    /// }
+    /// </code></example>
+    /// <remarks>
+    /// <c>System.Diagnostics.Contracts.PureAttribute</c> is not available for NETSTANDARD1_1.
+    /// For consistency, using this version of the attribute for all profiles rather than 
+    /// just NETSTANDARD1_1.
+    /// </remarks>
+    [AttributeUsage(AttributeTargets.Method)]
+    internal sealed class PureAttribute : Attribute { }
 }
