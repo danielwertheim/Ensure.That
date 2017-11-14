@@ -165,7 +165,7 @@ namespace EnsureThat
 
 #if NETSTANDARD1_1
             if (value.Length != expected)
-# else
+#else
             if (value.LongLength != expected)
 #endif
             throw new ArgumentException(
