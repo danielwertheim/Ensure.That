@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using EnsureThat.Extensions;
+using JetBrains.Annotations;
 
 namespace EnsureThat
 {
@@ -56,7 +57,7 @@ namespace EnsureThat
         public static void Matches(this Param<string> param, string match) => Matches(param, new Regex(match));
 
         [DebuggerStepThrough]
-        public static void Matches(this Param<string> param, Regex match)
+        public static void Matches(this Param<string> param, [NotNull] Regex match)
         {
             if (!match.IsMatch(param.Value))
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Strings_Matches_Failed.Inject(param.Value, match));

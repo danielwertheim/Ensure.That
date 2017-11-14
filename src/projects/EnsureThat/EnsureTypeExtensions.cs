@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 using EnsureThat.Extensions;
+using JetBrains.Annotations;
 
 namespace EnsureThat
 {
@@ -9,20 +10,28 @@ namespace EnsureThat
     {
         private static class Types
         {
+            [NotNull]
             internal static readonly Type IntType = typeof(int);
 
+            [NotNull]
             internal static readonly Type ShortType = typeof(short);
 
+            [NotNull]
             internal static readonly Type DecimalType = typeof(decimal);
 
+            [NotNull]
             internal static readonly Type DoubleType = typeof(double);
 
+            [NotNull]
             internal static readonly Type FloatType = typeof(float);
 
+            [NotNull]
             internal static readonly Type BoolType = typeof(bool);
 
+            [NotNull]
             internal static readonly Type DateTimeType = typeof(DateTime);
 
+            [NotNull]
             internal static readonly Type StringType = typeof(string);
         }
 
@@ -51,7 +60,7 @@ namespace EnsureThat
         public static void IsString(this TypeParam param) => IsOfType(param, Types.StringType);
 
         [DebuggerStepThrough]
-        public static void IsOfType(this TypeParam param, Type type)
+        public static void IsOfType(this TypeParam param, [NotNull] Type type)
         {
             if (!Ensure.IsActive)
                 return;
@@ -80,7 +89,8 @@ namespace EnsureThat
                 throw ExceptionFactory.CreateForParamNullValidation(param,
                     ExceptionMessages.Types_IsClass_Failed_Null);
 
-            if (!param.Value.GetTypeInfo().IsClass)
+            if (param.Value == null
+                || !param.Value.GetTypeInfo().IsClass)
                 throw ExceptionFactory.CreateForParamValidation(param,
                     ExceptionMessages.Types_IsClass_Failed.Inject(param.Value.FullName));
         }

@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
 using EnsureThat.Extensions;
+using JetBrains.Annotations;
 
 namespace EnsureThat
 {
     public class ComparableArg
     {
+        [NotNull]
         [DebuggerStepThrough]
-        public T Is<T>(T value, T expected, string paramName = Param.DefaultName) where T : IComparable<T>
+        public T Is<T>([NotNull] T value, T expected, string paramName = Param.DefaultName) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
                 return value;
@@ -18,8 +20,9 @@ namespace EnsureThat
             return value;
         }
 
+        [NotNull]
         [DebuggerStepThrough]
-        public T IsNot<T>(T value, T expected, string paramName = Param.DefaultName) where T : IComparable<T>
+        public T IsNot<T>([NotNull] T value, T expected, string paramName = Param.DefaultName) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
                 return value;
@@ -30,8 +33,9 @@ namespace EnsureThat
             return value;
         }
 
+        [NotNull]
         [DebuggerStepThrough]
-        public T IsLt<T>(T value, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
+        public T IsLt<T>([NotNull] T value, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
                 return value;
@@ -42,8 +46,9 @@ namespace EnsureThat
             return value;
         }
 
+        [NotNull]
         [DebuggerStepThrough]
-        public T IsLte<T>(T value, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
+        public T IsLte<T>([NotNull] T value, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
                 return value;
@@ -54,8 +59,9 @@ namespace EnsureThat
             return value;
         }
 
+        [NotNull]
         [DebuggerStepThrough]
-        public T IsGt<T>(T value, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
+        public T IsGt<T>([NotNull] T value, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
                 return value;
@@ -66,8 +72,9 @@ namespace EnsureThat
             return value;
         }
 
+        [NotNull]
         [DebuggerStepThrough]
-        public T IsGte<T>(T value, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
+        public T IsGte<T>([NotNull] T value, T limit, string paramName = Param.DefaultName) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
                 return value;
@@ -78,8 +85,9 @@ namespace EnsureThat
             return value;
         }
 
+        [NotNull]
         [DebuggerStepThrough]
-        public T IsInRange<T>(T value, T min, T max, string paramName = Param.DefaultName) where T : IComparable<T>
+        public T IsInRange<T>([NotNull] T value, T min, T max, string paramName = Param.DefaultName) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
                 return value;
