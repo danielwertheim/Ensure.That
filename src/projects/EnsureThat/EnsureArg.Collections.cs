@@ -106,10 +106,6 @@ namespace EnsureThat
             => Ensure.Collection.Contains(value, item, paramName);
 
         [DebuggerStepThrough]
-        public static ISet<T> Contains<T>([NotNull, ValidatedNotNull]ISet<T> value, T item, string paramName = Param.DefaultName)
-            => Ensure.Collection.Contains(value, item, paramName);
-
-        [DebuggerStepThrough]
         public static T[] Contains<T>([NotNull, ValidatedNotNull]T[] value, T item, string paramName = Param.DefaultName)
             => Ensure.Collection.Contains(value, item, paramName);
     }
