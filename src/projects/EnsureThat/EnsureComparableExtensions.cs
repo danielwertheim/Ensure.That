@@ -1,11 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using EnsureThat.Extensions;
 
 namespace EnsureThat
 {
-    using System.Collections.Generic;
-
     public static class EnsureComparableExtensions
     {
         [DebuggerStepThrough]

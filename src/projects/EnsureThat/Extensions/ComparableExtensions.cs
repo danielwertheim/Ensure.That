@@ -1,9 +1,8 @@
 using System;
+using System.Collections.Generic;
 
 namespace EnsureThat.Extensions
 {
-    using System.Collections.Generic;
-
     internal static class ComparableExtensions
     {
         internal static bool IsLt<T>(this IComparable<T> x, T y) => x.CompareTo(y) < 0;

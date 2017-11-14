@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace EnsureThat
 {
-    using System.Collections.Generic;
-
     public static partial class EnsureArg
     {
         [DebuggerStepThrough]
