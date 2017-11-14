@@ -7,6 +7,7 @@ namespace EnsureThat
 {
     public class AnyArg
     {
+        [NotNull]
         [DebuggerStepThrough]
         public T IsNotNull<T>([NoEnumeration, NotNull, ValidatedNotNull] T value, [InvokerParameterName] string paramName = Param.DefaultName)
         {

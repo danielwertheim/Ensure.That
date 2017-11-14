@@ -5,15 +5,12 @@ namespace EnsureThat
 {
     public static class ExceptionFactory
     {
-        [Pure]
         public static ArgumentException CreateForParamValidation(Param param, string message)
             => new ArgumentException(message, param.Name);
 
-        [Pure]
         public static ArgumentNullException CreateForParamNullValidation(Param param, string message)
             => new ArgumentNullException(param.Name, message);
 
-        [Pure]
         public static Exception CreateForComparableParamValidation<T>(Param<T> param, string message)
         {
             if (param.ExceptionFn != null)
@@ -27,7 +24,6 @@ namespace EnsureThat
                     : string.Concat(message, Environment.NewLine, param.ExtraMessageFn(param)));
         }
 
-        [Pure]
         public static Exception CreateForParamValidation<T>(Param<T> param, string message)
         {
             if (param.ExceptionFn != null)
@@ -40,7 +36,6 @@ namespace EnsureThat
                 param.Name);
         }
 
-        [Pure]
         public static Exception CreateForParamNullValidation<T>(Param<T> param, string message)
         {
             if (param.ExceptionFn != null)

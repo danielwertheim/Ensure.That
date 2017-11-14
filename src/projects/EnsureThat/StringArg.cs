@@ -9,6 +9,7 @@ namespace EnsureThat
 {
     public class StringArg
     {
+        [NotNull]
         [DebuggerStepThrough]
         public string IsNotNullOrWhiteSpace([NotNull, ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
@@ -23,6 +24,7 @@ namespace EnsureThat
             return value;
         }
 
+        [NotNull]
         [DebuggerStepThrough]
         public string IsNotNullOrEmpty([NotNull, ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
@@ -49,6 +51,7 @@ namespace EnsureThat
             return value;
         }
 
+        [NotNull]
         [DebuggerStepThrough]
         public string HasLengthBetween([NotNull, ValidatedNotNull]string value, int minLength, int maxLength, [InvokerParameterName] string paramName = Param.DefaultName)
         {
@@ -73,7 +76,7 @@ namespace EnsureThat
             => Matches(value, new Regex(match), paramName);
 
         [DebuggerStepThrough]
-        public string Matches(string value, Regex match, [InvokerParameterName] string paramName = Param.DefaultName)
+        public string Matches(string value, Regex match, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -84,6 +87,7 @@ namespace EnsureThat
             return value;
         }
 
+        [NotNull]
         [DebuggerStepThrough]
         public string SizeIs([NotNull, ValidatedNotNull]string value, int expected, [InvokerParameterName] string paramName = Param.DefaultName)
         {
@@ -146,6 +150,7 @@ namespace EnsureThat
             return value;
         }
 
+        [NotNull]
         [DebuggerStepThrough]
         public string IsGuid([NotNull, ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
