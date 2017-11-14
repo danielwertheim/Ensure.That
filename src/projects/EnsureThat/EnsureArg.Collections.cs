@@ -96,5 +96,9 @@ namespace EnsureThat
         [DebuggerStepThrough]
         public static T[] Any<T>([NotNull, ValidatedNotNull]T[] value, Func<T, bool> predicate, string paramName = Param.DefaultName)
             => Ensure.Collection.HasAny(value, predicate, paramName);
+
+        [DebuggerStepThrough]
+        public static T Any<T, TItem>([NotNull, ValidatedNotNull]T value, Func<TItem, bool> predicate, string paramName = Param.DefaultName) where T : ICollection<TItem>
+            => Ensure.Collection.HasAny(value, predicate, paramName);
     }
 }

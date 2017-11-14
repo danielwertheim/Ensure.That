@@ -316,23 +316,6 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T ContainsKey<T, TKey, TValue>([NotNull, ValidatedNotNull]T value, TKey expectedKey, string paramName = Param.DefaultName)
-            where T : IDictionary<TKey, TValue>
-        {
-            if (!Ensure.IsActive)
-                return value;
-
-            Ensure.Any.IsNotNull(value, paramName);
-
-            if (!value.ContainsKey(expectedKey))
-                throw new ArgumentException(
-                    ExceptionMessages.Collections_ContainsKey_Failed.Inject(expectedKey),
-                    paramName);
-
-            return value;
-        }
-
-        [DebuggerStepThrough]
         public IList<T> HasAny<T>([NotNull, ValidatedNotNull]IList<T> value, Func<T, bool> predicate, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
@@ -375,8 +358,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T HasAny<T, TItem>([NotNull, ValidatedNotNull]T value, Func<TItem, bool> predicate, string paramName = Param.DefaultName)
-            where T : ICollection<TItem>
+        public T HasAny<T, TItem>([NotNull, ValidatedNotNull]T value, Func<TItem, bool> predicate, string paramName = Param.DefaultName) where T : ICollection<TItem>
         {
             if (!Ensure.IsActive)
                 return value;
