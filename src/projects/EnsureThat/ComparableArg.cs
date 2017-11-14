@@ -7,7 +7,7 @@ namespace EnsureThat
     public class ComparableArg
     {
         [DebuggerStepThrough]
-        [Obsolete("Prefer EquatableArg.IsNot where possible")]
+        [Obsolete("Prefer EquatableArg.Is where possible")]
         public T Is<T>(T value, T expected, string paramName = Param.DefaultName) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
