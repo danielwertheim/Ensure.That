@@ -356,5 +356,61 @@ namespace EnsureThat
 
             return value;
         }
+
+        [DebuggerStepThrough]
+        public IList<T> Contains<T>([NotNull, ValidatedNotNull]IList<T> value, T item, string paramName = Param.DefaultName)
+        {
+            if (!Ensure.IsActive)
+                return value;
+
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (!value.Contains(item))
+                throw new ArgumentException(ExceptionMessages.Collections_Contains_Failed, paramName);
+
+            return value;
+        }
+
+        [DebuggerStepThrough]
+        public ICollection<T> Contains<T>([NotNull, ValidatedNotNull]ICollection<T> value, T item, string paramName = Param.DefaultName)
+        {
+            if (!Ensure.IsActive)
+                return value;
+
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (!value.Contains(item))
+                throw new ArgumentException(ExceptionMessages.Collections_Contains_Failed, paramName);
+
+            return value;
+        }
+
+        [DebuggerStepThrough]
+        public ISet<T> Contains<T>([NotNull, ValidatedNotNull]ISet<T> value, T item, string paramName = Param.DefaultName)
+        {
+            if (!Ensure.IsActive)
+                return value;
+
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (!value.Contains(item))
+                throw new ArgumentException(ExceptionMessages.Collections_Contains_Failed, paramName);
+
+            return value;
+        }
+
+        [DebuggerStepThrough]
+        public T[] Contains<T>([NotNull, ValidatedNotNull]T[] value, T item, string paramName = Param.DefaultName)
+        {
+            if (!Ensure.IsActive)
+                return value;
+
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (!value.Contains(item))
+                throw new ArgumentException(ExceptionMessages.Collections_Contains_Failed, paramName);
+
+            return value;
+        }
     }
 }

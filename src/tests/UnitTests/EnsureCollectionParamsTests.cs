@@ -735,6 +735,188 @@ namespace UnitTests
                 () => EnsureArg.Any(values, predicate, ParamName));
         }
 
+        [Fact]
+        public void Contains_When_IList_predicate_yields_none_It_throws_ArgumentException()
+        {
+            IList<int> values = new List<int> { 1, 2, 3, 4 };
+            int item = 0;
+
+            AssertContainsPredicateYieldedNone(
+                () => Ensure.That(values, ParamName).Contains(item),
+                () => EnsureArg.Contains(values, item, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_IList_predicate_yields_something_It_should_not_throw()
+        {
+            IList<int> values = new List<int> { 1, 2, 3, 4 };
+
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).Contains(1),
+                () => EnsureArg.HasItems(values, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_List_predicate_yields_none_It_throws_ArgumentException()
+        {
+            var values = new List<int> { 1, 2, 3, 4 };
+            int item = 0;
+
+            AssertContainsPredicateYieldedNone(
+                () => Ensure.That(values, ParamName).Contains(item),
+                () => EnsureArg.Contains(values, item, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_List_predicate_yields_something_It_should_not_throw()
+        {
+            var values = new List<int> { 1, 2, 3, 4 };
+
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).Contains(1),
+                () => EnsureArg.HasItems(values, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_ICollection_predicate_yields_none_It_throws_ArgumentException()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3, 4 };
+            int item = 0;
+
+            AssertContainsPredicateYieldedNone(
+                () => Ensure.That(values, ParamName).Contains(item),
+                () => EnsureArg.Contains(values, item, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_ICollection_predicate_yields_something_It_should_not_throw()
+        {
+            ICollection<int> values = new Collection<int> { 1, 2, 3, 4 };
+
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).Contains(1),
+                () => EnsureArg.HasItems(values, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_Collection_predicate_yields_none_It_throws_ArgumentException()
+        {
+            var values = new Collection<int> { 1, 2, 3, 4 };
+            int item = 0;
+
+            AssertContainsPredicateYieldedNone(
+                () => Ensure.That(values, ParamName).Contains(item),
+                () => EnsureArg.Contains(values, item, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_Collection_predicate_yields_something_It_should_not_throw()
+        {
+            var values = new Collection<int> { 1, 2, 3, 4 };
+
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).Contains(1),
+                () => EnsureArg.HasItems(values, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_Array_predicate_yields_none_It_throws_ArgumentException()
+        {
+            var values = new[] { 1, 2, 3, 4 };
+            int item = 0;
+
+            AssertContainsPredicateYieldedNone(
+                () => Ensure.That(values, ParamName).Contains(item),
+                () => EnsureArg.Contains(values, item, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_Array_predicate_yields_something_It_should_not_throw()
+        {
+            var values = new[] { 1, 2, 3, 4 };
+
+            ShouldNotThrow(
+                () => Ensure.That(values, ParamName).Contains(1),
+                () => EnsureArg.HasItems(values, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_Array_is_null_It_throws_ArgumentNullException()
+        {
+            int[] values = null;
+            int item = 0;
+
+            AssertIsNotNull(
+                () => Ensure.That(values, ParamName).Contains(item),
+                () => EnsureArg.Contains(values, item, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_Collection_is_null_It_throws_ArgumentNullException()
+        {
+            Collection<int> values = null;
+            int item = 0;
+
+            AssertIsNotNull(
+                () => Ensure.That(values, ParamName).Contains(item),
+                () => EnsureArg.Contains(values, item, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_ICollection_is_null_It_throws_ArgumentNullException()
+        {
+            ICollection<int> values = null;
+            int item = 0;
+
+            AssertIsNotNull(
+                () => Ensure.That(values, ParamName).Contains(item),
+                () => EnsureArg.Contains(values, item, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_List_is_null_It_throws_ArgumentNullException()
+        {
+            List<int> values = null;
+            int item = 0;
+
+            AssertIsNotNull(
+                () => Ensure.That(values, ParamName).Contains(item),
+                () => EnsureArg.Contains(values, item, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_IList_is_null_It_throws_ArgumentNullException()
+        {
+            IList<int> values = null;
+            int item = 0;
+
+            AssertIsNotNull(
+                () => Ensure.That(values, ParamName).Contains(item),
+                () => EnsureArg.Contains(values, item, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_Dictionary_is_null_It_throws_ArgumentNullException()
+        {
+            Dictionary<int, int> values = null;
+            KeyValuePair<int, int> item = new KeyValuePair<int, int>(0, 0);
+
+            AssertIsNotNull(
+                () => Ensure.That(values, ParamName).Contains(item),
+                () => EnsureArg.Contains(values, item, ParamName));
+        }
+
+        [Fact]
+        public void Contains_When_IDictionary_is_null_It_throws_ArgumentNullException()
+        {
+            IDictionary<int, int> values = null;
+            KeyValuePair<int, int> item = new KeyValuePair<int, int>(0, 0);
+
+            AssertIsNotNull(
+                () => Ensure.That(values, ParamName).Contains(item),
+                () => EnsureArg.Contains(values, item, ParamName));
+        }
+
         private void AssertIsEmptyCollection(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Collections_HasItemsFailed, actions);
 
         private void AssertIsNotNull(params Action[] actions) => ShouldThrow<ArgumentNullException>(ExceptionMessages.Common_IsNotNull_Failed, actions);
@@ -746,5 +928,7 @@ namespace UnitTests
             => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_ContainsKey_Failed, expectedKey), actions);
 
         private void AssertAnyPredicateYieldedNone(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Collections_Any_Failed, actions);
+
+        private void AssertContainsPredicateYieldedNone(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Collections_Contains_Failed, actions);
     }
 }
