@@ -1,11 +1,13 @@
 using System;
 using System.Diagnostics;
+using JetBrains.Annotations;
 
 namespace EnsureThat
 {
     public class BoolArg
     {
         [DebuggerStepThrough]
+        [ContractAnnotation("value:false=>halt; value:true=>true")]
         public bool IsTrue(bool value, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
@@ -20,6 +22,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
+        [ContractAnnotation("value:true=>halt; value:false=>false")]
         public bool IsFalse(bool value, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
