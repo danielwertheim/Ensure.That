@@ -163,8 +163,12 @@ namespace EnsureThat
 
             Ensure.Any.IsNotNull(value, paramName);
 
+#if NETSTANDARD1_1
             if (value.Length != expected)
-                throw new ArgumentException(
+# else
+            if (value.LongLength != expected)
+#endif
+            throw new ArgumentException(
                     ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Length),
                     paramName);
 
