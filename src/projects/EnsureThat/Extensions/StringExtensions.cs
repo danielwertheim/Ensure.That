@@ -10,7 +10,7 @@ namespace EnsureThat.Extensions
             return string.Format(format, formattingArgs);
         }
 
-        internal static string Inject(this string format, [NotNull] params string[] formattingArgs)
+        internal static string Inject(this string format, params string[] formattingArgs)
         {
             return string.Format(format, formattingArgs.Select(a => a as object).ToArray());
         }
