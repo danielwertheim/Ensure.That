@@ -51,18 +51,23 @@ namespace JetBrains.Annotations
         AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
         AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
     internal sealed class NotNullAttribute : Attribute { }
-
+    
     /// <summary>
-    /// Indicates that the function argument should be string literal and match one
-    /// of the parameters of the caller function. For example, ReSharper annotates
-    /// the parameter of <see cref="System.ArgumentNullException"/>.
+    /// Indicates that a method does not make any observable state changes.
+    /// The same as <c>System.Diagnostics.Contracts.PureAttribute</c>.
     /// </summary>
     /// <example><code>
-    /// void Foo(string param) {
-    ///   if (param == null)
-    ///     throw new ArgumentNullException("par"); // Warning: Cannot resolve symbol
+    /// [Pure] int Multiply(int x, int y) => x * y;
+    /// 
+    /// void M() {
+    ///   Multiply(123, 42); // Waring: Return value of pure method is not used
     /// }
     /// </code></example>
-    [AttributeUsage(AttributeTargets.Parameter)]
-    internal sealed class InvokerParameterNameAttribute : Attribute { }
+    /// <remarks>
+    /// <c>System.Diagnostics.Contracts.PureAttribute</c> is not available for NETSTANDARD1_1.
+    /// For consistency, using this version of the attribute for all profiles rather than 
+    /// just NETSTANDARD1_1.
+    /// </remarks>
+    [AttributeUsage(AttributeTargets.Method)]
+    internal sealed class PureAttribute : Attribute { }
 }
