@@ -10,12 +10,12 @@ namespace EnsureThat
     {
         [NotNull]
         [DebuggerStepThrough]
-        public static string IsNotNullOrWhiteSpace([NotNull, ValidatedNotNull] string value, [InvokerParameterName] string paramName = Param.DefaultName)
+        public static string IsNotNullOrWhiteSpace([ValidatedNotNull] string value, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.String.IsNotNullOrWhiteSpace(value, paramName);
 
         [NotNull]
         [DebuggerStepThrough]
-        public static string IsNotNullOrEmpty([NotNull, ValidatedNotNull] string value, [InvokerParameterName] string paramName = Param.DefaultName)
+        public static string IsNotNullOrEmpty([ValidatedNotNull] string value, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.String.IsNotNullOrEmpty(value, paramName);
 
         [DebuggerStepThrough]
@@ -24,7 +24,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public static string HasLengthBetween([NotNull, ValidatedNotNull] string value, int minLength, int maxLength, [InvokerParameterName] string paramName = Param.DefaultName)
+        public static string HasLengthBetween([ValidatedNotNull] string value, int minLength, int maxLength, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.String.HasLengthBetween(value, minLength, maxLength, paramName);
 
         [NotNull]
@@ -39,7 +39,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public static string SizeIs([NotNull, ValidatedNotNull] string value, int expected, [InvokerParameterName] string paramName = Param.DefaultName)
+        public static string SizeIs([ValidatedNotNull] string value, int expected, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.String.SizeIs(value, expected, paramName);
 
         [DebuggerStepThrough]
@@ -60,7 +60,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public static string IsGuid([NotNull, ValidatedNotNull] string value, [InvokerParameterName] string paramName = Param.DefaultName)
+        public static string IsGuid([ValidatedNotNull] string value, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.String.IsGuid(value, paramName);
     }
 }
