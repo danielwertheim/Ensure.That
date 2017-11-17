@@ -340,7 +340,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public IList<T> HasAny<T>([NotNull, ValidatedNotNull]IList<T> value, Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName)
+        public IList<T> HasAny<T>([NotNull, ValidatedNotNull]IList<T> value, [NotNull] Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -355,7 +355,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public ICollection<T> HasAny<T>([NotNull, ValidatedNotNull]ICollection<T> value, Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName)
+        public ICollection<T> HasAny<T>([NotNull, ValidatedNotNull]ICollection<T> value, [NotNull] Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -370,7 +370,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public T[] HasAny<T>([NotNull, ValidatedNotNull]T[] value, Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName)
+        public T[] HasAny<T>([NotNull, ValidatedNotNull]T[] value, [NotNull] Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
