@@ -8,6 +8,7 @@
         public static string Booleans_IsFalseFailed { get; } = "Expected an expression that evaluates to false.";
 
         public static string Collections_Any_Failed { get; } = "The predicate did not match any elements.";
+        public static string Collections_Contains_Failed { get; } = "The collection did not contain the expected item.";
         public static string Collections_ContainsKey_Failed { get; } = "Key '{0}' does not exist.";
         public static string Collections_HasItemsFailed { get; } = "Empty collection is not allowed.";
         public static string Collections_SizeIs_Failed { get; } = "Expected size '{0}' but found '{1}'.";
