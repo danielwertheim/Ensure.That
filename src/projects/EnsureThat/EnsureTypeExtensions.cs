@@ -11,19 +11,19 @@ namespace EnsureThat
         private static class Types
         {
             internal static readonly Type IntType = typeof(int);
-    
+
             internal static readonly Type ShortType = typeof(short);
-    
+
             internal static readonly Type DecimalType = typeof(decimal);
-    
+
             internal static readonly Type DoubleType = typeof(double);
-    
+
             internal static readonly Type FloatType = typeof(float);
-    
+
             internal static readonly Type BoolType = typeof(bool);
-    
+
             internal static readonly Type DateTimeType = typeof(DateTime);
-    
+
             internal static readonly Type StringType = typeof(string);
         }
 
