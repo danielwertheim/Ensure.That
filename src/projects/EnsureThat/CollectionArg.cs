@@ -383,8 +383,9 @@ namespace EnsureThat
             return value;
         }
 
+        [NotNull]
         [DebuggerStepThrough]
-        public IList<T> Contains<T>([NotNull, ValidatedNotNull]IList<T> value, T item, string paramName = Param.DefaultName)
+        public IList<T> Contains<T>([NotNull, ValidatedNotNull]IList<T> value, T item, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -397,8 +398,9 @@ namespace EnsureThat
             return value;
         }
 
+        [NotNull]
         [DebuggerStepThrough]
-        public ICollection<T> Contains<T>([NotNull, ValidatedNotNull]ICollection<T> value, T item, string paramName = Param.DefaultName)
+        public ICollection<T> Contains<T>([NotNull, ValidatedNotNull]ICollection<T> value, T item, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -411,8 +413,9 @@ namespace EnsureThat
             return value;
         }
 
+        [NotNull]
         [DebuggerStepThrough]
-        public T[] Contains<T>([NotNull, ValidatedNotNull]T[] value, T item, string paramName = Param.DefaultName)
+        public T[] Contains<T>([NotNull, ValidatedNotNull]T[] value, T item, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;

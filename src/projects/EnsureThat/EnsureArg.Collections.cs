@@ -119,16 +119,19 @@ namespace EnsureThat
         public static T[] Any<T>([NotNull, ValidatedNotNull]T[] value, Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.Collection.HasAny(value, predicate, paramName);
 
+        [NotNull]
         [DebuggerStepThrough]
-        public static IList<T> Contains<T>([NotNull, ValidatedNotNull] IList<T> value, T item, string paramName = Param.DefaultName)
+        public static IList<T> Contains<T>([NotNull, ValidatedNotNull] IList<T> value, T item, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.Collection.Contains(value, item, paramName);
 
+        [NotNull]
         [DebuggerStepThrough]
-        public static ICollection<T> Contains<T>([NotNull, ValidatedNotNull]ICollection<T> value, T item, string paramName = Param.DefaultName)
+        public static ICollection<T> Contains<T>([NotNull, ValidatedNotNull]ICollection<T> value, T item, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.Collection.Contains(value, item, paramName);
 
+        [NotNull]
         [DebuggerStepThrough]
-        public static T[] Contains<T>([NotNull, ValidatedNotNull]T[] value, T item, string paramName = Param.DefaultName)
+        public static T[] Contains<T>([NotNull, ValidatedNotNull]T[] value, T item, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.Collection.Contains(value, item, paramName);
     }
 }
