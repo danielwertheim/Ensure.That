@@ -39,7 +39,7 @@ namespace EnsureThat
                     : string.Concat(message, Environment.NewLine, param.ExtraMessageFn(param)),
                 param.Name);
         }
-        
+
         public static Exception CreateForParamNullValidation<T>([NotNull] Param<T> param, string message)
         {
             if (param.ExceptionFn != null)
