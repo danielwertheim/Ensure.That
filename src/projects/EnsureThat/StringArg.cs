@@ -71,12 +71,14 @@ namespace EnsureThat
             return value;
         }
 
+        [NotNull]
         [DebuggerStepThrough]
-        public string Matches(string value, [RegexPattern] string match, [InvokerParameterName] string paramName = Param.DefaultName)
+        public string Matches([NotNull] string value, [NotNull, RegexPattern] string match, [InvokerParameterName] string paramName = Param.DefaultName)
             => Matches(value, new Regex(match), paramName);
 
+        [NotNull]
         [DebuggerStepThrough]
-        public string Matches(string value, Regex match, string paramName = Param.DefaultName)
+        public string Matches([NotNull] string value, [NotNull] Regex match, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;

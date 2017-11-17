@@ -94,7 +94,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public T IsOfType<T>([NotNull, ValidatedNotNull]T param, Type expectedType, string paramName = Param.DefaultName)
+        public T IsOfType<T>([NotNull, ValidatedNotNull]T param, [NotNull] Type expectedType, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return param;
@@ -108,7 +108,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public Type IsOfType([NotNull, ValidatedNotNull]Type param, Type expectedType, string paramName = Param.DefaultName)
+        public Type IsOfType([NotNull, ValidatedNotNull]Type param, [NotNull] Type expectedType, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return param;
@@ -124,7 +124,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public T IsNotOfType<T>([NotNull, ValidatedNotNull]T param, Type nonExpectedType, string paramName = Param.DefaultName)
+        public T IsNotOfType<T>([NotNull, ValidatedNotNull]T param, [NotNull] Type nonExpectedType, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return param;
@@ -138,7 +138,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public Type IsNotOfType([NotNull, ValidatedNotNull]Type param, Type nonExpectedType, string paramName = Param.DefaultName)
+        public Type IsNotOfType([NotNull, ValidatedNotNull]Type param, [NotNull] Type nonExpectedType, string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return param;

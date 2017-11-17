@@ -89,22 +89,22 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public static T IsOfType<T>([NotNull, ValidatedNotNull] T param, Type expectedType, string paramName = Param.DefaultName)
+        public static T IsOfType<T>([NotNull, ValidatedNotNull] T param, Type expectedType, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.Type.IsOfType(param, expectedType, paramName);
 
         [NotNull]
         [DebuggerStepThrough]
-        public static Type IsOfType([NotNull, ValidatedNotNull]Type param, Type expectedType, string paramName = Param.DefaultName)
+        public static Type IsOfType([NotNull, ValidatedNotNull]Type param, Type expectedType, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.Type.IsOfType(param, expectedType, paramName);
 
         [NotNull]
         [DebuggerStepThrough]
-        public static T IsNotOfType<T>([NotNull, ValidatedNotNull]T param, Type nonExpectedType, string paramName = Param.DefaultName)
+        public static T IsNotOfType<T>([NotNull, ValidatedNotNull]T param, Type nonExpectedType, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.Type.IsNotOfType(param, nonExpectedType, paramName);
 
         [NotNull]
         [DebuggerStepThrough]
-        public static Type IsNotOfType([NotNull, ValidatedNotNull]Type param, Type nonExpectedType, string paramName = Param.DefaultName)
+        public static Type IsNotOfType([NotNull, ValidatedNotNull]Type param, Type nonExpectedType, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.Type.IsNotOfType(param, nonExpectedType, paramName);
 
         [NotNull]

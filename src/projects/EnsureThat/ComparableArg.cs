@@ -22,7 +22,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T Is<T>([NotNull] T value, T expected, IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
+        public T Is<T>(T value, T expected, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -33,6 +33,7 @@ namespace EnsureThat
             return value;
         }
 
+        [NotNull]
         [DebuggerStepThrough]
         public T IsNot<T>([NotNull] T value, T expected, [InvokerParameterName] string paramName = Param.DefaultName) where T : IComparable<T>
         {
@@ -46,7 +47,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T IsNot<T>([NotNull] T value, T expected, IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
+        public T IsNot<T>(T value, T expected, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -71,7 +72,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T IsLt<T>([NotNull] T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
+        public T IsLt<T>(T value, T limit, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -96,7 +97,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T IsLte<T>([NotNull] T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
+        public T IsLte<T>(T value, T limit, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -121,7 +122,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T IsGt<T>([NotNull] T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
+        public T IsGt<T>(T value, T limit, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -146,7 +147,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T IsGte<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
+        public T IsGte<T>(T value, T limit, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -174,7 +175,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public T IsInRange<T>(T value, T min, T max, IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
+        public T IsInRange<T>(T value, T min, T max, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;

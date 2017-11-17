@@ -27,12 +27,14 @@ namespace EnsureThat
         public static string HasLengthBetween([NotNull, ValidatedNotNull] string value, int minLength, int maxLength, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.String.HasLengthBetween(value, minLength, maxLength, paramName);
 
+        [NotNull]
         [DebuggerStepThrough]
-        public static string Matches(string value, [RegexPattern] string match, [InvokerParameterName] string paramName = Param.DefaultName)
+        public static string Matches([NotNull] string value, [NotNull] [RegexPattern] string match, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.String.Matches(value, match, paramName);
 
+        [NotNull]
         [DebuggerStepThrough]
-        public static string Matches(string value, Regex match, string paramName = Param.DefaultName)
+        public static string Matches([NotNull] string value, [NotNull] Regex match, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.String.Matches(value, match, paramName);
 
         [NotNull]
