@@ -57,7 +57,7 @@ namespace JetBrains.Annotations
         AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
         AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
     internal sealed class NotNullAttribute : Attribute { }
-    
+
     /// <summary>
     /// Indicates that a method does not make any observable state changes.
     /// The same as <c>System.Diagnostics.Contracts.PureAttribute</c>.

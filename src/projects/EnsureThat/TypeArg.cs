@@ -12,19 +12,19 @@ namespace EnsureThat
         private static class Types
         {
             internal static readonly Type IntType = typeof(int);
-    
+
             internal static readonly Type ShortType = typeof(short);
-    
+
             internal static readonly Type DecimalType = typeof(decimal);
-    
+
             internal static readonly Type DoubleType = typeof(double);
-    
+
             internal static readonly Type FloatType = typeof(float);
-    
+
             internal static readonly Type BoolType = typeof(bool);
-    
+
             internal static readonly Type DateTimeType = typeof(DateTime);
-    
+
             internal static readonly Type StringType = typeof(string);
         }
 
@@ -94,7 +94,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public T IsOfType<T>([NotNull, ValidatedNotNull]T param, [NotNull] Type expectedType, string paramName = Param.DefaultName)
+        public T IsOfType<T>([NotNull, ValidatedNotNull]T param, [NotNull] Type expectedType, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return param;
@@ -108,7 +108,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public Type IsOfType([NotNull, ValidatedNotNull]Type param, [NotNull] Type expectedType, string paramName = Param.DefaultName)
+        public Type IsOfType([NotNull, ValidatedNotNull]Type param, [NotNull] Type expectedType, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return param;
@@ -124,7 +124,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public T IsNotOfType<T>([NotNull, ValidatedNotNull]T param, [NotNull] Type nonExpectedType, string paramName = Param.DefaultName)
+        public T IsNotOfType<T>([NotNull, ValidatedNotNull]T param, [NotNull] Type nonExpectedType, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return param;
@@ -138,7 +138,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public Type IsNotOfType([NotNull, ValidatedNotNull]Type param, [NotNull] Type nonExpectedType, string paramName = Param.DefaultName)
+        public Type IsNotOfType([NotNull, ValidatedNotNull]Type param, [NotNull] Type nonExpectedType, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return param;
