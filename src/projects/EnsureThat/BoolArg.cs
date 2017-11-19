@@ -7,6 +7,7 @@ namespace EnsureThat
     public class BoolArg
     {
         [DebuggerStepThrough]
+        [ContractAnnotation("value:false=>halt; value:true=>true")]
         public bool IsTrue(bool value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
@@ -21,6 +22,7 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
+        [ContractAnnotation("value:true=>halt; value:false=>false")]
         public bool IsFalse(bool value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
