@@ -90,7 +90,6 @@ namespace JetBrains.Annotations
     /// </code></example>
     [AttributeUsage(AttributeTargets.Parameter)]
     internal sealed class InvokerParameterNameAttribute : Attribute { }
-
     /// <summary>
     /// Describes dependency between method input and output.
     /// </summary>

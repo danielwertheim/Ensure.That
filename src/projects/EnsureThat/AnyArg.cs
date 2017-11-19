@@ -9,7 +9,7 @@ namespace EnsureThat
     {
         [NotNull]
         [DebuggerStepThrough]
-        public T IsNotNull<T>([NoEnumeration, NotNull, ValidatedNotNull] T value, [InvokerParameterName] string paramName = Param.DefaultName)
+        public T IsNotNull<T>([NoEnumeration, ValidatedNotNull] T value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;

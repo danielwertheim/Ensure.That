@@ -11,7 +11,7 @@ namespace EnsureThat
     {
         [NotNull]
         [DebuggerStepThrough]
-        public string IsNotNullOrWhiteSpace([NotNull, ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName)
+        public string IsNotNullOrWhiteSpace([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -26,7 +26,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public string IsNotNullOrEmpty([NotNull, ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName)
+        public string IsNotNullOrEmpty([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -53,7 +53,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public string HasLengthBetween([NotNull, ValidatedNotNull]string value, int minLength, int maxLength, [InvokerParameterName] string paramName = Param.DefaultName)
+        public string HasLengthBetween([ValidatedNotNull]string value, int minLength, int maxLength, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -91,7 +91,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public string SizeIs([NotNull, ValidatedNotNull]string value, int expected, [InvokerParameterName] string paramName = Param.DefaultName)
+        public string SizeIs([ValidatedNotNull]string value, int expected, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
@@ -154,7 +154,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public string IsGuid([NotNull, ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName)
+        public string IsGuid([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;

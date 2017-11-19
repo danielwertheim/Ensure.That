@@ -8,7 +8,7 @@ namespace EnsureThat
     {
         [NotNull]
         [DebuggerStepThrough]
-        public static T IsNotNull<T>([NoEnumeration, NotNull, ValidatedNotNull] T value, [InvokerParameterName] string paramName = Param.DefaultName)
+        public static T IsNotNull<T>([NoEnumeration, ValidatedNotNull] T value, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.Any.IsNotNull(value, paramName);
     }
 }
