@@ -1,9 +1,12 @@
 using System;
+using JetBrains.Annotations;
 
 namespace EnsureThat
 {
+    // TODO: these will all be [Pure] when/if Param is immutable
     public static class ParamExtensions
     {
+        [Pure]
         public static Param<T> And<T>(this Param<T> param)
         {
             return param;
@@ -16,7 +19,7 @@ namespace EnsureThat
             return param;
         }
 
-        public static Param<T> WithExtraMessageOf<T>(this Param<T> param, Func<string> messageFn)
+        public static Param<T> WithExtraMessageOf<T>(this Param<T> param, [NotNull] Func<string> messageFn)
         {
             param.ExtraMessageFn = p => messageFn();
 
