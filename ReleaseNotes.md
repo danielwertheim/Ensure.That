@@ -5,7 +5,9 @@ _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should b
 Thanks to [@ndrwrbgs](https://github.com/ndrwrbgs) who has made this release happen. Lots of improvements when it comes to using Ensure.That with ReSharper etc.
 
 **[Fix]:** `SizeIs` did not compare against `Array.LongLength` when passed a `long`.
+
 **[New]:** Added more attributes to the API to get ReSharper to "understand" Ensure.That better.
+
 **[New]:** Methods that are comparing values now accepts an optional `IComparer<T>`
 
 
