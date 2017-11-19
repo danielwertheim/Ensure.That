@@ -57,7 +57,7 @@ namespace EnsureThat
         public static void Matches(this Param<string> param, [RegexPattern] string match) => Matches(param, new Regex(match));
 
         [DebuggerStepThrough]
-        public static void Matches(this Param<string> param, Regex match)
+        public static void Matches(this Param<string> param, [NotNull] Regex match)
         {
             if (!match.IsMatch(param.Value))
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Strings_Matches_Failed.Inject(param.Value, match));

@@ -19,7 +19,7 @@ namespace EnsureThat
             return param;
         }
 
-        public static Param<T> WithExtraMessageOf<T>(this Param<T> param, Func<string> messageFn)
+        public static Param<T> WithExtraMessageOf<T>(this Param<T> param, [NotNull] Func<string> messageFn)
         {
             param.ExtraMessageFn = p => messageFn();
 
