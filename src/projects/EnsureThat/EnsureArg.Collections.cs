@@ -121,17 +121,27 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public static IList<T> Contains<T>([NotNull, ValidatedNotNull] IList<T> value, T item, [InvokerParameterName] string paramName = Param.DefaultName)
+        public static TCollection Contains<TCollection, T>(this TCollection value, T item, [InvokerParameterName] string paramName = Param.DefaultName) where TCollection : ICollection<T> where T : IEquatable<T>
             => Ensure.Collection.Contains(value, item, paramName);
 
         [NotNull]
         [DebuggerStepThrough]
-        public static ICollection<T> Contains<T>([NotNull, ValidatedNotNull]ICollection<T> value, T item, [InvokerParameterName] string paramName = Param.DefaultName)
+        public static TDictionary Contains<TDictionary, TKey, TValue>(this TDictionary value, KeyValuePair<TKey, TValue> item, [InvokerParameterName] string paramName = Param.DefaultName) where TDictionary : ICollection<KeyValuePair<TKey, TValue>> where TKey : IEquatable<TKey> where TValue : IEquatable<TValue>
             => Ensure.Collection.Contains(value, item, paramName);
 
         [NotNull]
         [DebuggerStepThrough]
-        public static T[] Contains<T>([NotNull, ValidatedNotNull]T[] value, T item, [InvokerParameterName] string paramName = Param.DefaultName)
+        public static ICollection<T> Contains<T>([ValidatedNotNull]ICollection<T> value, T item, [NotNull] IEqualityComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
+            => Ensure.Collection.Contains(value, item, comparer, paramName);
+
+        [NotNull]
+        [DebuggerStepThrough]
+        public static T[] Contains<T>([ValidatedNotNull]T[] value, T item, [InvokerParameterName] string paramName = Param.DefaultName) where T : IEquatable<T>
             => Ensure.Collection.Contains(value, item, paramName);
+
+        [NotNull]
+        [DebuggerStepThrough]
+        public static T[] Contains<T>([ValidatedNotNull]T[] value, T item, [NotNull] IEqualityComparer<T> comparer,[InvokerParameterName] string paramName = Param.DefaultName)
+            => Ensure.Collection.Contains(value, item, comparer, paramName);
     }
 }

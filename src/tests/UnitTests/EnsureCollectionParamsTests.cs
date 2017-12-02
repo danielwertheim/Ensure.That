@@ -742,6 +742,7 @@ namespace UnitTests
             int item = 0;
 
             AssertContainsPredicateYieldedNone(
+                item,
                 () => Ensure.That(values, ParamName).Contains(item),
                 () => EnsureArg.Contains(values, item, ParamName));
         }
@@ -763,6 +764,7 @@ namespace UnitTests
             int item = 0;
 
             AssertContainsPredicateYieldedNone(
+                item,
                 () => Ensure.That(values, ParamName).Contains(item),
                 () => EnsureArg.Contains(values, item, ParamName));
         }
@@ -784,6 +786,7 @@ namespace UnitTests
             int item = 0;
 
             AssertContainsPredicateYieldedNone(
+                item,
                 () => Ensure.That(values, ParamName).Contains(item),
                 () => EnsureArg.Contains(values, item, ParamName));
         }
@@ -805,6 +808,7 @@ namespace UnitTests
             int item = 0;
 
             AssertContainsPredicateYieldedNone(
+                item,
                 () => Ensure.That(values, ParamName).Contains(item),
                 () => EnsureArg.Contains(values, item, ParamName));
         }
@@ -826,6 +830,7 @@ namespace UnitTests
             int item = 0;
 
             AssertContainsPredicateYieldedNone(
+                item,
                 () => Ensure.That(values, ParamName).Contains(item),
                 () => EnsureArg.Contains(values, item, ParamName));
         }
@@ -929,6 +934,6 @@ namespace UnitTests
 
         private void AssertAnyPredicateYieldedNone(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Collections_Any_Failed, actions);
 
-        private void AssertContainsPredicateYieldedNone(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Collections_Contains_Failed, actions);
+        private void AssertContainsPredicateYieldedNone(object expectedItem, params Action[] actions) => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_Contains_Failed, expectedItem), actions);
     }
 }

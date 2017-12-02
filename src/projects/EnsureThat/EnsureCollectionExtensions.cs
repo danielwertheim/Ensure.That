@@ -347,87 +347,33 @@ namespace EnsureThat
         }
 
         [DebuggerStepThrough]
-        public static void Contains<T>(this Param<IList<T>> param, T item)
+        public static void Contains<TCollection, T>(this Param<TCollection> param, T item) where TCollection : ICollection<T> where T : IEquatable<T>
         {
             if (!Ensure.IsActive)
                 return;
 
-            param.IsNotNull();
+            EnsureArg.Contains(param.Value, item);
+        }
 
-            if (!param.Value.Contains(item))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Contains_Failed);
+        /// <remarks>
+        /// Provided because <see cref="KeyValuePair{TKey,TValue}"/> isn't <see cref="IEquatable{T}"/> :(
+        /// </remarks>
+        [DebuggerStepThrough]
+        public static void Contains<TDictionary, TKey, TValue>(this Param<TDictionary> param, KeyValuePair<TKey, TValue> item) where TDictionary : ICollection<KeyValuePair<TKey, TValue>> where TKey : IEquatable<TKey> where TValue : IEquatable<TValue>
+        {
+            if (!Ensure.IsActive)
+                return;
+            
+            Ensure.Collection.Contains(param.Value, item, param.Name);
         }
 
         [DebuggerStepThrough]
-        public static void Contains<T>(this Param<List<T>> param, T item)
+        public static void Contains<T>(this Param<T[]> param, T item) where T : IEquatable<T>
         {
             if (!Ensure.IsActive)
                 return;
 
-            param.IsNotNull();
-
-            if (!param.Value.Contains(item))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Contains_Failed);
-        }
-
-        [DebuggerStepThrough]
-        public static void Contains<T>(this Param<ICollection<T>> param, T item)
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            param.IsNotNull();
-
-            if (!param.Value.Contains(item))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Contains_Failed);
-        }
-
-        [DebuggerStepThrough]
-        public static void Contains<T>(this Param<Collection<T>> param, T item)
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            param.IsNotNull();
-
-            if (!param.Value.Contains(item))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Contains_Failed);
-        }
-
-        [DebuggerStepThrough]
-        public static void Contains<TKey, TValue>(this Param<IDictionary<TKey, TValue>> param, KeyValuePair<TKey, TValue> item)
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            param.IsNotNull();
-
-            if (!param.Value.Contains(item))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Contains_Failed);
-        }
-
-        [DebuggerStepThrough]
-        public static void Contains<TKey, TValue>(this Param<Dictionary<TKey, TValue>> param, KeyValuePair<TKey, TValue> item)
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            param.IsNotNull();
-
-            if (!param.Value.Contains(item))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Contains_Failed);
-        }
-
-        [DebuggerStepThrough]
-        public static void Contains<T>(this Param<T[]> param, T item)
-        {
-            if (!Ensure.IsActive)
-                return;
-
-            param.IsNotNull();
-
-            if (!param.Value.Contains(item))
-                throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Collections_Contains_Failed);
+            EnsureArg.Contains(param.Value, item);
         }
     }
 }

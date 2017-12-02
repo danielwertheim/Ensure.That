@@ -85,7 +85,7 @@ namespace EnsureThat
         {
             if (!Ensure.IsActive)
                 return value;
-            
+
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count < 1)
@@ -385,7 +385,7 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
-        public IList<T> Contains<T>([NotNull, ValidatedNotNull]IList<T> value, T item, [InvokerParameterName] string paramName = Param.DefaultName)
+        public TCollection Contains<TCollection, T>([ValidatedNotNull]TCollection value, T item, [InvokerParameterName] string paramName = Param.DefaultName) where TCollection : ICollection<T> where T : IEquatable<T>
         {
             if (!Ensure.IsActive)
                 return value;
@@ -393,29 +393,63 @@ namespace EnsureThat
             Ensure.Any.IsNotNull(value, paramName);
 
             if (!value.Contains(item))
-                throw new ArgumentException(ExceptionMessages.Collections_Contains_Failed, paramName);
+                throw new ArgumentException(ExceptionMessages.Collections_Contains_Failed.Inject(item), paramName);
 
             return value;
         }
 
         [NotNull]
         [DebuggerStepThrough]
-        public ICollection<T> Contains<T>([NotNull, ValidatedNotNull]ICollection<T> value, T item, [InvokerParameterName] string paramName = Param.DefaultName)
+        public ICollection<T> Contains<T>([ValidatedNotNull]ICollection<T> value, T item, [NotNull] IEqualityComparer<T> comparer,[InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
                 return value;
 
             Ensure.Any.IsNotNull(value, paramName);
 
-            if (!value.Contains(item))
-                throw new ArgumentException(ExceptionMessages.Collections_Contains_Failed, paramName);
+            if (!value.Contains(item, comparer))
+                throw new ArgumentException(ExceptionMessages.Collections_Contains_Failed.Inject(item), paramName);
 
             return value;
         }
 
         [NotNull]
         [DebuggerStepThrough]
-        public T[] Contains<T>([NotNull, ValidatedNotNull]T[] value, T item, [InvokerParameterName] string paramName = Param.DefaultName)
+        public T[] Contains<T>([ValidatedNotNull]T[] value, T item, [InvokerParameterName] string paramName = Param.DefaultName) where T : IEquatable<T>
+        {
+            if (!Ensure.IsActive)
+                return value;
+
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (!ContainsImpl(value, item))
+                throw new ArgumentException(ExceptionMessages.Collections_Contains_Failed.Inject(item), paramName);
+
+            return value;
+        }
+
+        [NotNull]
+        [DebuggerStepThrough]
+        public T[] Contains<T>([ValidatedNotNull]T[] value, T item, [NotNull] IEqualityComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
+        {
+            if (!Ensure.IsActive)
+                return value;
+
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (!ContainsImpl(value, item, comparer))
+                throw new ArgumentException(ExceptionMessages.Collections_Contains_Failed.Inject(item), paramName);
+
+            return value;
+        }
+        
+        /// <remarks>
+        /// Provided because <see cref="KeyValuePair{TKey,TValue}"/> does not implement <see cref="IEquatable{T}"/> explicitly,
+        /// but does implicitly (presuming <typeparamref name="TKey"/> and <typeparamref name="TValue"/> implement <see cref="IEquatable{T}"/> properly)
+        /// </remarks>
+        [NotNull]
+        [DebuggerStepThrough]
+        public TDictionary Contains<TDictionary, TKey, TValue>([ValidatedNotNull] TDictionary value, KeyValuePair<TKey, TValue> item, [InvokerParameterName] string paramName = Param.DefaultName) where TDictionary : ICollection<KeyValuePair<TKey, TValue>> where TKey : IEquatable<TKey> where TValue : IEquatable<TValue>
         {
             if (!Ensure.IsActive)
                 return value;
@@ -423,9 +457,41 @@ namespace EnsureThat
             Ensure.Any.IsNotNull(value, paramName);
 
             if (!value.Contains(item))
-                throw new ArgumentException(ExceptionMessages.Collections_Contains_Failed, paramName);
+                throw new ArgumentException(ExceptionMessages.Collections_Contains_Failed.Inject(item), paramName);
 
             return value;
+        }
+
+        /// <remarks>
+        /// Provided for the performance benefit the runtime provides for arrays
+        /// </remarks>
+        private static bool ContainsImpl<T>([NotNull] T[] array, T item, [NotNull] IEqualityComparer<T> comparer)
+        {
+            foreach (var arrayItem in array)
+            {
+                if (comparer.Equals(arrayItem, item))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <remarks>
+        /// Provided for the performance benefit the runtime provides for arrays
+        /// </remarks>
+        private static bool ContainsImpl<T>([NotNull] T[] array, T item)
+        {
+            foreach (var arrayItem in array)
+            {
+                if (Equals(arrayItem, item))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
