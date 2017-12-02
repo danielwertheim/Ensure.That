@@ -9,21 +9,21 @@ namespace EnsureThat
     {
         [NotNull]
         [DebuggerStepThrough]
-        public static T Is<T>([NotNull] T value, T expected, [InvokerParameterName] string paramName = Param.DefaultName) where T : IEquatable<T>
-            => Ensure.Equatable.Is(value, expected, paramName);
+        public static T Is<T>([NotNull] T value, T expected, [InvokerParameterName] string paramName = Param.DefaultName) where T : IComparable<T>
+            => Ensure.Comparable.Is(value, expected, paramName);
 
         [DebuggerStepThrough]
-        public static T Is<T>(T value, T expected, [NotNull] IEqualityComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
-            => Ensure.Equatable.Is(value, expected, comparer, paramName);
+        public static T Is<T>(T value, T expected, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
+            => Ensure.Comparable.Is(value, expected, comparer, paramName);
 
         [NotNull]
         [DebuggerStepThrough]
-        public static T IsNot<T>([NotNull] T value, T expected, [InvokerParameterName] string paramName = Param.DefaultName) where T : IEquatable<T>
-            => Ensure.Equatable.IsNot(value, expected, paramName);
+        public static T IsNot<T>([NotNull] T value, T expected, [InvokerParameterName] string paramName = Param.DefaultName) where T : IComparable<T>
+            => Ensure.Comparable.IsNot(value, expected, paramName);
 
         [DebuggerStepThrough]
-        public static T IsNot<T>(T value, T expected, [NotNull] IEqualityComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
-            => Ensure.Equatable.IsNot(value, expected, comparer, paramName);
+        public static T IsNot<T>(T value, T expected, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName)
+            => Ensure.Comparable.IsNot(value, expected, comparer, paramName);
 
         [NotNull]
         [DebuggerStepThrough]
