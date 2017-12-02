@@ -277,7 +277,7 @@ namespace UnitTests
         public void AssertIsRangeToHighScenario<T>(T value, T limit, params Action[] actions)
             => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, limit), actions);
 
-        public class CustomComparable : IComparable<CustomComparable>
+        public class CustomComparable : IComparable<CustomComparable>, IEquatable<CustomComparable>
         {
             private readonly int _value;
 
@@ -292,6 +292,36 @@ namespace UnitTests
                 var y = other._value;
 
                 return x.CompareTo(y);
+            }
+
+            public bool Equals(CustomComparable other)
+            {
+                if (ReferenceEquals(null, other)) return false;
+                if (ReferenceEquals(this, other)) return true;
+                return this._value == other._value;
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (ReferenceEquals(null, obj)) return false;
+                if (ReferenceEquals(this, obj)) return true;
+                if (obj.GetType() != this.GetType()) return false;
+                return Equals((CustomComparable) obj);
+            }
+
+            public override int GetHashCode()
+            {
+                return this._value;
+            }
+
+            public static bool operator ==(CustomComparable left, CustomComparable right)
+            {
+                return Equals(left, right);
+            }
+
+            public static bool operator !=(CustomComparable left, CustomComparable right)
+            {
+                return !Equals(left, right);
             }
 
             public static implicit operator CustomComparable(int value) => new CustomComparable(value);
