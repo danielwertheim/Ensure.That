@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 using EnsureThat.Extensions;
+using JetBrains.Annotations;
 
 namespace EnsureThat
 {
@@ -51,7 +52,7 @@ namespace EnsureThat
         public static void IsString(this TypeParam param) => IsOfType(param, Types.StringType);
 
         [DebuggerStepThrough]
-        public static void IsOfType(this TypeParam param, Type type)
+        public static void IsOfType(this TypeParam param, [NotNull] Type type)
         {
             if (!Ensure.IsActive)
                 return;
@@ -80,7 +81,8 @@ namespace EnsureThat
                 throw ExceptionFactory.CreateForParamNullValidation(param,
                     ExceptionMessages.Types_IsClass_Failed_Null);
 
-            if (!param.Value.GetTypeInfo().IsClass)
+            if (param.Value == null
+                || !param.Value.GetTypeInfo().IsClass)
                 throw ExceptionFactory.CreateForParamValidation(param,
                     ExceptionMessages.Types_IsClass_Failed.Inject(param.Value.FullName));
         }

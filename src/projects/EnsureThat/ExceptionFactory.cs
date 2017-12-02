@@ -1,16 +1,22 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace EnsureThat
 {
     public static class ExceptionFactory
     {
-        public static ArgumentException CreateForParamValidation(Param param, string message)
+        [NotNull]
+        [Pure]
+        public static ArgumentException CreateForParamValidation([NotNull] Param param, string message)
             => new ArgumentException(message, param.Name);
 
-        public static ArgumentNullException CreateForParamNullValidation(Param param, string message)
+        [NotNull]
+        [Pure]
+        public static ArgumentNullException CreateForParamNullValidation([NotNull] Param param, string message)
             => new ArgumentNullException(param.Name, message);
 
-        public static Exception CreateForComparableParamValidation<T>(Param<T> param, string message)
+        [NotNull]
+        public static Exception CreateForComparableParamValidation<T>([NotNull] Param<T> param, string message)
         {
             if (param.ExceptionFn != null)
                 throw param.ExceptionFn(param);
@@ -23,7 +29,8 @@ namespace EnsureThat
                     : string.Concat(message, Environment.NewLine, param.ExtraMessageFn(param)));
         }
 
-        public static Exception CreateForParamValidation<T>(Param<T> param, string message)
+        [NotNull]
+        public static Exception CreateForParamValidation<T>([NotNull] Param<T> param, string message)
         {
             if (param.ExceptionFn != null)
                 throw param.ExceptionFn(param);
@@ -35,7 +42,7 @@ namespace EnsureThat
                 param.Name);
         }
 
-        public static Exception CreateForParamNullValidation<T>(Param<T> param, string message)
+        public static Exception CreateForParamNullValidation<T>([NotNull] Param<T> param, string message)
         {
             if (param.ExceptionFn != null)
                 return param.ExceptionFn(param);

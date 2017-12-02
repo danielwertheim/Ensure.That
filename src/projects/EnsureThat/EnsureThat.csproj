@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/danielwertheim/ensure.that</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageProjectUrl>https://github.com/danielwertheim/ensure.that</PackageProjectUrl>
-    <PackageTags>ensure argument validation guard clause contracts</PackageTags>
+    <PackageTags>ensure that argument validation guard clause contracts</PackageTags>
     <AssemblyName>Ensure.That</AssemblyName>
   </PropertyGroup>
 

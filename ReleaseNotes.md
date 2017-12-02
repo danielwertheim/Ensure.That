@@ -1,6 +1,16 @@
 Semantic versioning is used. See http://semver.org for more info. Basically this means that version format is:
 _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should be able to update without any breaking API changes.
 
+## v7.1.0 - 2017-11-19
+Thanks to [@ndrwrbgs](https://github.com/ndrwrbgs) who has made this release happen. Lots of improvements when it comes to using Ensure.That with ReSharper etc.
+
+**[Fix]:** `SizeIs` did not compare against `Array.LongLength` when passed a `long`.
+
+**[New]:** Added more attributes to the API to get ReSharper to "understand" Ensure.That better.
+
+**[New]:** Methods that are comparing values now accepts an optional `IComparer<T>`
+
+
 ## v7.0.0 - 2017-11-09
 
 **[Obsolete warning]:** The "fluent" `Ensure.That` syntax has been marked as `Obsolete` in favour for either the contextual validations: `Ensure.String.IsNotNull(..., ...);` or `EnsureArg.IsNotNull(..., ...);` The obsolete versions will be removed in next major version.
