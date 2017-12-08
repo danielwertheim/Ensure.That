@@ -16,6 +16,11 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
+        public static IEnumerable<T> HasItems<T>([ValidatedNotNull]IEnumerable<T> value, [InvokerParameterName] string paramName = Param.DefaultName)
+            => Ensure.Collection.HasItems(value, paramName);
+
+        [NotNull]
+        [DebuggerStepThrough]
         public static ICollection<T> HasItems<T>([ValidatedNotNull]ICollection<T> value, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.Collection.HasItems(value, paramName);
 

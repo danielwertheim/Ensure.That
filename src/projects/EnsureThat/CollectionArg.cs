@@ -30,6 +30,23 @@ namespace EnsureThat
 
         [NotNull]
         [DebuggerStepThrough]
+        public IEnumerable<T> HasItems<T>([ValidatedNotNull]IEnumerable<T> value, [InvokerParameterName] string paramName = Param.DefaultName)
+        {
+            if (!Ensure.IsActive)
+                return value;
+
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (!value.Any())
+                throw new ArgumentException(
+                    ExceptionMessages.Collections_HasItemsFailed,
+                    paramName);
+
+            return value;
+        }
+
+        [NotNull]
+        [DebuggerStepThrough]
         public ICollection<T> HasItems<T>([ValidatedNotNull]ICollection<T> value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
@@ -178,9 +195,9 @@ namespace EnsureThat
 #else
             if (value.LongLength != expected)
 #endif
-            throw new ArgumentException(
-                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Length),
-                    paramName);
+                throw new ArgumentException(
+                        ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Length),
+                        paramName);
 
             return value;
         }
