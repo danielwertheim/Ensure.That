@@ -49,6 +49,24 @@ namespace UnitTests
         }
 
         [Fact]
+        public void HasItems_WhenEmptyIEnumerable_ThrowsArgumentException()
+        {
+            IEnumerable<int> emptyCollection = new Collection<int>();
+
+            AssertIsEmptyCollection(
+                () => EnsureArg.HasItems(emptyCollection, ParamName));
+        }
+
+        [Fact]
+        public void HasItems_WhenNonEmptyIEnumerable_ShouldNotThrow()
+        {
+            IEnumerable<int> collection = new Collection<int> { 1, 2, 3 };
+
+            ShouldNotThrow(
+                () => EnsureArg.HasItems(collection, ParamName));
+        }
+
+        [Fact]
         public void HasItems_WhenEmptyICollection_ThrowsArgumentException()
         {
             ICollection<int> emptyCollection = new Collection<int>();
