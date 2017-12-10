@@ -7,17 +7,15 @@ namespace EnsureThat
     public class GuidArg
     {
         [DebuggerStepThrough]
-        public Guid IsNotEmpty(Guid value, [InvokerParameterName] string paramName = Param.DefaultName)
+        public void IsNotEmpty(Guid value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
-                return value;
+                return;
 
             if (value.Equals(Guid.Empty))
                 throw new ArgumentException(
                     ExceptionMessages.Guids_IsNotEmpty_Failed,
                     paramName);
-
-            return value;
         }
     }
 }

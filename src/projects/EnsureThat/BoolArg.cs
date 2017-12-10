@@ -7,33 +7,29 @@ namespace EnsureThat
     public class BoolArg
     {
         [DebuggerStepThrough]
-        [ContractAnnotation("value:false=>halt; value:true=>true")]
-        public bool IsTrue(bool value, [InvokerParameterName] string paramName = Param.DefaultName)
+        [ContractAnnotation("value:false=>halt; value:true=>void")]
+        public void IsTrue(bool value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
-                return value;
+                return;
 
             if (!value)
                 throw new ArgumentException(
                     ExceptionMessages.Booleans_IsTrueFailed,
                     paramName);
-
-            return value;
         }
 
         [DebuggerStepThrough]
-        [ContractAnnotation("value:true=>halt; value:false=>false")]
-        public bool IsFalse(bool value, [InvokerParameterName] string paramName = Param.DefaultName)
+        [ContractAnnotation("value:true=>halt; value:false=>void")]
+        public void IsFalse(bool value, [InvokerParameterName] string paramName = Param.DefaultName)
         {
             if (!Ensure.IsActive)
-                return value;
+                return;
 
             if (value)
                 throw new ArgumentException(
                     ExceptionMessages.Booleans_IsFalseFailed,
                     paramName);
-
-            return value;
         }
     }
 }

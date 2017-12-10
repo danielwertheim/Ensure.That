@@ -6,9 +6,8 @@ namespace EnsureThat
 {
     public static partial class EnsureArg
     {
-        [NotNull]
         [DebuggerStepThrough]
-        public static T IsNotNull<T>([NoEnumeration, ValidatedNotNull] T value, [InvokerParameterName] string paramName = Param.DefaultName)
+        public static void IsNotNull<T>([NoEnumeration, ValidatedNotNull] T value, [InvokerParameterName] string paramName = Param.DefaultName)
             => Ensure.Any.IsNotNull(value, paramName);
     }
 }
