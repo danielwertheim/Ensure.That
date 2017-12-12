@@ -7,6 +7,60 @@ namespace EnsureThat
     {
         [NotNull]
         [Pure]
+        public static Exception ArgumentException([NotNull] string defaultMessage, [NotNull] string paramName, OptsFn optsFn)
+        {
+            if (optsFn != null)
+            {
+                var opts = optsFn(new EnsureOptions());
+
+                if (opts.CustomException != null)
+                    throw opts.CustomException;
+
+                if (opts.CustomMessage != null)
+                    throw new ArgumentException(opts.CustomMessage, paramName);
+            }
+
+            throw new ArgumentException(defaultMessage, paramName);
+        }
+
+        [NotNull]
+        [Pure]
+        public static Exception ArgumentNullException([NotNull] string defaultMessage, [NotNull] string paramName, OptsFn optsFn)
+        {
+            if (optsFn != null)
+            {
+                var opts = optsFn(new EnsureOptions());
+
+                if (opts.CustomException != null)
+                    throw opts.CustomException;
+
+                if (opts.CustomMessage != null)
+                    throw new ArgumentNullException(paramName, opts.CustomMessage);
+            }
+
+            throw new ArgumentNullException(paramName, defaultMessage);
+        }
+
+        [NotNull]
+        [Pure]
+        public static Exception ArgumentOutOfRangeException<TValue>([NotNull] string defaultMessage, [NotNull] string paramName, TValue value, OptsFn optsFn)
+        {
+            if (optsFn != null)
+            {
+                var opts = optsFn(new EnsureOptions());
+
+                if (opts.CustomException != null)
+                    throw opts.CustomException;
+
+                if (opts.CustomMessage != null)
+                    throw new ArgumentOutOfRangeException(paramName, value, opts.CustomMessage);
+            }
+
+            throw new ArgumentOutOfRangeException(paramName, value, defaultMessage);
+        }
+
+        [NotNull]
+        [Pure]
         public static ArgumentException CreateForParamValidation([NotNull] Param param, string message)
             => new ArgumentException(message, param.Name);
 
