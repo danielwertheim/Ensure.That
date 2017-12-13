@@ -33,19 +33,16 @@ namespace EnsureThat
         [NotNull]
         public static TypeArg Type { get; } = new TypeArg();
 
-        [DebuggerStepThrough]
         [Pure]
         [Obsolete("Use contextual validation instead. E.g. Ensure.String.IsNotNull(value) or non contextual via EnsureArg instead. This version will eventually be removed.", false)]
         public static Param<T> That<T>([NoEnumeration]T value, string name = Param.DefaultName) => new Param<T>(name, value);
 
-        [DebuggerStepThrough]
         [Pure]
         [Obsolete("Use contextual validation instead. E.g. Ensure.String.IsNotNull(value) or non contextual via EnsureArg instead. This version will eventually be removed.", false)]
         public static Param<T> That<T>([NotNull] Func<T> expression, string name = Param.DefaultName) => new Param<T>(
             name,
             expression.Invoke());
 
-        [DebuggerStepThrough]
         [Pure]
         [Obsolete("Use contextual validation instead. E.g. Ensure.String.IsNotNull(value) or non contextual via EnsureArg instead. This version will eventually be removed.", false)]
         public static TypeParam ThatTypeFor<T>([NotNull] T value, string name = Param.DefaultName) => new TypeParam(name, value.GetType());
