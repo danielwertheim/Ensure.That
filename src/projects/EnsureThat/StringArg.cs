@@ -10,7 +10,6 @@ namespace EnsureThat
     public class StringArg
     {
         [NotNull]
-        [DebuggerStepThrough]
         public string IsNotNullOrWhiteSpace([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -25,7 +24,6 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public string IsNotNullOrEmpty([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -39,7 +37,6 @@ namespace EnsureThat
             return value;
         }
 
-        [DebuggerStepThrough]
         public string IsNotEmpty(string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -52,7 +49,6 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public string HasLengthBetween([ValidatedNotNull]string value, int minLength, int maxLength, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -72,12 +68,10 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public string Matches([NotNull] string value, [NotNull, RegexPattern] string match, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => Matches(value, new Regex(match), paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public string Matches([NotNull] string value, [NotNull] Regex match, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -90,7 +84,6 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public string SizeIs([ValidatedNotNull]string value, int expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -104,7 +97,6 @@ namespace EnsureThat
             return value;
         }
 
-        [DebuggerStepThrough]
         public string IsEqualTo(string value, string expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -116,7 +108,6 @@ namespace EnsureThat
             return value;
         }
 
-        [DebuggerStepThrough]
         public string IsEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -128,7 +119,6 @@ namespace EnsureThat
             return value;
         }
 
-        [DebuggerStepThrough]
         public string IsNotEqualTo(string value, string expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -140,7 +130,6 @@ namespace EnsureThat
             return value;
         }
 
-        [DebuggerStepThrough]
         public string IsNotEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -153,7 +142,6 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public string IsGuid([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)

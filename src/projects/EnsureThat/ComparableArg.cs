@@ -9,7 +9,6 @@ namespace EnsureThat
     public class ComparableArg
     {
         [NotNull]
-        [DebuggerStepThrough]
         public T Is<T>([NotNull] T value, T expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
@@ -21,7 +20,6 @@ namespace EnsureThat
             return value;
         }
 
-        [DebuggerStepThrough]
         public T Is<T>(T value, T expected, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -34,7 +32,6 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsNot<T>([NotNull] T value, T expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
@@ -46,7 +43,6 @@ namespace EnsureThat
             return value;
         }
 
-        [DebuggerStepThrough]
         public T IsNot<T>(T value, T expected, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -59,7 +55,6 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsLt<T>([NotNull] T value, T limit, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
@@ -71,7 +66,6 @@ namespace EnsureThat
             return value;
         }
 
-        [DebuggerStepThrough]
         public T IsLt<T>(T value, T limit, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -84,7 +78,6 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsLte<T>([NotNull] T value, T limit, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
@@ -96,7 +89,6 @@ namespace EnsureThat
             return value;
         }
 
-        [DebuggerStepThrough]
         public T IsLte<T>(T value, T limit, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -109,7 +101,6 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsGt<T>([NotNull] T value, T limit, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
@@ -121,7 +112,6 @@ namespace EnsureThat
             return value;
         }
 
-        [DebuggerStepThrough]
         public T IsGt<T>(T value, T limit, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -134,7 +124,6 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsGte<T>([NotNull] T value, T limit, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
@@ -146,7 +135,6 @@ namespace EnsureThat
             return value;
         }
 
-        [DebuggerStepThrough]
         public T IsGte<T>(T value, T limit, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -159,7 +147,6 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsInRange<T>([NotNull] T value, T min, T max, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null) where T : IComparable<T>
         {
             if (!Ensure.IsActive)
@@ -174,7 +161,6 @@ namespace EnsureThat
             return value;
         }
 
-        [DebuggerStepThrough]
         public T IsInRange<T>(T value, T min, T max, [NotNull] IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)

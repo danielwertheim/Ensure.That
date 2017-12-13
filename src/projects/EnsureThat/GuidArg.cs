@@ -6,7 +6,6 @@ namespace EnsureThat
 {
     public class GuidArg
     {
-        [DebuggerStepThrough]
         public Guid IsNotEmpty(Guid value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)

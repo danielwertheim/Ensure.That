@@ -5,7 +5,6 @@ namespace EnsureThat
 {
     public static class EnsureGuidExtensions
     {
-        [DebuggerStepThrough]
         public static void IsNotEmpty(this Param<Guid> param)
         {
             if (!Ensure.IsActive)

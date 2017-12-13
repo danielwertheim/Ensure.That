@@ -29,87 +29,70 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public Type IsInt([ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.IntType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsInt<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.IntType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public Type IsShort([ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.ShortType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsShort<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.ShortType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public Type IsDecimal([ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.DecimalType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsDecimal<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.DecimalType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public Type IsDouble([ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.DoubleType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsDouble<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.DoubleType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public Type IsFloat([ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.FloatType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsFloat<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.FloatType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public Type IsBool([ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.BoolType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsBool<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.BoolType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public Type IsDateTime([ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.DateTimeType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsDateTime<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.DateTimeType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public Type IsString([ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.StringType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsString<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.StringType, paramName, optsFn);
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsOfType<T>([ValidatedNotNull]T param, [NotNull] Type expectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -123,7 +106,6 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public Type IsOfType([ValidatedNotNull]Type param, [NotNull] Type expectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -142,7 +124,6 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsNotOfType<T>([ValidatedNotNull]T param, [NotNull] Type nonExpectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -156,7 +137,6 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public Type IsNotOfType([ValidatedNotNull]Type param, [NotNull] Type nonExpectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -175,7 +155,6 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public T IsClass<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
@@ -193,7 +172,6 @@ namespace EnsureThat
         }
 
         [NotNull]
-        [DebuggerStepThrough]
         public Type IsClass([ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!Ensure.IsActive)
