@@ -91,7 +91,7 @@ namespace JetBrains.Annotations
     /// </code></example>
     [AttributeUsage(AttributeTargets.Parameter)]
     internal sealed class InvokerParameterNameAttribute : Attribute { }
-	
+
     /// <summary>
     /// Describes dependency between method input and output.
     /// </summary>
@@ -152,4 +152,12 @@ namespace JetBrains.Annotations
 
         public bool ForceFullStates { get; private set; }
     }
+
+    /// <summary>
+    /// Tells code analysis engine if the parameter is completely handled when the invoked method is on stack.
+    /// If the parameter is a delegate, indicates that delegate is executed while the method is executed.
+    /// If the parameter is an enumerable, indicates that it is enumerated while the method is executed.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Parameter)]
+    internal sealed class InstantHandleAttribute : Attribute { }
 }
