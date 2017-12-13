@@ -14,13 +14,13 @@ namespace EnsureThat
                 var opts = optsFn(new EnsureOptions());
 
                 if (opts.CustomException != null)
-                    throw opts.CustomException;
+                    return opts.CustomException;
 
                 if (opts.CustomMessage != null)
-                    throw new ArgumentException(opts.CustomMessage, paramName);
+                    return new ArgumentException(opts.CustomMessage, paramName);
             }
 
-            throw new ArgumentException(defaultMessage, paramName);
+            return new ArgumentException(defaultMessage, paramName);
         }
 
         [NotNull]
@@ -32,13 +32,13 @@ namespace EnsureThat
                 var opts = optsFn(new EnsureOptions());
 
                 if (opts.CustomException != null)
-                    throw opts.CustomException;
+                    return opts.CustomException;
 
                 if (opts.CustomMessage != null)
-                    throw new ArgumentNullException(paramName, opts.CustomMessage);
+                    return new ArgumentNullException(paramName, opts.CustomMessage);
             }
 
-            throw new ArgumentNullException(paramName, defaultMessage);
+            return new ArgumentNullException(paramName, defaultMessage);
         }
 
         [NotNull]
@@ -50,13 +50,13 @@ namespace EnsureThat
                 var opts = optsFn(new EnsureOptions());
 
                 if (opts.CustomException != null)
-                    throw opts.CustomException;
+                    return opts.CustomException;
 
                 if (opts.CustomMessage != null)
-                    throw new ArgumentOutOfRangeException(paramName, value, opts.CustomMessage);
+                    return new ArgumentOutOfRangeException(paramName, value, opts.CustomMessage);
             }
 
-            throw new ArgumentOutOfRangeException(paramName, value, defaultMessage);
+            return new ArgumentOutOfRangeException(paramName, value, defaultMessage);
         }
 
         [NotNull]
@@ -73,7 +73,7 @@ namespace EnsureThat
         public static Exception CreateForComparableParamValidation<T>([NotNull] Param<T> param, string message)
         {
             if (param.ExceptionFn != null)
-                throw param.ExceptionFn(param);
+                return param.ExceptionFn(param);
 
             return new ArgumentOutOfRangeException(
                 param.Name,
@@ -87,7 +87,7 @@ namespace EnsureThat
         public static Exception CreateForParamValidation<T>([NotNull] Param<T> param, string message)
         {
             if (param.ExceptionFn != null)
-                throw param.ExceptionFn(param);
+                return param.ExceptionFn(param);
 
             return new ArgumentException(
                 param.ExtraMessageFn == null
