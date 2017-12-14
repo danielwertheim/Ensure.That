@@ -27,31 +27,22 @@ namespace EnsureThat
             internal static readonly Type StringType = typeof(string);
         }
 
-        [DebuggerStepThrough]
         public static void IsInt(this TypeParam param) => IsOfType(param, Types.IntType);
 
-        [DebuggerStepThrough]
         public static void IsShort(this TypeParam param) => IsOfType(param, Types.ShortType);
 
-        [DebuggerStepThrough]
         public static void IsDecimal(this TypeParam param) => IsOfType(param, Types.DecimalType);
 
-        [DebuggerStepThrough]
         public static void IsDouble(this TypeParam param) => IsOfType(param, Types.DoubleType);
 
-        [DebuggerStepThrough]
         public static void IsFloat(this TypeParam param) => IsOfType(param, Types.FloatType);
 
-        [DebuggerStepThrough]
         public static void IsBool(this TypeParam param) => IsOfType(param, Types.BoolType);
 
-        [DebuggerStepThrough]
         public static void IsDateTime(this TypeParam param) => IsOfType(param, Types.DateTimeType);
 
-        [DebuggerStepThrough]
         public static void IsString(this TypeParam param) => IsOfType(param, Types.StringType);
 
-        [DebuggerStepThrough]
         public static void IsOfType(this TypeParam param, [NotNull] Type type)
         {
             if (!Ensure.IsActive)
@@ -61,7 +52,6 @@ namespace EnsureThat
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Types_IsOfType_Failed.Inject(type.FullName, param.Type.FullName));
         }
 
-        [DebuggerStepThrough]
         public static void IsNotOfType(this TypeParam param, Type type)
         {
             if (!Ensure.IsActive)
@@ -71,7 +61,6 @@ namespace EnsureThat
                 throw ExceptionFactory.CreateForParamValidation(param, ExceptionMessages.Types_IsNotOfType_Failed.Inject(type.FullName));
         }
 
-        [DebuggerStepThrough]
         public static void IsClass(this Param<Type> param)
         {
             if (!Ensure.IsActive)
@@ -87,7 +76,6 @@ namespace EnsureThat
                     ExceptionMessages.Types_IsClass_Failed.Inject(param.Value.FullName));
         }
 
-        [DebuggerStepThrough]
         public static void IsClass(this TypeParam param)
         {
             if (!Ensure.IsActive)

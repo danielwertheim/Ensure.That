@@ -9,6 +9,7 @@ This flavour was introduced in the `v7.0.0` release.
 ```csharp
 Ensure.String.IsNotNullOrWhiteSpace(myString);
 Ensure.String.IsNotNullOrWhiteSpace(myString, nameof(myArg));
+Ensure.String.IsNotNullOrWhiteSpace(myString, nameof(myArg), opts => opts.WithMessage("Foo"));
 ```
 
 the value is passed through so that you e.g. can assign it to a field:
@@ -24,6 +25,7 @@ The `EnsureArg` flavour was added in the `v5.0.0` release.
 ```csharp
 EnsureArg.IsNotNullOrWhiteSpace(myString);
 EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
+EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg), opts => opts.WithMessage("Foo"));
 ```
 
 the value is passed through so that you e.g. can assign it to a field:

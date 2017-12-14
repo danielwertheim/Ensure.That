@@ -4,7 +4,6 @@ namespace EnsureThat
 {
     public static class EnsureNullableValueTypeExtensions
     {
-        [DebuggerStepThrough]
         public static void IsNotNull<T>(this Param<T?> param) where T : struct
         {
             if (!Ensure.IsActive)
