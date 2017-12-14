@@ -4,6 +4,7 @@ _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should b
 ## v7.2.0 - 2017-12-14
 
 **[New]:** Added overload to `EnsureArg` and contextual e.g. `Ensure.StringArg` that allows you to define either a custom exception message or custom exception.
+
 **[New]:** Added `Ensure.Enumerable` which provides the members found in `Ensure.Collection` but it operates on `IEnumerable<T>` instead. **Please note that enumeration will occur**.
 
 ## v7.1.0 - 2017-11-19
