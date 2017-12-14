@@ -59,11 +59,13 @@ namespace EnsureThat
 
             Ensure.Any.IsNotNull(value, paramName);
 
+#if NETSTANDARD1_1
             var count = value.LongCount();
 
-#if NETSTANDARD1_1
             if (count != expected)
 #else
+            var count = value.LongCount();
+
             if (count != expected)
 #endif
                 throw ExceptionFactory.ArgumentException(
