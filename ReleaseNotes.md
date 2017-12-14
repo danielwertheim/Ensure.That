@@ -1,9 +1,10 @@
 Semantic versioning is used. See http://semver.org for more info. Basically this means that version format is:
 _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should be able to update without any breaking API changes.
 
-## v7.2.0 - 2017-12-13
+## v7.2.0 - 2017-12-14
 
 **[New]:** Added overload to `EnsureArg` and contextual e.g. `Ensure.StringArg` that allows you to define either a custom exception message or custom exception.
+**[New]:** Added `Ensure.Enumerable` which provides the members found in `Ensure.Collection` but it operates on `IEnumerable<T>` instead. **Please note that enumeration will occur**.
 
 ## v7.1.0 - 2017-11-19
 Thanks to [@ndrwrbgs](https://github.com/ndrwrbgs) who has made this release happen. Lots of improvements when it comes to using Ensure.That with ReSharper etc.
