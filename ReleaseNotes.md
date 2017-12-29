@@ -1,6 +1,10 @@
 Semantic versioning is used. See http://semver.org for more info. Basically this means that version format is:
 _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should be able to update without any breaking API changes.
 
+## v7.2.1 - 2017-12-29
+
+**[Fix]:** `EnsureArg.IsTrue` and `EnsureArg.IsFalse` did not pass `optsFn` down.
+
 ## v7.2.0 - 2017-12-14
 
 **[New]:** Added overload to `EnsureArg` and contextual e.g. `Ensure.StringArg` that allows you to define either a custom exception message or custom exception.
