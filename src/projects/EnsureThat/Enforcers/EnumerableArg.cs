@@ -6,21 +6,18 @@ using EnsureThat.Annotations;
 using EnsureThat.Extensions;
 using JetBrains.Annotations;
 
-namespace EnsureThat
+namespace EnsureThat.Enforcers
 {
     /// <summary>
     /// Ensures for <see cref="IEnumerable{T}"/>.
     /// </summary>
     /// <remarks>MULTIPLE ENUMERATION OF PASSED ENUMERABLE IS POSSIBLE.</remarks>
     [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
-    public class EnumerableArg
+    public class EnumerableArg : IEnumerableArg
     {
         [NotNull]
         public IEnumerable<T> HasItems<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             Ensure.Any.IsNotNull(value, paramName);
 
             if (!value.Any())
@@ -35,9 +32,6 @@ namespace EnsureThat
         [NotNull]
         public IEnumerable<T> SizeIs<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, int expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             Ensure.Any.IsNotNull(value, paramName);
 
             var count = value.Count();
@@ -54,9 +48,6 @@ namespace EnsureThat
         [NotNull]
         public IEnumerable<T> SizeIs<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, long expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             Ensure.Any.IsNotNull(value, paramName);
 
 #if NETSTANDARD1_1
@@ -79,9 +70,6 @@ namespace EnsureThat
         [NotNull]
         public IEnumerable<T> HasAny<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, [NotNull] Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             Ensure.Any.IsNotNull(value, paramName);
 
             if (!value.Any(predicate))
