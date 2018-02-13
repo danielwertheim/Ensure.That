@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using EnsureThat.Annotations;
+﻿using EnsureThat.Annotations;
 using JetBrains.Annotations;
 
 namespace EnsureThat

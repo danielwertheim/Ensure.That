@@ -1,4 +1,3 @@
-using System;
 using JetBrains.Annotations;
 
 namespace EnsureThat
@@ -59,19 +58,5 @@ namespace EnsureThat
         /// </summary>
         [NotNull]
         public static TypeArg Type { get; } = new TypeArg();
-
-        [Pure]
-        [Obsolete("Use contextual validation instead. E.g. Ensure.String.IsNotNull(value) or non contextual via EnsureArg instead. This version will eventually be removed.", false)]
-        public static Param<T> That<T>([NoEnumeration]T value, string name = Param.DefaultName) => new Param<T>(name, value);
-
-        [Pure]
-        [Obsolete("Use contextual validation instead. E.g. Ensure.String.IsNotNull(value) or non contextual via EnsureArg instead. This version will eventually be removed.", false)]
-        public static Param<T> That<T>([NotNull] Func<T> expression, string name = Param.DefaultName) => new Param<T>(
-            name,
-            expression.Invoke());
-
-        [Pure]
-        [Obsolete("Use contextual validation instead. E.g. Ensure.String.IsNotNull(value) or non contextual via EnsureArg instead. This version will eventually be removed.", false)]
-        public static TypeParam ThatTypeFor<T>([NotNull] T value, string name = Param.DefaultName) => new TypeParam(name, value.GetType());
     }
 }

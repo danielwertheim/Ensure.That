@@ -14,7 +14,7 @@ namespace UnitTests
             var spec = When_value_is_gt_than_limit();
 
             AssertIsLtScenario(spec.Value, spec.Limit,
-                () => Ensure.That(spec.Value, ParamName).IsLt(spec.Limit),
+                () => Ensure.Comparable.IsLt(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.IsLt(spec.Value, spec.Limit, ParamName));
         }
 
@@ -24,7 +24,7 @@ namespace UnitTests
             var spec = When_value_is_equal_to_limit();
 
             AssertIsLtScenario(spec.Value, spec.Limit,
-                () => Ensure.That(spec.Value, ParamName).IsLt(spec.Limit),
+                () => Ensure.Comparable.IsLt(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.IsLt(spec.Value, spec.Limit, ParamName));
         }
 
@@ -34,7 +34,7 @@ namespace UnitTests
             var spec = When_value_is_lt_than_limit();
 
             ShouldNotThrow(
-                () => Ensure.That(spec.Value, ParamName).IsLt(spec.Limit),
+                () => Ensure.Comparable.IsLt(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.IsLt(spec.Value, spec.Limit, ParamName));
         }
 
@@ -46,13 +46,13 @@ namespace UnitTests
             var sa = "sa";
             IComparer<string> ordinal = StringComparer.Ordinal;
             ShouldNotThrow(
-                () => Ensure.That(Sp, ParamName).IsLt(sa, ordinal),
+                () => Ensure.Comparable.IsLt(Sp, sa, ordinal, ParamName),
                 () => EnsureArg.IsLt(Sp, sa, ordinal, ParamName));
 
             // Validate with comparer (order is reversed)
             IComparer<string> ignoreCase = StringComparer.OrdinalIgnoreCase;
             ShouldNotThrow(
-                () => Ensure.That(sa, ParamName).IsLt(Sp, ignoreCase),
+                () => Ensure.Comparable.IsLt(sa, Sp, ignoreCase, ParamName),
                 () => EnsureArg.IsLt(sa, Sp, ignoreCase, ParamName));
         }
 
@@ -62,7 +62,7 @@ namespace UnitTests
             var spec = When_value_is_equal_to_limit();
 
             AssertIsGtScenario(spec.Value, spec.Limit,
-                () => Ensure.That(spec.Value, ParamName).IsGt(spec.Limit),
+                () => Ensure.Comparable.IsGt(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.IsGt(spec.Value, spec.Limit, ParamName));
         }
 
@@ -72,7 +72,7 @@ namespace UnitTests
             var spec = When_value_is_lt_than_limit();
 
             AssertIsGtScenario(spec.Value, spec.Limit,
-                () => Ensure.That(spec.Value, ParamName).IsGt(spec.Limit),
+                () => Ensure.Comparable.IsGt(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.IsGt(spec.Value, spec.Limit, ParamName));
         }
 
@@ -82,7 +82,7 @@ namespace UnitTests
             var spec = When_value_is_gt_than_limit();
 
             ShouldNotThrow(
-                () => Ensure.That(spec.Value, ParamName).IsGt(spec.Limit),
+                () => Ensure.Comparable.IsGt(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.IsGt(spec.Value, spec.Limit, ParamName));
         }
 
@@ -94,13 +94,13 @@ namespace UnitTests
             var Sp = "Sp";
             IComparer<string> ordinal = StringComparer.Ordinal;
             ShouldNotThrow(
-                () => Ensure.That(sa, ParamName).IsGt(Sp, ordinal),
+                () => Ensure.Comparable.IsGt(sa, Sp, ordinal, ParamName),
                 () => EnsureArg.IsGt(sa, Sp, ordinal, ParamName));
 
             // Validate with comparer (order is reversed)
             IComparer<string> ignoreCase = StringComparer.OrdinalIgnoreCase;
             ShouldNotThrow(
-                () => Ensure.That(Sp, ParamName).IsGt(sa, ignoreCase),
+                () => Ensure.Comparable.IsGt(Sp, sa, ignoreCase, ParamName),
                 () => EnsureArg.IsGt(Sp, sa, ignoreCase, ParamName));
         }
 
@@ -110,7 +110,7 @@ namespace UnitTests
             var spec = When_value_is_equal_to_limit();
 
             ShouldNotThrow(
-                () => Ensure.That(spec.Value, ParamName).IsLte(spec.Limit),
+                () => Ensure.Comparable.IsLte(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.IsLte(spec.Value, spec.Limit, ParamName));
         }
 
@@ -120,7 +120,7 @@ namespace UnitTests
             var spec = When_value_is_gt_than_limit();
 
             AssertIsLteScenario(spec.Value, spec.Limit,
-                () => Ensure.That(spec.Value, ParamName).IsLte(spec.Limit),
+                () => Ensure.Comparable.IsLte(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.IsLte(spec.Value, spec.Limit, ParamName));
         }
 
@@ -130,7 +130,7 @@ namespace UnitTests
             var spec = When_value_is_lt_than_limit();
 
             ShouldNotThrow(
-                () => Ensure.That(spec.Value, ParamName).IsLte(spec.Limit),
+                () => Ensure.Comparable.IsLte(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.IsLte(spec.Value, spec.Limit, ParamName));
         }
 
@@ -142,13 +142,13 @@ namespace UnitTests
             var Sa = "Sa";
             IComparer<string> ordinal = StringComparer.Ordinal;
             AssertIsLteScenario(sa, Sa,
-                () => Ensure.That(sa, ParamName).IsLte(Sa, ordinal),
+                () => Ensure.Comparable.IsLte(sa, Sa, ordinal, ParamName),
                 () => EnsureArg.IsLte(sa, Sa, ordinal, ParamName));
 
             // Validate with comparer (order is reversed)
             IComparer<string> ignoreCase = StringComparer.OrdinalIgnoreCase;
             ShouldNotThrow(
-                () => Ensure.That(sa, ParamName).IsLte(Sa, ignoreCase),
+                () => Ensure.Comparable.IsLte(sa, Sa, ignoreCase, ParamName),
                 () => EnsureArg.IsLte(sa, Sa, ignoreCase, ParamName));
         }
 
@@ -158,7 +158,7 @@ namespace UnitTests
             var spec = When_value_is_equal_to_limit();
 
             ShouldNotThrow(
-                () => Ensure.That(spec.Value, ParamName).IsGte(spec.Limit),
+                () => Ensure.Comparable.IsGte(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.IsGte(spec.Value, spec.Limit, ParamName));
         }
 
@@ -168,7 +168,7 @@ namespace UnitTests
             var spec = When_value_is_lt_than_limit();
 
             AssertIsGteScenario(spec.Value, spec.Limit,
-                () => Ensure.That(spec.Value, ParamName).IsGte(spec.Limit),
+                () => Ensure.Comparable.IsGte(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.IsGte(spec.Value, spec.Limit, ParamName));
         }
 
@@ -178,7 +178,7 @@ namespace UnitTests
             var spec = When_value_is_gt_than_limit();
 
             ShouldNotThrow(
-                () => Ensure.That(spec.Value, ParamName).IsGte(spec.Limit),
+                () => Ensure.Comparable.IsGte(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.IsGte(spec.Value, spec.Limit, ParamName));
         }
 
@@ -190,13 +190,13 @@ namespace UnitTests
             var sa = "sa";
             IComparer<string> ordinal = StringComparer.Ordinal;
             AssertIsGteScenario(Sa, sa,
-                () => Ensure.That(Sa, ParamName).IsGte(sa, ordinal),
+                () => Ensure.Comparable.IsGte(Sa, sa, ordinal, ParamName),
                 () => EnsureArg.IsGte(Sa, sa, ordinal, ParamName));
 
             // Validate with comparer (order is reversed)
             IComparer<string> ignoreCase = StringComparer.OrdinalIgnoreCase;
             ShouldNotThrow(
-                () => Ensure.That(Sa, ParamName).IsGte(sa, ignoreCase),
+                () => Ensure.Comparable.IsGte(Sa, sa, ignoreCase, ParamName),
                 () => EnsureArg.IsGte(Sa, sa, ignoreCase, ParamName));
         }
 
@@ -206,7 +206,7 @@ namespace UnitTests
             var spec = When_value_is_lower_limit();
 
             ShouldNotThrow(
-                () => Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit),
+                () => Ensure.Comparable.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName),
                 () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName));
         }
 
@@ -216,7 +216,7 @@ namespace UnitTests
             var spec = When_value_is_upper_limit();
 
             ShouldNotThrow(
-                () => Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit),
+                () => Ensure.Comparable.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName),
                 () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName));
         }
 
@@ -226,7 +226,7 @@ namespace UnitTests
             var spec = When_value_is_between_limits();
 
             ShouldNotThrow(
-                () => Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit),
+                () => Ensure.Comparable.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName),
                 () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName));
         }
 
@@ -236,7 +236,7 @@ namespace UnitTests
             var spec = When_value_is_lower_than_lower_limit();
 
             AssertIsRangeToLowScenario(spec.Value, spec.LowerLimit,
-                () => Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit),
+                () => Ensure.Comparable.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName),
                 () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName));
         }
 
@@ -246,7 +246,7 @@ namespace UnitTests
             var spec = When_value_is_greater_than_upper_limit();
 
             AssertIsRangeToHighScenario(spec.Value, spec.UpperLimit,
-                () => Ensure.That(spec.Value, ParamName).IsInRange(spec.LowerLimit, spec.UpperLimit),
+                () => Ensure.Comparable.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName),
                 () => EnsureArg.IsInRange(spec.Value, spec.LowerLimit, spec.UpperLimit, ParamName));
         }
 
@@ -259,13 +259,13 @@ namespace UnitTests
             var sc = "sc";
             IComparer<string> ordinal = StringComparer.Ordinal;
             AssertIsRangeToLowScenario(Sb, sa,
-                () => Ensure.That(Sb, ParamName).IsInRange(sa, sc, ordinal),
+                () => Ensure.Comparable.IsInRange(Sb, sa, sc, ordinal, ParamName),
                 () => EnsureArg.IsInRange(Sb, sa, sc, ordinal, ParamName));
 
             // Validate with comparer (order is reversed)
             IComparer<string> ignoreCase = StringComparer.OrdinalIgnoreCase;
             ShouldNotThrow(
-                () => Ensure.That(Sb, ParamName).IsInRange(sa, sc, ignoreCase),
+                () => Ensure.Comparable.IsInRange(Sb, sa, sc, ignoreCase, ParamName),
                 () => EnsureArg.IsInRange(Sb, sa, sc, ignoreCase, ParamName));
         }
 
@@ -275,7 +275,7 @@ namespace UnitTests
             var spec = When_value_is_equal_to_limit();
 
             ShouldNotThrow(
-                () => Ensure.That(spec.Value, ParamName).Is(spec.Limit),
+                () => Ensure.Comparable.Is(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.Is(spec.Value, spec.Limit, ParamName));
         }
 
@@ -286,7 +286,7 @@ namespace UnitTests
 
             ShouldThrow<ArgumentException>(
                 string.Format(ExceptionMessages.Comp_Is_Failed, spec.Value, spec.Limit),
-                () => Ensure.That(spec.Value, ParamName).Is(spec.Limit),
+                () => Ensure.Comparable.Is(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.Is(spec.Value, spec.Limit, ParamName));
         }
 
@@ -299,13 +299,13 @@ namespace UnitTests
             IComparer<string> ordinal = StringComparer.Ordinal;
             ShouldThrow<ArgumentException>(
                 string.Format(ExceptionMessages.Comp_Is_Failed, sa, Sa),
-                () => Ensure.That(sa, ParamName).Is(Sa, ordinal),
+                () => Ensure.Comparable.Is(sa, Sa, ordinal, ParamName),
                 () => EnsureArg.Is(sa, Sa, ordinal, ParamName));
 
             // Validate with comparer (order is reversed)
             IComparer<string> ignoreCase = StringComparer.OrdinalIgnoreCase;
             ShouldNotThrow(
-                () => Ensure.That(sa, ParamName).Is(Sa, ignoreCase),
+                () => Ensure.Comparable.Is(sa, Sa, ignoreCase, ParamName),
                 () => EnsureArg.Is(sa, Sa, ignoreCase, ParamName));
         }
 
@@ -315,7 +315,7 @@ namespace UnitTests
             var spec = When_value_is_lt_than_limit();
 
             ShouldNotThrow(
-                () => Ensure.That(spec.Value, ParamName).IsNot(spec.Limit),
+                () => Ensure.Comparable.IsNot(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.IsNot(spec.Value, spec.Limit, ParamName));
         }
 
@@ -326,7 +326,7 @@ namespace UnitTests
 
             ShouldThrow<ArgumentException>(
                 string.Format(ExceptionMessages.Comp_IsNot_Failed, spec.Value, spec.Limit),
-                () => Ensure.That(spec.Value, ParamName).IsNot(spec.Limit),
+                () => Ensure.Comparable.IsNot(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.IsNot(spec.Value, spec.Limit, ParamName));
         }
 
@@ -338,14 +338,14 @@ namespace UnitTests
             var Sa = "Sa";
             IComparer<string> ordinal = StringComparer.Ordinal;
             ShouldNotThrow(
-                () => Ensure.That(sa, ParamName).IsNot(Sa, ordinal),
+                () => Ensure.Comparable.IsNot(sa, Sa, ordinal, ParamName),
                 () => EnsureArg.IsNot(sa, Sa, ordinal, ParamName));
 
             // Validate with comparer (order is reversed)
             IComparer<string> ignoreCase = StringComparer.OrdinalIgnoreCase;
             ShouldThrow<ArgumentException>(
                 string.Format(ExceptionMessages.Comp_IsNot_Failed, sa, Sa),
-                () => Ensure.That(sa, ParamName).IsNot(Sa, ignoreCase),
+                () => Ensure.Comparable.IsNot(sa, Sa, ignoreCase, ParamName),
                 () => EnsureArg.IsNot(sa, Sa, ignoreCase, ParamName));
         }
 
