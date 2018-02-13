@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 using EnsureThat.Annotations;
 using EnsureThat.Extensions;
@@ -9,6 +8,17 @@ namespace EnsureThat
 {
     public class StringArg
     {
+        [NotNull]
+        public string IsNotNull([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        {
+            if (!Ensure.IsActive)
+                return value;
+
+            Ensure.Any.IsNotNull(value, paramName, optsFn);
+
+            return value;
+        }
+
         [NotNull]
         public string IsNotNullOrWhiteSpace([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {

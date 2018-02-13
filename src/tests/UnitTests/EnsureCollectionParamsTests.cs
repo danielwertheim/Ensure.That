@@ -14,7 +14,7 @@ namespace UnitTests
             IReadOnlyCollection<int> emptyCollection = new ReadOnlyCollection<int>(new List<int>());
 
             AssertIsEmptyCollection(
-                () => Ensure.That(emptyCollection, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(emptyCollection, ParamName),
                 () => EnsureArg.HasItems(emptyCollection, ParamName));
         }
 
@@ -24,7 +24,7 @@ namespace UnitTests
             IReadOnlyCollection<int> collection = new ReadOnlyCollection<int>(new List<int> { 1, 2, 3 });
 
             ShouldNotThrow(
-                () => Ensure.That(collection, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(collection, ParamName),
                 () => EnsureArg.HasItems(collection, ParamName));
         }
 
@@ -34,7 +34,7 @@ namespace UnitTests
             IReadOnlyList<int> emptyList = new List<int>();
 
             AssertIsEmptyCollection(
-                () => Ensure.That(emptyList, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(emptyList, ParamName),
                 () => EnsureArg.HasItems(emptyList, ParamName));
         }
 
@@ -44,7 +44,7 @@ namespace UnitTests
             IReadOnlyList<int> collection = new List<int> { 1, 2, 3 };
 
             ShouldNotThrow(
-                () => Ensure.That(collection, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(collection, ParamName),
                 () => EnsureArg.HasItems(collection, ParamName));
         }
 
@@ -54,7 +54,7 @@ namespace UnitTests
             ICollection<int> emptyCollection = new Collection<int>();
 
             AssertIsEmptyCollection(
-                () => Ensure.That(emptyCollection, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(emptyCollection, ParamName),
                 () => EnsureArg.HasItems(emptyCollection, ParamName));
         }
 
@@ -64,7 +64,7 @@ namespace UnitTests
             ICollection<int> collection = new Collection<int> { 1, 2, 3 };
 
             ShouldNotThrow(
-                () => Ensure.That(collection, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(collection, ParamName),
                 () => EnsureArg.HasItems(collection, ParamName));
         }
 
@@ -74,7 +74,7 @@ namespace UnitTests
             var emptyCollection = new Collection<int>();
 
             AssertIsEmptyCollection(
-                () => Ensure.That(emptyCollection, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(emptyCollection, ParamName),
                 () => EnsureArg.HasItems(emptyCollection, ParamName));
         }
 
@@ -84,7 +84,7 @@ namespace UnitTests
             var collection = new Collection<int> { 1, 2, 3 };
 
             ShouldNotThrow(
-                () => Ensure.That(collection, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(collection, ParamName),
                 () => EnsureArg.HasItems(collection, ParamName));
         }
 
@@ -94,7 +94,7 @@ namespace UnitTests
             var nullArray = null as int[];
 
             AssertIsNotNull(
-                () => Ensure.That(nullArray, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(nullArray, ParamName),
                 () => EnsureArg.HasItems(nullArray, ParamName));
         }
 
@@ -104,7 +104,7 @@ namespace UnitTests
             var nullCollection = null as Collection<int>;
 
             AssertIsNotNull(
-                () => Ensure.That(nullCollection, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(nullCollection, ParamName),
                 () => EnsureArg.HasItems(nullCollection, ParamName));
         }
 
@@ -114,7 +114,7 @@ namespace UnitTests
             var nullCollection = null as ICollection<int>;
 
             AssertIsNotNull(
-                () => Ensure.That(nullCollection, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(nullCollection, ParamName),
                 () => EnsureArg.HasItems(nullCollection, ParamName));
         }
 
@@ -124,7 +124,7 @@ namespace UnitTests
             var nullList = null as List<int>;
 
             AssertIsNotNull(
-                () => Ensure.That(nullList, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(nullList, ParamName),
                 () => EnsureArg.HasItems(nullList, ParamName));
         }
 
@@ -134,7 +134,7 @@ namespace UnitTests
             var nullList = null as IList<int>;
 
             AssertIsNotNull(
-                () => Ensure.That(nullList, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(nullList, ParamName),
                 () => EnsureArg.HasItems(nullList, ParamName));
         }
 
@@ -144,7 +144,7 @@ namespace UnitTests
             var nullDictionary = null as Dictionary<int, string>;
 
             AssertIsNotNull(
-                () => Ensure.That(nullDictionary, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(nullDictionary, ParamName),
                 () => EnsureArg.HasItems(nullDictionary, ParamName));
         }
 
@@ -154,7 +154,7 @@ namespace UnitTests
             var nullDictionary = null as IDictionary<int, string>;
 
             AssertIsNotNull(
-                () => Ensure.That(nullDictionary, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(nullDictionary, ParamName),
                 () => EnsureArg.HasItems(nullDictionary, ParamName));
         }
 
@@ -164,7 +164,7 @@ namespace UnitTests
             var emptyArray = new int[] { };
 
             AssertIsEmptyCollection(
-                () => Ensure.That(emptyArray, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(emptyArray, ParamName),
                 () => EnsureArg.HasItems(emptyArray, ParamName));
         }
 
@@ -174,7 +174,7 @@ namespace UnitTests
             var values = new[] { 1, 2, 3 };
 
             ShouldNotThrow(
-                () => Ensure.That(values, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(values, ParamName),
                 () => EnsureArg.HasItems(values, ParamName));
         }
 
@@ -184,7 +184,7 @@ namespace UnitTests
             IList<int> emptyList = new List<int>();
 
             AssertIsEmptyCollection(
-                () => Ensure.That(emptyList, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(emptyList, ParamName),
                 () => EnsureArg.HasItems(emptyList, ParamName));
         }
 
@@ -194,7 +194,7 @@ namespace UnitTests
             IList<int> values = new List<int> { 1, 2, 3 };
 
             ShouldNotThrow(
-                () => Ensure.That(values, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(values, ParamName),
                 () => EnsureArg.HasItems(values, ParamName));
         }
 
@@ -204,7 +204,7 @@ namespace UnitTests
             var emptyList = new List<int>();
 
             AssertIsEmptyCollection(
-                () => Ensure.That(emptyList, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(emptyList, ParamName),
                 () => EnsureArg.HasItems(emptyList, ParamName));
         }
 
@@ -214,7 +214,7 @@ namespace UnitTests
             var values = new List<int> { 1, 2, 3 };
 
             ShouldNotThrow(
-                () => Ensure.That(values, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(values, ParamName),
                 () => EnsureArg.HasItems(values, ParamName));
         }
 
@@ -224,7 +224,7 @@ namespace UnitTests
             IDictionary<string, int> emptyDict = new Dictionary<string, int>();
 
             AssertIsEmptyCollection(
-                () => Ensure.That(emptyDict, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(emptyDict, ParamName),
                 () => EnsureArg.HasItems(emptyDict, ParamName));
         }
 
@@ -234,7 +234,7 @@ namespace UnitTests
             IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
 
             ShouldNotThrow(
-                () => Ensure.That(dict, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(dict, ParamName),
                 () => EnsureArg.HasItems(dict, ParamName));
         }
 
@@ -244,7 +244,7 @@ namespace UnitTests
             var emptyDict = new Dictionary<string, int>();
 
             AssertIsEmptyCollection(
-                () => Ensure.That(emptyDict, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(emptyDict, ParamName),
                 () => EnsureArg.HasItems(emptyDict, ParamName));
         }
 
@@ -254,7 +254,7 @@ namespace UnitTests
             var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
 
             ShouldNotThrow(
-                () => Ensure.That(dict, ParamName).HasItems(),
+                () => Ensure.Collection.HasItems(dict, ParamName),
                 () => EnsureArg.HasItems(dict, ParamName));
         }
 
@@ -264,7 +264,7 @@ namespace UnitTests
             var values = new[] { 1, 2, 3 };
 
             ShouldNotThrow(
-                () => Ensure.That(values, ParamName).SizeIs(values.Length),
+                () => Ensure.Collection.SizeIs(values, values.Length, ParamName),
                 () => EnsureArg.SizeIs(values, values.Length, ParamName));
         }
 
@@ -277,7 +277,7 @@ namespace UnitTests
             AssertSizeIsWrong(
                 values.Length,
                 expected,
-                () => Ensure.That(values, ParamName).SizeIs(expected),
+                () => Ensure.Collection.SizeIs(values, expected, ParamName),
                 () => EnsureArg.SizeIs(values, expected, ParamName));
         }
 
@@ -287,7 +287,7 @@ namespace UnitTests
             var values = new List<int> { 1, 2, 3 };
 
             ShouldNotThrow(
-                () => Ensure.That(values, ParamName).SizeIs(values.Count),
+                () => Ensure.Collection.SizeIs(values, values.Count, ParamName),
                 () => EnsureArg.SizeIs(values, values.Count, ParamName));
         }
 
@@ -300,7 +300,7 @@ namespace UnitTests
             AssertSizeIsWrong(
                 values.Count,
                 expected,
-                () => Ensure.That(values, ParamName).SizeIs(expected),
+                () => Ensure.Collection.SizeIs(values, expected, ParamName),
                 () => EnsureArg.SizeIs(values, expected, ParamName));
         }
 
@@ -310,7 +310,7 @@ namespace UnitTests
             IList<int> values = new List<int> { 1, 2, 3 };
 
             ShouldNotThrow(
-                () => Ensure.That(values, ParamName).SizeIs(values.Count),
+                () => Ensure.Collection.SizeIs(values, values.Count, ParamName),
                 () => EnsureArg.SizeIs(values, values.Count, ParamName));
         }
 
@@ -323,7 +323,7 @@ namespace UnitTests
             AssertSizeIsWrong(
                 values.Count,
                 expected,
-                () => Ensure.That(values, ParamName).SizeIs(expected),
+                () => Ensure.Collection.SizeIs(values, expected, ParamName),
                 () => EnsureArg.SizeIs(values, expected, ParamName));
         }
 
@@ -333,7 +333,7 @@ namespace UnitTests
             var values = new Collection<int> { 1, 2, 3 };
 
             ShouldNotThrow(
-                () => Ensure.That(values, ParamName).SizeIs(values.Count),
+                () => Ensure.Collection.SizeIs(values, values.Count, ParamName),
                 () => EnsureArg.SizeIs(values, values.Count, ParamName));
         }
 
@@ -346,7 +346,7 @@ namespace UnitTests
             AssertSizeIsWrong(
                 values.Count,
                 expected,
-                () => Ensure.That(values, ParamName).SizeIs(expected),
+                () => Ensure.Collection.SizeIs(values, expected, ParamName),
                 () => EnsureArg.SizeIs(values, expected, ParamName));
         }
 
@@ -356,7 +356,7 @@ namespace UnitTests
             ICollection<int> values = new Collection<int> { 1, 2, 3 };
 
             ShouldNotThrow(
-                () => Ensure.That(values, ParamName).SizeIs(values.Count),
+                () => Ensure.Collection.SizeIs(values, values.Count, ParamName),
                 () => EnsureArg.SizeIs(values, values.Count, ParamName));
         }
 
@@ -369,7 +369,7 @@ namespace UnitTests
             AssertSizeIsWrong(
                 values.Count,
                 expected,
-                () => Ensure.That(values, ParamName).SizeIs(expected),
+                () => Ensure.Collection.SizeIs(values, expected, ParamName),
                 () => EnsureArg.SizeIs(values, expected, ParamName));
         }
 
@@ -379,7 +379,7 @@ namespace UnitTests
             var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
 
             ShouldNotThrow(
-                () => Ensure.That(dict, ParamName).SizeIs(dict.Count),
+                () => Ensure.Collection.SizeIs(dict, dict.Count, ParamName),
                 () => EnsureArg.SizeIs(dict, dict.Count, ParamName));
         }
 
@@ -392,7 +392,7 @@ namespace UnitTests
             AssertSizeIsWrong(
                 dict.Count,
                 expected,
-                () => Ensure.That(dict, ParamName).SizeIs(expected),
+                () => Ensure.Collection.SizeIs(dict, expected, ParamName),
                 () => EnsureArg.SizeIs(dict, expected, ParamName));
         }
 
@@ -402,7 +402,7 @@ namespace UnitTests
             IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
 
             ShouldNotThrow(
-                () => Ensure.That(dict, ParamName).SizeIs(dict.Count),
+                () => Ensure.Collection.SizeIs(dict, dict.Count, ParamName),
                 () => EnsureArg.SizeIs(dict, dict.Count, ParamName));
         }
 
@@ -415,7 +415,7 @@ namespace UnitTests
             AssertSizeIsWrong(
                 dict.Count,
                 expected,
-                () => Ensure.That(dict, ParamName).SizeIs(expected),
+                () => Ensure.Collection.SizeIs(dict, expected, ParamName),
                 () => EnsureArg.SizeIs(dict, expected, ParamName));
         }
 
@@ -425,7 +425,7 @@ namespace UnitTests
             int[] values = null;
 
             AssertIsNotNull(
-                () => Ensure.That(values, ParamName).SizeIs(1),
+                () => Ensure.Collection.SizeIs(values, 1, ParamName),
                 () => EnsureArg.SizeIs(values, 1, ParamName));
         }
 
@@ -435,7 +435,7 @@ namespace UnitTests
             ICollection<int> item = null;
 
             AssertIsNotNull(
-                () => Ensure.That(item, ParamName).SizeIs(1),
+                () => Ensure.Collection.SizeIs(item, 1, ParamName),
                 () => EnsureArg.SizeIs(item, 1, ParamName));
         }
 
@@ -445,7 +445,7 @@ namespace UnitTests
             Collection<int> item = null;
 
             AssertIsNotNull(
-                () => Ensure.That(item, ParamName).SizeIs(1),
+                () => Ensure.Collection.SizeIs(item, 1, ParamName),
                 () => EnsureArg.SizeIs(item, 1, ParamName));
         }
 
@@ -455,7 +455,7 @@ namespace UnitTests
             IList<int> item = null;
 
             AssertIsNotNull(
-                () => Ensure.That(item, ParamName).SizeIs(1),
+                () => Ensure.Collection.SizeIs(item, 1, ParamName),
                 () => EnsureArg.SizeIs(item, 1, ParamName));
         }
 
@@ -465,7 +465,7 @@ namespace UnitTests
             List<int> item = null;
 
             AssertIsNotNull(
-                () => Ensure.That(item, ParamName).SizeIs(1),
+                () => Ensure.Collection.SizeIs(item, 1, ParamName),
                 () => EnsureArg.SizeIs(item, 1, ParamName));
         }
 
@@ -475,7 +475,7 @@ namespace UnitTests
             IDictionary<string, int> item = null;
 
             AssertIsNotNull(
-                () => Ensure.That(item, ParamName).SizeIs(1),
+                () => Ensure.Collection.SizeIs(item, 1, ParamName),
                 () => EnsureArg.SizeIs(item, 1, ParamName));
         }
 
@@ -485,7 +485,7 @@ namespace UnitTests
             Dictionary<string, int> item = null;
 
             AssertIsNotNull(
-                () => Ensure.That(item, ParamName).SizeIs(1),
+                () => Ensure.Collection.SizeIs(item, 1, ParamName),
                 () => EnsureArg.SizeIs(item, 1, ParamName));
         }
 
@@ -497,7 +497,7 @@ namespace UnitTests
 
             AssertContainsKey(
                 expectedKey,
-                () => Ensure.That(dict, ParamName).ContainsKey(expectedKey),
+                () => Ensure.Collection.ContainsKey(dict, expectedKey, ParamName),
                 () => EnsureArg.ContainsKey(dict, expectedKey, ParamName));
         }
 
@@ -507,7 +507,7 @@ namespace UnitTests
             var dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
 
             ShouldNotThrow(
-                () => Ensure.That(dict, ParamName).ContainsKey("B"),
+                () => Ensure.Collection.ContainsKey(dict, "B", ParamName),
                 () => EnsureArg.ContainsKey(dict, "B", ParamName));
         }
 
@@ -519,7 +519,7 @@ namespace UnitTests
 
             AssertContainsKey(
                 expectedKey,
-                () => Ensure.That(dict, ParamName).ContainsKey(expectedKey),
+                () => Ensure.Collection.ContainsKey(dict, expectedKey, ParamName),
                 () => EnsureArg.ContainsKey(dict, expectedKey, ParamName));
         }
 
@@ -529,7 +529,7 @@ namespace UnitTests
             IDictionary<string, int> dict = new Dictionary<string, int> { { "A", 1 }, { "B", 2 }, { "C", 3 } };
 
             ShouldNotThrow(
-                () => Ensure.That(dict, ParamName).ContainsKey("B"),
+                () => Ensure.Collection.ContainsKey(dict, "B", ParamName),
                 () => EnsureArg.ContainsKey(dict, "B", ParamName));
         }
 
@@ -539,7 +539,7 @@ namespace UnitTests
             Dictionary<string, int> dict = null;
 
             AssertIsNotNull(
-                () => Ensure.That(dict, ParamName).ContainsKey("B"),
+                () => Ensure.Collection.ContainsKey(dict, "B", ParamName),
                 () => EnsureArg.ContainsKey(dict, "B", ParamName));
         }
 
@@ -549,7 +549,7 @@ namespace UnitTests
             IDictionary<string, int> dict = null;
 
             AssertIsNotNull(
-                () => Ensure.That(dict, ParamName).ContainsKey("B"),
+                () => Ensure.Collection.ContainsKey(dict,"B", ParamName),
                 () => EnsureArg.ContainsKey(dict, "B", ParamName));
         }
 
@@ -560,7 +560,7 @@ namespace UnitTests
             Func<int, bool> predicate = i => i == 0;
 
             AssertAnyPredicateYieldedNone(
-                () => Ensure.That(values, ParamName).Any(predicate),
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
                 () => EnsureArg.Any(values, predicate, ParamName));
         }
 
@@ -568,10 +568,11 @@ namespace UnitTests
         public void Any_When_IList_predicate_yields_something_It_should_not_throw()
         {
             IList<int> values = new List<int> { 1, 2, 3, 4 };
+            Func<int, bool> predicate = i => i == 1;
 
             ShouldNotThrow(
-                () => Ensure.That(values, ParamName).Any(i => i == 1),
-                () => EnsureArg.HasItems(values, ParamName));
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
+                () => EnsureArg.Any(values, predicate, ParamName));
         }
 
         [Fact]
@@ -581,7 +582,7 @@ namespace UnitTests
             Func<int, bool> predicate = i => i == 0;
 
             AssertAnyPredicateYieldedNone(
-                () => Ensure.That(values, ParamName).Any(predicate),
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
                 () => EnsureArg.Any(values, predicate, ParamName));
         }
 
@@ -589,10 +590,11 @@ namespace UnitTests
         public void Any_When_List_predicate_yields_something_It_should_not_throw()
         {
             var values = new List<int> { 1, 2, 3, 4 };
+            Func<int, bool> predicate = i => i == 1;
 
             ShouldNotThrow(
-                () => Ensure.That(values, ParamName).Any(i => i == 1),
-                () => EnsureArg.HasItems(values, ParamName));
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
+                () => EnsureArg.Any(values, predicate, ParamName));
         }
 
         [Fact]
@@ -602,7 +604,7 @@ namespace UnitTests
             Func<int, bool> predicate = i => i == 0;
 
             AssertAnyPredicateYieldedNone(
-                () => Ensure.That(values, ParamName).Any(predicate),
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
                 () => EnsureArg.Any(values, predicate, ParamName));
         }
 
@@ -610,10 +612,11 @@ namespace UnitTests
         public void Any_When_ICollection_predicate_yields_something_It_should_not_throw()
         {
             ICollection<int> values = new Collection<int> { 1, 2, 3, 4 };
+            Func<int, bool> predicate = i => i == 1;
 
             ShouldNotThrow(
-                () => Ensure.That(values, ParamName).Any(i => i == 1),
-                () => EnsureArg.HasItems(values, ParamName));
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
+                () => EnsureArg.Any(values, predicate, ParamName));
         }
 
         [Fact]
@@ -623,7 +626,7 @@ namespace UnitTests
             Func<int, bool> predicate = i => i == 0;
 
             AssertAnyPredicateYieldedNone(
-                () => Ensure.That(values, ParamName).Any(predicate),
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
                 () => EnsureArg.Any(values, predicate, ParamName));
         }
 
@@ -631,10 +634,11 @@ namespace UnitTests
         public void Any_When_Collection_predicate_yields_something_It_should_not_throw()
         {
             var values = new Collection<int> { 1, 2, 3, 4 };
+            Func<int, bool> predicate = i => i == 1;
 
             ShouldNotThrow(
-                () => Ensure.That(values, ParamName).Any(i => i == 1),
-                () => EnsureArg.HasItems(values, ParamName));
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
+                () => EnsureArg.Any(values, predicate, ParamName));
         }
 
         [Fact]
@@ -644,7 +648,7 @@ namespace UnitTests
             Func<int, bool> predicate = i => i == 0;
 
             AssertAnyPredicateYieldedNone(
-                () => Ensure.That(values, ParamName).Any(predicate),
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
                 () => EnsureArg.Any(values, predicate, ParamName));
         }
 
@@ -652,10 +656,11 @@ namespace UnitTests
         public void Any_When_Array_predicate_yields_something_It_should_not_throw()
         {
             var values = new[] { 1, 2, 3, 4 };
+            Func<int, bool> predicate = i => i == 1;
 
             ShouldNotThrow(
-                () => Ensure.That(values, ParamName).Any(i => i == 1),
-                () => EnsureArg.HasItems(values, ParamName));
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
+                () => EnsureArg.Any(values, predicate, ParamName));
         }
 
         [Fact]
@@ -665,7 +670,7 @@ namespace UnitTests
             Func<int, bool> predicate = i => i == 0;
 
             AssertIsNotNull(
-                () => Ensure.That(values, ParamName).Any(predicate),
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
                 () => EnsureArg.Any(values, predicate, ParamName));
         }
 
@@ -676,7 +681,7 @@ namespace UnitTests
             Func<int, bool> predicate = i => i == 0;
 
             AssertIsNotNull(
-                () => Ensure.That(values, ParamName).Any(predicate),
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
                 () => EnsureArg.Any(values, predicate, ParamName));
         }
 
@@ -687,7 +692,7 @@ namespace UnitTests
             Func<int, bool> predicate = i => i == 0;
 
             AssertIsNotNull(
-                () => Ensure.That(values, ParamName).Any(predicate),
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
                 () => EnsureArg.Any(values, predicate, ParamName));
         }
 
@@ -698,7 +703,7 @@ namespace UnitTests
             Func<int, bool> predicate = i => i == 0;
 
             AssertIsNotNull(
-                () => Ensure.That(values, ParamName).Any(predicate),
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
                 () => EnsureArg.Any(values, predicate, ParamName));
         }
 
@@ -709,7 +714,7 @@ namespace UnitTests
             Func<int, bool> predicate = i => i == 0;
 
             AssertIsNotNull(
-                () => Ensure.That(values, ParamName).Any(predicate),
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
                 () => EnsureArg.Any(values, predicate, ParamName));
         }
 
@@ -720,7 +725,7 @@ namespace UnitTests
             Func<KeyValuePair<int, int>, bool> predicate = i => i.Value == 0;
 
             AssertIsNotNull(
-                () => Ensure.That(values, ParamName).Any(predicate),
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
                 () => EnsureArg.Any(values, predicate, ParamName));
         }
 
@@ -731,7 +736,7 @@ namespace UnitTests
             Func<KeyValuePair<int, int>, bool> predicate = i => i.Value == 0;
 
             AssertIsNotNull(
-                () => Ensure.That(values, ParamName).Any(predicate),
+                () => Ensure.Collection.HasAny(values, predicate, ParamName),
                 () => EnsureArg.Any(values, predicate, ParamName));
         }
 

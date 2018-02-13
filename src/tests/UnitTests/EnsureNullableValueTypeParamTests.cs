@@ -82,14 +82,14 @@ namespace UnitTests
         {
             ShouldThrow<ArgumentNullException>(
                 ExceptionMessages.Common_IsNotNull_Failed,
-                () => Ensure.That((T?)null, ParamName).IsNotNull(),
+                () => Ensure.Any.IsNotNull((T?)null, ParamName),
                 () => EnsureArg.IsNotNull((T?)null, ParamName));
         }
 
         private void Assert_IsNotNull_WhenNonNullInt_ShouldNotThrow<T>(T? value) where T : struct
         {
             ShouldNotThrow(
-                () => Ensure.That(value, ParamName).IsNotNull(),
+                () => Ensure.Any.IsNotNull(value, ParamName),
                 () => EnsureArg.IsNotNull(value, ParamName));
         }
     }

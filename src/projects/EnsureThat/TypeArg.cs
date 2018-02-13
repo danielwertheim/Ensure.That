@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Reflection;
 using EnsureThat.Annotations;
 using EnsureThat.Extensions;

@@ -11,7 +11,7 @@ namespace UnitTests
         {
             ShouldThrow<ArgumentException>(
                 ExceptionMessages.Guids_IsNotEmpty_Failed,
-                () => Ensure.That(Guid.Empty, ParamName).IsNotEmpty(),
+                () => Ensure.Guid.IsNotEmpty(Guid.Empty, ParamName),
                 () => EnsureArg.IsNotEmpty(Guid.Empty, ParamName));
         }
 
@@ -21,7 +21,7 @@ namespace UnitTests
             var guid = Guid.NewGuid();
 
             ShouldNotThrow(
-                () => Ensure.That(guid, ParamName).IsNotEmpty(),
+                () => Ensure.Guid.IsNotEmpty(guid, ParamName),
                 () => EnsureArg.IsNotEmpty(guid, ParamName));
         }
     }

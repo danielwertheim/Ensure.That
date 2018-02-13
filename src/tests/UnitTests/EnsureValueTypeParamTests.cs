@@ -13,7 +13,7 @@ namespace UnitTests
 
             ShouldThrow<ArgumentException>(
                 ExceptionMessages.ValueTypes_IsNotDefault_Failed,
-                () => Ensure.That(value, ParamName).IsNotDefault(),
+                () => Ensure.Any.IsNotDefault(value, ParamName),
                 () => EnsureArg.IsNotDefault(value, ParamName));
         }
 
@@ -23,7 +23,7 @@ namespace UnitTests
             const int value = 42;
 
             ShouldNotThrow(
-                () => Ensure.That(value, ParamName).IsNotDefault(),
+                () => Ensure.Any.IsNotDefault(value, ParamName),
                 () => EnsureArg.IsNotDefault(value, ParamName));
         }
     }

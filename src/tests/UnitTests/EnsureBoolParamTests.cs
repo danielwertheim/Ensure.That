@@ -9,23 +9,23 @@ namespace UnitTests
         [Fact]
         public void IsTrue_WhenFalseExpression_ThrowsArgumentException() => ShouldThrow<ArgumentException>(
             ExceptionMessages.Booleans_IsTrueFailed,
-            () => Ensure.That(false, ParamName).IsTrue(),
+            () => Ensure.Bool.IsTrue(false, ParamName),
             () => EnsureArg.IsTrue(false, ParamName));
 
         [Fact]
         public void IsTrue_WhenTrueExpression_ShouldNotThrow() => ShouldNotThrow(
-            () => Ensure.That(true, ParamName).IsTrue(),
+            () => Ensure.Bool.IsTrue(true, ParamName),
             () => EnsureArg.IsTrue(true, ParamName));
 
         [Fact]
         public void IsFalse_WhenTrueExpression_ThrowsArgumentException() => ShouldThrow<ArgumentException>(
             ExceptionMessages.Booleans_IsFalseFailed,
-            () => Ensure.That(true, ParamName).IsFalse(),
+            () => Ensure.Bool.IsFalse(true, ParamName),
             () => EnsureArg.IsFalse(true, ParamName));
 
         [Fact]
         public void IsFalse_WhenFalseExpression_ShouldNotThrow() => ShouldNotThrow(
-            () => Ensure.That(false, ParamName).IsFalse(),
+            () => Ensure.Bool.IsFalse(false, ParamName),
             () => EnsureArg.IsFalse(false, ParamName));
     }
 }

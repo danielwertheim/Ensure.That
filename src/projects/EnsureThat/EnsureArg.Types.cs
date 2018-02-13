@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using EnsureThat.Annotations;
 using JetBrains.Annotations;
 
