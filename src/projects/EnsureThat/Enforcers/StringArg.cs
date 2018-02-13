@@ -4,16 +4,13 @@ using EnsureThat.Annotations;
 using EnsureThat.Extensions;
 using JetBrains.Annotations;
 
-namespace EnsureThat
+namespace EnsureThat.Enforcers
 {
-    public class StringArg
+    public class StringArg : IStringArg
     {
         [NotNull]
         public string IsNotNull([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             Ensure.Any.IsNotNull(value, paramName, optsFn);
 
             return value;
@@ -22,9 +19,6 @@ namespace EnsureThat
         [NotNull]
         public string IsNotNullOrWhiteSpace([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             Ensure.Any.IsNotNull(value, paramName, optsFn);
 
             if (string.IsNullOrWhiteSpace(value))
@@ -36,9 +30,6 @@ namespace EnsureThat
         [NotNull]
         public string IsNotNullOrEmpty([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             Ensure.Any.IsNotNull(value, paramName, optsFn);
 
             if (string.IsNullOrEmpty(value))
@@ -49,9 +40,6 @@ namespace EnsureThat
 
         public string IsNotEmpty(string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             if (value?.Length == 0)
                 throw ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmpty_Failed, paramName, optsFn);
 
@@ -61,9 +49,6 @@ namespace EnsureThat
         [NotNull]
         public string HasLengthBetween([ValidatedNotNull]string value, int minLength, int maxLength, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             Ensure.Any.IsNotNull(value, paramName, optsFn);
 
             var length = value.Length;
@@ -84,9 +69,6 @@ namespace EnsureThat
         [NotNull]
         public string Matches([NotNull] string value, [NotNull] Regex match, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             if (!match.IsMatch(value))
                 throw ExceptionFactory.ArgumentException(ExceptionMessages.Strings_Matches_Failed.Inject(value, match), paramName, optsFn);
 
@@ -96,9 +78,6 @@ namespace EnsureThat
         [NotNull]
         public string SizeIs([ValidatedNotNull]string value, int expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             Ensure.Any.IsNotNull(value, paramName, optsFn);
 
             if (value.Length != expected)
@@ -109,9 +88,6 @@ namespace EnsureThat
 
         public string IsEqualTo(string value, string expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             if (!StringEquals(value, expected))
                 throw ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsEqualTo_Failed.Inject(value, expected), paramName, optsFn);
 
@@ -120,9 +96,6 @@ namespace EnsureThat
 
         public string IsEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             if (!StringEquals(value, expected, comparison))
                 throw ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsEqualTo_Failed.Inject(value, expected), paramName, optsFn);
 
@@ -131,9 +104,6 @@ namespace EnsureThat
 
         public string IsNotEqualTo(string value, string expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             if (StringEquals(value, expected))
                 throw ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEqualTo_Failed.Inject(value, expected), paramName, optsFn);
 
@@ -142,9 +112,6 @@ namespace EnsureThat
 
         public string IsNotEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             if (StringEquals(value, expected, comparison))
                 throw ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEqualTo_Failed.Inject(value, expected), paramName, optsFn);
 
@@ -154,9 +121,6 @@ namespace EnsureThat
         [NotNull]
         public string IsGuid([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return value;
-
             if (!Guid.TryParse(value, out _))
                 throw ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsGuid_Failed.Inject(value), paramName, optsFn);
 

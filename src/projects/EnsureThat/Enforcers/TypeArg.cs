@@ -4,9 +4,9 @@ using EnsureThat.Annotations;
 using EnsureThat.Extensions;
 using JetBrains.Annotations;
 
-namespace EnsureThat
+namespace EnsureThat.Enforcers
 {
-    public class TypeArg
+    public class TypeArg : ITypeArg
     {
         private static class Types
         {
@@ -94,9 +94,6 @@ namespace EnsureThat
         [NotNull]
         public T IsOfType<T>([ValidatedNotNull]T param, [NotNull] Type expectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return param;
-
             Ensure.Any.IsNotNull(param, paramName, optsFn);
 
             IsOfType(param.GetType(), expectedType, paramName, optsFn);
@@ -107,9 +104,6 @@ namespace EnsureThat
         [NotNull]
         public Type IsOfType([ValidatedNotNull]Type param, [NotNull] Type expectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return param;
-
             Ensure.Any.IsNotNull(param, paramName, optsFn);
             Ensure.Any.IsNotNull(expectedType, nameof(expectedType));
 
@@ -125,9 +119,6 @@ namespace EnsureThat
         [NotNull]
         public T IsNotOfType<T>([ValidatedNotNull]T param, [NotNull] Type nonExpectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return param;
-
             Ensure.Any.IsNotNull(param, paramName, optsFn);
 
             IsNotOfType(param.GetType(), nonExpectedType, paramName, optsFn);
@@ -138,9 +129,6 @@ namespace EnsureThat
         [NotNull]
         public Type IsNotOfType([ValidatedNotNull]Type param, [NotNull] Type nonExpectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return param;
-
             Ensure.Any.IsNotNull(param, paramName, optsFn);
             Ensure.Any.IsNotNull(nonExpectedType, nameof(nonExpectedType));
 
@@ -156,9 +144,6 @@ namespace EnsureThat
         [NotNull]
         public T IsClass<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return param;
-
             if (param == null)
                 throw ExceptionFactory.ArgumentNullException(
                     ExceptionMessages.Types_IsClass_Failed_Null,
@@ -173,9 +158,6 @@ namespace EnsureThat
         [NotNull]
         public Type IsClass([ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
-            if (!Ensure.IsActive)
-                return param;
-
             if (param == null)
                 throw ExceptionFactory.ArgumentNullException(
                     ExceptionMessages.Types_IsClass_Failed_Null,
