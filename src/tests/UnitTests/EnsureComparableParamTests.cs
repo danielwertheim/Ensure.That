@@ -390,22 +390,22 @@ namespace UnitTests
             return new CompareParamTestSpec { LowerLimit = 40, UpperLimit = 50, Value = 51 };
         }
 
-        public void AssertIsLtScenario<T>(T value, T limit, params Action[] actions)
+        private static void AssertIsLtScenario<T>(T value, T limit, params Action[] actions)
             => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), actions);
 
-        public void AssertIsGtScenario<T>(T value, T limit, params Action[] actions)
+        private static void AssertIsGtScenario<T>(T value, T limit, params Action[] actions)
             => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), actions);
 
-        public void AssertIsLteScenario<T>(T value, T limit, params Action[] actions)
+        private static void AssertIsLteScenario<T>(T value, T limit, params Action[] actions)
             => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), actions);
 
-        public void AssertIsGteScenario<T>(T value, T limit, params Action[] actions)
+        private static void AssertIsGteScenario<T>(T value, T limit, params Action[] actions)
             => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), actions);
 
-        public void AssertIsRangeToLowScenario<T>(T value, T limit, params Action[] actions)
+        private static void AssertIsRangeToLowScenario<T>(T value, T limit, params Action[] actions)
             => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, limit), actions);
 
-        public void AssertIsRangeToHighScenario<T>(T value, T limit, params Action[] actions)
+        private static void AssertIsRangeToHighScenario<T>(T value, T limit, params Action[] actions)
             => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, limit), actions);
 
         public class CustomComparable : IComparable<CustomComparable>
