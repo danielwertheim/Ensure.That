@@ -1,9 +1,7 @@
 Semantic versioning is used. See http://semver.org for more info. Basically this means that version format is:
 _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should be able to update without any breaking API changes.
 
-## v8.0.0 - 2018-02-xx
-**UPCOMING RELEASE** with breaking changes.
-
+## v8.0.0-pre-release - 2018-02-14
 **[Changed]:** The "fluent" `Ensure.That` syntax that previously was marked as `Obsolete` has now been removed.
 **[Changed]:** `EnsureArg.Any()` is now called `EnsureArg.HasAny` to match `Ensure.Collection.HasAny`
 **[Changed]:** The assembly is now signed with a SNK, not for security purposes but for identification purposes and the key is in the repo.
