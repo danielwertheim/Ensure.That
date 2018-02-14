@@ -143,7 +143,7 @@ Ensure.That(value, ParamName)
 
 or
 
-````
+```
 Ensure.That(value, ParamName)
       .IsNotNull(throws => throws.Custom(p => new Exception("Ooops"))));
 ```
