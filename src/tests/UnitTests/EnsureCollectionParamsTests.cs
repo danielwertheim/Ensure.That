@@ -561,7 +561,7 @@ namespace UnitTests
 
             AssertAnyPredicateYieldedNone(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -572,7 +572,7 @@ namespace UnitTests
 
             ShouldNotThrow(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -583,7 +583,7 @@ namespace UnitTests
 
             AssertAnyPredicateYieldedNone(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -594,7 +594,7 @@ namespace UnitTests
 
             ShouldNotThrow(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -605,7 +605,7 @@ namespace UnitTests
 
             AssertAnyPredicateYieldedNone(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -616,7 +616,7 @@ namespace UnitTests
 
             ShouldNotThrow(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -627,7 +627,7 @@ namespace UnitTests
 
             AssertAnyPredicateYieldedNone(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -638,7 +638,7 @@ namespace UnitTests
 
             ShouldNotThrow(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -649,7 +649,7 @@ namespace UnitTests
 
             AssertAnyPredicateYieldedNone(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -660,7 +660,7 @@ namespace UnitTests
 
             ShouldNotThrow(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -671,7 +671,7 @@ namespace UnitTests
 
             AssertIsNotNull(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -682,7 +682,7 @@ namespace UnitTests
 
             AssertIsNotNull(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -693,7 +693,7 @@ namespace UnitTests
 
             AssertIsNotNull(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -704,7 +704,7 @@ namespace UnitTests
 
             AssertIsNotNull(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -715,7 +715,7 @@ namespace UnitTests
 
             AssertIsNotNull(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -726,7 +726,7 @@ namespace UnitTests
 
             AssertIsNotNull(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         [Fact]
@@ -737,7 +737,7 @@ namespace UnitTests
 
             AssertIsNotNull(
                 () => Ensure.Collection.HasAny(values, predicate, ParamName),
-                () => EnsureArg.Any(values, predicate, ParamName));
+                () => EnsureArg.HasAny(values, predicate, ParamName));
         }
 
         private void AssertIsEmptyCollection(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Collections_HasItemsFailed, actions);
