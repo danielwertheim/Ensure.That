@@ -3,7 +3,9 @@ _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should b
 
 ## v8.0.0-pre-release - 2018-02-14
 **[Changed]:** The "fluent" `Ensure.That` syntax that previously was marked as `Obsolete` has now been removed.
+
 **[Changed]:** `EnsureArg.Any()` is now called `EnsureArg.HasAny` to match `Ensure.Collection.HasAny`
+
 **[Changed]:** The assembly is now signed with a SNK, not for security purposes but for identification purposes and the key is in the repo.
 
 ## v7.2.1 - 2017-12-29
