@@ -85,15 +85,15 @@ namespace EnsureThat
             => Ensure.Collection.ContainsKey(value, expectedKey, paramName, optsFn);
 
         [NotNull]
-        public static IList<T> Any<T>([ValidatedNotNull] IList<T> value, Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public static IList<T> HasAny<T>([ValidatedNotNull] IList<T> value, Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => Ensure.Collection.HasAny(value, predicate, paramName, optsFn);
 
         [NotNull]
-        public static ICollection<T> Any<T>([ValidatedNotNull]ICollection<T> value, Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public static ICollection<T> HasAny<T>([ValidatedNotNull]ICollection<T> value, Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => Ensure.Collection.HasAny(value, predicate, paramName, optsFn);
 
         [NotNull]
-        public static T[] Any<T>([ValidatedNotNull]T[] value, Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public static T[] HasAny<T>([ValidatedNotNull]T[] value, Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => Ensure.Collection.HasAny(value, predicate, paramName, optsFn);
     }
 }
