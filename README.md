@@ -11,14 +11,6 @@ Ensure.String.IsNotNullOrWhiteSpace(myString);
 Ensure.String.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 Ensure.String.IsNotNullOrWhiteSpace(myString, nameof(myArg), opts => opts.WithMessage("Foo"));
 ```
-
-the value is passed through so that you e.g. can assign it to a field:
-
-```csharp
-_field1 = Ensure.String.IsNotNullOrWhiteSpace(myString);
-_field2 = Ensure.String.IsNotNullOrWhiteSpace(myString, nameof(myArg));
-```
-
 ### Using static simple methods
 The `EnsureArg` flavour was added in the `v5.0.0` release.
 
@@ -26,13 +18,6 @@ The `EnsureArg` flavour was added in the `v5.0.0` release.
 EnsureArg.IsNotNullOrWhiteSpace(myString);
 EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg), opts => opts.WithMessage("Foo"));
-```
-
-the value is passed through so that you e.g. can assign it to a field:
-
-```csharp
-_field1 = EnsureArg.IsNotNullOrWhiteSpace(myString);
-_field2 = EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 ```
 
 ## Turn On/Off - default is On
