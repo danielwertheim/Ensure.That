@@ -15,13 +15,20 @@ namespace EnsureThat.Enforcers
     [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
     public class EnumerableArg : IEnumerableArg
     {
+        private readonly IExceptionFactory _exceptionFactory;
+
+        public EnumerableArg(IExceptionFactory exceptionFactory)
+        {
+            _exceptionFactory = exceptionFactory;
+        }
+
         [NotNull]
         public IEnumerable<T> HasItems<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
             if (!value.Any())
-                throw ExceptionFactory.ArgumentException(
+                throw _exceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
                     optsFn);
@@ -37,7 +44,7 @@ namespace EnsureThat.Enforcers
             var count = value.Count();
 
             if (count != expected)
-                throw ExceptionFactory.ArgumentException(
+                throw _exceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, count),
                     paramName,
                     optsFn);
@@ -59,7 +66,7 @@ namespace EnsureThat.Enforcers
 
             if (count != expected)
 #endif
-                throw ExceptionFactory.ArgumentException(
+                throw _exceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, count),
                     paramName,
                     optsFn);
@@ -68,12 +75,12 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public IEnumerable<T> HasAny<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, [NotNull] Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public IEnumerable<T> HasAny<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
             if (!value.Any(predicate))
-                throw ExceptionFactory.ArgumentException(
+                throw _exceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_Any_Failed,
                     paramName,
                     optsFn);
