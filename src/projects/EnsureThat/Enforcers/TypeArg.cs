@@ -27,6 +27,13 @@ namespace EnsureThat.Enforcers
             internal static readonly Type StringType = typeof(string);
         }
 
+        private readonly IExceptionFactory _exceptionFactory;
+
+        public TypeArg(IExceptionFactory exceptionFactory)
+        {
+            _exceptionFactory = exceptionFactory;
+        }
+
         [NotNull]
         public Type IsInt([ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => IsOfType(param, Types.IntType, paramName, optsFn);
@@ -92,7 +99,7 @@ namespace EnsureThat.Enforcers
             => IsOfType(param, Types.StringType, paramName, optsFn);
 
         [NotNull]
-        public T IsOfType<T>([ValidatedNotNull]T param, [NotNull] Type expectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public T IsOfType<T>([ValidatedNotNull]T param, Type expectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(param, paramName, optsFn);
 
@@ -102,13 +109,13 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public Type IsOfType([ValidatedNotNull]Type param, [NotNull] Type expectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public Type IsOfType([ValidatedNotNull]Type param, Type expectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(param, paramName, optsFn);
             Ensure.Any.IsNotNull(expectedType, nameof(expectedType));
 
             if (param != expectedType)
-                throw ExceptionFactory.ArgumentException(
+                throw _exceptionFactory.ArgumentException(
                     ExceptionMessages.Types_IsOfType_Failed.Inject(expectedType.FullName, param.FullName),
                     paramName,
                     optsFn);
@@ -117,7 +124,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public T IsNotOfType<T>([ValidatedNotNull]T param, [NotNull] Type nonExpectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public T IsNotOfType<T>([ValidatedNotNull]T param, Type nonExpectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(param, paramName, optsFn);
 
@@ -127,13 +134,13 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public Type IsNotOfType([ValidatedNotNull]Type param, [NotNull] Type nonExpectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public Type IsNotOfType([ValidatedNotNull]Type param, Type nonExpectedType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(param, paramName, optsFn);
             Ensure.Any.IsNotNull(nonExpectedType, nameof(nonExpectedType));
 
             if (param == nonExpectedType)
-                throw ExceptionFactory.ArgumentException(
+                throw _exceptionFactory.ArgumentException(
                     ExceptionMessages.Types_IsNotOfType_Failed.Inject(nonExpectedType.FullName),
                     paramName,
                     optsFn);
@@ -145,7 +152,7 @@ namespace EnsureThat.Enforcers
         public T IsClass<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (param == null)
-                throw ExceptionFactory.ArgumentNullException(
+                throw _exceptionFactory.ArgumentNullException(
                     ExceptionMessages.Types_IsClass_Failed_Null,
                     paramName,
                     optsFn);
@@ -159,13 +166,13 @@ namespace EnsureThat.Enforcers
         public Type IsClass([ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (param == null)
-                throw ExceptionFactory.ArgumentNullException(
+                throw _exceptionFactory.ArgumentNullException(
                     ExceptionMessages.Types_IsClass_Failed_Null,
                     paramName,
                     optsFn);
 
             if (!param.GetTypeInfo().IsClass)
-                throw ExceptionFactory.ArgumentException(
+                throw _exceptionFactory.ArgumentException(
                     ExceptionMessages.Types_IsClass_Failed.Inject(param.FullName),
                     paramName,
                     optsFn);
