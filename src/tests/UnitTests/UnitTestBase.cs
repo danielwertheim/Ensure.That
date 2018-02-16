@@ -9,7 +9,7 @@ namespace UnitTests
     {
         protected const string ParamName = "test";
 
-        protected static void AssertThrowedAsExpected(ArgumentException ex, string expectedMessage, params object[] formattingArgs)
+        private static void AssertThrowedAsExpected(ArgumentException ex, string expectedMessage, params object[] formattingArgs)
         {
             if (formattingArgs != null && formattingArgs.Any())
                 expectedMessage = string.Format(expectedMessage, formattingArgs);
