@@ -14,7 +14,8 @@ namespace UnitTests
             ShouldThrow<ArgumentNullException>(
                 ExceptionMessages.Common_IsNotNull_Failed,
                 () => Ensure.Any.IsNotNull(value, ParamName),
-                () => EnsureArg.IsNotNull(value, ParamName));
+                () => EnsureArg.IsNotNull(value, ParamName),
+                () => Ensure.That(value, ParamName).IsNotNull());
         }
 
         [Fact]
@@ -24,7 +25,8 @@ namespace UnitTests
 
             ShouldNotThrow(
                 () => Ensure.Any.IsNotNull(item, ParamName),
-                () => EnsureArg.IsNotNull(item, ParamName));
+                () => EnsureArg.IsNotNull(item, ParamName),
+                () => Ensure.That(item, ParamName).IsNotNull());
         }
 
         [Fact]
@@ -35,7 +37,8 @@ namespace UnitTests
             ShouldThrow<ArgumentException>(
                 ExceptionMessages.ValueTypes_IsNotDefault_Failed,
                 () => Ensure.Any.IsNotDefault(value, ParamName),
-                () => EnsureArg.IsNotDefault(value, ParamName));
+                () => EnsureArg.IsNotDefault(value, ParamName),
+                () => Ensure.That(value, ParamName).IsNotDefault());
         }
 
         [Fact]
@@ -45,7 +48,8 @@ namespace UnitTests
 
             ShouldNotThrow(
                 () => Ensure.Any.IsNotDefault(value, ParamName),
-                () => EnsureArg.IsNotDefault(value, ParamName));
+                () => EnsureArg.IsNotDefault(value, ParamName),
+                () => Ensure.That(value, ParamName).IsNotDefault());
         }
     }
 }
