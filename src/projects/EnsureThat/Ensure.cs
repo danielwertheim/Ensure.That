@@ -118,7 +118,6 @@ namespace EnsureThat
         /// Use <see cref="EnsureArg"/> or contextual e.g. <see cref="Ensure.Type"/>
         /// if worried about performance.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>
         /// <param name="name"></param>
         /// <param name="optsFn"></param>
