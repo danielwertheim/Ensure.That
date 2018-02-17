@@ -1,3 +1,4 @@
+using System;
 using EnsureThat.Enforcers;
 using EnsureThat.Internals;
 using JetBrains.Annotations;
@@ -110,5 +111,20 @@ namespace EnsureThat
         [Pure]
         public static TypeParam ThatTypeFor<T>([NotNull] T value, string name = Param.DefaultName, OptsFn optsFn = null)
             => new TypeParam(name, value.GetType(), optsFn);
+
+        /// <summary>
+        /// Ensures via discoverable API. Please note that an extra wrapping object
+        /// <see cref="Param{T}"/> will be created. This can have performance impacts.
+        /// Use <see cref="EnsureArg"/> or contextual e.g. <see cref="Ensure.Type"/>
+        /// if worried about performance.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="name"></param>
+        /// <param name="optsFn"></param>
+        /// <returns></returns>
+        [Pure]
+        public static TypeParam ThatType([NotNull] Type value, string name = Param.DefaultName, OptsFn optsFn = null)
+            => new TypeParam(name, value, optsFn);
     }
 }
