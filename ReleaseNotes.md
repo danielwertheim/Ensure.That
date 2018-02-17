@@ -6,7 +6,7 @@ _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should b
 
 **(Changed):** The assembly is now signed with a SNK, not for security purposes but for identification purposes and the key is in the repo.
 
-**(Changed):** The "fluent" `Ensure.That` syntax that previously was marked as `Obsolete` has been kept with some slight changes. E.g. `Param<T>` is now a struct. The overload of `That` accepting an `Func` has been removed. Options to customize messages and expceptions now uses the same construct as the other APIs.
+**(Changed):** The "fluent" `Ensure.That` syntax that previously was marked as `Obsolete` has been kept with some slight changes. E.g. `Param<T>` is now a struct. The overload of `Ensure.That(...)` accepting a `Func` has been removed. Options to customize messages and expceptions now uses the same construct as the other APIs.
 
 ## v7.2.1 - 2017-12-29
 
