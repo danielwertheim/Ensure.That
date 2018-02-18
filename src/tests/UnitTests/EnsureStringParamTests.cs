@@ -1,6 +1,9 @@
 using System;
 using System.Text.RegularExpressions;
 using EnsureThat;
+
+using UnitTests.TestWrappers;
+
 using Xunit;
 
 namespace UnitTests
@@ -14,70 +17,121 @@ namespace UnitTests
         private static void AssertIsNotNullOrEmpty(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Strings_IsNotNullOrEmpty_Failed, actions);
 
         private static void AssertIsNotNullOrWhiteSpace(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Strings_IsNotNullOrWhiteSpace_Failed, actions);
+        
+        /// <remarks>
+        /// Would probably work to move this to the base class, making the base class take a type
+        /// parameter for what validation type it runs on (e.g. IStringArg).
+        /// 
+        /// The primary concern is that writing the test should not involve the overhead/boilerplate
+        /// of testing all the different syntaxes, the test should say what in and what out.
+        /// 
+        /// If we support this route, I'll look into how to even remove the RunTest from the tests, if
+        /// xUnit provides a way to do a before/after iteration or maybe via Theory.
+        /// </remarks>
+        private static void RunTest(Action<IStringArg> testContents)
+        {
+            try
+            {
+                testContents(Ensure.String);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(
+                    message: "Method failed while invoking on validator syntax",
+                    innerException: e);
+            }
+            try
+            {
+                testContents(new EnsureArgToStringArgAdapter());
+            }
+            catch (Exception e)
+            {
+                throw new Exception(
+                    message: "Method failed while invoking on EnsureArg syntax",
+                    innerException: e);
+            }
+            try
+            {
+                testContents(new EnsureThatToStringArgAdapter());
+            }
+            catch (Exception e)
+            {
+                throw new Exception(
+                    message: "Method failed while invoking on Ensure.That syntax",
+                    innerException: e);
+            }
+        }
 
         [Fact]
         public void IsNotNull_WhenStringIsNull_ThrowsArgumentNullException()
         {
-            string value = null;
+            RunTest(
+                validator =>
+                {
+                    string value = null;
 
-            AssertIsNotNull(
-                () => Ensure.String.IsNotNull(value, ParamName),
-                () => EnsureArg.IsNotNull(value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotNull());
+                    AssertIsNotNull(
+                        () => validator.IsNotNull(value, ParamName));
+                });
         }
 
         [Fact]
         public void IsNotNull_WhenStringIsNotNull_It_should_not_throw()
         {
-            var value = string.Empty;
-
-            ShouldNotThrow(
-                () => Ensure.String.IsNotNull(value, ParamName),
-                () => EnsureArg.IsNotNull(value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotNull());
+            RunTest(
+                validator =>
+                {
+                    var value = string.Empty;
+                    ShouldNotThrow(
+                        () => validator.IsNotNull(value, ParamName));
+                });
         }
 
         [Fact]
         public void IsNotNullOrEmpty_WhenStringIsNull_ThrowsArgumentNullException()
         {
-            string value = null;
-
-            AssertIsNotNull(
-                () => Ensure.String.IsNotNullOrEmpty(value, ParamName),
-                () => EnsureArg.IsNotNullOrEmpty(value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotNullOrEmpty());
+            RunTest(
+                validator =>
+                {
+                    string value = null;
+                    AssertIsNotNull(
+                        () => validator.IsNotNullOrEmpty(value, ParamName));
+                });
         }
 
         [Fact]
         public void IsNotNullOrEmpty_WhenStringIsEmpty_ThrowsArgumentException()
         {
-            var value = string.Empty;
-
-            AssertIsNotNullOrEmpty(
-                () => Ensure.String.IsNotNullOrEmpty(value, ParamName),
-                () => EnsureArg.IsNotNullOrEmpty(value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotNullOrEmpty());
+            RunTest(
+                validator =>
+                {
+                    var value = string.Empty;
+                    AssertIsNotNullOrEmpty(
+                        () => validator.IsNotNullOrEmpty(value, ParamName));
+                });
         }
 
         [Fact]
         public void IsNotNullOrEmpty_WhenStringIsNotNullOrEmpty_It_should_not_throw()
         {
-            var value = " ";
-
-            ShouldNotThrow(
-                () => Ensure.String.IsNotNullOrEmpty(value, ParamName),
-                () => EnsureArg.IsNotNullOrEmpty(value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotNullOrEmpty());
+            RunTest(
+                validator =>
+                {
+                    var value = " ";
+                    ShouldNotThrow(
+                        () => validator.IsNotNullOrEmpty(value, ParamName));
+                });
         }
 
         [Fact]
         public void IsNotNullOrWhiteSpace_WhenStringIsNull_ThrowsArgumentNullException()
         {
-            string value = null;
-
-            AssertIsNotNull(
-                () => Ensure.String.IsNotNullOrWhiteSpace(value, ParamName),
-                () => EnsureArg.IsNotNullOrWhiteSpace(value, ParamName));
+            RunTest(
+                validator =>
+                {
+                    string value = null;
+                    AssertIsNotNull(() => validator.IsNotNullOrWhiteSpace(value, ParamName));
+                });
         }
 
         [Theory]
@@ -85,334 +139,363 @@ namespace UnitTests
         [InlineData(" ")]
         public void IsNotNullOrWhiteSpace_WhenStringIsInvalid_ThrowsArgumentException(string value)
         {
-            AssertIsNotNullOrWhiteSpace(
-                () => Ensure.String.IsNotNullOrWhiteSpace(value, ParamName),
-                () => EnsureArg.IsNotNullOrWhiteSpace(value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotNullOrWhiteSpace());
+            RunTest(
+                validator =>
+                {
+                    AssertIsNotNullOrWhiteSpace(
+                        () => validator.IsNotNullOrWhiteSpace(value, ParamName));
+                });
         }
 
         [Fact]
         public void IsNotNullOrWhiteSpace_WhenStringHasValue_It_should_not_throw()
         {
-            var value = "delta";
-
-            ShouldNotThrow(
-                () => Ensure.String.IsNotNullOrWhiteSpace(value, ParamName),
-                () => EnsureArg.IsNotNullOrWhiteSpace(value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotNullOrWhiteSpace());
+            RunTest(
+                validator =>
+                {
+                    var value = "delta";
+                    ShouldNotThrow(
+                        () => validator.IsNotNullOrWhiteSpace(value, ParamName));
+                });
         }
 
         [Fact]
         public void IsNotEmpty_WhenStringIsEmpty_ThrowsArgumentException()
         {
-            var value = string.Empty;
-
-            AssertIsNotEmpty(
-                () => Ensure.String.IsNotEmpty(value, ParamName),
-                () => EnsureArg.IsNotEmpty(value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotEmpty());
+            RunTest(
+                validator =>
+                {
+                    var value = string.Empty;
+                    AssertIsNotEmpty(
+                        () => validator.IsNotEmpty(value, ParamName));
+                });
         }
 
         [Fact]
         public void IsNotEmpty_WhenStringHasValue_It_should_not_throw()
         {
-            var value = "delta";
-
-            ShouldNotThrow(
-                () => Ensure.String.IsNotEmpty(value, ParamName),
-                () => EnsureArg.IsNotEmpty(value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotEmpty());
+            RunTest(
+                validator =>
+                {
+                    var value = "delta";
+                    ShouldNotThrow(
+                        () => validator.IsNotEmpty(value, ParamName));
+                });
         }
 
         [Fact]
         public void IsNotEmpty_WhenStringIsNull_It_should_not_throw()
         {
-            string value = null;
-
-            ShouldNotThrow(
-                () => Ensure.String.IsNotEmpty(value, ParamName),
-                () => EnsureArg.IsNotEmpty(value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotEmpty());
+            RunTest(
+                validator =>
+                {
+                    string value = null;
+                    ShouldNotThrow(
+                        () => validator.IsNotEmpty(value, ParamName));
+                });
         }
 
         [Fact]
         public void HasLengthBetween_WhenStringIsNull_ThrowsArgumentNullException()
         {
-            string value = null;
-
-            AssertIsNotNull(
-                () => Ensure.String.HasLengthBetween(value, 1, 2, ParamName),
-                () => EnsureArg.HasLengthBetween(value, 1, 2, ParamName),
-                () => Ensure.That(value, ParamName).HasLengthBetween(1, 2));
+            RunTest(
+                validator =>
+                {
+                    string value = null;
+                    AssertIsNotNull(
+                        () => validator.HasLengthBetween(value, 1, 2, ParamName));
+                });
         }
 
         [Fact]
         public void HasLengthBetween_WhenStringIsToShort_ThrowsArgumentException()
         {
-            const int low = 2;
-            const int high = 4;
-            var value = new string('a', low - 1);
-
-            ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_HasLengthBetween_Failed_ToShort, low, high, value.Length),
-                () => Ensure.String.HasLengthBetween(value, low, high, ParamName),
-                () => EnsureArg.HasLengthBetween(value, low, high, ParamName),
-                () => Ensure.That(value, ParamName).HasLengthBetween(low, high));
+            RunTest(
+                validator =>
+                {
+                    const int low = 2;
+                    const int high = 4;
+                    var value = new string('a', low - 1);
+                    ShouldThrow<ArgumentException>(
+                        string.Format(ExceptionMessages.Strings_HasLengthBetween_Failed_ToShort, low, high, value.Length),
+                        () => validator.HasLengthBetween(value, low, high, ParamName));
+                });
         }
 
         [Fact]
         public void HasLengthBetween_WhenStringIsToLong_ThrowsArgumentException()
         {
-            const int low = 2;
-            const int high = 4;
-            var value = new string('a', high + 1);
-
-            ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_HasLengthBetween_Failed_ToLong, low, high, value.Length),
-                () => Ensure.String.HasLengthBetween(value, low, high, ParamName),
-                () => EnsureArg.HasLengthBetween(value, low, high, ParamName),
-                () => Ensure.That(value, ParamName).HasLengthBetween(low, high));
+            RunTest(
+                validator =>
+                {
+                    const int low = 2;
+                    const int high = 4;
+                    var value = new string('a', high + 1);
+                    ShouldThrow<ArgumentException>(
+                        string.Format(ExceptionMessages.Strings_HasLengthBetween_Failed_ToLong, low, high, value.Length),
+                        () => validator.HasLengthBetween(value, low, high, ParamName));
+                });
         }
 
         [Fact]
         public void HasLengthBetween_WhenStringIsLowLimit_It_should_not_throw()
         {
-            const int low = 2;
-            const int high = 4;
-            var value = new string('a', low);
-
-            ShouldNotThrow(
-                () => Ensure.String.HasLengthBetween(value, low, high, ParamName),
-                () => EnsureArg.HasLengthBetween(value, low, high, ParamName),
-                () => Ensure.That(value, ParamName).HasLengthBetween(low, high));
+            RunTest(
+                validator =>
+                {
+                    const int low = 2;
+                    const int high = 4;
+                    var value = new string('a', low);
+                    ShouldNotThrow(
+                        () => validator.HasLengthBetween(value, low, high, ParamName));
+                });
         }
 
         [Fact]
         public void HasLengthBetween_WhenStringIsHighLimit_It_should_not_throw()
         {
-            const int low = 2;
-            const int high = 4;
-            var value = new string('a', high);
-
-            ShouldNotThrow(
-                () => Ensure.String.HasLengthBetween(value, low, high, ParamName),
-                () => EnsureArg.HasLengthBetween(value, low, high, ParamName),
-                () => Ensure.That(value, ParamName).HasLengthBetween(low, high));
+            RunTest(
+                validator =>
+                {
+                    const int low = 2;
+                    const int high = 4;
+                    var value = new string('a', high);
+                    ShouldNotThrow(
+                        () => validator.HasLengthBetween(value, low, high, ParamName));
+                });
         }
 
         [Fact]
         public void Matches_WhenUrlStringDoesNotMatchStringPattern_ThrowsArgumentException()
         {
-            const string value = @"incorrect";
-            const string match = @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*";
-
-            ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_Matches_Failed, value, match),
-                () => Ensure.String.Matches(value, match, ParamName),
-                () => EnsureArg.Matches(value, match, ParamName),
-                () => Ensure.That(value, ParamName).Matches(match));
+            RunTest(
+                validator =>
+                {
+                    const string value = @"incorrect";
+                    const string match = @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*";
+                    ShouldThrow<ArgumentException>(
+                        string.Format(ExceptionMessages.Strings_Matches_Failed, value, match),
+                        () => validator.Matches(value, match, ParamName));
+                });
         }
 
         [Fact]
         public void Matches_WhenUrlStringDoesNotMatchRegex_ThrowsArgumentException()
         {
-            const string value = @"incorrect";
-            var match = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*");
-
-            ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_Matches_Failed, value, match),
-                () => Ensure.String.Matches(value, match, ParamName),
-                () => EnsureArg.Matches(value, match, ParamName),
-                () => Ensure.That(value, ParamName).Matches(match));
+            RunTest(
+                validator =>
+                {
+                    const string value = @"incorrect";
+                    var match = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*");
+                    ShouldThrow<ArgumentException>(
+                        string.Format(ExceptionMessages.Strings_Matches_Failed, value, match),
+                        () => validator.Matches(value, match, ParamName));
+                });
         }
 
         [Fact]
         public void Matches_WhenUrlStringMatchesStringPattern_It_should_not_throw()
         {
-            const string value = @"http://google.com:8080";
-            const string match = @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*";
-
-            ShouldNotThrow(
-                () => Ensure.String.Matches(value, match, ParamName),
-                () => EnsureArg.Matches(value, match, ParamName),
-                () => Ensure.That(value, ParamName).Matches(match));
+            RunTest(
+                validator =>
+                {
+                    const string value = @"http://google.com:8080";
+                    const string match = @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*";
+                    ShouldNotThrow(
+                        () => validator.Matches(value, match, ParamName));
+                });
         }
 
         [Fact]
         public void Matches_WhenUrlStringMatchesRegex_It_should_not_throw()
         {
-            const string value = @"http://google.com:8080";
-            var match = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*");
-
-            ShouldNotThrow(
-                () => Ensure.String.Matches(value, match, ParamName),
-                () => EnsureArg.Matches(value, match, ParamName),
-                () => Ensure.That(value, ParamName).Matches(match));
+            RunTest(
+                validator =>
+                {
+                    const string value = @"http://google.com:8080";
+                    var match = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*");
+                    ShouldNotThrow(
+                        () => validator.Matches(value, match, ParamName));
+                });
         }
 
         [Fact]
         public void SizeIs_When_null_It_throws_ArgumentNullException()
         {
-            string value = null;
-            var expected = 1;
-
-            AssertIsNotNull(
-                () => Ensure.String.SizeIs(value, expected, ParamName),
-                () => EnsureArg.SizeIs(value, expected, ParamName),
-                () => Ensure.That(value, ParamName).SizeIs(expected));
+            RunTest(
+                validator =>
+                {
+                    string value = null;
+                    var expected = 1;
+                    AssertIsNotNull(
+                        () => validator.SizeIs(value, expected, ParamName));
+                });
         }
 
         [Fact]
         public void SizeIs_When_non_matching_length_of_string_It_throws_ArgumentException()
         {
-            var value = "Some string";
-            var expected = value.Length + 1;
-
-            ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_SizeIs_Failed, expected, value.Length),
-                () => Ensure.String.SizeIs(value, expected, ParamName),
-                () => EnsureArg.SizeIs(value, expected, ParamName),
-                () => Ensure.That(value, ParamName).SizeIs(expected));
+            RunTest(
+                validator =>
+                {
+                    var value = "Some string";
+                    var expected = value.Length + 1;
+                    ShouldThrow<ArgumentException>(
+                        string.Format(ExceptionMessages.Strings_SizeIs_Failed, expected, value.Length),
+                        () => validator.SizeIs(value, expected, ParamName));
+                });
         }
 
         [Fact]
         public void SizeIs_When_matching_constraint_It_should_not_throw()
         {
-            var value = "Some string";
-
-            ShouldNotThrow(
-                () => Ensure.String.SizeIs(value, value.Length, ParamName),
-                () => EnsureArg.SizeIs(value, value.Length, ParamName));
+            RunTest(
+                validator =>
+                {
+                    var value = "Some string";
+                    ShouldNotThrow(() => validator.SizeIs(value, value.Length, ParamName));
+                });
         }
 
         [Fact]
         public void IsEqualTo_When_different_values_It_throws_ArgumentException()
         {
-            const string value = "The value";
-            const string expected = "Other value";
-
-            ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_IsEqualTo_Failed, value, expected),
-                () => Ensure.String.IsEqualTo(value, expected, ParamName),
-                () => EnsureArg.IsEqualTo(value, expected, ParamName),
-                () => Ensure.That(value, ParamName).IsEqualTo(expected));
+            RunTest(
+                validator =>
+                {
+                    const string value = "The value";
+                    const string expected = "Other value";
+                    ShouldThrow<ArgumentException>(
+                        string.Format(ExceptionMessages.Strings_IsEqualTo_Failed, value, expected),
+                        () => validator.IsEqualTo(value, expected, ParamName));
+                });
         }
 
         [Fact]
         public void IsEqualTo_When_same_value_It_should_not_throw()
         {
-            const string value = "The value";
-            const string expected = value;
-
-            ShouldNotThrow(
-                () => Ensure.String.IsEqualTo(value, expected, ParamName),
-                () => EnsureArg.IsEqualTo(value, expected, ParamName),
-                () => Ensure.That(value, ParamName).IsEqualTo(expected));
+            RunTest(
+                validator =>
+                {
+                    const string value = "The value";
+                    const string expected = value;
+                    ShouldNotThrow(
+                        () => validator.IsEqualTo(value, expected, ParamName));
+                });
         }
 
         [Fact]
         public void IsEqualTo_When_same_value_by_specific_compare_It_should_not_throw()
         {
-            const string value = "The value";
-            const string expected = "the value";
-
-            ShouldNotThrow(
-                () => Ensure.String.IsEqualTo(value, expected, StringComparison.OrdinalIgnoreCase, ParamName),
-                () => EnsureArg.IsEqualTo(value, expected, StringComparison.OrdinalIgnoreCase, ParamName),
-                () => Ensure.That(value, ParamName).IsEqualTo(expected, StringComparison.OrdinalIgnoreCase));
+            RunTest(
+                validator =>
+                {
+                    const string value = "The value";
+                    const string expected = "the value";
+                    ShouldNotThrow(
+                        () => validator.IsEqualTo(value, expected, StringComparison.OrdinalIgnoreCase, ParamName));
+                });
         }
 
         [Fact]
         public void IsNotEqualTo_When_same_values_It_throws_ArgumentException()
         {
-            const string value = "The value";
-
-            ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Comp_IsNot_Failed, value, value),
-                () => Ensure.String.IsNotEqualTo(value, value, ParamName),
-                () => EnsureArg.IsNotEqualTo(value, value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotEqualTo(value));
+            RunTest(
+                validator =>
+                {
+                    const string value = "The value";
+                    ShouldThrow<ArgumentException>(
+                        string.Format(ExceptionMessages.Comp_IsNot_Failed, value, value),
+                        () => validator.IsNotEqualTo(value, value, ParamName));
+                });
         }
 
         [Fact]
         public void IsNotEqualTo_When_different_values_by_casing_using_non_case_sensitive_compare_It_throws_ArgumentException()
         {
-            const string value = "The value";
-            var compareTo = value.ToLower();
-
-            ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Comp_IsNot_Failed, value, compareTo),
-                () => Ensure.String.IsNotEqualTo(value, compareTo, StringComparison.OrdinalIgnoreCase, ParamName),
-                () => EnsureArg.IsNotEqualTo(value, compareTo, StringComparison.OrdinalIgnoreCase, ParamName),
-                () => Ensure.That(value, ParamName).IsNotEqualTo(compareTo, StringComparison.OrdinalIgnoreCase));
+            RunTest(
+                validator =>
+                {
+                    const string value = "The value";
+                    var compareTo = value.ToLower();
+                    ShouldThrow<ArgumentException>(
+                        string.Format(ExceptionMessages.Comp_IsNot_Failed, value, compareTo),
+                        () => validator.IsNotEqualTo(value, compareTo, StringComparison.OrdinalIgnoreCase, ParamName));
+                });
         }
 
         [Fact]
         public void IsNotEqualTo_When_different_values_It_should_not_throw()
         {
-            var value = "The value";
-
-            ShouldNotThrow(
-                () => Ensure.String.IsNotEqualTo(value, value + "a", ParamName),
-                () => EnsureArg.IsNotEqualTo(value, value + "a", ParamName),
-                () => Ensure.That(value, ParamName).IsNotEqualTo(value + "a"));
+            RunTest(
+                validator =>
+                {
+                    var value = "The value";
+                    ShouldNotThrow(
+                        () => validator.IsNotEqualTo(value, value + "a", ParamName));
+                });
         }
 
         [Fact]
         public void IsNotEqualTo_When_different_values_by_casing_using_case_sensitive_compare_It_should_not_throw()
         {
-            var value = "The value";
-
-            ShouldNotThrow(
-                () => Ensure.String.IsNotEqualTo(value, value.ToLower(), StringComparison.Ordinal, ParamName),
-                () => EnsureArg.IsNotEqualTo(value, value.ToLower(), StringComparison.Ordinal, ParamName),
-                () => Ensure.That(value, ParamName).IsNotEqualTo(value.ToLower(), StringComparison.Ordinal));
+            RunTest(
+                validator =>
+                {
+                    var value = "The value";
+                    ShouldNotThrow(
+                        () => validator.IsNotEqualTo(value, value.ToLower(), StringComparison.Ordinal, ParamName));
+                });
         }
 
         [Fact]
         public void IsGuid_When_null_It_should_not_throw_ArgumentNullException()
         {
-            string value = null;
-
-            ShouldThrowButNot<ArgumentNullException>(
-                () => Ensure.String.IsGuid(value, ParamName),
-                () => EnsureArg.IsGuid(value, ParamName),
-                () => Ensure.That(value, ParamName).IsGuid());
+            RunTest(
+                validator =>
+                {
+                    string value = null;
+                    ShouldThrowButNot<ArgumentNullException>(
+                        () => validator.IsGuid(value, ParamName));
+                });
         }
 
         [Fact]
         public void IsGuid_When_null_It_should_throw_ArgumentException()
         {
-            string value = null;
-
-            ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_IsGuid_Failed, value),
-                () => Ensure.String.IsGuid(value, ParamName),
-                () => EnsureArg.IsGuid(value, ParamName),
-                () => Ensure.That(value, ParamName).IsGuid());
+            RunTest(
+                validator =>
+                {
+                    string value = null;
+                    ShouldThrow<ArgumentException>(
+                        string.Format(ExceptionMessages.Strings_IsGuid_Failed, value),
+                        () => validator.IsGuid(value, ParamName));
+                });
         }
 
         [Fact]
         public void IsGuid_When_is_not_Guid_throws_ArgumentException()
         {
-            const string value = "324-3243-123-23";
-
-            ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_IsGuid_Failed, value),
-                () => Ensure.String.IsGuid(value, ParamName),
-                () => EnsureArg.IsGuid(value, ParamName),
-                () => Ensure.That(value, ParamName).IsGuid());
+            RunTest(
+                validator =>
+                {
+                    const string value = "324-3243-123-23";
+                    ShouldThrow<ArgumentException>(
+                        string.Format(ExceptionMessages.Strings_IsGuid_Failed, value),
+                        () => validator.IsGuid(value, ParamName));
+                });
         }
 
         [Fact]
         public void IsGuid_When_valid_Guid_returns_Guid()
         {
-            var value = Guid.NewGuid().ToString();
-
-            ShouldNotThrow(
-                () => Ensure.String.IsGuid(value, ParamName),
-                () => EnsureArg.IsGuid(value, ParamName),
-                () => Ensure.That(value, ParamName).IsGuid());
+            RunTest(
+                validator =>
+                {
+                    var value = Guid.NewGuid().ToString();
+                    
+                    ShouldNotThrow(() => validator.IsGuid(value, ParamName));
+                });
         }
     }
 }
