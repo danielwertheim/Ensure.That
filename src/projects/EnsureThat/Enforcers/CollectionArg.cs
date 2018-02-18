@@ -3,27 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using EnsureThat.Annotations;
-using EnsureThat.Extensions;
 using JetBrains.Annotations;
 
 namespace EnsureThat.Enforcers
 {
-    public class CollectionArg : ICollectionArg
+    public sealed class CollectionArg
     {
-        private readonly IExceptionFactory _exceptionFactory;
-
-        public CollectionArg(IExceptionFactory exceptionFactory)
-        {
-            _exceptionFactory = exceptionFactory;
-        }
-
         [NotNull]
         public T HasItems<T>([ValidatedNotNull]T value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null) where T : ICollection
         {
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count < 1)
-                throw _exceptionFactory.ArgumentException(
+                throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
                     optsFn);
@@ -37,7 +29,7 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count < 1)
-                throw _exceptionFactory.ArgumentException(
+                throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
                     optsFn);
@@ -51,7 +43,7 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count < 1)
-                throw _exceptionFactory.ArgumentException(
+                throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
                     optsFn);
@@ -65,7 +57,7 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count < 1)
-                throw _exceptionFactory.ArgumentException(
+                throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
                     optsFn);
@@ -79,7 +71,7 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count < 1)
-                throw _exceptionFactory.ArgumentException(
+                throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
                     optsFn);
@@ -93,7 +85,7 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Length < 1)
-                throw _exceptionFactory.ArgumentException(
+                throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
                     optsFn);
@@ -107,7 +99,7 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count < 1)
-                throw _exceptionFactory.ArgumentException(
+                throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
                     optsFn);
@@ -121,7 +113,7 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count < 1)
-                throw _exceptionFactory.ArgumentException(
+                throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
                     optsFn);
@@ -135,8 +127,8 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Length != expected)
-                throw _exceptionFactory.ArgumentException(
-                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Length),
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Length),
                     paramName,
                     optsFn);
 
@@ -153,10 +145,10 @@ namespace EnsureThat.Enforcers
 #else
             if (value.LongLength != expected)
 #endif
-                throw _exceptionFactory.ArgumentException(
-                        ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Length),
-                        paramName,
-                        optsFn);
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Length),
+                    paramName,
+                    optsFn);
 
             return value;
         }
@@ -167,8 +159,8 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count != expected)
-                throw _exceptionFactory.ArgumentException(
-                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Count),
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName,
                     optsFn);
 
@@ -181,8 +173,8 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count != expected)
-                throw _exceptionFactory.ArgumentException(
-                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Count),
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName,
                     optsFn);
 
@@ -195,8 +187,8 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count != expected)
-                throw _exceptionFactory.ArgumentException(
-                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Count),
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName,
                     optsFn);
 
@@ -209,8 +201,8 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count != expected)
-                throw _exceptionFactory.ArgumentException(
-                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Count),
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName,
                     optsFn);
 
@@ -223,8 +215,8 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count != expected)
-                throw _exceptionFactory.ArgumentException(
-                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Count),
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName,
                     optsFn);
 
@@ -237,8 +229,8 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count != expected)
-                throw _exceptionFactory.ArgumentException(
-                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Count),
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName,
                     optsFn);
 
@@ -251,8 +243,8 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count != expected)
-                throw _exceptionFactory.ArgumentException(
-                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Count),
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName,
                     optsFn);
 
@@ -265,8 +257,8 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Count != expected)
-                throw _exceptionFactory.ArgumentException(
-                    ExceptionMessages.Collections_SizeIs_Failed.Inject(expected, value.Count),
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName,
                     optsFn);
 
@@ -279,8 +271,8 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (!value.ContainsKey(expectedKey))
-                throw _exceptionFactory.ArgumentException(
-                    ExceptionMessages.Collections_ContainsKey_Failed.Inject(expectedKey),
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Collections_ContainsKey_Failed, expectedKey),
                     paramName,
                     optsFn);
 
@@ -293,7 +285,7 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (!value.Any(predicate))
-                throw _exceptionFactory.ArgumentException(
+                throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_Any_Failed,
                     paramName,
                     optsFn);
@@ -307,7 +299,7 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (!value.Any(predicate))
-                throw _exceptionFactory.ArgumentException(
+                throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_Any_Failed,
                     paramName,
                     optsFn);
@@ -321,7 +313,7 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName);
 
             if (!value.Any(predicate))
-                throw _exceptionFactory.ArgumentException(
+                throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_Any_Failed,
                     paramName,
                     optsFn);

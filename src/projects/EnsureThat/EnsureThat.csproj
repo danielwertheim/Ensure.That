@@ -24,4 +24,8 @@
     <DocumentationFile>bin\Release\netstandard1.1\Ensure.That.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
 </Project>

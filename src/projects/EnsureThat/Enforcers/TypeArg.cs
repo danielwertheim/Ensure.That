@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Reflection;
 using EnsureThat.Annotations;
-using EnsureThat.Extensions;
 using JetBrains.Annotations;
 
 namespace EnsureThat.Enforcers
 {
-    public class TypeArg : ITypeArg
+    public sealed class TypeArg
     {
         private static class Types
         {
@@ -25,13 +24,6 @@ namespace EnsureThat.Enforcers
             internal static readonly Type DateTimeType = typeof(DateTime);
 
             internal static readonly Type StringType = typeof(string);
-        }
-
-        private readonly IExceptionFactory _exceptionFactory;
-
-        public TypeArg(IExceptionFactory exceptionFactory)
-        {
-            _exceptionFactory = exceptionFactory;
         }
 
         [NotNull]
@@ -115,8 +107,8 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(expectedType, nameof(expectedType));
 
             if (param != expectedType)
-                throw _exceptionFactory.ArgumentException(
-                    ExceptionMessages.Types_IsOfType_Failed.Inject(expectedType.FullName, param.FullName),
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Types_IsOfType_Failed, expectedType.FullName, param.FullName),
                     paramName,
                     optsFn);
 
@@ -140,8 +132,8 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(nonExpectedType, nameof(nonExpectedType));
 
             if (param == nonExpectedType)
-                throw _exceptionFactory.ArgumentException(
-                    ExceptionMessages.Types_IsNotOfType_Failed.Inject(nonExpectedType.FullName),
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Types_IsNotOfType_Failed, nonExpectedType.FullName),
                     paramName,
                     optsFn);
 
@@ -152,7 +144,7 @@ namespace EnsureThat.Enforcers
         public T IsClass<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (param == null)
-                throw _exceptionFactory.ArgumentNullException(
+                throw Ensure.ExceptionFactory.ArgumentNullException(
                     ExceptionMessages.Types_IsClass_Failed_Null,
                     paramName,
                     optsFn);
@@ -166,14 +158,14 @@ namespace EnsureThat.Enforcers
         public Type IsClass([ValidatedNotNull]Type param, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (param == null)
-                throw _exceptionFactory.ArgumentNullException(
+                throw Ensure.ExceptionFactory.ArgumentNullException(
                     ExceptionMessages.Types_IsClass_Failed_Null,
                     paramName,
                     optsFn);
 
             if (!param.GetTypeInfo().IsClass)
-                throw _exceptionFactory.ArgumentException(
-                    ExceptionMessages.Types_IsClass_Failed.Inject(param.FullName),
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Types_IsClass_Failed, param.FullName),
                     paramName,
                     optsFn);
 

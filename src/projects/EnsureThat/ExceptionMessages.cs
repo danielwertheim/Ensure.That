@@ -1,6 +1,6 @@
 ﻿namespace EnsureThat
 {
-    public class ExceptionMessages
+    public static class ExceptionMessages
     {
         public static string Common_IsNotNull_Failed { get; } = "Value can not be null.";
 

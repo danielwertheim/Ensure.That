@@ -4,20 +4,13 @@ using JetBrains.Annotations;
 
 namespace EnsureThat.Enforcers
 {
-    public class BoolArg : IBoolArg
+    public sealed class BoolArg
     {
-        private readonly IExceptionFactory _exceptionFactory;
-
-        public BoolArg(IExceptionFactory exceptionFactory)
-        {
-            _exceptionFactory = exceptionFactory;
-        }
-
         [ContractAnnotation("value:false=>halt; value:true=>true")]
         public bool IsTrue(bool value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (!value)
-                throw _exceptionFactory.ArgumentException(ExceptionMessages.Booleans_IsTrueFailed, paramName, optsFn);
+                throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Booleans_IsTrueFailed, paramName, optsFn);
 
             return value;
         }
@@ -26,7 +19,7 @@ namespace EnsureThat.Enforcers
         public bool IsFalse(bool value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
         {
             if (value)
-                throw _exceptionFactory.ArgumentException(ExceptionMessages.Booleans_IsFalseFailed, paramName, optsFn);
+                throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Booleans_IsFalseFailed, paramName, optsFn);
 
             return value;
         }

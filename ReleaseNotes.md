@@ -8,6 +8,8 @@ _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should b
 
 **(Changed):** The "fluent" `Ensure.That` syntax that previously was marked as `Obsolete` has been kept with some slight changes. E.g. `Param<T>` is now a struct. The overload of `Ensure.That(...)` accepting a `Func` has been removed. Options to customize messages and expceptions now uses the same construct as the other APIs.
 
+**(Dropped):** `Ensure.On/Off` support has been removed in order to get better performance.
+
 ## v7.2.1 - 2017-12-29
 
 **(Fix):** `EnsureArg.IsTrue` and `EnsureArg.IsFalse` did not pass `optsFn` down.
