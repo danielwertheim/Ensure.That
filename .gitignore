@@ -37,3 +37,6 @@ _ReSharper.*
 
 #windows stuff
 Thumbs.db
+
+# BenchmarkDotNet
+BenchmarkDotNet.Artifacts/
