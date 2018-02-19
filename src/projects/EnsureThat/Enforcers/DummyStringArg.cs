@@ -43,5 +43,11 @@ namespace EnsureThat.Enforcers
 
         public string IsGuid(string value, string paramName = Param.DefaultName, OptsFn optsFn = null)
             => value;
+
+        public string StartsWith(string value, string expectedStartsWith, string paramName = null, OptsFn optsFn = null)
+            => value;
+
+        public string StartsWith(string value, string expectedStartsWith, StringComparison comparisonType, string paramName = null, OptsFn optsFn = null)
+            => value;
     }
 }

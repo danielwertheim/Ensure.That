@@ -49,5 +49,13 @@ namespace EnsureThat
         [NotNull]
         public static string IsGuid([ValidatedNotNull] string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
             => Ensure.String.IsGuid(value, paramName, optsFn);
+
+        [NotNull]
+        public static string StartsWith([ValidatedNotNull] string value, [NotNull] string expectedStartsWith, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.String.StartsWith(value, expectedStartsWith, paramName, optsFn);
+
+        [NotNull]
+        public static string StartsWith([ValidatedNotNull] string value, [NotNull] string expectedStartsWith, StringComparison comparisonType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.String.StartsWith(value, expectedStartsWith, comparisonType, paramName, optsFn);
     }
 }

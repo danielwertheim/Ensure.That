@@ -20,5 +20,7 @@ namespace EnsureThat
         string IsNotEqualTo(string value, string expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null);
         string IsNotEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null);
         string IsGuid([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null);
+        string StartsWith([ValidatedNotNull]string value, [NotNull] string expectedStartsWith, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null);
+        string StartsWith([ValidatedNotNull]string value, [NotNull] string expectedStartsWith, StringComparison comparisonType, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null);
     }
 }
