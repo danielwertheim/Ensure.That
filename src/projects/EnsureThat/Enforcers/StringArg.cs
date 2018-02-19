@@ -134,8 +134,8 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        private static bool StringEquals(string x, string y, StringComparison? comparison = null) => comparison.HasValue
-            ? string.Equals(x, y, comparison.Value)
-            : string.Equals(x, y);
+        private static bool StringEquals(string x, string y, StringComparison comparison) => string.Equals(x, y, comparison);
+
+        private static bool StringEquals(string x, string y) => string.Equals(x, y);
     }
 }
