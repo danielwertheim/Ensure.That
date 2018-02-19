@@ -414,5 +414,30 @@ namespace UnitTests
                 () => EnsureArg.IsGuid(value, ParamName),
                 () => Ensure.That(value, ParamName).IsGuid());
         }
+
+        [Fact]
+        public void StartsWith_When_DoesStartWith_It_should_not_throw()
+        {
+            var value = "startsWith_foobar";
+            var startPart = "startsWith";
+
+            ShouldNotThrow(
+                () => Ensure.String.StartsWith(value, startPart, ParamName),
+                () => EnsureArg.StartsWith(value, startPart, ParamName),
+                () => Ensure.That(value, ParamName).StartsWith(startPart));
+        }
+
+        [Fact]
+        public void StartsWith_When_DoesNotStartWith_It_should_throw()
+        {
+            var value = "startsWith_foobar";
+            var startPart = "otherString";
+
+            ShouldThrow<ArgumentException>(
+                string.Format(ExceptionMessages.Strings_StartsWith_Failed, value, startPart),
+                () => Ensure.String.StartsWith(value, startPart, ParamName),
+                () => EnsureArg.StartsWith(value, startPart, ParamName),
+                () => Ensure.That(value, ParamName).StartsWith(startPart));
+        }
     }
 }

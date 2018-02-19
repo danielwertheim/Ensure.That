@@ -41,5 +41,11 @@ namespace EnsureThat
 
         public static void IsGuid(this Param<string> param)
             => Ensure.String.IsGuid(param.Value, param.Name, param.OptsFn);
+
+        public static void StartsWith(this Param<string> param, [NotNull] string expectedStartsWith)
+            => Ensure.String.StartsWith(param.Value, expectedStartsWith, param.Name, param.OptsFn);
+
+        public static void StartsWith(this Param<string> param, [NotNull] string expectedStartsWith, StringComparison comparisonType)
+            => Ensure.String.StartsWith(param.Value, expectedStartsWith, comparisonType, param.Name, param.OptsFn);
     }
 }
