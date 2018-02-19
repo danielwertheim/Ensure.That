@@ -12,7 +12,7 @@ namespace EnsureThat.Enforcers
             _exceptionFactory = exceptionFactory;
         }
 
-        public Guid IsNotEmpty(Guid value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public Guid IsNotEmpty(Guid value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (value.Equals(Guid.Empty))
                 throw _exceptionFactory.ArgumentException(

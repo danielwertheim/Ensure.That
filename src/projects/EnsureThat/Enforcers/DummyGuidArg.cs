@@ -4,7 +4,7 @@ namespace EnsureThat.Enforcers
 {
     internal class DummyGuidArg : IGuidArg
     {
-        public Guid IsNotEmpty(Guid value, string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public Guid IsNotEmpty(Guid value, string paramName = null, OptsFn optsFn = null)
             => value;
     }
 }
