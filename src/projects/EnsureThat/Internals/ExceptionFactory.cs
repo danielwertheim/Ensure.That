@@ -7,8 +7,10 @@ namespace EnsureThat.Internals
     {
         [NotNull]
         [Pure]
-        public Exception ArgumentException([NotNull] string defaultMessage, [NotNull] string paramName, OptsFn optsFn)
+        public Exception ArgumentException([NotNull] string defaultMessage, string paramName, OptsFn optsFn)
         {
+            paramName = paramName ?? Param.DefaultName;
+
             if (optsFn != null)
             {
                 var opts = optsFn(new EnsureOptions());
@@ -25,8 +27,10 @@ namespace EnsureThat.Internals
 
         [NotNull]
         [Pure]
-        public Exception ArgumentNullException([NotNull] string defaultMessage, [NotNull] string paramName, OptsFn optsFn)
+        public Exception ArgumentNullException([NotNull] string defaultMessage, string paramName, OptsFn optsFn)
         {
+            paramName = paramName ?? Param.DefaultName;
+
             if (optsFn != null)
             {
                 var opts = optsFn(new EnsureOptions());
@@ -43,8 +47,10 @@ namespace EnsureThat.Internals
 
         [NotNull]
         [Pure]
-        public Exception ArgumentOutOfRangeException<TValue>([NotNull] string defaultMessage, [NotNull] string paramName, TValue value, OptsFn optsFn)
+        public Exception ArgumentOutOfRangeException<TValue>([NotNull] string defaultMessage, string paramName, TValue value, OptsFn optsFn)
         {
+            paramName = paramName ?? Param.DefaultName;
+
             if (optsFn != null)
             {
                 var opts = optsFn(new EnsureOptions());

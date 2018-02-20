@@ -23,7 +23,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public IEnumerable<T> HasItems<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public IEnumerable<T> HasItems<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -37,7 +37,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public IEnumerable<T> SizeIs<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, int expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public IEnumerable<T> SizeIs<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -53,7 +53,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public IEnumerable<T> SizeIs<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, long expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public IEnumerable<T> SizeIs<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, long expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -75,7 +75,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public IEnumerable<T> HasAny<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, Func<T, bool> predicate, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public IEnumerable<T> HasAny<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, Func<T, bool> predicate, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 

@@ -5,7 +5,7 @@ namespace EnsureThat
 {
     public static class Param
     {
-        public const string DefaultName = "";
+        public static readonly string DefaultName = string.Empty;
     }
 
     public struct Param<T>
