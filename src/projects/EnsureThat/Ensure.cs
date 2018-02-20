@@ -17,7 +17,7 @@ namespace EnsureThat
             Collection = new DummyCollectionArg();
             Comparable = new DummyComparableArg();
             Guid = new DummyGuidArg();
-            String = new DummyStringArg();
+            //String = new DummyStringArg();
             Type = new DummyTypeArg();
         }
 
@@ -74,7 +74,7 @@ namespace EnsureThat
         /// Ensures for strings.
         /// </summary>
         [NotNull]
-        public static IStringArg String { get; set; } = new StringArg(ExceptionFactory);
+        public static StringArg String { get; set; } = new StringArg(ExceptionFactory);
 
         /// <summary>
         /// Ensures for types.
