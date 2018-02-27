@@ -1,7 +1,7 @@
 public class BuildConfig
 {
     private const string Version = "8.0.0";
-    private const bool IsPreRelease = true;
+    private const bool IsPreRelease = false;
 
     public readonly string SrcDir = "./src/";
     public readonly string OutDir = "./build/";    
