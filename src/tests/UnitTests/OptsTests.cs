@@ -54,9 +54,9 @@ namespace UnitTests
                 OptsFn options = o => o.WithMessage("Foo bar is some dummy text.");
 
                 ShouldThrow<ArgumentNullException>("Foo bar is some dummy text.",
+                    () => Ensure.Any.IsNotNull(value, ParamName, options),
                     () => EnsureArg.IsNotNull(value, ParamName, options),
-                    () => EnsureArg.IsNotNull(value, ParamName, options),
-                    () => EnsureArg.IsNotNull(value, ParamName, options));
+                    () => Ensure.That(value, ParamName, options).IsNotNull());
             }
         }
     }
