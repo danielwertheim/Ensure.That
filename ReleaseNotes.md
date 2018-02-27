@@ -1,7 +1,7 @@
 Semantic versioning is used. See http://semver.org for more info. Basically this means that version format is:
 _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should be able to update without any breaking API changes.
 
-## v8.0.0-pre-release - 2018-02-14
+## v8.0.0-pre-release
 **(Changed):** The assembly is now signed with a SNK, not for security purposes but for identification purposes and the key is in the repo.
 
 **(Changed):** The "fluent" `Ensure.That` syntax that previously was marked as `Obsolete` has been kept with some slight changes. E.g. `Param<T>` is now a struct. The overload of `Ensure.That(...)` accepting a `Func` has been removed. Options to customize messages and expceptions now uses the same construct as the other APIs.
