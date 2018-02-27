@@ -2,11 +2,13 @@ Semantic versioning is used. See http://semver.org for more info. Basically this
 _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should be able to update without any breaking API changes.
 
 ## v8.0.0-pre-release - 2018-02-14
-**(Changed):** `EnsureArg.Any()` and `Ensure.That(...).Any()` is now called `EnsureArg.HasAny` and `Ensure.That(...).HasAny()` to match `Ensure.Collection.HasAny`
-
 **(Changed):** The assembly is now signed with a SNK, not for security purposes but for identification purposes and the key is in the repo.
 
 **(Changed):** The "fluent" `Ensure.That` syntax that previously was marked as `Obsolete` has been kept with some slight changes. E.g. `Param<T>` is now a struct. The overload of `Ensure.That(...)` accepting a `Func` has been removed. Options to customize messages and expceptions now uses the same construct as the other APIs.
+
+**(Changed):** `EnsureArg.Any()` and `Ensure.That(...).Any()` is now called `EnsureArg.HasAny` and `Ensure.That(...).HasAny()` to match `Ensure.Collection.HasAny`
+
+**(New):** `Ensure.That(string).StartsWith(...)`, `Ensure.String.StartsWith(...)`, `EnsureArg.StartsWith`
 
 **(Dropped):** `Ensure.On/Off` support has been removed in order to get better performance.
 
