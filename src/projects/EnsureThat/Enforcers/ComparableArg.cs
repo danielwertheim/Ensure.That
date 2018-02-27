@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using EnsureThat.Extensions;
 using JetBrains.Annotations;
 
 namespace EnsureThat.Enforcers
@@ -10,7 +9,7 @@ namespace EnsureThat.Enforcers
         [NotNull]
         public T Is<T>(T value, T expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable<T>
         {
-            if (!value.IsEq(expected))
+            if (!ValueIsEq(value, expected, DefaultComparerFor<T>.C))
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Comp_Is_Failed, value, expected), paramName, optsFn);
 
@@ -19,7 +18,7 @@ namespace EnsureThat.Enforcers
 
         public T Is<T>(T value, T expected, IComparer<T> comparer, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            if (!value.IsEq(expected, comparer))
+            if (!ValueIsEq(value, expected, comparer))
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Comp_Is_Failed, value, expected), paramName, optsFn);
 
@@ -29,7 +28,7 @@ namespace EnsureThat.Enforcers
         [NotNull]
         public T IsNot<T>(T value, T expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable<T>
         {
-            if (value.IsEq(expected))
+            if (ValueIsEq(value, expected, DefaultComparerFor<T>.C))
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Comp_IsNot_Failed, value, expected), paramName, optsFn);
 
@@ -38,7 +37,7 @@ namespace EnsureThat.Enforcers
 
         public T IsNot<T>(T value, T expected, IComparer<T> comparer, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            if (value.IsEq(expected, comparer))
+            if (ValueIsEq(value, expected, comparer))
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Comp_IsNot_Failed, value, expected), paramName, optsFn);
 
@@ -48,7 +47,7 @@ namespace EnsureThat.Enforcers
         [NotNull]
         public T IsLt<T>(T value, T limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable<T>
         {
-            if (!value.IsLt(limit))
+            if (!ValueIsLt(value, limit, DefaultComparerFor<T>.C))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
                     string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), paramName, value, optsFn);
 
@@ -57,7 +56,7 @@ namespace EnsureThat.Enforcers
 
         public T IsLt<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            if (!value.IsLt(limit, comparer))
+            if (!ValueIsLt(value, limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
                     string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), paramName, value, optsFn);
 
@@ -67,7 +66,7 @@ namespace EnsureThat.Enforcers
         [NotNull]
         public T IsLte<T>(T value, T limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable<T>
         {
-            if (value.IsGt(limit))
+            if (ValueIsGt(value, limit, DefaultComparerFor<T>.C))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
                     string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), paramName, value, optsFn);
 
@@ -76,7 +75,7 @@ namespace EnsureThat.Enforcers
 
         public T IsLte<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            if (value.IsGt(limit, comparer))
+            if (ValueIsGt(value, limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
                     string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), paramName, value, optsFn);
 
@@ -86,7 +85,7 @@ namespace EnsureThat.Enforcers
         [NotNull]
         public T IsGt<T>(T value, T limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable<T>
         {
-            if (!value.IsGt(limit))
+            if (!ValueIsGt(value, limit, DefaultComparerFor<T>.C))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
                     string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), paramName, value, optsFn);
 
@@ -95,7 +94,7 @@ namespace EnsureThat.Enforcers
 
         public T IsGt<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            if (!value.IsGt(limit, comparer))
+            if (!ValueIsGt(value, limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
                     string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), paramName, value, optsFn);
 
@@ -105,7 +104,7 @@ namespace EnsureThat.Enforcers
         [NotNull]
         public T IsGte<T>(T value, T limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable<T>
         {
-            if (value.IsLt(limit))
+            if (ValueIsLt(value, limit, DefaultComparerFor<T>.C))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
                     string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), paramName, value, optsFn);
 
@@ -114,7 +113,7 @@ namespace EnsureThat.Enforcers
 
         public T IsGte<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            if (value.IsLt(limit, comparer))
+            if (ValueIsLt(value, limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
                     string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), paramName, value, optsFn);
 
@@ -124,11 +123,11 @@ namespace EnsureThat.Enforcers
         [NotNull]
         public T IsInRange<T>(T value, T min, T max, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable<T>
         {
-            if (value.IsLt(min))
+            if (ValueIsLt(value, min, DefaultComparerFor<T>.C))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
                     string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, min), paramName, value, optsFn);
 
-            if (value.IsGt(max))
+            if (ValueIsGt(value, max, DefaultComparerFor<T>.C))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
                     string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, max), paramName, value, optsFn);
 
@@ -137,15 +136,38 @@ namespace EnsureThat.Enforcers
 
         public T IsInRange<T>(T value, T min, T max, IComparer<T> comparer, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            if (value.IsLt(min, comparer))
+            if (ValueIsLt(value, min, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
                     string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, min), paramName, value, optsFn);
 
-            if (value.IsGt(max, comparer))
+            if (ValueIsGt(value, max, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
                     string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, max), paramName, value, optsFn);
 
             return value;
         }
+
+        private static class DefaultComparerFor<T> where T : IComparable<T>
+        {
+            public static readonly Comparer<T> C = Comparer<T>.Create((x, y) => x.CompareTo(y));
+        }
+
+        private static bool ValueIsLt<T>(T x, T y, Comparer<T> c)
+            => c.Compare(x, y) < 0;
+
+        private static bool ValueIsEq<T>(T x, T y, Comparer<T> c)
+            => c.Compare(x, y) == 0;
+
+        private static bool ValueIsGt<T>(T x, T y, Comparer<T> c)
+            => c.Compare(x, y) > 0;
+
+        private static bool ValueIsLt<T>(T x, T y, IComparer<T> c)
+            => c.Compare(x, y) < 0;
+
+        private static bool ValueIsEq<T>(T x, T y, IComparer<T> c)
+            => c.Compare(x, y) == 0;
+
+        private static bool ValueIsGt<T>(T x, T y, IComparer<T> c)
+            => c.Compare(x, y) > 0;
     }
 }

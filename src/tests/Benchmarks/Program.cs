@@ -41,63 +41,73 @@ namespace Benchmarks
         };
 
         [Benchmark]
-        [BenchmarkCategory("String")]
+        [BenchmarkCategory("Strin_IsNotNullOrWhiteSpace")]
         public void EnsureString()
         {
             Ensure.That("foo", "test").IsNotNullOrWhiteSpace();
         }
 
         [Benchmark]
-        [BenchmarkCategory("Strings")]
+        [BenchmarkCategory("String_IsNotNullOrWhiteSpace")]
         public void EnsureStringViaEnforcer()
         {
             Ensure.String.IsNotNullOrWhiteSpace("foo", "test");
         }
 
         [Benchmark]
-        [BenchmarkCategory("Int")]
-        public void EnsureInt()
+        [BenchmarkCategory("Int_Is")]
+        public void EnsureIntIs()
         {
             Ensure.That(42, "test").Is(42);
         }
 
         [Benchmark]
-        [BenchmarkCategory("Int")]
-        public void EnsureIntViaEnforcer()
+        [BenchmarkCategory("Int_Is")]
+        public void EnsureIntIsViaEnforcer()
         {
             Ensure.Comparable.Is(42, 42, "test");
         }
 
         [Benchmark]
-        [BenchmarkCategory("ListOfInts")]
+        [BenchmarkCategory("String_Is")]
+        public void EnsureStringIs()
+        {
+            Ensure.That("foo", "test").Is("foo");
+        }
+
+        [Benchmark]
+        [BenchmarkCategory("String_Is")]
+        public void EnsureStringIsViaEnforcer()
+        {
+            Ensure.Comparable.Is("foo", "foo", "test");
+        }
+
+        [Benchmark]
+        [BenchmarkCategory("ListOfInts_HasItems")]
         public void EnsureListOfInts()
         {
             Ensure.That(_myInts, "test").HasItems();
-            //Ensure.That(_myInts, "test").HasAny(i => i == 2);
         }
 
         [Benchmark]
-        [BenchmarkCategory("ListOfInts")]
+        [BenchmarkCategory("ListOfInts_HasItems")]
         public void EnsureListOfIntsViaEnforcer()
         {
             Ensure.Collection.HasItems(_myInts, "test"); ;
-            //Ensure.Collection.HasAny(_myInts, i => i == 2, "test");
         }
 
         [Benchmark]
-        [BenchmarkCategory("ListOfThings")]
+        [BenchmarkCategory("ListOfThings_HasItems")]
         public void EnsureListOfThings()
         {
             Ensure.That(_myThings, "test").HasItems();
-            //Ensure.That(_myThings, "test").HasAny(i => i.MyInt == 2);
         }
 
         [Benchmark]
-        [BenchmarkCategory("ListOfThings")]
+        [BenchmarkCategory("ListOfThings_HasItems")]
         public void EnsureListOfThingsViaEnforcer()
         {
             Ensure.Collection.HasItems(_myThings, "test");
-            //Ensure.Collection.HasAny(_myThings, i => i.MyInt == 2, "test");
         }
 
         private class MyThing
