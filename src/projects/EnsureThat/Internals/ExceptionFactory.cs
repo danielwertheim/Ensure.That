@@ -7,7 +7,7 @@ namespace EnsureThat.Internals
     {
         [NotNull]
         [Pure]
-        internal Exception ArgumentException([NotNull] string defaultMessage, [NotNull] string paramName, OptsFn optsFn)
+        internal Exception ArgumentException([NotNull] string defaultMessage, string paramName, OptsFn optsFn = null)
         {
             if (optsFn != null)
             {
@@ -25,7 +25,7 @@ namespace EnsureThat.Internals
 
         [NotNull]
         [Pure]
-        internal Exception ArgumentNullException([NotNull] string defaultMessage, [NotNull] string paramName, OptsFn optsFn)
+        internal Exception ArgumentNullException([NotNull] string defaultMessage, string paramName, OptsFn optsFn = null)
         {
             if (optsFn != null)
             {
@@ -43,7 +43,7 @@ namespace EnsureThat.Internals
 
         [NotNull]
         [Pure]
-        internal Exception ArgumentOutOfRangeException<TValue>([NotNull] string defaultMessage, [NotNull] string paramName, TValue value, OptsFn optsFn)
+        internal Exception ArgumentOutOfRangeException<TValue>([NotNull] string defaultMessage, string paramName, TValue value, OptsFn optsFn = null)
         {
             if (optsFn != null)
             {

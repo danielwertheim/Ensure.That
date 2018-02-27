@@ -8,7 +8,7 @@ namespace EnsureThat.Enforcers
     public sealed class StringArg
     {
         [NotNull]
-        public string IsNotNull([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public string IsNotNull([ValidatedNotNull]string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName, optsFn);
 
@@ -16,7 +16,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public string IsNotNullOrWhiteSpace([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public string IsNotNullOrWhiteSpace([ValidatedNotNull]string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName, optsFn);
 
@@ -27,7 +27,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public string IsNotNullOrEmpty([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public string IsNotNullOrEmpty([ValidatedNotNull]string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName, optsFn);
 
@@ -37,7 +37,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsNotEmpty(string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public string IsNotEmpty(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (value?.Length == 0)
                 throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmpty_Failed, paramName, optsFn);
@@ -46,7 +46,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public string HasLengthBetween([ValidatedNotNull]string value, int minLength, int maxLength, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public string HasLengthBetween([ValidatedNotNull]string value, int minLength, int maxLength, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName, optsFn);
 
@@ -68,11 +68,11 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public string Matches(string value, [RegexPattern] string match, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public string Matches(string value, [RegexPattern] string match, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Matches(value, new Regex(match), paramName, optsFn);
 
         [NotNull]
-        public string Matches(string value, Regex match, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public string Matches(string value, Regex match, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (!match.IsMatch(value))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -84,7 +84,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public string SizeIs([ValidatedNotNull]string value, int expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public string SizeIs([ValidatedNotNull]string value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName, optsFn);
 
@@ -97,7 +97,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsEqualTo(string value, string expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public string IsEqualTo(string value, string expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (!StringEquals(value, expected))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -108,7 +108,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public string IsEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (!StringEquals(value, expected, comparison))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -119,7 +119,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsNotEqualTo(string value, string expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public string IsNotEqualTo(string value, string expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (StringEquals(value, expected))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -130,7 +130,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsNotEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public string IsNotEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (StringEquals(value, expected, comparison))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -142,7 +142,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public string IsGuid([ValidatedNotNull]string value, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public string IsGuid([ValidatedNotNull]string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (!Guid.TryParse(value, out _))
                 throw Ensure.ExceptionFactory.ArgumentException(

@@ -3,11 +3,6 @@ using JetBrains.Annotations;
 
 namespace EnsureThat
 {
-    public static class Param
-    {
-        public const string DefaultName = "";
-    }
-
     public struct Param<T>
     {
         public readonly string Name;
@@ -16,7 +11,7 @@ namespace EnsureThat
 
         public Param(string name, T value, OptsFn optsFn = null)
         {
-            Name = name ?? Param.DefaultName;
+            Name = name;
             Value = value;
             OptsFn = optsFn;
         }
@@ -31,7 +26,7 @@ namespace EnsureThat
 
         public TypeParam(string name, [NotNull] Type type, OptsFn optsFn = null)
         {
-            Name = name ?? Param.DefaultName;
+            Name = name;
             Type = type;
             OptsFn = optsFn;
         }

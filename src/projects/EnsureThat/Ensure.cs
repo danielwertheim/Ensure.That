@@ -70,7 +70,7 @@ namespace EnsureThat
         /// <param name="optsFn"></param>
         /// <returns></returns>
         [Pure]
-        public static Param<T> That<T>([NoEnumeration]T value, string name = Param.DefaultName, OptsFn optsFn = null)
+        public static Param<T> That<T>([NoEnumeration]T value, string name = null, OptsFn optsFn = null)
             => new Param<T>(name, value, optsFn);
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace EnsureThat
         /// <param name="optsFn"></param>
         /// <returns></returns>
         [Pure]
-        public static TypeParam ThatTypeFor<T>([NotNull] T value, string name = Param.DefaultName, OptsFn optsFn = null)
+        public static TypeParam ThatTypeFor<T>([NotNull] T value, string name = null, OptsFn optsFn = null)
             => new TypeParam(name, value.GetType(), optsFn);
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace EnsureThat
         /// <param name="optsFn"></param>
         /// <returns></returns>
         [Pure]
-        public static TypeParam ThatType([NotNull] Type value, string name = Param.DefaultName, OptsFn optsFn = null)
+        public static TypeParam ThatType([NotNull] Type value, string name = null, OptsFn optsFn = null)
             => new TypeParam(name, value, optsFn);
     }
 }

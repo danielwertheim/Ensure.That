@@ -8,7 +8,7 @@ namespace EnsureThat.Enforcers
     public sealed class ComparableArg
     {
         [NotNull]
-        public T Is<T>(T value, T expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null) where T : IComparable<T>
+        public T Is<T>(T value, T expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable<T>
         {
             if (!value.IsEq(expected))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -17,7 +17,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T Is<T>(T value, T expected, IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public T Is<T>(T value, T expected, IComparer<T> comparer, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (!value.IsEq(expected, comparer))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -27,7 +27,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public T IsNot<T>(T value, T expected, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null) where T : IComparable<T>
+        public T IsNot<T>(T value, T expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable<T>
         {
             if (value.IsEq(expected))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -36,7 +36,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsNot<T>(T value, T expected, IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public T IsNot<T>(T value, T expected, IComparer<T> comparer, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (value.IsEq(expected, comparer))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -46,7 +46,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public T IsLt<T>(T value, T limit, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null) where T : IComparable<T>
+        public T IsLt<T>(T value, T limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable<T>
         {
             if (!value.IsLt(limit))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -55,7 +55,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsLt<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public T IsLt<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (!value.IsLt(limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -65,7 +65,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public T IsLte<T>(T value, T limit, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null) where T : IComparable<T>
+        public T IsLte<T>(T value, T limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable<T>
         {
             if (value.IsGt(limit))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -74,7 +74,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsLte<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public T IsLte<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (value.IsGt(limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -84,7 +84,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public T IsGt<T>(T value, T limit, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null) where T : IComparable<T>
+        public T IsGt<T>(T value, T limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable<T>
         {
             if (!value.IsGt(limit))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -93,7 +93,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsGt<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public T IsGt<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (!value.IsGt(limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -103,7 +103,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public T IsGte<T>(T value, T limit, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null) where T : IComparable<T>
+        public T IsGte<T>(T value, T limit, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable<T>
         {
             if (value.IsLt(limit))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -112,7 +112,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsGte<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public T IsGte<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (value.IsLt(limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -122,7 +122,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public T IsInRange<T>(T value, T min, T max, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null) where T : IComparable<T>
+        public T IsInRange<T>(T value, T min, T max, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : IComparable<T>
         {
             if (value.IsLt(min))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -135,7 +135,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsInRange<T>(T value, T min, T max, IComparer<T> comparer, [InvokerParameterName] string paramName = Param.DefaultName, OptsFn optsFn = null)
+        public T IsInRange<T>(T value, T min, T max, IComparer<T> comparer, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (value.IsLt(min, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
