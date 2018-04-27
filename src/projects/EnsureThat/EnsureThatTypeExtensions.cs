@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 
 namespace EnsureThat
 {
-    public static class EnsureTypeExtensions
+    public static class EnsureThatTypeExtensions
     {
         public static void IsInt(this TypeParam param)
             => Ensure.Type.IsInt(param.Type, param.Name, param.OptsFn);

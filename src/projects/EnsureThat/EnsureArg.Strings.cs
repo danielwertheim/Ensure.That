@@ -8,6 +8,10 @@ namespace EnsureThat
     public static partial class EnsureArg
     {
         [NotNull]
+        public static string IsNotNull([ValidatedNotNull] string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.String.IsNotNull(value, paramName, optsFn);
+
+        [NotNull]
         public static string IsNotNullOrWhiteSpace([ValidatedNotNull] string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.IsNotNullOrWhiteSpace(value, paramName, optsFn);
 

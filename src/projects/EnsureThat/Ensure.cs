@@ -76,6 +76,20 @@ namespace EnsureThat
         /// <summary>
         /// Ensures via discoverable API. Please note that an extra wrapping object
         /// <see cref="Param{T}"/> will be created. This can have performance impacts.
+        /// Use <see cref="EnsureArg"/> or contextual e.g. <see cref="Ensure.String"/>
+        /// if worried about performance.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="name"></param>
+        /// <param name="optsFn"></param>
+        /// <returns></returns>
+        [Pure]
+        public static StringParam That([NoEnumeration]string value, string name = null, OptsFn optsFn = null)
+            => new StringParam(name, value, optsFn);
+
+        /// <summary>
+        /// Ensures via discoverable API. Please note that an extra wrapping object
+        /// <see cref="Param{T}"/> will be created. This can have performance impacts.
         /// Use <see cref="EnsureArg"/> or contextual e.g. <see cref="Ensure.Type"/>
         /// if worried about performance.
         /// </summary>

@@ -9,7 +9,7 @@ namespace EnsureThat
     public static partial class EnsureArg
     {
         [NotNull]
-        public static T HasItems<T>([ValidatedNotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : ICollection
+        public static T HasItems<T>([ValidatedNotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class, ICollection
             => Ensure.Collection.HasItems(value, paramName, optsFn);
 
         [NotNull]
@@ -49,11 +49,11 @@ namespace EnsureThat
             => Ensure.Collection.SizeIs(value, expected, paramName, optsFn);
 
         [NotNull]
-        public static T SizeIs<T>([ValidatedNotNull]T value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : ICollection
+        public static T SizeIs<T>([ValidatedNotNull]T value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class, ICollection
             => Ensure.Collection.SizeIs(value, expected, paramName, optsFn);
 
         [NotNull]
-        public static T SizeIs<T>([ValidatedNotNull]T value, long expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : ICollection
+        public static T SizeIs<T>([ValidatedNotNull]T value, long expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class, ICollection
             => Ensure.Collection.SizeIs(value, expected, paramName, optsFn);
 
         [NotNull]

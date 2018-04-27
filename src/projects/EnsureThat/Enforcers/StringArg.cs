@@ -159,24 +159,87 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(value, paramName, optsFn);
 
             if (!value.StartsWith(expectedStartsWith))
-                throw _exceptionFactory.ArgumentException(ExceptionMessages.Strings_StartsWith_Failed.Inject(value, expectedStartsWith), paramName, optsFn);
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Strings_StartsWith_Failed, value, expectedStartsWith),
+                    paramName,
+                    optsFn);
 
             return value;
         }
 
         [NotNull]
-        public string StartsWith([ValidatedNotNull]string value, [NotNull] string expectedStartsWith, StringComparison comparisonType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string StartsWith([ValidatedNotNull]string value, [NotNull] string expectedStartsWith, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName, optsFn);
 
-            if (!value.StartsWith(expectedStartsWith, comparisonType))
-                throw _exceptionFactory.ArgumentException(ExceptionMessages.Strings_StartsWith_Failed.Inject(value, expectedStartsWith), paramName, optsFn);
+            if (!value.StartsWith(expectedStartsWith, comparison))
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Strings_StartsWith_Failed, value, expectedStartsWith),
+                    paramName,
+                    optsFn);
 
             return value;
         }
 
-        private static bool StringEquals(string x, string y, StringComparison comparison) => string.Equals(x, y, comparison);
+        public string IsLt(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            if (!StringIsLt(value, limit, comparison))
+                throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
+                    string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), paramName, value, optsFn);
 
-        private static bool StringEquals(string x, string y) => string.Equals(x, y);
+            return value;
+        }
+
+        public string IsLte(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            if (StringIsGt(value, limit, comparison))
+                throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
+                    string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), paramName, value, optsFn);
+
+            return value;
+        }
+
+        public string IsGt(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            if (!StringIsGt(value, limit, comparison))
+                throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
+                    string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), paramName, value, optsFn);
+
+            return value;
+        }
+
+        public string IsGte(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            if (StringIsLt(value, limit, comparison))
+                throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
+                    string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), paramName, value, optsFn);
+
+            return value;
+        }
+
+        public string IsInRange(string value, string min, string max, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            if (StringIsLt(value, min, comparison))
+                throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
+                    string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, min), paramName, value, optsFn);
+
+            if (StringIsGt(value, max, comparison))
+                throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
+                    string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, max), paramName, value, optsFn);
+
+            return value;
+        }
+
+        private static bool StringEquals(string x, string y)
+            => string.Equals(x, y);
+
+        private static bool StringEquals(string x, string y, StringComparison comparison)
+            => string.Equals(x, y, comparison);
+
+        private static bool StringIsLt(string x, string y, StringComparison c)
+            => string.Compare(x, y, c) < 0;
+
+        private static bool StringIsGt(string x, string y, StringComparison c)
+            => string.Compare(x, y, c) > 0;
     }
 }

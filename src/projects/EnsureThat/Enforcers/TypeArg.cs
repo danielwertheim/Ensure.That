@@ -31,7 +31,7 @@ namespace EnsureThat.Enforcers
             => IsOfType(param, Types.IntType, paramName, optsFn);
 
         [NotNull]
-        public T IsInt<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public object IsInt([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => IsOfType(param, Types.IntType, paramName, optsFn);
 
         [NotNull]
@@ -39,7 +39,7 @@ namespace EnsureThat.Enforcers
             => IsOfType(param, Types.ShortType, paramName, optsFn);
 
         [NotNull]
-        public T IsShort<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public object IsShort([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => IsOfType(param, Types.ShortType, paramName, optsFn);
 
         [NotNull]
@@ -47,7 +47,7 @@ namespace EnsureThat.Enforcers
             => IsOfType(param, Types.DecimalType, paramName, optsFn);
 
         [NotNull]
-        public T IsDecimal<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public object IsDecimal([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => IsOfType(param, Types.DecimalType, paramName, optsFn);
 
         [NotNull]
@@ -55,7 +55,7 @@ namespace EnsureThat.Enforcers
             => IsOfType(param, Types.DoubleType, paramName, optsFn);
 
         [NotNull]
-        public T IsDouble<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public object IsDouble([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => IsOfType(param, Types.DoubleType, paramName, optsFn);
 
         [NotNull]
@@ -63,7 +63,7 @@ namespace EnsureThat.Enforcers
             => IsOfType(param, Types.FloatType, paramName, optsFn);
 
         [NotNull]
-        public T IsFloat<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public object IsFloat([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => IsOfType(param, Types.FloatType, paramName, optsFn);
 
         [NotNull]
@@ -71,7 +71,7 @@ namespace EnsureThat.Enforcers
             => IsOfType(param, Types.BoolType, paramName, optsFn);
 
         [NotNull]
-        public T IsBool<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public object IsBool([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => IsOfType(param, Types.BoolType, paramName, optsFn);
 
         [NotNull]
@@ -79,7 +79,7 @@ namespace EnsureThat.Enforcers
             => IsOfType(param, Types.DateTimeType, paramName, optsFn);
 
         [NotNull]
-        public T IsDateTime<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public object IsDateTime([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => IsOfType(param, Types.DateTimeType, paramName, optsFn);
 
         [NotNull]
@@ -87,11 +87,11 @@ namespace EnsureThat.Enforcers
             => IsOfType(param, Types.StringType, paramName, optsFn);
 
         [NotNull]
-        public T IsString<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public object IsString([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => IsOfType(param, Types.StringType, paramName, optsFn);
 
         [NotNull]
-        public T IsOfType<T>([ValidatedNotNull]T param, Type expectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public T IsOfType<T>([ValidatedNotNull]T param, Type expectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class
         {
             Ensure.Any.IsNotNull(param, paramName, optsFn);
 
@@ -116,7 +116,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public T IsNotOfType<T>([ValidatedNotNull]T param, Type nonExpectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public T IsNotOfType<T>([ValidatedNotNull]T param, Type nonExpectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class
         {
             Ensure.Any.IsNotNull(param, paramName, optsFn);
 

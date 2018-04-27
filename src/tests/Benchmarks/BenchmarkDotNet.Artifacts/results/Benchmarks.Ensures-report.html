@@ -13,28 +13,42 @@
 </head>
 <body>
 <pre><code>
-BenchmarkDotNet=v0.10.12, OS=Windows 10 Redstone 3 [1709, Fall Creators Update] (10.0.16299.248)
+BenchmarkDotNet=v0.10.12, OS=Windows 10 Redstone 3 [1709, Fall Creators Update] (10.0.16299.334)
 Intel Core i7-4790K CPU 4.00GHz (Haswell), 1 CPU, 8 logical cores and 4 physical cores
-Frequency=3906245 Hz, Resolution=256.0003 ns, Timer=TSC
-.NET Core SDK=2.1.4
-  [Host]     : .NET Core 2.0.5 (Framework 4.6.26020.03), 64bit RyuJIT
-  DefaultJob : .NET Core 2.0.5 (Framework 4.6.26020.03), 64bit RyuJIT
+Frequency=3906247 Hz, Resolution=256.0002 ns, Timer=TSC
+.NET Core SDK=2.1.104
+  [Host]     : .NET Core 2.0.6 (Framework 4.6.26212.01), 64bit RyuJIT
+  DefaultJob : .NET Core 2.0.6 (Framework 4.6.26212.01), 64bit RyuJIT
 </code></pre>
 <pre><code></code></pre>
 
 <table>
-<thead><tr><th>                 Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Rank</th><th>Allocated</th>
+<thead><tr><th>                          Method</th><th>            Categories</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Scaled</th><th>ScaledSD</th><th>Rank</th><th>Gen 0</th><th>Allocated</th>
 </tr>
-</thead><tbody><tr><td>EnsureListOfIntsViaEnforcer</td><td>6.010 ns</td><td>0.0156 ns</td><td>0.0139 ns</td><td>1</td><td>0 B</td>
-</tr><tr><td>EnsureListOfThingsViaEnforcer</td><td>6.253 ns</td><td>0.0305 ns</td><td>0.0271 ns</td><td>2</td><td>0 B</td>
-</tr><tr><td>EnsureIntIsViaEnforcer</td><td>7.576 ns</td><td>0.0441 ns</td><td>0.0413 ns</td><td>3</td><td>0 B</td>
-</tr><tr><td>EnsureStringViaEnforcer</td><td>7.613 ns</td><td>0.0409 ns</td><td>0.0363 ns</td><td>4</td><td>0 B</td>
-</tr><tr><td>EnsureIntIs</td><td>8.131 ns</td><td>0.0302 ns</td><td>0.0267 ns</td><td>5</td><td>0 B</td>
-</tr><tr><td>EnsureStringIsViaEnforcer</td><td>10.042 ns</td><td>0.0586 ns</td><td>0.0490 ns</td><td>6</td><td>0 B</td>
-</tr><tr><td>EnsureListOfInts</td><td>13.893 ns</td><td>0.0626 ns</td><td>0.0585 ns</td><td>7</td><td>0 B</td>
-</tr><tr><td>EnsureListOfThings</td><td>14.112 ns</td><td>0.0473 ns</td><td>0.0442 ns</td><td>8</td><td>0 B</td>
-</tr><tr><td>EnsureString</td><td>15.431 ns</td><td>0.0658 ns</td><td>0.0583 ns</td><td>9</td><td>0 B</td>
-</tr><tr><td>EnsureStringIs</td><td>19.678 ns</td><td>0.0873 ns</td><td>0.0774 ns</td><td>10</td><td>0 B</td>
+</thead><tbody><tr><td>ThingIsNotNull</td><td>Any.IsNotNull</td><td>2.9958 ns</td><td>0.0094 ns</td><td>0.0079 ns</td><td>1.00</td><td>0.00</td><td>1</td><td>0.0076</td><td>32 B</td>
+</tr><tr><td>ThingIsNotNullViaEnforcer</td><td>Any.IsNotNull</td><td>4.5552 ns</td><td>0.0280 ns</td><td>0.0219 ns</td><td>1.52</td><td>0.01</td><td>2</td><td>0.0076</td><td>32 B</td>
+</tr><tr><td>ThingIsNotNullViaThat</td><td>Any.IsNotNull</td><td>12.3884 ns</td><td>0.0588 ns</td><td>0.0550 ns</td><td>4.14</td><td>0.02</td><td>3</td><td>0.0076</td><td>32 B</td>
+</tr><tr><td>IntIs</td><td>Int.Is</td><td>0.7862 ns</td><td>0.0113 ns</td><td>0.0105 ns</td><td>1.00</td><td>0.00</td><td>1</td><td>-</td><td>0 B</td>
+</tr><tr><td>IntIsViaThat</td><td>Int.Is</td><td>2.7818 ns</td><td>0.0085 ns</td><td>0.0075 ns</td><td>3.54</td><td>0.05</td><td>2</td><td>-</td><td>0 B</td>
+</tr><tr><td>IntIsViaEnforcer</td><td>Int.Is</td><td>2.8434 ns</td><td>0.0184 ns</td><td>0.0172 ns</td><td>3.62</td><td>0.05</td><td>3</td><td>-</td><td>0 B</td>
+</tr><tr><td>IntIsGt</td><td>Int.IsGt</td><td>0.7856 ns</td><td>0.0076 ns</td><td>0.0059 ns</td><td>1.00</td><td>0.00</td><td>1</td><td>-</td><td>0 B</td>
+</tr><tr><td>IntIsGtViaEnforcer</td><td>Int.IsGt</td><td>2.3644 ns</td><td>0.0108 ns</td><td>0.0101 ns</td><td>3.01</td><td>0.03</td><td>2</td><td>-</td><td>0 B</td>
+</tr><tr><td>IntIsGtViaThat</td><td>Int.IsGt</td><td>2.5139 ns</td><td>0.0189 ns</td><td>0.0177 ns</td><td>3.20</td><td>0.03</td><td>3</td><td>-</td><td>0 B</td>
+</tr><tr><td>IntsHasItems</td><td>Ints.HasItems</td><td>0.7687 ns</td><td>0.0106 ns</td><td>0.0099 ns</td><td>1.00</td><td>0.00</td><td>1</td><td>-</td><td>0 B</td>
+</tr><tr><td>IntsHasItemsViaEnforcer</td><td>Ints.HasItems</td><td>3.7391 ns</td><td>0.0201 ns</td><td>0.0178 ns</td><td>4.86</td><td>0.06</td><td>2</td><td>-</td><td>0 B</td>
+</tr><tr><td>IntsHasItemsViaThat</td><td>Ints.HasItems</td><td>14.0298 ns</td><td>0.0684 ns</td><td>0.0571 ns</td><td>18.25</td><td>0.24</td><td>3</td><td>-</td><td>0 B</td>
+</tr><tr><td>StringIsEqualTo</td><td>String.IsEqualTo</td><td>1.7682 ns</td><td>0.0098 ns</td><td>0.0092 ns</td><td>1.00</td><td>0.00</td><td>1</td><td>-</td><td>0 B</td>
+</tr><tr><td>StringIsEqualToViaEnforcer</td><td>String.IsEqualTo</td><td>1.7824 ns</td><td>0.0115 ns</td><td>0.0107 ns</td><td>1.01</td><td>0.01</td><td>2</td><td>-</td><td>0 B</td>
+</tr><tr><td>StringIsEqualToViaThat</td><td>String.IsEqualTo</td><td>2.0212 ns</td><td>0.0082 ns</td><td>0.0077 ns</td><td>1.14</td><td>0.01</td><td>3</td><td>-</td><td>0 B</td>
+</tr><tr><td>StringIsNotNullOrWhiteSpace</td><td>String.IsNotNullOrWhiteSpace</td><td>3.4817 ns</td><td>0.0258 ns</td><td>0.0241 ns</td><td>1.00</td><td>0.00</td><td>1</td><td>-</td><td>0 B</td>
+</tr><tr><td>StringIsNotNullOrWhiteSpaceViaThat</td><td>String.IsNotNullOrWhiteSpace</td><td>7.3463 ns</td><td>0.0250 ns</td><td>0.0221 ns</td><td>2.11</td><td>0.02</td><td>2</td><td>-</td><td>0 B</td>
+</tr><tr><td>StringIsNotNullOrWhiteSpaceViaEnforcer</td><td>String.IsNotNullOrWhiteSpace</td><td>7.4140 ns</td><td>0.0368 ns</td><td>0.0326 ns</td><td>2.13</td><td>0.02</td><td>3</td><td>-</td><td>0 B</td>
+</tr><tr><td>StringsHasItems</td><td>Strings.HasItems</td><td>0.7664 ns</td><td>0.0078 ns</td><td>0.0073 ns</td><td>1.00</td><td>0.00</td><td>1</td><td>-</td><td>0 B</td>
+</tr><tr><td>StringsHasItemsViaEnforcer</td><td>Strings.HasItems</td><td>4.6097 ns</td><td>0.0214 ns</td><td>0.0178 ns</td><td>6.02</td><td>0.06</td><td>2</td><td>-</td><td>0 B</td>
+</tr><tr><td>StringsHasItemsViaThat</td><td>Strings.HasItems</td><td>12.8419 ns</td><td>0.0618 ns</td><td>0.0578 ns</td><td>16.76</td><td>0.17</td><td>3</td><td>-</td><td>0 B</td>
+</tr><tr><td>ThingsHasItems</td><td>Things.HasItems</td><td>0.7818 ns</td><td>0.0071 ns</td><td>0.0063 ns</td><td>1.00</td><td>0.00</td><td>1</td><td>-</td><td>0 B</td>
+</tr><tr><td>ThingsHasItemsViaEnforcer</td><td>Things.HasItems</td><td>4.4065 ns</td><td>0.0164 ns</td><td>0.0137 ns</td><td>5.64</td><td>0.05</td><td>2</td><td>-</td><td>0 B</td>
+</tr><tr><td>ThingsHasItemsViaThat</td><td>Things.HasItems</td><td>12.8201 ns</td><td>0.0942 ns</td><td>0.0835 ns</td><td>16.40</td><td>0.16</td><td>3</td><td>-</td><td>0 B</td>
 </tr></tbody></table>
 </body>
 </html>

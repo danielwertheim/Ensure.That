@@ -51,14 +51,16 @@ namespace UnitTests
             ShouldNotThrow(
                 () => Ensure.Comparable.IsLt(Sp, sa, ordinal, ParamName),
                 () => EnsureArg.IsLt(Sp, sa, ordinal, ParamName),
-                () => Ensure.That(Sp, ParamName).IsLt(sa, ordinal));
+                () => Ensure.String.IsLt(Sp, sa, StringComparison.Ordinal, ParamName),
+                () => Ensure.That(Sp, ParamName).IsLt(sa, StringComparison.Ordinal));
 
             // Validate with comparer (order is reversed)
             IComparer<string> ignoreCase = StringComparer.OrdinalIgnoreCase;
             ShouldNotThrow(
                 () => Ensure.Comparable.IsLt(sa, Sp, ignoreCase, ParamName),
                 () => EnsureArg.IsLt(sa, Sp, ignoreCase, ParamName),
-                () => Ensure.That(sa, ParamName).IsLt(Sp, ignoreCase));
+                () => Ensure.String.IsLt(sa, Sp, StringComparison.OrdinalIgnoreCase, ParamName),
+                () => Ensure.That(sa, ParamName).IsLt(Sp, StringComparison.OrdinalIgnoreCase));
         }
 
         [Fact]
@@ -104,14 +106,16 @@ namespace UnitTests
             ShouldNotThrow(
                 () => Ensure.Comparable.IsGt(sa, Sp, ordinal, ParamName),
                 () => EnsureArg.IsGt(sa, Sp, ordinal, ParamName),
-                () => Ensure.That(sa, ParamName).IsGt(Sp, ordinal));
+                () => Ensure.String.IsGt(sa, Sp, StringComparison.Ordinal, ParamName),
+                () => Ensure.That(sa, ParamName).IsGt(Sp, StringComparison.Ordinal));
 
             // Validate with comparer (order is reversed)
             IComparer<string> ignoreCase = StringComparer.OrdinalIgnoreCase;
             ShouldNotThrow(
                 () => Ensure.Comparable.IsGt(Sp, sa, ignoreCase, ParamName),
                 () => EnsureArg.IsGt(Sp, sa, ignoreCase, ParamName),
-                () => Ensure.That(Sp, ParamName).IsGt(sa, ignoreCase));
+                () => Ensure.String.IsGt(Sp, sa, StringComparison.OrdinalIgnoreCase, ParamName),
+                () => Ensure.That(Sp, ParamName).IsGt(sa, StringComparison.OrdinalIgnoreCase));
         }
 
         [Fact]
@@ -157,14 +161,16 @@ namespace UnitTests
             AssertIsLteScenario(sa, Sa,
                 () => Ensure.Comparable.IsLte(sa, Sa, ordinal, ParamName),
                 () => EnsureArg.IsLte(sa, Sa, ordinal, ParamName),
-                () => Ensure.That(sa, ParamName).IsLte(Sa, ordinal));
+                () => Ensure.String.IsLte(sa, Sa, StringComparison.Ordinal, ParamName),
+                () => Ensure.That(sa, ParamName).IsLte(Sa, StringComparison.Ordinal));
 
             // Validate with comparer (order is reversed)
             IComparer<string> ignoreCase = StringComparer.OrdinalIgnoreCase;
             ShouldNotThrow(
                 () => Ensure.Comparable.IsLte(sa, Sa, ignoreCase, ParamName),
                 () => EnsureArg.IsLte(sa, Sa, ignoreCase, ParamName),
-                () => Ensure.That(sa, ParamName).IsLte(Sa, ignoreCase));
+                () => Ensure.String.IsLte(sa, Sa, StringComparison.OrdinalIgnoreCase, ParamName),
+                () => Ensure.That(sa, ParamName).IsLte(Sa, StringComparison.OrdinalIgnoreCase));
         }
 
         [Fact]
@@ -210,14 +216,16 @@ namespace UnitTests
             AssertIsGteScenario(Sa, sa,
                 () => Ensure.Comparable.IsGte(Sa, sa, ordinal, ParamName),
                 () => EnsureArg.IsGte(Sa, sa, ordinal, ParamName),
-                () => Ensure.That(Sa, ParamName).IsGte(sa, ordinal));
+                () => Ensure.String.IsGte(Sa, sa, StringComparison.Ordinal, ParamName),
+                () => Ensure.That(Sa, ParamName).IsGte(sa, StringComparison.Ordinal));
 
             // Validate with comparer (order is reversed)
             IComparer<string> ignoreCase = StringComparer.OrdinalIgnoreCase;
             ShouldNotThrow(
                 () => Ensure.Comparable.IsGte(Sa, sa, ignoreCase, ParamName),
                 () => EnsureArg.IsGte(Sa, sa, ignoreCase, ParamName),
-                () => Ensure.That(Sa, ParamName).IsGte(sa, ignoreCase));
+                () => Ensure.String.IsGte(Sa, sa, StringComparison.OrdinalIgnoreCase, ParamName),
+                () => Ensure.That(Sa, ParamName).IsGte(sa, StringComparison.OrdinalIgnoreCase));
         }
 
         [Fact]
@@ -286,14 +294,16 @@ namespace UnitTests
             AssertIsRangeToLowScenario(Sb, sa,
                 () => Ensure.Comparable.IsInRange(Sb, sa, sc, ordinal, ParamName),
                 () => EnsureArg.IsInRange(Sb, sa, sc, ordinal, ParamName),
-                () => Ensure.That(Sb, ParamName).IsInRange(sa, sc, ordinal));
+                () => Ensure.String.IsInRange(Sb, sa, sc, StringComparison.Ordinal, ParamName),
+                () => Ensure.That(Sb, ParamName).IsInRange(sa, sc, StringComparison.Ordinal));
 
             // Validate with comparer (order is reversed)
             IComparer<string> ignoreCase = StringComparer.OrdinalIgnoreCase;
             ShouldNotThrow(
                 () => Ensure.Comparable.IsInRange(Sb, sa, sc, ignoreCase, ParamName),
                 () => EnsureArg.IsInRange(Sb, sa, sc, ignoreCase, ParamName),
-                () => Ensure.That(Sb, ParamName).IsInRange(sa, sc, ignoreCase));
+                () => Ensure.String.IsInRange(Sb, sa, sc, StringComparison.OrdinalIgnoreCase, ParamName),
+                () => Ensure.That(Sb, ParamName).IsInRange(sa, sc, StringComparison.OrdinalIgnoreCase));
         }
 
         [Fact]
@@ -330,14 +340,16 @@ namespace UnitTests
                 string.Format(ExceptionMessages.Comp_Is_Failed, sa, Sa),
                 () => Ensure.Comparable.Is(sa, Sa, ordinal, ParamName),
                 () => EnsureArg.Is(sa, Sa, ordinal, ParamName),
-                () => Ensure.That(sa, ParamName).Is(Sa, ordinal));
+                () => Ensure.String.IsEqualTo(sa, Sa, StringComparison.Ordinal, ParamName),
+                () => Ensure.That(sa, ParamName).IsEqualTo(Sa, StringComparison.Ordinal));
 
             // Validate with comparer (order is reversed)
             IComparer<string> ignoreCase = StringComparer.OrdinalIgnoreCase;
             ShouldNotThrow(
                 () => Ensure.Comparable.Is(sa, Sa, ignoreCase, ParamName),
                 () => EnsureArg.Is(sa, Sa, ignoreCase, ParamName),
-                () => Ensure.That(sa, ParamName).Is(Sa, ignoreCase));
+                () => Ensure.String.IsEqualTo(sa, Sa, StringComparison.OrdinalIgnoreCase, ParamName),
+                () => Ensure.That(sa, ParamName).IsEqualTo(Sa, StringComparison.OrdinalIgnoreCase));
         }
 
         [Fact]
@@ -373,7 +385,8 @@ namespace UnitTests
             ShouldNotThrow(
                 () => Ensure.Comparable.IsNot(sa, Sa, ordinal, ParamName),
                 () => EnsureArg.IsNot(sa, Sa, ordinal, ParamName),
-                () => Ensure.That(sa, ParamName).IsNot(Sa, ordinal));
+                () => Ensure.String.IsNotEqualTo(sa, Sa, StringComparison.Ordinal, ParamName),
+                () => Ensure.That(sa, ParamName).IsNotEqualTo(Sa, StringComparison.Ordinal));
 
             // Validate with comparer (order is reversed)
             IComparer<string> ignoreCase = StringComparer.OrdinalIgnoreCase;
@@ -381,7 +394,8 @@ namespace UnitTests
                 string.Format(ExceptionMessages.Comp_IsNot_Failed, sa, Sa),
                 () => Ensure.Comparable.IsNot(sa, Sa, ignoreCase, ParamName),
                 () => EnsureArg.IsNot(sa, Sa, ignoreCase, ParamName),
-                () => Ensure.That(sa, ParamName).IsNot(Sa, ignoreCase));
+                () => Ensure.String.IsNotEqualTo(sa, Sa, StringComparison.OrdinalIgnoreCase, ParamName),
+                () => Ensure.That(sa, ParamName).IsNotEqualTo(Sa, StringComparison.OrdinalIgnoreCase));
         }
 
         private CompareParamTestSpec When_value_is_gt_than_limit() => new CompareParamTestSpec

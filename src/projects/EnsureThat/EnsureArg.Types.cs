@@ -11,7 +11,7 @@ namespace EnsureThat
             => Ensure.Type.IsInt(param, paramName, optsFn);
 
         [NotNull]
-        public static T IsInt<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public static object IsInt([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Type.IsInt(param, paramName, optsFn);
 
         [NotNull]
@@ -19,7 +19,7 @@ namespace EnsureThat
             => Ensure.Type.IsShort(param, paramName, optsFn);
 
         [NotNull]
-        public static T IsShort<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public static object IsShort([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Type.IsShort(param, paramName, optsFn);
 
         [NotNull]
@@ -27,7 +27,7 @@ namespace EnsureThat
             => Ensure.Type.IsDecimal(param, paramName, optsFn);
 
         [NotNull]
-        public static T IsDecimal<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public static object IsDecimal([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Type.IsDecimal(param, paramName, optsFn);
 
         [NotNull]
@@ -35,7 +35,7 @@ namespace EnsureThat
             => Ensure.Type.IsDouble(param, paramName, optsFn);
 
         [NotNull]
-        public static T IsDouble<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public static object IsDouble([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Type.IsDouble(param, paramName, optsFn);
 
         [NotNull]
@@ -43,7 +43,7 @@ namespace EnsureThat
             => Ensure.Type.IsFloat(param, paramName, optsFn);
 
         [NotNull]
-        public static T IsFloat<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public static object IsFloat([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Type.IsFloat(param, paramName, optsFn);
 
         [NotNull]
@@ -51,7 +51,7 @@ namespace EnsureThat
             => Ensure.Type.IsBool(param, paramName, optsFn);
 
         [NotNull]
-        public static T IsBool<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public static object IsBool([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Type.IsBool(param, paramName, optsFn);
 
         [NotNull]
@@ -59,7 +59,7 @@ namespace EnsureThat
             => Ensure.Type.IsDateTime(param, paramName, optsFn);
 
         [NotNull]
-        public static T IsDateTime<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public static object IsDateTime([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Type.IsDateTime(param, paramName, optsFn);
 
         [NotNull]
@@ -67,11 +67,11 @@ namespace EnsureThat
             => Ensure.Type.IsString(param, paramName, optsFn);
 
         [NotNull]
-        public static T IsString<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public static object IsString([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Type.IsString(param, paramName, optsFn);
 
         [NotNull]
-        public static T IsOfType<T>([ValidatedNotNull] T param, Type expectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public static object IsOfType([ValidatedNotNull] object param, Type expectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Type.IsOfType(param, expectedType, paramName, optsFn);
 
         [NotNull]
@@ -79,7 +79,7 @@ namespace EnsureThat
             => Ensure.Type.IsOfType(param, expectedType, paramName, optsFn);
 
         [NotNull]
-        public static T IsNotOfType<T>([ValidatedNotNull]T param, Type nonExpectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public static object IsNotOfType([ValidatedNotNull]object param, Type nonExpectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Type.IsNotOfType(param, nonExpectedType, paramName, optsFn);
 
         [NotNull]
@@ -87,7 +87,7 @@ namespace EnsureThat
             => Ensure.Type.IsNotOfType(param, nonExpectedType, paramName, optsFn);
 
         [NotNull]
-        public static T IsClass<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public static object IsClass([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Type.IsClass(param, paramName, optsFn);
 
         [NotNull]

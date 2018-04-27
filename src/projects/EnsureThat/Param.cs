@@ -17,6 +17,20 @@ namespace EnsureThat
         }
     }
 
+    public struct StringParam
+    {
+        public readonly string Name;
+        public readonly string Value;
+        public readonly OptsFn OptsFn;
+
+        public StringParam(string name, string value, OptsFn optsFn = null)
+        {
+            Name = name;
+            Value = value;
+            OptsFn = optsFn;
+        }
+    }
+
     public struct TypeParam
     {
         public readonly string Name;

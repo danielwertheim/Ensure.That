@@ -19,7 +19,7 @@ namespace EnsureThat.Enforcers
         {
             Ensure.Any.IsNotNull(value, paramName);
 
-            if (!value.Any())
+            if (value.Count() == 0)
                 throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,

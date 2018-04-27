@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using EnsureThat.Annotations;
 using JetBrains.Annotations;
@@ -10,11 +11,11 @@ namespace EnsureThat.Enforcers
     public sealed class CollectionArg
     {
         [NotNull]
-        public T HasItems<T>([ValidatedNotNull]T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : ICollection
+        public T HasItems<T>([ValidatedNotNull]T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class, ICollection
         {
             Ensure.Any.IsNotNull(value, paramName);
 
-            if (value.Count < 1)
+            if (value.Count == 0)
                 throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
@@ -28,7 +29,7 @@ namespace EnsureThat.Enforcers
         {
             Ensure.Any.IsNotNull(value, paramName);
 
-            if (value.Count < 1)
+            if (value.Count == 0)
                 throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
@@ -42,7 +43,7 @@ namespace EnsureThat.Enforcers
         {
             Ensure.Any.IsNotNull(value, paramName);
 
-            if (value.Count < 1)
+            if (value.Count == 0)
                 throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
@@ -56,7 +57,7 @@ namespace EnsureThat.Enforcers
         {
             Ensure.Any.IsNotNull(value, paramName);
 
-            if (value.Count < 1)
+            if (value.Count == 0)
                 throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
@@ -70,7 +71,7 @@ namespace EnsureThat.Enforcers
         {
             Ensure.Any.IsNotNull(value, paramName);
 
-            if (value.Count < 1)
+            if (value.Count == 0)
                 throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
@@ -84,7 +85,7 @@ namespace EnsureThat.Enforcers
         {
             Ensure.Any.IsNotNull(value, paramName);
 
-            if (value.Length < 1)
+            if (value.Length == 0)
                 throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
@@ -98,7 +99,7 @@ namespace EnsureThat.Enforcers
         {
             Ensure.Any.IsNotNull(value, paramName);
 
-            if (value.Count < 1)
+            if (value.Count == 0)
                 throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
@@ -112,7 +113,63 @@ namespace EnsureThat.Enforcers
         {
             Ensure.Any.IsNotNull(value, paramName);
 
-            if (value.Count < 1)
+            if (value.Count == 0)
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasItemsFailed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [NotNull]
+        public Collection<T> HasItems<T>([ValidatedNotNull] Collection<T> value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (value.Count == 0)
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasItemsFailed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [NotNull]
+        public List<T> HasItems<T>([ValidatedNotNull] List<T> value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (value.Count == 0)
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasItemsFailed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [NotNull]
+        public HashSet<T> HasItems<T>([ValidatedNotNull] HashSet<T> value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (value.Count == 0)
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    ExceptionMessages.Collections_HasItemsFailed,
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
+
+        [NotNull]
+        public Dictionary<TKey, TValue> HasItems<TKey, TValue>([ValidatedNotNull]Dictionary<TKey, TValue> value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            Ensure.Any.IsNotNull(value, paramName);
+
+            if (value.Count == 0)
                 throw Ensure.ExceptionFactory.ArgumentException(
                     ExceptionMessages.Collections_HasItemsFailed,
                     paramName,
@@ -154,7 +211,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public T SizeIs<T>([ValidatedNotNull]T value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : ICollection
+        public T SizeIs<T>([ValidatedNotNull]T value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class, ICollection
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -168,7 +225,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
-        public T SizeIs<T>([ValidatedNotNull]T value, long expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : ICollection
+        public T SizeIs<T>([ValidatedNotNull]T value, long expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class, ICollection
         {
             Ensure.Any.IsNotNull(value, paramName);
 

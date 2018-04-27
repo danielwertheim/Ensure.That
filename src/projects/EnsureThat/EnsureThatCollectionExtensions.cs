@@ -5,9 +5,9 @@ using System.Collections.ObjectModel;
 
 namespace EnsureThat
 {
-    public static class EnsureCollectionExtensions
+    public static class EnsureThatCollectionExtensions
     {
-        public static void HasItems<T>(this Param<T> param) where T : ICollection
+        public static void HasItems<T>(this Param<T> param) where T : class, ICollection
             => Ensure.Collection.HasItems(param.Value, param.Name, param.OptsFn);
 
         public static void HasItems<T>(this Param<Collection<T>> param)
@@ -25,6 +25,15 @@ namespace EnsureThat
         public static void HasItems<T>(this Param<IList<T>> param)
             => Ensure.Collection.HasItems(param.Value, param.Name, param.OptsFn);
 
+        public static void HasItems<T>(this Param<HashSet<T>> param)
+            => Ensure.Collection.HasItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasItems<T>(this Param<ISet<T>> param)
+            => Ensure.Collection.HasItems(param.Value, param.Name, param.OptsFn);
+
+        public static void HasItems<TKey, TValue>(this Param<Dictionary<TKey, TValue>> param)
+            => Ensure.Collection.HasItems(param.Value, param.Name, param.OptsFn);
+
         public static void HasItems<TKey, TValue>(this Param<IDictionary<TKey, TValue>> param)
             => Ensure.Collection.HasItems(param.Value, param.Name, param.OptsFn);
 
@@ -40,10 +49,10 @@ namespace EnsureThat
         public static void SizeIs<T>(this Param<T[]> param, long expected)
             => Ensure.Collection.SizeIs(param.Value, expected, param.Name, param.OptsFn);
 
-        public static void SizeIs<T>(this Param<T> param, int expected) where T : ICollection
+        public static void SizeIs<T>(this Param<T> param, int expected) where T : class, ICollection
             => Ensure.Collection.SizeIs(param.Value, expected, param.Name, param.OptsFn);
 
-        public static void SizeIs<T>(this Param<T> param, long expected) where T : ICollection
+        public static void SizeIs<T>(this Param<T> param, long expected) where T : class, ICollection
             => Ensure.Collection.SizeIs(param.Value, expected, param.Name, param.OptsFn);
 
         public static void SizeIs<T>(this Param<ICollection<T>> param, int expected)
