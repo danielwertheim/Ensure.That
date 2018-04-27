@@ -31,15 +31,6 @@ EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg), opts => opts.WithMessage("Foo"));
 ```
 
-## Turn On/Off - default is On
-Could be used with different profiles. Like `Debug` and `CI` is `On` while `Release` is `Off`.
-
-```csharp
-#if RELEASE
-    Ensure.Off()
-#endif
-```
-
 ## Samples
 The Samples above just uses `string` validation, but there are more. E.g.:
 
