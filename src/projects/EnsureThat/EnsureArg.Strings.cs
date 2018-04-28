@@ -38,17 +38,29 @@ namespace EnsureThat
         public static string SizeIs([ValidatedNotNull] string value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.SizeIs(value, expected, paramName, optsFn);
 
+        public static string Is(string value, string expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.String.Is(value, expected, paramName, optsFn);
+
         public static string IsEqualTo(string value, string expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.IsEqualTo(value, expected, paramName, optsFn);
+
+        public static string Is(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.String.Is(value, expected, comparison, paramName, optsFn);
 
         public static string IsEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.IsEqualTo(value, expected, comparison, paramName, optsFn);
 
-        public static string IsNotEqualTo(string value, string expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
-            => Ensure.String.IsNotEqualTo(value, expected, paramName, optsFn);
+        public static string IsNot(string value, string notExpected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.String.IsNot(value, notExpected, paramName, optsFn);
 
-        public static string IsNotEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
-            => Ensure.String.IsNotEqualTo(value, expected, comparison, paramName, optsFn);
+        public static string IsNotEqualTo(string value, string notExpected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.String.IsNotEqualTo(value, notExpected, paramName, optsFn);
+
+        public static string IsNot(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.String.IsNot(value, notExpected, comparison, paramName, optsFn);
+
+        public static string IsNotEqualTo(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.String.IsNotEqualTo(value, notExpected, comparison, paramName, optsFn);
 
         [NotNull]
         public static string IsGuid([ValidatedNotNull] string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)

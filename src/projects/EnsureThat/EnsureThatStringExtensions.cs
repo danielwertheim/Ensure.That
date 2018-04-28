@@ -30,17 +30,29 @@ namespace EnsureThat
         public static void SizeIs(this StringParam param, int expected)
             => Ensure.String.SizeIs(param.Value, expected, param.Name, param.OptsFn);
 
+        public static void Is(this StringParam param, string expected)
+            => Ensure.String.Is(param.Value, expected, param.Name, param.OptsFn);
+
         public static void IsEqualTo(this StringParam param, string expected)
             => Ensure.String.IsEqualTo(param.Value, expected, param.Name, param.OptsFn);
+
+        public static void Is(this StringParam param, string expected, StringComparison comparison)
+            => Ensure.String.Is(param.Value, expected, comparison, param.Name, param.OptsFn);
 
         public static void IsEqualTo(this StringParam param, string expected, StringComparison comparison)
             => Ensure.String.IsEqualTo(param.Value, expected, comparison, param.Name, param.OptsFn);
 
-        public static void IsNotEqualTo(this StringParam param, string expected)
-            => Ensure.String.IsNotEqualTo(param.Value, expected, param.Name, param.OptsFn);
+        public static void IsNot(this StringParam param, string notExpected)
+            => Ensure.String.IsNot(param.Value, notExpected, param.Name, param.OptsFn);
 
-        public static void IsNotEqualTo(this StringParam param, string expected, StringComparison comparison)
-            => Ensure.String.IsNotEqualTo(param.Value, expected, comparison, param.Name, param.OptsFn);
+        public static void IsNotEqualTo(this StringParam param, string notExpected)
+            => Ensure.String.IsNotEqualTo(param.Value, notExpected, param.Name, param.OptsFn);
+
+        public static void IsNot(this StringParam param, string notExpected, StringComparison comparison)
+            => Ensure.String.IsNot(param.Value, notExpected, comparison, param.Name, param.OptsFn);
+
+        public static void IsNotEqualTo(this StringParam param, string notExpected, StringComparison comparison)
+            => Ensure.String.IsNotEqualTo(param.Value, notExpected, comparison, param.Name, param.OptsFn);
 
         public static void IsGuid(this StringParam param)
             => Ensure.String.IsGuid(param.Value, param.Name, param.OptsFn);

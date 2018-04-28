@@ -307,7 +307,10 @@ namespace UnitTests
             ShouldNotThrow(
                 () => Ensure.String.IsEqualTo(value, expected, ParamName),
                 () => EnsureArg.IsEqualTo(value, expected, ParamName),
-                () => Ensure.That(value, ParamName).IsEqualTo(expected));
+                () => Ensure.That(value, ParamName).IsEqualTo(expected),
+                () => Ensure.String.Is(value, expected, ParamName),
+                () => EnsureArg.Is(value, expected, ParamName),
+                () => Ensure.That(value, ParamName).Is(expected));
         }
 
         [Fact]
@@ -319,7 +322,10 @@ namespace UnitTests
             ShouldNotThrow(
                 () => Ensure.String.IsEqualTo(value, expected, StringComparison.OrdinalIgnoreCase, ParamName),
                 () => EnsureArg.IsEqualTo(value, expected, StringComparison.OrdinalIgnoreCase, ParamName),
-                () => Ensure.That(value, ParamName).IsEqualTo(expected, StringComparison.OrdinalIgnoreCase));
+                () => Ensure.That(value, ParamName).IsEqualTo(expected, StringComparison.OrdinalIgnoreCase),
+                () => Ensure.String.Is(value, expected, StringComparison.OrdinalIgnoreCase, ParamName),
+                () => EnsureArg.Is(value, expected, StringComparison.OrdinalIgnoreCase, ParamName),
+                () => Ensure.That(value, ParamName).Is(expected, StringComparison.OrdinalIgnoreCase));
         }
 
         [Fact]
@@ -331,7 +337,10 @@ namespace UnitTests
                 string.Format(ExceptionMessages.Comp_IsNot_Failed, value, value),
                 () => Ensure.String.IsNotEqualTo(value, value, ParamName),
                 () => EnsureArg.IsNotEqualTo(value, value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotEqualTo(value));
+                () => Ensure.That(value, ParamName).IsNotEqualTo(value),
+                () => Ensure.String.IsNot(value, value, ParamName),
+                () => EnsureArg.IsNot(value, value, ParamName),
+                () => Ensure.That(value, ParamName).IsNot(value));
         }
 
         [Fact]
@@ -344,7 +353,10 @@ namespace UnitTests
                 string.Format(ExceptionMessages.Comp_IsNot_Failed, value, compareTo),
                 () => Ensure.String.IsNotEqualTo(value, compareTo, StringComparison.OrdinalIgnoreCase, ParamName),
                 () => EnsureArg.IsNotEqualTo(value, compareTo, StringComparison.OrdinalIgnoreCase, ParamName),
-                () => Ensure.That(value, ParamName).IsNotEqualTo(compareTo, StringComparison.OrdinalIgnoreCase));
+                () => Ensure.That(value, ParamName).IsNotEqualTo(compareTo, StringComparison.OrdinalIgnoreCase),
+                () => Ensure.String.IsNot(value, compareTo, StringComparison.OrdinalIgnoreCase, ParamName),
+                () => EnsureArg.IsNot(value, compareTo, StringComparison.OrdinalIgnoreCase, ParamName),
+                () => Ensure.That(value, ParamName).IsNot(compareTo, StringComparison.OrdinalIgnoreCase));
         }
 
         [Fact]
@@ -355,7 +367,10 @@ namespace UnitTests
             ShouldNotThrow(
                 () => Ensure.String.IsNotEqualTo(value, value + "a", ParamName),
                 () => EnsureArg.IsNotEqualTo(value, value + "a", ParamName),
-                () => Ensure.That(value, ParamName).IsNotEqualTo(value + "a"));
+                () => Ensure.That(value, ParamName).IsNotEqualTo(value + "a"),
+                () => Ensure.String.IsNot(value, value + "a", ParamName),
+                () => EnsureArg.IsNot(value, value + "a", ParamName),
+                () => Ensure.That(value, ParamName).IsNot(value + "a"));
         }
 
         [Fact]
@@ -366,7 +381,10 @@ namespace UnitTests
             ShouldNotThrow(
                 () => Ensure.String.IsNotEqualTo(value, value.ToLower(), StringComparison.Ordinal, ParamName),
                 () => EnsureArg.IsNotEqualTo(value, value.ToLower(), StringComparison.Ordinal, ParamName),
-                () => Ensure.That(value, ParamName).IsNotEqualTo(value.ToLower(), StringComparison.Ordinal));
+                () => Ensure.That(value, ParamName).IsNotEqualTo(value.ToLower(), StringComparison.Ordinal),
+                () => Ensure.String.IsNot(value, value.ToLower(), StringComparison.Ordinal, ParamName),
+                () => EnsureArg.IsNot(value, value.ToLower(), StringComparison.Ordinal, ParamName),
+                () => Ensure.That(value, ParamName).IsNot(value.ToLower(), StringComparison.Ordinal));
         }
 
         [Fact]

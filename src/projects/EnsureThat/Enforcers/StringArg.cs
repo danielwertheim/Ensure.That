@@ -97,6 +97,9 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
+        public string Is(string value, string expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => IsEqualTo(value, expected, paramName, optsFn);
+
         public string IsEqualTo(string value, string expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (!StringEquals(value, expected))
@@ -107,6 +110,9 @@ namespace EnsureThat.Enforcers
 
             return value;
         }
+
+        public string Is(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => IsEqualTo(value, expected, comparison, paramName, optsFn);
 
         public string IsEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
@@ -119,22 +125,28 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsNotEqualTo(string value, string expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsNot(string value, string notExpected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => IsNotEqualTo(value, notExpected, paramName, optsFn);
+
+        public string IsNotEqualTo(string value, string notExpected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            if (StringEquals(value, expected))
+            if (StringEquals(value, notExpected))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Strings_IsNotEqualTo_Failed, value, expected),
+                    string.Format(ExceptionMessages.Strings_IsNotEqualTo_Failed, value, notExpected),
                     paramName,
                     optsFn);
 
             return value;
         }
 
-        public string IsNotEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsNot(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => IsNotEqualTo(value, notExpected, comparison, paramName, optsFn);
+
+        public string IsNotEqualTo(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            if (StringEquals(value, expected, comparison))
+            if (StringEquals(value, notExpected, comparison))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Strings_IsNotEqualTo_Failed, value, expected),
+                    string.Format(ExceptionMessages.Strings_IsNotEqualTo_Failed, value, notExpected),
                     paramName,
                     optsFn);
 
