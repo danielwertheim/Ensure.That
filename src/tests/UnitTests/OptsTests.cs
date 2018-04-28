@@ -25,7 +25,7 @@ namespace UnitTests
                     () => Ensure.That(value, ParamName, options).IsNotNull()
                 }.ToList();
 
-                actions.ForEach(a => a.ShouldThrow<KeyNotFoundException>());
+                actions.ForEach(a => a.Should().Throw<KeyNotFoundException>());
             }
 
             [Fact]
@@ -41,7 +41,7 @@ namespace UnitTests
                     () => Ensure.That(value, ParamName,options).IsNotNull()
                 }.ToList();
 
-                actions.ForEach(a => a.ShouldThrow<KeyNotFoundException>().And.Message.Should().NotContain("Foo Bar"));
+                actions.ForEach(a => a.Should().Throw<KeyNotFoundException>().And.Message.Should().NotContain("Foo Bar"));
             }
         }
 

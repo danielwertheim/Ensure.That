@@ -30,14 +30,14 @@ namespace UnitTests
         protected static void ShouldNotThrow(params Action[] actions)
         {
             foreach (var action in actions)
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
         }
 
         protected static void ShouldThrowButNot<TEx>(params Action[] actions) where TEx : ArgumentException
         {
             foreach (var action in actions)
             {
-                var ex = action.ShouldThrow<ArgumentException>();
+                var ex = action.Should().Throw<ArgumentException>();
                 ex.Should().NotBeOfType<TEx>();
             }
         }
