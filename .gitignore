@@ -16,6 +16,7 @@ node_modules/
 *.suo
 *.cache
 project.lock.json
+packages/
 
 # deploy
 build/

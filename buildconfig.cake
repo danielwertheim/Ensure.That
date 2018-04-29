@@ -1,11 +1,13 @@
 public class BuildConfig
 {
-    private const string Version = "7.2.1";
+    private const string Version = "8.0.0";
+    private const bool IsPreRelease = false;
 
     public readonly string SrcDir = "./src/";
     public readonly string OutDir = "./build/";    
-    
-    public bool IsDefaultBranch { get; private set; }
+    public readonly bool SignAssemblies = true;
+    public readonly string SignKeyPath = "./ensure.that.snk";
+
     public string Target { get; private set; }
     public string SemVer { get; private set; }
     public string BuildVersion { get; private set; }
@@ -19,15 +21,12 @@ public class BuildConfig
         if (context == null)
             throw new ArgumentNullException("context");
 
-        var branch = context.Argument("branch", "master");
-        var isDefaultBranch = branch.ToLower() == "master";
         var buildRevision = context.Argument("buildrevision", "0");
 
         return new BuildConfig
         {
-            IsDefaultBranch = isDefaultBranch,
             Target = context.Argument("target", "Default"),
-            SemVer = Version + (isDefaultBranch ? string.Empty : "-pre" + buildRevision),
+            SemVer = Version + (IsPreRelease ? $"-pre{buildRevision}" : string.Empty),
             BuildVersion = Version + "." + buildRevision,
             BuildProfile = context.Argument("configuration", "Release"),
             IsTeamCityBuild = buildSystem.TeamCity.IsRunningOnTeamCity

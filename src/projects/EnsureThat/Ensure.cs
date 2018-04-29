@@ -1,15 +1,13 @@
 using System;
+using EnsureThat.Enforcers;
+using EnsureThat.Internals;
 using JetBrains.Annotations;
 
 namespace EnsureThat
 {
     public static class Ensure
     {
-        public static bool IsActive { get; private set; } = true;
-
-        public static void Off() => IsActive = false;
-
-        public static void On() => IsActive = true;
+        internal static readonly ExceptionFactory ExceptionFactory = new ExceptionFactory();
 
         /// <summary>
         /// Ensures for objects.
@@ -60,18 +58,62 @@ namespace EnsureThat
         [NotNull]
         public static TypeArg Type { get; } = new TypeArg();
 
+        /// <summary>
+        /// Ensures via discoverable API. Please note that an extra wrapping object
+        /// <see cref="Param{T}"/> will be created. This can have performance impacts.
+        /// Use <see cref="EnsureArg"/> or contextual e.g. <see cref="Ensure.String"/>
+        /// if worried about performance.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="name"></param>
+        /// <param name="optsFn"></param>
+        /// <returns></returns>
         [Pure]
-        [Obsolete("Use contextual validation instead. E.g. Ensure.String.IsNotNull(value) or non contextual via EnsureArg instead. This version will eventually be removed.", false)]
-        public static Param<T> That<T>([NoEnumeration]T value, string name = Param.DefaultName) => new Param<T>(name, value);
+        public static Param<T> That<T>([NoEnumeration]T value, string name = null, OptsFn optsFn = null)
+            => new Param<T>(name, value, optsFn);
 
+        /// <summary>
+        /// Ensures via discoverable API. Please note that an extra wrapping object
+        /// <see cref="Param{T}"/> will be created. This can have performance impacts.
+        /// Use <see cref="EnsureArg"/> or contextual e.g. <see cref="Ensure.String"/>
+        /// if worried about performance.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="name"></param>
+        /// <param name="optsFn"></param>
+        /// <returns></returns>
         [Pure]
-        [Obsolete("Use contextual validation instead. E.g. Ensure.String.IsNotNull(value) or non contextual via EnsureArg instead. This version will eventually be removed.", false)]
-        public static Param<T> That<T>([NotNull] Func<T> expression, string name = Param.DefaultName) => new Param<T>(
-            name,
-            expression.Invoke());
+        public static StringParam That([NoEnumeration]string value, string name = null, OptsFn optsFn = null)
+            => new StringParam(name, value, optsFn);
 
+        /// <summary>
+        /// Ensures via discoverable API. Please note that an extra wrapping object
+        /// <see cref="Param{T}"/> will be created. This can have performance impacts.
+        /// Use <see cref="EnsureArg"/> or contextual e.g. <see cref="Ensure.Type"/>
+        /// if worried about performance.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="name"></param>
+        /// <param name="optsFn"></param>
+        /// <returns></returns>
         [Pure]
-        [Obsolete("Use contextual validation instead. E.g. Ensure.String.IsNotNull(value) or non contextual via EnsureArg instead. This version will eventually be removed.", false)]
-        public static TypeParam ThatTypeFor<T>([NotNull] T value, string name = Param.DefaultName) => new TypeParam(name, value.GetType());
+        public static TypeParam ThatTypeFor<T>([NotNull] T value, string name = null, OptsFn optsFn = null)
+            => new TypeParam(name, value.GetType(), optsFn);
+
+        /// <summary>
+        /// Ensures via discoverable API. Please note that an extra wrapping object
+        /// <see cref="Param{T}"/> will be created. This can have performance impacts.
+        /// Use <see cref="EnsureArg"/> or contextual e.g. <see cref="Ensure.Type"/>
+        /// if worried about performance.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="name"></param>
+        /// <param name="optsFn"></param>
+        /// <returns></returns>
+        [Pure]
+        public static TypeParam ThatType([NotNull] Type value, string name = null, OptsFn optsFn = null)
+            => new TypeParam(name, value, optsFn);
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using EnsureThat;
 using FluentAssertions;
 using Xunit;
@@ -15,20 +16,32 @@ namespace UnitTests
             public void ThrowsTheCustomException()
             {
                 object value = null;
+                OptsFn options = o => o.WithException(new KeyNotFoundException());
 
-                Action a = () => EnsureArg.IsNotNull(value, ParamName, opts => opts.WithException(new KeyNotFoundException()));
+                var actions = new Action[]
+                {
+                    () => Ensure.Any.IsNotNull(value, ParamName, options),
+                    () => EnsureArg.IsNotNull(value, ParamName, options),
+                    () => Ensure.That(value, ParamName, options).IsNotNull()
+                }.ToList();
 
-                a.ShouldThrow<KeyNotFoundException>();
+                actions.ForEach(a => a.Should().Throw<KeyNotFoundException>());
             }
 
             [Fact]
             public void WhenWithMessageIsSpecified_ThrowsTheCustomExceptionButDoesNotUseTheExtraMessage()
             {
                 object value = null;
+                OptsFn options = o => o.WithMessage("Foo bar").WithException(new KeyNotFoundException());
 
-                Action a = () => EnsureArg.IsNotNull(value, ParamName, opts => opts.WithMessage("Foo bar").WithException(new KeyNotFoundException()));
+                var actions = new Action[]
+                {
+                    () => Ensure.Any.IsNotNull(value, ParamName, options),
+                    () => EnsureArg.IsNotNull(value, ParamName, options),
+                    () => Ensure.That(value, ParamName,options).IsNotNull()
+                }.ToList();
 
-                a.ShouldThrow<KeyNotFoundException>().And.Message.Should().NotContain("Foo Bar");
+                actions.ForEach(a => a.Should().Throw<KeyNotFoundException>().And.Message.Should().NotContain("Foo Bar"));
             }
         }
 
@@ -38,11 +51,12 @@ namespace UnitTests
             public void ThrowsExceptionWithTheCustomMessage()
             {
                 object value = null;
+                OptsFn options = o => o.WithMessage("Foo bar is some dummy text.");
 
-                var ex = Assert.Throws<ArgumentNullException>(() =>
-                    EnsureArg.IsNotNull(value, ParamName, opts => opts.WithMessage("Foo bar is some dummy text.")));
-
-                AssertThrowedAsExpected(ex, "Foo bar is some dummy text.");
+                ShouldThrow<ArgumentNullException>("Foo bar is some dummy text.",
+                    () => Ensure.Any.IsNotNull(value, ParamName, options),
+                    () => EnsureArg.IsNotNull(value, ParamName, options),
+                    () => Ensure.That(value, ParamName, options).IsNotNull());
             }
         }
     }

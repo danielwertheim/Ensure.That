@@ -80,17 +80,21 @@ namespace UnitTests
 
         private void Assert_IsNotNull_WhenNullInt_ThrowsArgumentException<T>() where T : struct
         {
+            var value = (T?)null;
+
             ShouldThrow<ArgumentNullException>(
                 ExceptionMessages.Common_IsNotNull_Failed,
-                () => Ensure.That((T?)null, ParamName).IsNotNull(),
-                () => EnsureArg.IsNotNull((T?)null, ParamName));
+                () => Ensure.Any.IsNotNull(value, ParamName),
+                () => EnsureArg.IsNotNull(value, ParamName),
+                () => Ensure.That(value, ParamName).IsNotNull());
         }
 
         private void Assert_IsNotNull_WhenNonNullInt_ShouldNotThrow<T>(T? value) where T : struct
         {
             ShouldNotThrow(
-                () => Ensure.That(value, ParamName).IsNotNull(),
-                () => EnsureArg.IsNotNull(value, ParamName));
+                () => Ensure.Any.IsNotNull(value, ParamName),
+                () => EnsureArg.IsNotNull(value, ParamName),
+                () => Ensure.That(value, ParamName).IsNotNull());
         }
     }
 }
