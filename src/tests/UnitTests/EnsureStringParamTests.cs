@@ -71,6 +71,37 @@ namespace UnitTests
         }
 
         [Fact]
+        public void IsEmptyOrWhitespace_WhenNull_It_should_not_throw()
+        {
+            string value = null;
+            ShouldNotThrow(
+                () => Ensure.String.IsEmptyOrWhitespace(value, ParamName),
+                () => Ensure.That(value, ParamName).IsEmptyOrWhitespace(),
+                () => EnsureArg.IsEmptyOrWhitespace(value, ParamName));
+        }
+
+        [Fact]
+        public void IsEmptyOrWhitespace_WhenEmpty_ThrowsArgumentException()
+        {
+            string value = "";
+            ShouldThrow<ArgumentException>(
+                ExceptionMessages.Strings_IsEmptyOrWhitespace_Failed,
+                () => Ensure.String.IsEmptyOrWhitespace(value, ParamName),
+                () => Ensure.That(value, ParamName).IsEmptyOrWhitespace(),
+                () => EnsureArg.IsEmptyOrWhitespace(value, ParamName));
+        }
+        [Fact]
+        public void IsEmptyOrWhitespace_WhenWhitespace_ThrowsArgumentException()
+        {
+            string value = "        ";
+            ShouldThrow<ArgumentException>(
+                ExceptionMessages.Strings_IsEmptyOrWhitespace_Failed,
+                () => Ensure.String.IsEmptyOrWhitespace(value, ParamName),
+                () => Ensure.That(value, ParamName).IsEmptyOrWhitespace(),
+                () => EnsureArg.IsEmptyOrWhitespace(value, ParamName));
+        }
+
+        [Fact]
         public void IsNotNullOrWhiteSpace_WhenStringIsNull_ThrowsArgumentNullException()
         {
             string value = null;
