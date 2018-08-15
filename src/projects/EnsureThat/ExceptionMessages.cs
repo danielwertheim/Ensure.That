@@ -28,8 +28,7 @@
         public static string Strings_SizeIs_Failed { get; } = "Expected length '{0}' but found '{1}'.";
         public static string Strings_IsNotNullOrWhiteSpace_Failed { get; } = "The string can't be left empty, null or consist of only whitespaces.";
         public static string Strings_IsNotNullOrEmpty_Failed { get; } = "The string can't be null or empty.";
-
-        public static string Strings_IsEmptyOrWhitespace_Failed { get; } = "The string can't be empty or Whitespace only (but can be null)";
+        public static string Strings_IsNotEmptyOrWhitespace_Failed { get; } = "The string can't be empty or consist of only whitespace characters.";
         public static string Strings_HasLengthBetween_Failed_ToShort { get; } = "The string is not long enough. Must be between '{0}' and '{1}' but was '{2}' characters long.";
         public static string Strings_HasLengthBetween_Failed_ToLong { get; } = "The string is too long. Must be between '{0}' and  '{1}'. Must be between '{0}' and '{1}' but was '{2}' characters long.";
         public static string Strings_Matches_Failed { get; } = "Value '{0}' does not match '{1}'";

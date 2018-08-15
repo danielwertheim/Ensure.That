@@ -37,10 +37,24 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsEmptyOrWhitespace(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsNotEmptyOrWhitespace(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            if (value?.Trim() == "")
-                throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsEmptyOrWhitespace_Failed, paramName, optsFn);
+            if (value == null) 
+            {
+                return null;
+            }
+
+            if (value.Length == 0)
+            {
+                throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmptyOrWhitespace_Failed, paramName, optsFn);
+            }
+            foreach (var t in value)
+            {
+                if (Char.IsWhiteSpace(t))
+                {
+                    throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmptyOrWhitespace_Failed, paramName, optsFn);
+                }
+            }
             return value;
         }
 
