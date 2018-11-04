@@ -9,7 +9,7 @@ namespace UnitTests
     {
         protected const string ParamName = "test";
 
-        protected static void AssertThrowedAsExpected(ArgumentException ex, string expectedMessage, params object[] formattingArgs)
+        private static void AssertThrowedAsExpected(ArgumentException ex, string expectedMessage, params object[] formattingArgs)
         {
             if (formattingArgs != null && formattingArgs.Any())
                 expectedMessage = string.Format(expectedMessage, formattingArgs);
@@ -30,14 +30,14 @@ namespace UnitTests
         protected static void ShouldNotThrow(params Action[] actions)
         {
             foreach (var action in actions)
-                action.ShouldNotThrow();
+                action.Should().NotThrow();
         }
 
         protected static void ShouldThrowButNot<TEx>(params Action[] actions) where TEx : ArgumentException
         {
             foreach (var action in actions)
             {
-                var ex = action.ShouldThrow<ArgumentException>();
+                var ex = action.Should().Throw<ArgumentException>();
                 ex.Should().NotBeOfType<TEx>();
             }
         }

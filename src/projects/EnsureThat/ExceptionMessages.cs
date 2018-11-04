@@ -1,6 +1,6 @@
 ﻿namespace EnsureThat
 {
-    public class ExceptionMessages
+    public static class ExceptionMessages
     {
         public static string Common_IsNotNull_Failed { get; } = "Value can not be null.";
 
@@ -33,6 +33,7 @@
         public static string Strings_Matches_Failed { get; } = "Value '{0}' does not match '{1}'";
         public static string Strings_IsNotEmpty_Failed { get; } = "Empty String is not allowed.";
         public static string Strings_IsGuid_Failed { get; } = "Value '{0}' is not a valid GUID.";
+        public static string Strings_StartsWith_Failed { get; } = "Value '{0}' is expected to start with '{1}' but does not.";
 
         public static string Types_IsOfType_Failed { get; } = "The param is not of expected type. Expected: '{0}'. Got: '{1}'.";
         public static string Types_IsNotOfType_Failed { get; } = "The param was expected to not be of the type: '{0}'. But it was.";

@@ -13,8 +13,9 @@ namespace UnitTests
 
             ShouldThrow<ArgumentNullException>(
                 ExceptionMessages.Common_IsNotNull_Failed,
-                () => Ensure.That(value, ParamName).IsNotNull(),
-                () => EnsureArg.IsNotNull(value, ParamName));
+                () => Ensure.Any.IsNotNull(value, ParamName),
+                () => EnsureArg.IsNotNull(value, ParamName),
+                () => Ensure.That(value, ParamName).IsNotNull());
         }
 
         [Fact]
@@ -23,8 +24,32 @@ namespace UnitTests
             var item = new { Value = 42 };
 
             ShouldNotThrow(
-                () => Ensure.That(item, ParamName).IsNotNull(),
-                () => EnsureArg.IsNotNull(item, ParamName));
+                () => Ensure.Any.IsNotNull(item, ParamName),
+                () => EnsureArg.IsNotNull(item, ParamName),
+                () => Ensure.That(item, ParamName).IsNotNull());
+        }
+
+        [Fact]
+        public void IsNotDefault_WhenIsDefault_ThrowsException()
+        {
+            int value = default(int);
+
+            ShouldThrow<ArgumentException>(
+                ExceptionMessages.ValueTypes_IsNotDefault_Failed,
+                () => Ensure.Any.IsNotDefault(value, ParamName),
+                () => EnsureArg.IsNotDefault(value, ParamName),
+                () => Ensure.That(value, ParamName).IsNotDefault());
+        }
+
+        [Fact]
+        public void IsNotDefault_WhenIsNotDefault_ShouldNotThrow()
+        {
+            var value = 42;
+
+            ShouldNotThrow(
+                () => Ensure.Any.IsNotDefault(value, ParamName),
+                () => EnsureArg.IsNotDefault(value, ParamName),
+                () => Ensure.That(value, ParamName).IsNotDefault());
         }
     }
 }
