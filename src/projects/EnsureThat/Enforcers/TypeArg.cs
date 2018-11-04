@@ -90,27 +90,51 @@ namespace EnsureThat.Enforcers
         public object IsString([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => IsOfType(param, Types.StringType, paramName, optsFn);
 
+
         [NotNull]
         public T IsOfType<T>([ValidatedNotNull]T param, Type expectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class
+            => IsOfType<T>(param, expectedType, false, paramName, optsFn);
+
+        [NotNull]
+        public T IsOfType<T>([ValidatedNotNull]T param, Type expectedType, bool allowSubclasses, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class
         {
             Ensure.Any.IsNotNull(param, paramName, optsFn);
 
-            IsOfType(param.GetType(), expectedType, paramName, optsFn);
+            IsOfType(param.GetType(), expectedType, allowSubclasses, paramName, optsFn);
 
             return param;
         }
 
         [NotNull]
         public Type IsOfType([ValidatedNotNull]Type param, Type expectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => IsOfType(param, expectedType, false, paramName, optsFn);
+
+        [NotNull]
+        public Type IsOfType([ValidatedNotNull]Type param, Type expectedType, bool allowSubclasses, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(param, paramName, optsFn);
             Ensure.Any.IsNotNull(expectedType, nameof(expectedType));
-
-            if (param != expectedType)
-                throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Types_IsOfType_Failed, expectedType.FullName, param.FullName),
-                    paramName,
-                    optsFn);
+            if (allowSubclasses)
+            {
+#if NETSTANDARD1_1
+                bool isSubclass = expectedType.GetTypeInfo().IsAssignableFrom(param.GetTypeInfo());
+#else
+                bool isSubclass = expectedType.IsAssignableFrom(param);
+#endif
+                if (!isSubclass)
+                    throw Ensure.ExceptionFactory.ArgumentException(
+                        string.Format(ExceptionMessages.Types_IsOfType_Failed, expectedType.FullName, param.FullName),
+                        paramName,
+                        optsFn);
+            }
+            else
+            {
+                if (param != expectedType)
+                    throw Ensure.ExceptionFactory.ArgumentException(
+                        string.Format(ExceptionMessages.Types_IsOfTypeExactly_Failed, expectedType.FullName, param.FullName),
+                        paramName,
+                        optsFn);
+            }
 
             return param;
         }

@@ -75,8 +75,16 @@ namespace EnsureThat
             => Ensure.Type.IsOfType(param, expectedType, paramName, optsFn);
 
         [NotNull]
+        public static object IsOfType([ValidatedNotNull] object param, Type expectedType, bool allowSubclasses, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.Type.IsOfType(param, expectedType, allowSubclasses, paramName, optsFn);
+
+        [NotNull]
         public static Type IsOfType([ValidatedNotNull]Type param, Type expectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Type.IsOfType(param, expectedType, paramName, optsFn);
+
+        [NotNull]
+        public static Type IsOfType([ValidatedNotNull]Type param, Type expectedType, bool allowSubclasses, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.Type.IsOfType(param, expectedType, allowSubclasses, paramName, optsFn);
 
         [NotNull]
         public static object IsNotOfType([ValidatedNotNull]object param, Type nonExpectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)

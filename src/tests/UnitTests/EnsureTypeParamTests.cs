@@ -34,6 +34,25 @@ namespace UnitTests
             () => Ensure.ThatTypeFor(new Bogus(), ParamName).IsOfType(BogusType));
 
         [Fact]
+        public void IsOfType_WhenIsSubclass_ThrowsArgumentException() => AssertIsOfTypeScenario(
+            typeof(object), BogusType,
+            () => Ensure.Type.IsOfType(typeof(Bogus), typeof(object), false, ParamName),
+            () => Ensure.Type.IsOfType(new Bogus(), typeof(object), false, ParamName),
+            () => EnsureArg.IsOfType(typeof(Bogus), typeof(object), false, ParamName),
+            () => EnsureArg.IsOfType(new Bogus(), typeof(object), false, ParamName),
+            () => Ensure.ThatType(typeof(Bogus), ParamName).IsOfType(typeof(object), false),
+            () => Ensure.ThatTypeFor(new Bogus(), ParamName).IsOfType(typeof(object), false));
+
+        [Fact]
+        public void IsOfTypeAllowSubclass_WhenIsSubclass_It_should_not_throw() => ShouldNotThrow(
+            () => Ensure.Type.IsOfType(typeof(Bogus), typeof(object), true, ParamName),
+            () => Ensure.Type.IsOfType(new Bogus(), typeof(object), true, ParamName),
+            () => EnsureArg.IsOfType(typeof(Bogus), typeof(object), true, ParamName),
+            () => EnsureArg.IsOfType(new Bogus(), typeof(object), true, ParamName),
+            () => Ensure.ThatType(typeof(Bogus), ParamName).IsOfType(typeof(object), true),
+            () => Ensure.ThatTypeFor(new Bogus(), ParamName).IsOfType(typeof(object), true));
+
+        [Fact]
         public void IsNotOfType_WhenTypeOf_ThrowsArgumentException() => ShouldThrow<ArgumentException>(
             string.Format(ExceptionMessages.Types_IsNotOfType_Failed, BogusType),
             () => Ensure.Type.IsNotOfType(typeof(Bogus), BogusType, ParamName),
@@ -256,6 +275,9 @@ namespace UnitTests
         }
 
         private static void AssertIsOfTypeScenario(Type expected, Type actual, params Action[] actions)
+            => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Types_IsOfTypeExactly_Failed, expected.FullName, actual.FullName), actions);
+
+        private static void AssertIsOfTypeOrSubclassScenario(Type expected, Type actual, params Action[] actions)
             => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Types_IsOfType_Failed, expected.FullName, actual.FullName), actions);
 
         private static void AssertIsNotClass(Type type, params Action[] actions)

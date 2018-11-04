@@ -32,6 +32,9 @@ namespace EnsureThat
         public static void IsOfType(this TypeParam param, [NotNull] Type expectedType)
             => Ensure.Type.IsOfType(param.Type, expectedType, param.Name, param.OptsFn);
 
+        public static void IsOfType(this TypeParam param, [NotNull] Type expectedType, bool allowSubclasses)
+            => Ensure.Type.IsOfType(param.Type, expectedType, allowSubclasses, param.Name, param.OptsFn);
+
         public static void IsNotOfType(this TypeParam param, Type expectedType)
             => Ensure.Type.IsNotOfType(param.Type, expectedType, param.Name, param.OptsFn);
 
