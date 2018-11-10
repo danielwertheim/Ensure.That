@@ -8,6 +8,7 @@ namespace EnsureThat.Enforcers
     public sealed class StringArg
     {
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public string IsNotNull([ValidatedNotNull]string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName, optsFn);
@@ -16,6 +17,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public string IsNotNullOrWhiteSpace([ValidatedNotNull]string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName, optsFn);
@@ -37,6 +39,27 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
+        public string IsNotEmptyOrWhitespace(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            if (value == null) 
+            {
+                return null;
+            }
+
+            if (value.Length == 0)
+            {
+                throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmptyOrWhitespace_Failed, paramName, optsFn);
+            }
+            foreach (var t in value)
+            {
+                if (Char.IsWhiteSpace(t))
+                {
+                    throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmptyOrWhitespace_Failed, paramName, optsFn);
+                }
+            }
+            return value;
+        }
+
         public string IsNotEmpty(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (value?.Length == 0)
@@ -46,6 +69,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public string HasLengthBetween([ValidatedNotNull]string value, int minLength, int maxLength, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName, optsFn);
@@ -84,6 +108,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public string SizeIs([ValidatedNotNull]string value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName, optsFn);
@@ -154,6 +179,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public string IsGuid([ValidatedNotNull]string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (!Guid.TryParse(value, out _))
@@ -166,6 +192,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public string StartsWith([ValidatedNotNull]string value, [NotNull] string expectedStartsWith, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName, optsFn);
@@ -180,6 +207,7 @@ namespace EnsureThat.Enforcers
         }
 
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public string StartsWith([ValidatedNotNull]string value, [NotNull] string expectedStartsWith, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName, optsFn);

@@ -6,6 +6,7 @@ namespace EnsureThat.Enforcers
     public sealed class AnyArg
     {
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public T IsNotNull<T>([NoEnumeration, ValidatedNotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class
         {
             if (value == null)
@@ -14,7 +15,9 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T? IsNotNull<T>(T? value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : struct
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public T? IsNotNull<T>([ValidatedNotNull] T? value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : struct
         {
             if (value == null)
                 throw Ensure.ExceptionFactory.ArgumentNullException(ExceptionMessages.Common_IsNotNull_Failed, paramName, optsFn);

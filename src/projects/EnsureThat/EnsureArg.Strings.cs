@@ -8,21 +8,27 @@ namespace EnsureThat
     public static partial class EnsureArg
     {
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public static string IsNotNull([ValidatedNotNull] string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.IsNotNull(value, paramName, optsFn);
 
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public static string IsNotNullOrWhiteSpace([ValidatedNotNull] string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.IsNotNullOrWhiteSpace(value, paramName, optsFn);
 
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public static string IsNotNullOrEmpty([ValidatedNotNull] string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.IsNotNullOrEmpty(value, paramName, optsFn);
 
+        public static string IsNotEmptyOrWhitespace(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.String.IsNotEmptyOrWhitespace(value, paramName, optsFn);
         public static string IsNotEmpty(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.IsNotEmpty(value, paramName, optsFn);
 
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public static string HasLengthBetween([ValidatedNotNull] string value, int minLength, int maxLength, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.HasLengthBetween(value, minLength, maxLength, paramName, optsFn);
 
@@ -35,6 +41,7 @@ namespace EnsureThat
             => Ensure.String.Matches(value, match, paramName, optsFn);
 
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public static string SizeIs([ValidatedNotNull] string value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.SizeIs(value, expected, paramName, optsFn);
 
@@ -63,14 +70,17 @@ namespace EnsureThat
             => Ensure.String.IsNotEqualTo(value, notExpected, comparison, paramName, optsFn);
 
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public static string IsGuid([ValidatedNotNull] string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.IsGuid(value, paramName, optsFn);
 
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public static string StartsWith([ValidatedNotNull] string value, [NotNull] string expectedStartsWith, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.StartsWith(value, expectedStartsWith, paramName, optsFn);
 
         [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public static string StartsWith([ValidatedNotNull] string value, [NotNull] string expectedStartsWith, StringComparison comparisonType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.StartsWith(value, expectedStartsWith, comparisonType, paramName, optsFn);
     }
