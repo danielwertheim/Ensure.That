@@ -1,6 +1,12 @@
 Semantic versioning is used. See http://semver.org for more info. Basically this means that version format is:
 _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should be able to update without any breaking API changes.
 
+## v8.1.0 - 2018-11-10
+
+**(New)**: Adds `IsEmptyOrWhiteSpace`
+
+**(New)**: Now makes use of `ContractAnnotationAttribute`
+
 ## v8.0.0 - 2018-04-29
 **(Changed):** The assembly is now signed with a SNK, not for security purposes but for identification purposes and the key is in the repo.
 
