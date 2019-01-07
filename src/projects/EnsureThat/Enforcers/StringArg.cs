@@ -52,12 +52,12 @@ namespace EnsureThat.Enforcers
             }
             foreach (var t in value)
             {
-                if (Char.IsWhiteSpace(t))
+                if (!Char.IsWhiteSpace(t))
                 {
-                    throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmptyOrWhitespace_Failed, paramName, optsFn);
+                    return value; //succeed and return as soon as we see a non-whitespace character
                 }
             }
-            return value;
+            throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmptyOrWhitespace_Failed, paramName, optsFn);
         }
 
         public string IsNotEmpty(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)

@@ -90,6 +90,7 @@ namespace UnitTests
                 () => Ensure.That(value, ParamName).IsNotEmptyOrWhitespace(),
                 () => EnsureArg.IsNotEmptyOrWhitespace(value, ParamName));
         }
+
         [Fact]
         public void IsNotEmptyOrWhitespace_WhenWhitespace_ThrowsArgumentException()
         {
@@ -99,6 +100,16 @@ namespace UnitTests
                 () => Ensure.String.IsNotEmptyOrWhitespace(value, ParamName),
                 () => Ensure.That(value, ParamName).IsNotEmptyOrWhitespace(),
                 () => EnsureArg.IsNotEmptyOrWhitespace(value, ParamName));
+        }
+
+        [Fact]
+        public void IsNotEmptyOrWhitespace_WhenPartialWhitespace_It_should_not_throw()
+        {
+            string value = "  string with whitespace in it  ";
+            ShouldNotThrow(
+                () => Ensure.String.IsNotEmptyOrWhitespace(value, ParamName),
+                () => EnsureArg.IsNotEmptyOrWhitespace(value, ParamName),
+                () => Ensure.That(value, ParamName).IsNotEmptyOrWhitespace());
         }
 
         [Fact]
