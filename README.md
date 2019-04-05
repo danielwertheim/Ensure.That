@@ -3,6 +3,9 @@ Ensure.That is a simple guard clause argument validation lib, that helps you wit
 
 It's developed for .NET 4.5.1 as well as .NET Standard 1.1 and .NET Standard 2.0 and available via [NuGet](https://www.nuget.org/packages/ensure.that/).
 
+[![Build status](https://dev.azure.com/danielwertheim/ensure.that/_apis/build/status/ensure.that-CI-Windows)](https://dev.azure.com/danielwertheim/ensure.that/_build/latest)
+[![NuGet](https://img.shields.io/nuget/v/ensure.that.svg)](http://nuget.org/packages/ensure.that)
+
 ### Using extension methods
 This was supposed to be removed but after some wishes from the community it has been kept it with some slight changes.
 

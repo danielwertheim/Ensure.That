@@ -1,0 +1,14 @@
+<Project>
+  <PropertyGroup>
+    <Product>Ensure.That</Product>
+    <Version>0.0.0</Version>
+    <Description>Argument validation made simple and unified. It ensures arguments conforms to simple validation rules and provides an uniformed exception throwing strategy if arguments are invalid.</Description>
+    <Company>danielwertheim</Company>
+    <Authors>danielwertheim</Authors>
+    <Copyright>Copyright danielwertheim 2013</Copyright>
+    <PackageReleaseNotes>https://github.com/danielwertheim/ensure.that/blob/master/ReleaseNotes.md</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/danielwertheim/ensure.that</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+</Project>

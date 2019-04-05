@@ -1,14 +1,10 @@
-# node
-node_modules/
-
 # vs
 .vs/
 [Aa]pp_[Dd]ata/
 [Bb]in/
 [D]ebug/
-[Aa]rtifacts/
 [Oo]bj/
-[Tt]est[Rr]esult/
+[Tt]est[Rr]esults/
 [Tt]emp/
 *.user
 *.vspscc
@@ -19,9 +15,9 @@ project.lock.json
 packages/
 
 # deploy
-build/
-tools/
-!tools/packages.config
+[Aa]rtifacts/
+[Tt]ools/**
+![Tt]ools/packages.config
 
 # misc
 *~
