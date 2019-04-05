@@ -1,7 +1,7 @@
 public class BuildConfig
 {
     private const string Version = "8.1.1";
-    private const bool IsPreRelease = false;
+    private const bool IsPreRelease = true;
 
     public readonly string SrcDir = "./src/";
     public readonly string ArtifactsDir = "./artifacts/";    
