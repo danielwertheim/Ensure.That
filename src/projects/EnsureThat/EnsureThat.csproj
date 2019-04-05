@@ -1,21 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net4.5.1;netstandard1.1;netstandard2.0</TargetFrameworks>
-    <Version>0.0.0</Version>
-    <Authors>danielwertheim</Authors>
-    <Company>danielwertheim</Company>
     <PackageId>Ensure.That</PackageId>
     <Title>Ensure.That</Title>
-    <Product>Ensure.That</Product>
-    <Description>Argument validation made simple and unified. It ensures arguments conforms to simple validation rules and provides an uniformed exception throwing strategy if arguments are invalid.</Description>
-    <Copyright>danielwertheim</Copyright>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/danielwertheim/Ensure.That/master/LICENSE.txt</PackageLicenseUrl>
-    <PackageReleaseNotes>https://github.com/danielwertheim/ensure.that/blob/master/ReleaseNotes.md</PackageReleaseNotes>
-    <RepositoryUrl>https://github.com/danielwertheim/ensure.that</RepositoryUrl>
-    <RepositoryType>Git</RepositoryType>
-    <PackageProjectUrl>https://github.com/danielwertheim/ensure.that</PackageProjectUrl>
     <PackageTags>ensure that argument validation guard clause contracts</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <AssemblyName>Ensure.That</AssemblyName>
   </PropertyGroup>
 
