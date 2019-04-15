@@ -11,7 +11,7 @@ namespace EnsureThat.Internals
         {
             if (optsFn != null)
             {
-                var opts = optsFn(new EnsureOptions());
+                var opts = optsFn(new EnsureOptions(), defaultMessage, paramName);
 
                 if (opts.CustomException != null)
                     return opts.CustomException;
@@ -29,7 +29,7 @@ namespace EnsureThat.Internals
         {
             if (optsFn != null)
             {
-                var opts = optsFn(new EnsureOptions());
+                var opts = optsFn(new EnsureOptions(), defaultMessage, paramName);
 
                 if (opts.CustomException != null)
                     return opts.CustomException;
@@ -47,7 +47,7 @@ namespace EnsureThat.Internals
         {
             if (optsFn != null)
             {
-                var opts = optsFn(new EnsureOptions());
+                var opts = optsFn(new EnsureOptions(), defaultMessage, paramName);
 
                 if (opts.CustomException != null)
                     return opts.CustomException;
