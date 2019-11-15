@@ -1,6 +1,9 @@
 Semantic versioning is used. See http://semver.org for more info. Basically this means that version format is:
 _v[Major].[Minor].[Patch]_ and as long as Major hasn't been bumped, you should be able to update without any breaking API changes.
 
+## Release notes moved from v8.1.2 and forward
+Release notes can now be found under: [**"Releases"**](https://github.com/danielwertheim/ensure.that/releases/latest).
+
 ## v8.1.1 - 2019-01-07
 
 **(Fix)**: Fixes passing partial white-space string to `IsNotEmptyOrWhiteSpace`.

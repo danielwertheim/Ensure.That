@@ -475,6 +475,8 @@ namespace UnitTests
             }
 
             public static implicit operator CustomComparable(int value) => new CustomComparable(value);
+
+            public override string ToString() => _value.ToString();
         }
 
         public class CompareParamTestSpec
