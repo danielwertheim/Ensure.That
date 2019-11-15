@@ -211,10 +211,10 @@ namespace EnsureThat.Enforcers
         {
             Ensure.Any.IsNotNull(value, paramName);
 
-#if NETSTANDARD1_1
-            if (value.Length != expected)
-#else
+#if NET452
             if (value.LongLength != expected)
+#else
+            if (value.Length != expected)
 #endif
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Length),

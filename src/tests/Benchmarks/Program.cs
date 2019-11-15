@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Attributes.Columns;
-using BenchmarkDotNet.Attributes.Filters;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Running;
@@ -72,7 +70,7 @@ namespace Benchmarks
         }
     }
 
-    [OrderProvider(SummaryOrderPolicy.FastestToSlowest)]
+    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [RankColumn]
     [MemoryDiagnoser]
     [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]

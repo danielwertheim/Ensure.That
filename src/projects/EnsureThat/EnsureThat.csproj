@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net4.5.1;netstandard1.1;netstandard2.0</TargetFrameworks>
-    <PackageId>Ensure.That</PackageId>
+    <TargetFrameworks>net4.5.1;netstandard1.1</TargetFrameworks>
     <Title>Ensure.That</Title>
+    <PackageId>Ensure.That</PackageId>
     <PackageTags>ensure that argument validation guard clause contracts</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <AssemblyName>Ensure.That</AssemblyName>
@@ -11,7 +11,9 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <NoWarn>1701;1702;1705;1591</NoWarn>
-    <DocumentationFile>bin\Release\netstandard2.0\Ensure.That.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\$(TargetFramework)\Ensure.That.xml</DocumentationFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\ensure.that.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,0 +1,103 @@
+name: $(SemVer)
+
+variables:
+  BuildRev: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), 1)]
+  #SemVer: if from tag then it's a release and the name is used as the version
+  #        else generate one from timestamp and daily counter (BuildRev)
+  ${{ if startsWith( variables['Build.SourceBranch'], 'refs/tags' ) }}:
+    SemVer: $[ variables['Build.SourceBranchName'] ]
+  ${{ if not( startsWith( variables['Build.SourceBranch'], 'refs/tags' )) }}:
+    SemVer: $[format('{0:yyyy}.{0:MM}.{0:dd}-pre{1}', pipeline.startTime, variables.BuildRev)]
+  CommitId: $(Build.SourceVersion)
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+    - refs/tags/*
+
+pr:
+  autoCancel: true
+  branches:
+    include:
+    - master
+
+pool:
+  vmImage: windows-2019
+
+stages:
+- stage: Build
+  jobs:
+  - job: BuildTestPack
+    displayName: 'Build, test & pack'
+    timeoutInMinutes: 5
+    cancelTimeoutInMinutes: 2
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: 'Build Solution'
+      inputs:
+        command: build
+        projects: 'src/*.sln'
+        arguments: '-c $(BuildConfiguration) --no-incremental --nologo -p:TreatWarningsAsErrors=true -p:Version=$(SemVer) -p:InformationalVersion=$(CommitId)'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'UnitTests .Net4.5.2'
+      inputs:
+        command: test
+        projects: 'src/Tests/**/UnitTests.csproj'
+        arguments: '-c $(BuildConfiguration) -f net452 --no-build'
+        testRunTitle: 'UnitTests .Net4.5.2'
+  
+    - task: DotNetCoreCLI@2
+      displayName: 'UnitTests .NetCoreApp2.2'
+      inputs:
+        command: test
+        projects: 'src/Tests/**/UnitTests.csproj'
+        arguments: '-c $(BuildConfiguration) -f netcoreapp2.2 --no-build'
+        testRunTitle: 'UnitTests .NetCoreApp2.2'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'UnitTests .NetCoreApp3.0'
+      inputs:
+        command: test
+        projects: 'src/Tests/**/UnitTests.csproj'
+        arguments: '-c $(BuildConfiguration) -f netcoreapp3.0 --no-build'
+        testRunTitle: 'UnitTests .NetCoreApp3.0'
+  
+    - task: DotNetCoreCLI@2
+      displayName: 'Pack Nupkg'
+      inputs:
+        command: custom
+        custom: pack
+        projects: 'src/*.sln'
+        arguments: '-c $(BuildConfiguration) --no-build -o $(Build.ArtifactStagingDirectory) -p:Version=$(SemVer) -p:InformationalVersion=$(CommitId)'
+  
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish Artifacts'
+      inputs:
+        path: '$(Build.ArtifactStagingDirectory)'
+        artifact: Artifacts
+
+- stage: Deploy
+  condition: and (succeeded(), startsWith( variables['Build.SourceBranch'], 'refs/tags' ))
+  dependsOn: Build
+  jobs:
+  - deployment: DeployArtifacts
+    environment: 'Prod'
+    displayName: 'Deploys artifacts'
+    timeoutInMinutes: 10
+    cancelTimeoutInMinutes: 2
+    strategy: 
+      runOnce:
+        deploy:
+          steps:
+          - checkout: none
+          - task: NuGetCommand@2
+            displayName: 'Push Nupkg to NuGet'
+            inputs:
+              command: push
+              nugetFeedType: external
+              publishFeedCredentials: nuget_push_new_versions
+              verbosityPush: Normal
+              packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg;!$(Pipeline.Workspace)/**/*.symbols.nupkg'
