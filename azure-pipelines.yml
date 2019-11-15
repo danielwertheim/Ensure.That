@@ -31,8 +31,8 @@ stages:
   jobs:
   - job: BuildTestPack
     displayName: 'Build, test & pack'
-    timeoutInMinutes: 10
-    cancelTimeoutInMinutes: 5
+    timeoutInMinutes: 5
+    cancelTimeoutInMinutes: 2
     steps:
     - task: DotNetCoreCLI@2
       displayName: 'Build Solution'
