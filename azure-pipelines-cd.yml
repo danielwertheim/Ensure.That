@@ -1,0 +1,21 @@
+name: $(SemVer)
+
+variables:
+  BuildRev: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), 1)]
+  SemVer: $[ variables['Build.SourceBranchName'] ]
+  CommitId: $(Build.SourceVersion)
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - refs/tags/*
+
+pr: none
+
+pool:
+  vmImage: windows-2019
+
+stages:
+- template: azure-templates/stage-build.yml
+- template: azure-templates/stage-deploy.yml
