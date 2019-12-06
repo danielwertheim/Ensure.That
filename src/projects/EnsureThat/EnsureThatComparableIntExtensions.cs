@@ -22,5 +22,17 @@
 
         public static void IsInRange(this Param<int> param, int min, int max)
             => Ensure.Comparable.IsInRange(param.Value, min, max, param.Name, param.OptsFn);
+
+        public static void IsPositive(this Param<int> param)
+            => Ensure.Comparable.IsPositive(param.Value, param.Name, param.OptsFn);
+
+        public static void IsNegative(this Param<int> param)
+            => Ensure.Comparable.IsNegative(param.Value, param.Name, param.OptsFn);
+
+        public static void IsNotNegative(this Param<int> param)
+            => Ensure.Comparable.IsNotNegative(param.Value, param.Name, param.OptsFn);
+
+        public static void IsApproximately(this Param<int> param, int target, int accuracy)
+            => Ensure.Comparable.IsApproximately(param.Value, target, accuracy, param.Name, param.OptsFn);
     }
 }
