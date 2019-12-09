@@ -25,14 +25,14 @@ namespace EnsureThat
         public static double IsInRange(double value, double min, double max, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Comparable.IsInRange(value, min, max, paramName, optsFn);
 
-        public static double IsPositive(double value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
-            => Ensure.Comparable.IsPositive(value, paramName, optsFn);
+        public static double IsPositive(double value, ZeroSignMode zeroSignMode = ZeroSignMode.IsNeither, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+              => Ensure.Comparable.IsPositive(value, zeroSignMode, paramName, optsFn);
 
-        public static double IsNegative(double value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
-            => Ensure.Comparable.IsNegative(value, paramName, optsFn);
+        public static double IsNegative(double value, ZeroSignMode zeroSignMode = ZeroSignMode.IsNeither, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.Comparable.IsNegative(value, zeroSignMode, paramName, optsFn);
 
-        public static double IsNotNegative(double value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
-            => Ensure.Comparable.IsNotNegative(value, paramName, optsFn);
+        public static double IsNotNegative(double value, ZeroSignMode zeroSignMode = ZeroSignMode.IsNeither, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.Comparable.IsNotNegative(value, zeroSignMode, paramName, optsFn);
 
         public static double IsApproximately(double value, double target, double accuracy, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Comparable.IsApproximately(value, target, accuracy, paramName, optsFn);

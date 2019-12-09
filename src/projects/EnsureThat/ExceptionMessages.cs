@@ -37,8 +37,8 @@
         public static string Strings_StartsWith_Failed { get; } = "Value '{0}' is expected to start with '{1}' but does not.";
 
         public static string Numbers_IsPositive_Failed { get; } = "Value '{0}' is not positive.";
-                public static string Numbers_IsNegative_Failed { get; } = "Value '{0}' is not negative.";
-                public static string Numbers_IsNotNegative_Failed { get; } = "Value '{0}' is negative.";
+        public static string Numbers_IsNegative_Failed { get; } = "Value '{0}' is not negative.";
+        public static string Numbers_IsNotNegative_Failed { get; } = "Value '{0}' is negative.";
         public static string Numbers_IsApproximately_Failed { get; } = "The value '{0}' is not within '{1}' units of the target value '{2}'.";
 
         public static string Types_IsOfType_Failed { get; } = "The param is not of expected type. Expected: '{0}'. Got: '{1}'.";

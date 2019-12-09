@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using System;
 
 namespace EnsureThat.Enforcers
 {
@@ -71,35 +72,31 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public double IsPositive(double value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public double IsPositive(double value, ZeroSignMode zeroSignMode = ZeroSignMode.IsNeither, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            if (value < 0)
-                throw Ensure.ExceptionFactory.ArgumentException(string.Format(ExceptionMessages.Numbers_IsPositive_Failed, value), paramName, optsFn);
+            if (value > 0 || (value == 0 && (ZeroSignMode.IsPositive == zeroSignMode || ZeroSignMode.IsBoth == zeroSignMode))) return value;
 
-            return value;
+            throw Ensure.ExceptionFactory.ArgumentException(string.Format(ExceptionMessages.Numbers_IsPositive_Failed, value), paramName, optsFn);
         }
 
-        public double IsNegative(double value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public double IsNegative(double value, ZeroSignMode zeroSignMode = ZeroSignMode.IsNeither, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            if (value >= 0)
-                throw Ensure.ExceptionFactory.ArgumentException(string.Format(ExceptionMessages.Numbers_IsNegative_Failed, value), paramName, optsFn);
+            if (value < 0 || (value == 0 && (ZeroSignMode.IsNegative == zeroSignMode || ZeroSignMode.IsBoth == zeroSignMode))) return value;
 
-            return value;
+            throw Ensure.ExceptionFactory.ArgumentException(string.Format(ExceptionMessages.Numbers_IsNegative_Failed, value), paramName, optsFn);
         }
 
-        public double IsNotNegative(double value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public double IsNotNegative(double value, ZeroSignMode zeroSignMode = ZeroSignMode.IsNeither, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            if (value < 0)
-                throw Ensure.ExceptionFactory.ArgumentException(string.Format(ExceptionMessages.Numbers_IsNotNegative_Failed, value), paramName, optsFn);
+            if (value > 0 || (value == 0 && ZeroSignMode.IsPositive == zeroSignMode)) return value;
 
-            return value;
+            throw Ensure.ExceptionFactory.ArgumentException(string.Format(ExceptionMessages.Numbers_IsNotNegative_Failed, value), paramName, optsFn);
         }
 
         public double IsApproximately(double value, double target, double accuracy, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            var min = target - accuracy;
-            var max = target + accuracy;
-            if (value >= min && value <= max)
+            var difference = Math.Abs(value - target);
+            if (difference <= accuracy)
                 return value;
 
             throw Ensure.ExceptionFactory.ArgumentException(string.Format(ExceptionMessages.Numbers_IsApproximately_Failed, value, accuracy, target), paramName, optsFn);

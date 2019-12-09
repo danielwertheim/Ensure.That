@@ -23,14 +23,14 @@
         public static void IsInRange(this in Param<double> param, double min, double max)
             => Ensure.Comparable.IsInRange(param.Value, min, max, param.Name, param.OptsFn);
 
-        public static void IsPositive(this Param<double> param)
-            => Ensure.Comparable.IsPositive(param.Value, param.Name, param.OptsFn);
+        public static void IsPositive(this Param<double> param, ZeroSignMode zeroSignMode = ZeroSignMode.IsNeither)
+             => Ensure.Comparable.IsPositive(param.Value, zeroSignMode, param.Name, param.OptsFn);
 
-        public static void IsNegative(this Param<double> param)
-            => Ensure.Comparable.IsNegative(param.Value, param.Name, param.OptsFn);
+        public static void IsNegative(this Param<double> param, ZeroSignMode zeroSignMode = ZeroSignMode.IsNeither)
+            => Ensure.Comparable.IsNegative(param.Value, zeroSignMode, param.Name, param.OptsFn);
 
-        public static void IsNotNegative(this Param<double> param)
-            => Ensure.Comparable.IsNotNegative(param.Value, param.Name, param.OptsFn);
+        public static void IsNotNegative(this Param<double> param, ZeroSignMode zeroSignMode = ZeroSignMode.IsNeither)
+            => Ensure.Comparable.IsNotNegative(param.Value, zeroSignMode, param.Name, param.OptsFn);
 
         public static void IsApproximately(this Param<double> param, double target, double accuracy)
             => Ensure.Comparable.IsApproximately(param.Value, target, accuracy, param.Name, param.OptsFn);
