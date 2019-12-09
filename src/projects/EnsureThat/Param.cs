@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 
 namespace EnsureThat
 {
-    public struct Param<T>
+    public readonly struct Param<T>
     {
         public readonly string Name;
         public readonly T Value;
@@ -17,7 +17,7 @@ namespace EnsureThat
         }
     }
 
-    public struct StringParam
+    public readonly struct StringParam
     {
         public readonly string Name;
         public readonly string Value;
@@ -31,7 +31,7 @@ namespace EnsureThat
         }
     }
 
-    public struct TypeParam
+    public readonly struct TypeParam
     {
         public readonly string Name;
         [NotNull]
