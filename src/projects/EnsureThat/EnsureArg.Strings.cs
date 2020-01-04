@@ -22,8 +22,13 @@ namespace EnsureThat
         public static string IsNotNullOrEmpty([ValidatedNotNull] string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.IsNotNullOrEmpty(value, paramName, optsFn);
 
+        public static string IsNotEmptyOrWhiteSpace(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.String.IsNotEmptyOrWhiteSpace(value, paramName, optsFn);
+
+        [Obsolete("This method will soon be deprecated. Use IsNotEmptyOrWhiteSpace instead.")]
         public static string IsNotEmptyOrWhitespace(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
-            => Ensure.String.IsNotEmptyOrWhitespace(value, paramName, optsFn);
+            => Ensure.String.IsNotEmptyOrWhiteSpace(value, paramName, optsFn);
+
         public static string IsNotEmpty(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.IsNotEmpty(value, paramName, optsFn);
 
