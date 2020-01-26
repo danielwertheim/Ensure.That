@@ -71,45 +71,45 @@ namespace UnitTests
         }
 
         [Fact]
-        public void IsNotEmptyOrWhitespace_WhenNull_It_should_not_throw()
+        public void IsNotEmptyOrWhiteSpace_WhenNull_It_should_not_throw()
         {
             string value = null;
             ShouldNotThrow(
-                () => Ensure.String.IsNotEmptyOrWhitespace(value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotEmptyOrWhitespace(),
-                () => EnsureArg.IsNotEmptyOrWhitespace(value, ParamName));
+                () => Ensure.String.IsNotEmptyOrWhiteSpace(value, ParamName),
+                () => Ensure.That(value, ParamName).IsNotEmptyOrWhiteSpace(),
+                () => EnsureArg.IsNotEmptyOrWhiteSpace(value, ParamName));
         }
 
         [Fact]
-        public void IsNotEmptyOrWhitespace_WhenEmpty_ThrowsArgumentException()
+        public void IsNotEmptyOrWhiteSpace_WhenEmpty_ThrowsArgumentException()
         {
             string value = "";
             ShouldThrow<ArgumentException>(
-                ExceptionMessages.Strings_IsNotEmptyOrWhitespace_Failed,
-                () => Ensure.String.IsNotEmptyOrWhitespace(value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotEmptyOrWhitespace(),
-                () => EnsureArg.IsNotEmptyOrWhitespace(value, ParamName));
+                ExceptionMessages.Strings_IsNotEmptyOrWhiteSpace_Failed,
+                () => Ensure.String.IsNotEmptyOrWhiteSpace(value, ParamName),
+                () => Ensure.That(value, ParamName).IsNotEmptyOrWhiteSpace(),
+                () => EnsureArg.IsNotEmptyOrWhiteSpace(value, ParamName));
         }
 
         [Fact]
-        public void IsNotEmptyOrWhitespace_WhenWhitespace_ThrowsArgumentException()
+        public void IsNotEmptyOrWhiteSpace_WhenWhiteSpace_ThrowsArgumentException()
         {
             string value = "        ";
             ShouldThrow<ArgumentException>(
-                ExceptionMessages.Strings_IsNotEmptyOrWhitespace_Failed,
-                () => Ensure.String.IsNotEmptyOrWhitespace(value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotEmptyOrWhitespace(),
-                () => EnsureArg.IsNotEmptyOrWhitespace(value, ParamName));
+                ExceptionMessages.Strings_IsNotEmptyOrWhiteSpace_Failed,
+                () => Ensure.String.IsNotEmptyOrWhiteSpace(value, ParamName),
+                () => Ensure.That(value, ParamName).IsNotEmptyOrWhiteSpace(),
+                () => EnsureArg.IsNotEmptyOrWhiteSpace(value, ParamName));
         }
 
         [Fact]
-        public void IsNotEmptyOrWhitespace_WhenPartialWhitespace_It_should_not_throw()
+        public void IsNotEmptyOrWhiteSpace_WhenPartialWhiteSpace_It_should_not_throw()
         {
             string value = "  string with whitespace in it  ";
             ShouldNotThrow(
-                () => Ensure.String.IsNotEmptyOrWhitespace(value, ParamName),
-                () => EnsureArg.IsNotEmptyOrWhitespace(value, ParamName),
-                () => Ensure.That(value, ParamName).IsNotEmptyOrWhitespace());
+                () => Ensure.String.IsNotEmptyOrWhiteSpace(value, ParamName),
+                () => EnsureArg.IsNotEmptyOrWhiteSpace(value, ParamName),
+                () => Ensure.That(value, ParamName).IsNotEmptyOrWhiteSpace());
         }
 
         [Fact]

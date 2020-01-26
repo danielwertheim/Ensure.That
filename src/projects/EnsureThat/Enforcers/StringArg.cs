@@ -39,7 +39,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsNotEmptyOrWhitespace(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsNotEmptyOrWhiteSpace(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (value == null) 
             {
@@ -48,7 +48,7 @@ namespace EnsureThat.Enforcers
 
             if (value.Length == 0)
             {
-                throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmptyOrWhitespace_Failed, paramName, optsFn);
+                throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmptyOrWhiteSpace_Failed, paramName, optsFn);
             }
             foreach (var t in value)
             {
@@ -57,7 +57,7 @@ namespace EnsureThat.Enforcers
                     return value; //succeed and return as soon as we see a non-whitespace character
                 }
             }
-            throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmptyOrWhitespace_Failed, paramName, optsFn);
+            throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmptyOrWhiteSpace_Failed, paramName, optsFn);
         }
 
         public string IsNotEmpty(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)

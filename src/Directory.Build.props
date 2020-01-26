@@ -5,8 +5,8 @@
     <Description>Argument validation made simple and unified. It ensures arguments conforms to simple validation rules and provides an uniformed exception throwing strategy if arguments are invalid.</Description>
     <Company>danielwertheim</Company>
     <Authors>danielwertheim</Authors>
-    <Copyright>Copyright danielwertheim 2013</Copyright>
-    <PackageReleaseNotes>https://github.com/danielwertheim/ensure.that/blob/master/ReleaseNotes.md</PackageReleaseNotes>
+    <Copyright>Copyright ©danielwertheim</Copyright>
+    <PackageReleaseNotes>https://github.com/danielwertheim/ensure.that/releases</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/danielwertheim/ensure.that</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <LangVersion>latest</LangVersion>
