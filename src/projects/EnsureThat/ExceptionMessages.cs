@@ -21,6 +21,8 @@
         public static string Comp_IsNotInRange_ToLow { get; } = "Value '{0}' is < min '{1}'.";
         public static string Comp_IsNotInRange_ToHigh { get; } = "Value '{0}' is > max '{1}'.";
 
+        public static string Enum_IsValidEnum { get; } = "Value '{0}' is not defined for the enum type '{1}'.";
+
         public static string Guids_IsNotEmpty_Failed { get; } = "Empty Guid is not allowed.";
 
         public static string Strings_IsEqualTo_Failed { get; } = "Value '{0}' is not '{1}'.";
