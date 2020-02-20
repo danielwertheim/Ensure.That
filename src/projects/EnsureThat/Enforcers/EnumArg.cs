@@ -8,7 +8,7 @@ namespace EnsureThat.Enforcers
         /// <summary>
         /// Confirms that the <paramref name="value"/> is defined in the enum <typeparamref name="T"/>.
         /// </summary>
-        public T IsValidEnum<T>(T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : struct, Enum
+        public T IsDefined<T>(T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : struct, Enum
         {
             if (!Enum.IsDefined(typeof(T), value))
             {

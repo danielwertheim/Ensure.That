@@ -12,9 +12,9 @@ namespace UnitTests
             var item = Only1IsValid.Valid;
 
             ShouldNotThrow(
-                () => Ensure.Enum.IsValidEnum(item, ParamName),
-                () => EnsureArg.IsValidEnum(item, ParamName),
-                () => Ensure.That(item, ParamName).IsValidEnum());
+                () => Ensure.Enum.IsDefined(item, ParamName),
+                () => EnsureArg.EnumIsDefined(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefined());
         }
 
         [Fact]
@@ -24,9 +24,9 @@ namespace UnitTests
 
             ShouldThrow<ArgumentOutOfRangeException>(
                 string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(Only1IsValid)),
-                () => Ensure.Enum.IsValidEnum(item, ParamName),
-                () => EnsureArg.IsValidEnum(item, ParamName),
-                () => Ensure.That(item, ParamName).IsValidEnum());
+                () => Ensure.Enum.IsDefined(item, ParamName),
+                () => EnsureArg.EnumIsDefined(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefined());
         }
 
         private enum Only1IsValid
