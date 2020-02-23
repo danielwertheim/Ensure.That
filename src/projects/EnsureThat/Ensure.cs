@@ -24,6 +24,12 @@ namespace EnsureThat
         /// <summary>
         /// Ensures for enumerables.
         /// </summary>
+        [NotNull]
+        public static EnumArg Enum { get; } = new EnumArg();
+
+        /// <summary>
+        /// Ensures for enumerables.
+        /// </summary>
         /// <remarks>MULTIPLE ENUMERATION OF PASSED ENUMERABLE IS POSSIBLE.</remarks>
         [NotNull]
         public static EnumerableArg Enumerable { get; } = new EnumerableArg();
