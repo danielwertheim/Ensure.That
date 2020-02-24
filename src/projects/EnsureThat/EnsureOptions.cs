@@ -5,14 +5,21 @@ namespace EnsureThat
     public struct EnsureOptions
     {
         /// <summary>
-        /// If defined, this exception will be thrown instead of the
+        /// If <see cref="CustomExceptionFactory"/> is defined, this exception will be thrown instead of the
         /// standard exceptions for the particular ensure method.
-        /// Assign using <see cref="WithException"/>.
+        /// Assign using <see cref="WithException(Exception)"/>.
         /// </summary>
-        public Exception CustomException { get; private set; }
+        public Exception CustomException => CustomExceptionFactory(string.Empty);
 
         /// <summary>
-        /// If defined, and no <see cref="CustomException"/> has been defined,
+        /// If defined, this exception will be thrown instead of the
+        /// standard exceptions for the particular ensure method.
+        /// Assign using <see cref="WithException(Func&lt;string,Exception&gt;)"/>.
+        /// </summary>
+        public Func<string, Exception> CustomExceptionFactory { get; private set; }
+
+        /// <summary>
+        /// If defined, and no <see cref="CustomExceptionFactory"/> has been defined,
         /// this message will be used instead of the standard message for the
         /// particular ensure method.
         /// Assign using <see cref="WithMessage"/>.
@@ -21,7 +28,14 @@ namespace EnsureThat
 
         public EnsureOptions WithException(Exception ex)
         {
-            CustomException = ex;
+            CustomExceptionFactory = x => ex;
+
+            return this;
+        }
+
+        public EnsureOptions WithException(Func<string, Exception> factory)
+        {
+            CustomExceptionFactory = factory;
 
             return this;
         }

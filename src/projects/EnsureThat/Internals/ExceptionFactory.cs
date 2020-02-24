@@ -11,10 +11,10 @@ namespace EnsureThat.Internals
         {
             if (optsFn != null)
             {
-                var opts = optsFn(new EnsureOptions(), defaultMessage, paramName);
+                var opts = optsFn(new EnsureOptions());
 
-                if (opts.CustomException != null)
-                    return opts.CustomException;
+                if (opts.CustomExceptionFactory != null)
+                    return opts.CustomExceptionFactory(defaultMessage);
 
                 if (opts.CustomMessage != null)
                     return new ArgumentException(opts.CustomMessage, paramName);
@@ -29,10 +29,10 @@ namespace EnsureThat.Internals
         {
             if (optsFn != null)
             {
-                var opts = optsFn(new EnsureOptions(), defaultMessage, paramName);
+                var opts = optsFn(new EnsureOptions());
 
-                if (opts.CustomException != null)
-                    return opts.CustomException;
+                if (opts.CustomExceptionFactory != null)
+                    return opts.CustomExceptionFactory(defaultMessage);
 
                 if (opts.CustomMessage != null)
                     return new ArgumentNullException(paramName, opts.CustomMessage);
@@ -47,10 +47,10 @@ namespace EnsureThat.Internals
         {
             if (optsFn != null)
             {
-                var opts = optsFn(new EnsureOptions(), defaultMessage, paramName);
+                var opts = optsFn(new EnsureOptions());
 
-                if (opts.CustomException != null)
-                    return opts.CustomException;
+                if (opts.CustomExceptionFactory != null)
+                    return opts.CustomExceptionFactory(defaultMessage);
 
                 if (opts.CustomMessage != null)
                     return new ArgumentOutOfRangeException(paramName, value, opts.CustomMessage);
