@@ -21,6 +21,13 @@
         /// Abc.A | Abc.B IsDefined=true (due to Abc.AB)
         /// Abc.A | Abc.C IsDefined=false (A and C are both valid, the composite is valid due to `Flags` attribute, but the composite is not a named enum value
         /// </example>
+        public static void IsStrictlyDefined<T>(this in Param<T> param) where T : struct, System.Enum
+            => Ensure.Enum.IsStrictlyDefined(param.Value, param.Name, param.OptsFn);
+
+        /// <summary>
+        /// Confirms that the <paramref name="param.Value"/> is defined in the enum <typeparamref name="T"/>.
+        /// Supports `Flags` attribute.
+        /// </summary>
         public static void IsDefined<T>(this in Param<T> param) where T : struct, System.Enum
             => Ensure.Enum.IsDefined(param.Value, param.Name, param.OptsFn);
     }

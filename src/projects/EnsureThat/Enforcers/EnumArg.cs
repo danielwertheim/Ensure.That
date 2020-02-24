@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Reflection;
 using JetBrains.Annotations;
 
 namespace EnsureThat.Enforcers
@@ -24,9 +26,52 @@ namespace EnsureThat.Enforcers
         /// Abc.A | Abc.B IsDefined=true (due to Abc.AB)
         /// Abc.A | Abc.C IsDefined=false (A and C are both valid, the composite is valid due to `Flags` attribute, but the composite is not a named enum value
         /// </example>
-        public T IsDefined<T>(T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : struct, Enum
+        public T IsStrictlyDefined<T>(T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : struct, Enum
         {
             if (!Enum.IsDefined(typeof(T), value))
+            {
+                throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
+                    string.Format(ExceptionMessages.Enum_IsValidEnum, value, typeof(T)),
+                    paramName,
+                    value,
+                    optsFn);
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// Confirms that the <paramref name="value"/> is defined in the enum <typeparamref name="T"/>.
+        /// Supports `Flags` attribute.
+        /// </summary>
+        public T IsDefined<T>(T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : struct, Enum
+        {
+            var enumType = typeof(T);
+            bool isEnumDefined;
+            var hasFlags = enumType.GetTypeInfo().GetCustomAttributes<FlagsAttribute>(false).Any();
+            if (hasFlags)
+            {
+                var givenEnumValue = Convert.ToUInt64(value);
+                if (givenEnumValue == 0)
+                {
+                    isEnumDefined = Enum.IsDefined(enumType, value);
+                }
+                else
+                {
+                    var enumValues = Enum.GetValues(enumType)
+                        .Cast<object>()
+                        .Select(Convert.ToUInt64);
+                    var allEnumValues = enumValues.Aggregate<ulong, ulong>(0, (current, enumValue) => current | enumValue);
+
+                    isEnumDefined = (allEnumValues | givenEnumValue) == allEnumValues;
+                }
+            }
+            else
+            {
+                isEnumDefined = Enum.IsDefined(enumType, value);
+            }
+
+            if (!isEnumDefined)
             {
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
                     string.Format(ExceptionMessages.Enum_IsValidEnum, value, typeof(T)),
