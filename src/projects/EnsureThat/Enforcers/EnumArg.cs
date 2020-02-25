@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using JetBrains.Annotations;
@@ -9,8 +10,9 @@ namespace EnsureThat.Enforcers
     {
         /// <summary>
         /// Confirms that the <paramref name="value"/> is defined in the enum <typeparamref name="T"/>.
-        /// Note that just like `Enum.IsDefined`, `Flags` based enums may be valid combination of defined values, but if the combined value
-        /// itself is not named an error will be raised. Avoid usage with `Flags` enums.
+        /// Note that just like <see cref="Enum.IsDefined(Type, object)"/>,
+        /// <see cref="FlagsAttribute"/> based enums may be valid combination of defined values, but if the combined value
+        /// itself is not named an error will be raised. Avoid usage with <see cref="FlagsAttribute"/> enums.
         /// </summary>
         /// <example>
         /// Flags example:
@@ -24,7 +26,7 @@ namespace EnsureThat.Enforcers
         /// }
         ///
         /// Abc.A | Abc.B IsDefined=true (due to Abc.AB)
-        /// Abc.A | Abc.C IsDefined=false (A and C are both valid, the composite is valid due to `Flags` attribute, but the composite is not a named enum value
+        /// Abc.A | Abc.C IsDefined=false (A and C are both valid, the composite is valid due to <see cref="FlagsAttribute"/> attribute, but the composite is not a named enum value
         /// </example>
         public T IsStrictlyDefined<T>(T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : struct, Enum
         {
@@ -42,39 +44,16 @@ namespace EnsureThat.Enforcers
 
         /// <summary>
         /// Confirms that the <paramref name="value"/> is defined in the enum <typeparamref name="T"/>.
-        /// Supports `Flags` attribute.
+        /// Supports <see cref="FlagsAttribute"/> attribute.
         /// </summary>
         public T IsDefined<T>(T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : struct, Enum
         {
-            var enumType = typeof(T);
-            bool isEnumDefined;
-            var hasFlags = enumType.GetTypeInfo().GetCustomAttributes<FlagsAttribute>(false).Any();
-            if (hasFlags)
-            {
-                var givenEnumValue = Convert.ToUInt64(value);
-                if (givenEnumValue == 0)
-                {
-                    isEnumDefined = Enum.IsDefined(enumType, value);
-                }
-                else
-                {
-                    var enumValues = Enum.GetValues(enumType)
-                        .Cast<object>()
-                        .Select(Convert.ToUInt64);
-                    var allEnumValues = enumValues.Aggregate<ulong, ulong>(0, (current, enumValue) => current | enumValue);
-
-                    isEnumDefined = (allEnumValues | givenEnumValue) == allEnumValues;
-                }
-            }
-            else
-            {
-                isEnumDefined = Enum.IsDefined(enumType, value);
-            }
+            var isEnumDefined = EnumOf<T>.Contains(value);
 
             if (!isEnumDefined)
             {
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Enum_IsValidEnum, value, typeof(T)),
+                    string.Format(ExceptionMessages.Enum_IsValidEnum, value, EnumOf<T>.EnumType),
                     paramName,
                     value,
                     optsFn);
@@ -82,5 +61,46 @@ namespace EnsureThat.Enforcers
 
             return value;
         }
+
+        private static class EnumOf<T> where T : struct, Enum
+        {
+            internal static readonly Type EnumType;
+            private static readonly bool _hasFlags;
+            private static readonly List<ulong> _values;
+
+            static EnumOf()
+            {
+                EnumType = typeof(T);
+
+                _hasFlags = EnumType.GetTypeInfo().GetCustomAttributes<FlagsAttribute>(false).Any();
+
+                var enumValues = Enum.GetValues(EnumType);
+                _values = new List<ulong>(enumValues.Length);
+                foreach (var v in enumValues) 
+                    _values.Add(Convert.ToUInt64(v));
+            }
+
+            internal static bool Contains(T value)
+            {
+                if (!_hasFlags)
+                    return Enum.IsDefined(EnumType, value);
+
+                var raw = Convert.ToUInt64(value);
+                if (raw == 0)
+                    return Enum.IsDefined(EnumType, value);
+
+                ulong sum = 0;
+
+                foreach (var val in _values)
+                {
+                    if ((raw & val) == val)
+                        sum |= val;
+                }
+
+                return sum == raw;
+            }
+        }
     }
+
+
 }
