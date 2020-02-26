@@ -30,85 +30,85 @@ namespace UnitTests
         }
 
         [Fact]
-        public void IsDefined_Strictly_ShouldNotThrow()
+        public void IsDefinedExtended_ShouldNotThrow()
         {
             var item = Only1IsValidEnum.Valid;
 
             ShouldNotThrow(
-                () => Ensure.Enum.IsStrictlyDefined(item, ParamName),
-                () => EnsureArg.EnumIsStrictlyDefined(item, ParamName),
-                () => Ensure.That(item, ParamName).IsStrictlyDefined());
+                () => Ensure.Enum.IsDefinedExtended(item, ParamName),
+                () => EnsureArg.EnumIsDefinedExtended(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefinedExtended());
         }
 
         [Theory]
         [InlineData((Only1IsValidEnum)2)]
         [InlineData((Only1IsValidEnum)0)]
-        public void NotDefined_Strictly_ShouldThrow(Only1IsValidEnum item)
+        public void NotDefined_Extended_ShouldThrow(Only1IsValidEnum item)
         {
             ShouldThrow<ArgumentOutOfRangeException>(
                 string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(Only1IsValidEnum)),
-                () => Ensure.Enum.IsStrictlyDefined(item, ParamName),
-                () => EnsureArg.EnumIsStrictlyDefined(item, ParamName),
-                () => Ensure.That(item, ParamName).IsStrictlyDefined());
-        }
-
-        [Theory]
-        [InlineData(TestFlagsEnum.Bar)]
-        [InlineData(TestFlagsEnum.Bar | TestFlagsEnum.Baz)]
-        public void FlagIsDefined_ShouldNotThrow(TestFlagsEnum item)
-        {
-            ShouldNotThrow(
-                () => Ensure.Enum.IsDefined(item, ParamName),
-                () => EnsureArg.EnumIsDefined(item, ParamName),
-                () => Ensure.That(item, ParamName).IsDefined());
-        }
-
-        [Theory]
-        [InlineData((TestFlagsEnum)3)]
-        [InlineData((TestFlagsEnum)0)]
-        public void FlagNotDefined_ShouldThrow(TestFlagsEnum item)
-        {
-            ShouldThrow<ArgumentOutOfRangeException>(
-                string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsEnum)),
-                () => Ensure.Enum.IsDefined(item, ParamName),
-                () => EnsureArg.EnumIsDefined(item, ParamName),
-                () => Ensure.That(item, ParamName).IsDefined());
+                () => Ensure.Enum.IsDefinedExtended(item, ParamName),
+                () => EnsureArg.EnumIsDefinedExtended(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefinedExtended());
         }
 
         [Fact]
-        public void FlagIsDefined_Strictly_ShouldNotThrow_IfNotCombined()
+        public void FlagIsDefined_ShouldNotThrow_IfNotCombined()
         {
             var item = TestFlagsEnum.Bar;
 
             ShouldNotThrow(
-                () => Ensure.Enum.IsStrictlyDefined(item, ParamName),
-                () => EnsureArg.EnumIsStrictlyDefined(item, ParamName),
-                () => Ensure.That(item, ParamName).IsStrictlyDefined());
+                () => Ensure.Enum.IsDefined(item, ParamName),
+                () => EnsureArg.EnumIsDefined(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefined());
         }
 
         [Fact]
-        public void FlagIsDefined_Strictly_ShouldThrow_IfCombined()
+        public void FlagIsDefined_ShouldThrow_IfCombined()
         {
             var item = TestFlagsEnum.Bar | TestFlagsEnum.Baz;
 
             ShouldThrow<ArgumentOutOfRangeException>(
                 string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsEnum)),
-                () => Ensure.Enum.IsStrictlyDefined(item, ParamName),
-                () => EnsureArg.EnumIsStrictlyDefined(item, ParamName),
-                () => Ensure.That(item, ParamName).IsStrictlyDefined());
+                () => Ensure.Enum.IsDefined(item, ParamName),
+                () => EnsureArg.EnumIsDefined(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefined());
         }
 
         [Fact]
-        public void FlagNotDefined_Strictly_ShouldThrow()
+        public void FlagNotDefined_ShouldThrow()
         {
             var item = (TestFlagsEnum)3;
             ShouldThrow<ArgumentOutOfRangeException>(
                 string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsEnum)),
-                () => Ensure.Enum.IsStrictlyDefined(item, ParamName),
-                () => EnsureArg.EnumIsStrictlyDefined(item, ParamName),
-                () => Ensure.That(item, ParamName).IsStrictlyDefined());
+                () => Ensure.Enum.IsDefined(item, ParamName),
+                () => EnsureArg.EnumIsDefined(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefined());
+        }
+        
+        [Theory]
+        [InlineData(TestFlagsEnum.Bar)]
+        [InlineData(TestFlagsEnum.Bar | TestFlagsEnum.Baz)]
+        public void FlagIsDefined_Extended_ShouldNotThrow(TestFlagsEnum item)
+        {
+            ShouldNotThrow(
+                () => Ensure.Enum.IsDefinedExtended(item, ParamName),
+                () => EnsureArg.EnumIsDefinedExtended(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefinedExtended());
         }
 
+        [Theory]
+        [InlineData((TestFlagsEnum)3)]
+        [InlineData((TestFlagsEnum)0)]
+        public void FlagNotDefined_Extended_ShouldThrow(TestFlagsEnum item)
+        {
+            ShouldThrow<ArgumentOutOfRangeException>(
+                string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsEnum)),
+                () => Ensure.Enum.IsDefinedExtended(item, ParamName),
+                () => EnsureArg.EnumIsDefinedExtended(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefinedExtended());
+        }
+        
         [Theory]
         [InlineData(TestFlagsOfWhateverPower.A)]
         [InlineData(TestFlagsOfWhateverPower.B)]
@@ -118,9 +118,9 @@ namespace UnitTests
         public void FlagOfWhateverPowerIsDefined_ShouldNotThrow(TestFlagsOfWhateverPower item)
         {
             ShouldNotThrow(
-                () => Ensure.Enum.IsDefined(item, ParamName),
-                () => EnsureArg.EnumIsDefined(item, ParamName),
-                () => Ensure.That(item, ParamName).IsDefined());
+                () => Ensure.Enum.IsDefinedExtended(item, ParamName),
+                () => EnsureArg.EnumIsDefinedExtended(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefinedExtended());
         }
 
         [Fact]
@@ -130,9 +130,9 @@ namespace UnitTests
             
             ShouldThrow<ArgumentOutOfRangeException>(
                 string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsOfWhateverPower)),
-                () => Ensure.Enum.IsStrictlyDefined(item, ParamName),
-                () => EnsureArg.EnumIsStrictlyDefined(item, ParamName),
-                () => Ensure.That(item, ParamName).IsStrictlyDefined());
+                () => Ensure.Enum.IsDefinedExtended(item, ParamName),
+                () => EnsureArg.EnumIsDefinedExtended(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefinedExtended());
         }
 
         public enum Only1IsValidEnum : byte

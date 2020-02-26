@@ -16,7 +16,7 @@ namespace EnsureThat
         /// Flags example:
         /// 
         /// [Flags]
-        /// enum Abc{
+        /// enum Abc {
         ///   A = 1,
         ///   B = 2,
         ///   C = 4,
@@ -26,14 +26,14 @@ namespace EnsureThat
         /// Abc.A | Abc.B IsDefined=true (due to Abc.AB)
         /// Abc.A | Abc.C IsDefined=false (A and C are both valid, the composite is valid due to <see cref="FlagsAttribute"/> attribute, but the composite is not a named enum value
         /// </example>
-        public static T EnumIsStrictlyDefined<T>(T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : struct, Enum
-            => Ensure.Enum.IsStrictlyDefined(value, paramName, optsFn);
+        public static T EnumIsDefined<T>(T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : struct, Enum
+            => Ensure.Enum.IsDefined(value, paramName, optsFn);
 
         /// <summary>
         /// Confirms that the <paramref name="value"/> is defined in the enum <typeparamref name="T"/>.
         /// Supports <see cref="FlagsAttribute"/> attribute.
         /// </summary>
-        public static T EnumIsDefined<T>(T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : struct, Enum
-            => Ensure.Enum.IsDefined(value, paramName, optsFn);
+        public static T EnumIsDefinedExtended<T>(T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : struct, Enum
+            => Ensure.Enum.IsDefinedExtended(value, paramName, optsFn);
     }
 }
