@@ -29,7 +29,7 @@
         /// Confirms that the <paramref name="param.Value"/> is defined in the enum <typeparamref name="T"/>.
         /// Supports <see cref="System.FlagsAttribute"/> attribute.
         /// </summary>
-        public static void IsDefinedExtended<T>(this in Param<T> param) where T : struct, System.Enum
-            => Ensure.Enum.IsDefinedExtended(param.Value, param.Name, param.OptsFn);
+        public static void IsDefinedWithFlagsSupport<T>(this in Param<T> param) where T : struct, System.Enum
+            => Ensure.Enum.IsDefinedWithFlagsSupport(param.Value, param.Name, param.OptsFn);
     }
 }

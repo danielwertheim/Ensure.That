@@ -30,14 +30,14 @@ namespace UnitTests
         }
 
         [Fact]
-        public void IsDefinedExtended_ShouldNotThrow()
+        public void IsDefinedWithFlagsSupport_ShouldNotThrow()
         {
             var item = Only1IsValidEnum.Valid;
 
             ShouldNotThrow(
-                () => Ensure.Enum.IsDefinedExtended(item, ParamName),
-                () => EnsureArg.EnumIsDefinedExtended(item, ParamName),
-                () => Ensure.That(item, ParamName).IsDefinedExtended());
+                () => Ensure.Enum.IsDefinedWithFlagsSupport(item, ParamName),
+                () => EnsureArg.EnumIsDefinedWithFlagsSupport(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefinedWithFlagsSupport());
         }
 
         [Theory]
@@ -47,9 +47,9 @@ namespace UnitTests
         {
             ShouldThrow<ArgumentOutOfRangeException>(
                 string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(Only1IsValidEnum)),
-                () => Ensure.Enum.IsDefinedExtended(item, ParamName),
-                () => EnsureArg.EnumIsDefinedExtended(item, ParamName),
-                () => Ensure.That(item, ParamName).IsDefinedExtended());
+                () => Ensure.Enum.IsDefinedWithFlagsSupport(item, ParamName),
+                () => EnsureArg.EnumIsDefinedWithFlagsSupport(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefinedWithFlagsSupport());
         }
 
         [Fact]
@@ -92,21 +92,21 @@ namespace UnitTests
         public void FlagIsDefined_Extended_ShouldNotThrow(TestFlagsEnum item)
         {
             ShouldNotThrow(
-                () => Ensure.Enum.IsDefinedExtended(item, ParamName),
-                () => EnsureArg.EnumIsDefinedExtended(item, ParamName),
-                () => Ensure.That(item, ParamName).IsDefinedExtended());
+                () => Ensure.Enum.IsDefinedWithFlagsSupport(item, ParamName),
+                () => EnsureArg.EnumIsDefinedWithFlagsSupport(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefinedWithFlagsSupport());
         }
 
         [Theory]
-        [InlineData((TestFlagsEnum)3)]
+        [InlineData((TestFlagsEnum)4)]
         [InlineData((TestFlagsEnum)0)]
         public void FlagNotDefined_Extended_ShouldThrow(TestFlagsEnum item)
         {
             ShouldThrow<ArgumentOutOfRangeException>(
                 string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsEnum)),
-                () => Ensure.Enum.IsDefinedExtended(item, ParamName),
-                () => EnsureArg.EnumIsDefinedExtended(item, ParamName),
-                () => Ensure.That(item, ParamName).IsDefinedExtended());
+                () => Ensure.Enum.IsDefinedWithFlagsSupport(item, ParamName),
+                () => EnsureArg.EnumIsDefinedWithFlagsSupport(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefinedWithFlagsSupport());
         }
         
         [Theory]
@@ -118,9 +118,9 @@ namespace UnitTests
         public void FlagOfWhateverPowerIsDefined_ShouldNotThrow(TestFlagsOfWhateverPower item)
         {
             ShouldNotThrow(
-                () => Ensure.Enum.IsDefinedExtended(item, ParamName),
-                () => EnsureArg.EnumIsDefinedExtended(item, ParamName),
-                () => Ensure.That(item, ParamName).IsDefinedExtended());
+                () => Ensure.Enum.IsDefinedWithFlagsSupport(item, ParamName),
+                () => EnsureArg.EnumIsDefinedWithFlagsSupport(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefinedWithFlagsSupport());
         }
 
         [Fact]
@@ -130,9 +130,9 @@ namespace UnitTests
             
             ShouldThrow<ArgumentOutOfRangeException>(
                 string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsOfWhateverPower)),
-                () => Ensure.Enum.IsDefinedExtended(item, ParamName),
-                () => EnsureArg.EnumIsDefinedExtended(item, ParamName),
-                () => Ensure.That(item, ParamName).IsDefinedExtended());
+                () => Ensure.Enum.IsDefinedWithFlagsSupport(item, ParamName),
+                () => EnsureArg.EnumIsDefinedWithFlagsSupport(item, ParamName),
+                () => Ensure.That(item, ParamName).IsDefinedWithFlagsSupport());
         }
 
         public enum Only1IsValidEnum : byte
@@ -143,8 +143,8 @@ namespace UnitTests
         [Flags]
         public enum TestFlagsEnum : byte
         {
-            Bar = 1 << 1,
-            Baz = 1 << 2
+            Bar = 1,
+            Baz = 1 << 1
         }
 
         [Flags]
