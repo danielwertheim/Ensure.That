@@ -22,7 +22,7 @@ namespace EnsureThat
         public static BoolArg Bool { get; } = new BoolArg();
 
         /// <summary>
-        /// Ensures for enumerables.
+        /// Ensures for enums.
         /// </summary>
         [NotNull]
         public static EnumArg Enum { get; } = new EnumArg();
