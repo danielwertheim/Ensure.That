@@ -24,10 +24,12 @@ packages/
 *.orig
 *.pfx
 
-# resharper
+# resharper & rider
+.idea/
 _ReSharper.*
 *.resharper*
 *.[Rr]e[Ss]harper.user
+
 *.DotSettings.user
 
 #windows stuff
