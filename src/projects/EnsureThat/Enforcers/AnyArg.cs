@@ -11,7 +11,7 @@ namespace EnsureThat.Enforcers
         public T HasValue<T>([NoEnumeration, ValidatedNotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) => value switch
         {
             ValueType _ => value,
-            var x => x ?? throw Ensure.ExceptionFactory.ArgumentNullException(ExceptionMessages.Common_IsNotNull_Failed, paramName, optsFn)
+            _ => value ?? throw Ensure.ExceptionFactory.ArgumentNullException(ExceptionMessages.Common_IsNotNull_Failed, paramName, optsFn)
         };
         
         [NotNull]
