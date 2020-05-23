@@ -4,8 +4,40 @@ using Xunit;
 
 namespace UnitTests
 {
-    public class EnsureObjectParamTests : UnitTestBase
+    
+    public class EnsureAnyParamTests : UnitTestBase
     {
+        [Fact]
+        public void HasValue_WhenNull_ThrowsArgumentNullException()
+        {
+            static void Verify<T>(T value) =>
+                ShouldThrow<ArgumentNullException>(
+                    ExceptionMessages.Common_IsNotNull_Failed,
+                    () => Ensure.Any.HasValue(value, ParamName),
+                    () => EnsureArg.HasValue(value, ParamName),
+                    () => Ensure.That(value, ParamName).HasValue());
+
+            Verify((int?)null);
+            Verify((string)null);
+            Verify((Foo?)null);
+            Verify((Type)null);
+        }
+
+        [Fact]
+        public void HasValue_WhenNotNull_ShouldNotThrow()
+        {
+            static void Verify<T>(T value) =>
+                ShouldNotThrow(
+                    () => Ensure.Any.HasValue(value, ParamName),
+                    () => EnsureArg.HasValue(value, ParamName),
+                    () => Ensure.That(value, ParamName).HasValue());
+
+            Verify((int?)1);
+            Verify("");
+            Verify(Foo.Bar);
+            Verify(typeof(int));
+        }
+
         [Fact]
         public void IsNotNull_WhenRefTypeIsNull_ThrowsArgumentNullException()
         {
@@ -50,6 +82,11 @@ namespace UnitTests
                 () => Ensure.Any.IsNotDefault(value, ParamName),
                 () => EnsureArg.IsNotDefault(value, ParamName),
                 () => Ensure.That(value, ParamName).IsNotDefault());
+        }
+        
+        private enum Foo
+        {
+            Bar
         }
     }
 }
