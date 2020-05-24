@@ -4,7 +4,7 @@
     <TargetFrameworks>net4.5.1;netstandard1.1;netstandard2.0</TargetFrameworks>
     <Title>Ensure.That</Title>
     <PackageId>Ensure.That</PackageId>
-    <PackageTags>ensure that argument validation guard clause contracts</PackageTags>
+    <PackageTags>ensure-that ensure that argument validation guard clause contracts</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <AssemblyName>Ensure.That</AssemblyName>
   </PropertyGroup>
