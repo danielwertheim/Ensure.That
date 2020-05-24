@@ -18,6 +18,18 @@ namespace Benchmarks
 
     public static class BaseLines
     {
+        public static void NullableIntHasValue(int? value)
+        {
+            if (!value.HasValue)
+                throw new ArgumentNullException(nameof(value));
+        }
+
+        public static void StringIsNotNull(string value)
+        {
+            if (value == null)
+                throw new ArgumentNullException(nameof(value));
+        }
+
         public static void StringIsNotNullOrWhiteSpace(string value)
         {
             if (value == null)
@@ -78,6 +90,8 @@ namespace Benchmarks
     //[CategoryFilter("Things.HasItems")]
     public class Ensures
     {
+        private const string ParamName = "test";
+        private static readonly int? NullableInt = 1;
         private readonly List<string> _strings = new List<string> { "test1", "TEST2", "Test3" };
         private readonly List<int> _ints = new List<int> { 1, 2, 3 };
         private readonly List<MyThing> _things = new List<MyThing>
@@ -112,7 +126,7 @@ namespace Benchmarks
         [Benchmark]
         [BenchmarkCategory("String.IsNotNullOrWhiteSpace")]
         public void StringIsNotNullOrWhiteSpaceViaEnforcer()
-            => Ensure.String.IsNotNullOrWhiteSpace("foo", "test");
+            => Ensure.String.IsNotNullOrWhiteSpace("foo", ParamName);
 
         [Benchmark(Baseline = true)]
         [BenchmarkCategory("String.IsEqualTo")]
@@ -127,7 +141,7 @@ namespace Benchmarks
         [Benchmark]
         [BenchmarkCategory("String.IsEqualTo")]
         public void StringIsEqualToViaEnforcer()
-            => Ensure.String.IsEqualTo("foo", "foo", "test");
+            => Ensure.String.IsEqualTo("foo", "foo", ParamName);
 
         [Benchmark(Baseline = true)]
         [BenchmarkCategory("Strings.HasItems")]
@@ -142,7 +156,7 @@ namespace Benchmarks
         [Benchmark]
         [BenchmarkCategory("Strings.HasItems")]
         public void StringsHasItemsViaEnforcer()
-            => Ensure.Collection.HasItems(_strings, "test");
+            => Ensure.Collection.HasItems(_strings, ParamName);
 
         [Benchmark(Baseline = true)]
         [BenchmarkCategory("Int.Is")]
@@ -157,7 +171,7 @@ namespace Benchmarks
         [Benchmark]
         [BenchmarkCategory("Int.Is")]
         public void IntIsViaEnforcer()
-            => Ensure.Comparable.Is(42, 42, "test");
+            => Ensure.Comparable.Is(42, 42, ParamName);
 
         [Benchmark(Baseline = true)]
         [BenchmarkCategory("Int.IsGt")]
@@ -172,7 +186,7 @@ namespace Benchmarks
         [Benchmark]
         [BenchmarkCategory("Int.IsGt")]
         public void IntIsGtViaEnforcer()
-            => Ensure.Comparable.IsGt(42, 41, "test");
+            => Ensure.Comparable.IsGt(42, 41, ParamName);
 
         [Benchmark(Baseline = true)]
         [BenchmarkCategory("Ints.HasItems")]
@@ -187,7 +201,7 @@ namespace Benchmarks
         [Benchmark]
         [BenchmarkCategory("Ints.HasItems")]
         public void IntsHasItemsViaEnforcer()
-            => Ensure.Collection.HasItems(_ints, "test");
+            => Ensure.Collection.HasItems(_ints, ParamName);
 
         [Benchmark(Baseline = true)]
         [BenchmarkCategory("Any.IsNotNull")]
@@ -202,7 +216,7 @@ namespace Benchmarks
         [Benchmark]
         [BenchmarkCategory("Any.IsNotNull")]
         public void ThingIsNotNullViaEnforcer()
-            => Ensure.Any.IsNotNull(new MyThing(), "test");
+            => Ensure.Any.IsNotNull(new MyThing(), ParamName);
 
         [Benchmark(Baseline = true)]
         [BenchmarkCategory("Things.HasItems")]
@@ -217,7 +231,32 @@ namespace Benchmarks
         [Benchmark]
         [BenchmarkCategory("Things.HasItems")]
         public void ThingsHasItemsViaEnforcer()
-            => Ensure.Collection.HasItems(_things, "test");
+            => Ensure.Collection.HasItems(_things, ParamName);
+
+        [Benchmark(Baseline = true)]
+        [BenchmarkCategory("Any.int.HasValue")]
+        public void AnyHasValueWhenIntHasValueBaseLine()
+            => BaseLines.NullableIntHasValue(NullableInt);
+
+        [Benchmark]
+        [BenchmarkCategory("Any.int.HasValue")]
+        public void AnyHasValueWhenInt()
+            => Ensure.Any.HasValue(NullableInt, ParamName);
+
+        [Benchmark]
+        [BenchmarkCategory("Any.int.HasValue")]
+        public void AnyHasValueWhenIntViaNotNull()
+            => Ensure.Any.IsNotNull(NullableInt, ParamName);
+
+        [Benchmark(Baseline = true)]
+        [BenchmarkCategory("Any.string.HasValue")]
+        public void AnyHasValueWhenStringBaseLine()
+            => BaseLines.StringIsNotNull(string.Empty);
+
+        [Benchmark]
+        [BenchmarkCategory("Any.string.HasValue")]
+        public void AnyHasValueWhenString()
+            => Ensure.Any.HasValue(string.Empty, ParamName);        
 
         private class MyThing
         {
