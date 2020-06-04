@@ -108,6 +108,26 @@ namespace EnsureThat
 
         [NotNull]
         [ContractAnnotation("param:null => halt")]
+        public static object IsAssignableToType([ValidatedNotNull] object param, Type expectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+	        => Ensure.Type.IsAssignableToType(param, expectedType, paramName, optsFn);
+
+        [NotNull]
+        [ContractAnnotation("param:null => halt")]
+        public static Type IsAssignableToType([ValidatedNotNull]Type param, Type expectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+	        => Ensure.Type.IsAssignableToType(param, expectedType, paramName, optsFn);
+
+        [NotNull]
+        [ContractAnnotation("param:null => halt")]
+        public static object IsNotAssignableToType([ValidatedNotNull]object param, Type nonExpectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+	        => Ensure.Type.IsNotAssignableToType(param, nonExpectedType, paramName, optsFn);
+
+        [NotNull]
+        [ContractAnnotation("param:null => halt")]
+        public static Type IsNotAssignableToType([ValidatedNotNull]Type param, Type nonExpectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+	        => Ensure.Type.IsNotAssignableToType(param, nonExpectedType, paramName, optsFn);
+
+        [NotNull]
+        [ContractAnnotation("param:null => halt")]
         public static object IsClass([ValidatedNotNull]object param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Type.IsClass(param, paramName, optsFn);
 

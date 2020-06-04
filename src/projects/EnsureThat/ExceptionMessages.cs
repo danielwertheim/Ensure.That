@@ -40,6 +40,8 @@
 
         public static string Types_IsOfType_Failed { get; } = "The param is not of expected type. Expected: '{0}'. Got: '{1}'.";
         public static string Types_IsNotOfType_Failed { get; } = "The param was expected to not be of the type: '{0}'. But it was.";
+        public static string Types_IsAssignableToType_Failed { get; } = "The param is not assignable to the expected type. Expected: '{0}'. Got: '{1}'.";
+        public static string Types_IsNotAssignableToType_Failed { get; } = "The param was expected to not be assignable to the type: '{0}'. But it was.";
         public static string Types_IsClass_Failed_Null { get; } = "The param was expected to be a class, but was NULL.";
         public static string Types_IsClass_Failed { get; } = "The param was expected to be a class, but was type of: '{0}'.";
 

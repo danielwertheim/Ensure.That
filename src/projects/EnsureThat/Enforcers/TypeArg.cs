@@ -162,6 +162,70 @@ namespace EnsureThat.Enforcers
 
         [NotNull]
         [ContractAnnotation("param:null => halt")]
+        public T IsAssignableToType<T>([ValidatedNotNull]T param, Type expectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class
+        {
+            Ensure.Any.IsNotNull(param, paramName, optsFn);
+
+            IsAssignableToType(param.GetType(), expectedType, paramName, optsFn);
+
+            return param;
+        }
+
+        [NotNull]
+        [ContractAnnotation("param:null => halt")]
+        public Type IsAssignableToType([ValidatedNotNull]Type param, Type expectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            Ensure.Any.IsNotNull(param, paramName, optsFn);
+            Ensure.Any.IsNotNull(expectedType, nameof(expectedType));
+
+#if NETSTANDARD1_1
+	        // According to: https://devblogs.microsoft.com/dotnet/porting-to-net-core/.
+	        if (!expectedType.GetTypeInfo().IsAssignableFrom(param.GetTypeInfo()))
+#else
+            if (!expectedType.IsAssignableFrom(param))
+#endif
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Types_IsAssignableToType_Failed, expectedType.FullName, param.FullName),
+                    paramName,
+                    optsFn);
+
+            return param;
+        }
+
+        [NotNull]
+        [ContractAnnotation("param:null => halt")]
+        public T IsNotAssignableToType<T>([ValidatedNotNull]T param, Type nonExpectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class
+        {
+            Ensure.Any.IsNotNull(param, paramName, optsFn);
+
+            IsNotAssignableToType(param.GetType(), nonExpectedType, paramName, optsFn);
+
+            return param;
+        }
+
+        [NotNull]
+        [ContractAnnotation("param:null => halt")]
+        public Type IsNotAssignableToType([ValidatedNotNull]Type param, Type nonExpectedType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            Ensure.Any.IsNotNull(param, paramName, optsFn);
+            Ensure.Any.IsNotNull(nonExpectedType, nameof(nonExpectedType));
+
+#if NETSTANDARD1_1
+            // According to: https://devblogs.microsoft.com/dotnet/porting-to-net-core/.
+	        if (nonExpectedType.GetTypeInfo().IsAssignableFrom(param.GetTypeInfo()))
+#else
+            if (nonExpectedType.IsAssignableFrom(param))
+#endif
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Types_IsNotAssignableToType_Failed, nonExpectedType.FullName),
+                    paramName,
+                    optsFn);
+
+            return param;
+        }
+
+        [NotNull]
+        [ContractAnnotation("param:null => halt")]
         public T IsClass<T>([ValidatedNotNull]T param, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             if (param == null)

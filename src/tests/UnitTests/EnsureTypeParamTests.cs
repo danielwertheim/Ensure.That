@@ -10,9 +10,13 @@ namespace UnitTests
 
         private class NonBogus { }
 
+        private class AssignableToNonBogus : NonBogus { }
+
         private static readonly Type BogusType = typeof(Bogus);
 
         private static readonly Type NonBogusType = typeof(NonBogus);
+
+        private static readonly Type AssignableToNonBogusType = typeof(AssignableToNonBogus);
 
         [Fact]
         public void IsOfType_WhenNotTypeOf_ThrowsArgumentException() => AssertIsOfTypeScenario(
@@ -51,6 +55,56 @@ namespace UnitTests
             () => EnsureArg.IsNotOfType(new Bogus(), NonBogusType, ParamName),
             () => Ensure.ThatType(typeof(Bogus), ParamName).IsNotOfType(NonBogusType),
             () => Ensure.ThatTypeFor(new Bogus(), ParamName).IsNotOfType(NonBogusType));
+
+        [Fact]
+        public void IsAssignableToType_WhenNotAssignableToType_ThrowsArgumentException() => AssertIsAssignableToTypeScenario(
+            NonBogusType, BogusType,
+            () => Ensure.Type.IsAssignableToType(typeof(Bogus), NonBogusType, ParamName),
+            () => Ensure.Type.IsAssignableToType(new Bogus(), NonBogusType, ParamName),
+            () => EnsureArg.IsAssignableToType(typeof(Bogus), NonBogusType, ParamName),
+            () => EnsureArg.IsAssignableToType(new Bogus(), NonBogusType, ParamName),
+            () => Ensure.ThatType(typeof(Bogus), ParamName).IsAssignableToType(NonBogusType),
+            () => Ensure.ThatTypeFor(new Bogus(), ParamName).IsAssignableToType(NonBogusType));
+
+        [Fact]
+        public void IsAssignableToType_WhenAssignableToType_It_should_not_throw() => ShouldNotThrow(
+            () => Ensure.Type.IsAssignableToType(NonBogusType, NonBogusType, ParamName),
+            () => Ensure.Type.IsAssignableToType(new NonBogus(), NonBogusType, ParamName),
+            () => EnsureArg.IsAssignableToType(NonBogusType, NonBogusType, ParamName),
+            () => EnsureArg.IsAssignableToType(new NonBogus(), NonBogusType, ParamName),
+            () => Ensure.ThatType(typeof(NonBogus), ParamName).IsAssignableToType(NonBogusType),
+            () => Ensure.ThatTypeFor(new NonBogus(), ParamName).IsAssignableToType(NonBogusType),
+            () => Ensure.Type.IsAssignableToType(AssignableToNonBogusType, NonBogusType, ParamName),
+            () => Ensure.Type.IsAssignableToType(new AssignableToNonBogus(), NonBogusType, ParamName),
+            () => EnsureArg.IsAssignableToType(AssignableToNonBogusType, NonBogusType, ParamName),
+            () => EnsureArg.IsAssignableToType(new AssignableToNonBogus(), NonBogusType, ParamName),
+            () => Ensure.ThatType(typeof(AssignableToNonBogus), ParamName).IsAssignableToType(NonBogusType),
+            () => Ensure.ThatTypeFor(new AssignableToNonBogus(), ParamName).IsAssignableToType(NonBogusType));
+
+        [Fact]
+        public void IsNotAssignableToType_WhenAssignableToType_ThrowsArgumentException() => ShouldThrow<ArgumentException>(
+            string.Format(ExceptionMessages.Types_IsNotAssignableToType_Failed, NonBogusType),
+            () => Ensure.Type.IsNotAssignableToType(typeof(NonBogus), NonBogusType, ParamName),
+            () => Ensure.Type.IsNotAssignableToType(new NonBogus(), NonBogusType, ParamName),
+            () => EnsureArg.IsNotAssignableToType(typeof(NonBogus), NonBogusType, ParamName),
+            () => EnsureArg.IsNotAssignableToType(new NonBogus(), NonBogusType, ParamName),
+            () => Ensure.ThatType(typeof(NonBogus), ParamName).IsNotAssignableToType(NonBogusType),
+            () => Ensure.ThatTypeFor(new NonBogus(), ParamName).IsNotAssignableToType(NonBogusType),
+            () => Ensure.Type.IsNotAssignableToType(typeof(AssignableToNonBogus), NonBogusType, ParamName),
+            () => Ensure.Type.IsNotAssignableToType(new AssignableToNonBogus(), NonBogusType, ParamName),
+            () => EnsureArg.IsNotAssignableToType(typeof(AssignableToNonBogus), NonBogusType, ParamName),
+            () => EnsureArg.IsNotAssignableToType(new AssignableToNonBogus(), NonBogusType, ParamName),
+            () => Ensure.ThatType(typeof(AssignableToNonBogus), ParamName).IsNotAssignableToType(NonBogusType),
+            () => Ensure.ThatTypeFor(new AssignableToNonBogus(), ParamName).IsNotAssignableToType(NonBogusType));
+
+        [Fact]
+        public void IsNotAssignableToType_WhenNotAssignableToType_It_should_not_throw() => ShouldNotThrow(
+            () => Ensure.Type.IsNotAssignableToType(BogusType, NonBogusType, ParamName),
+            () => Ensure.Type.IsNotAssignableToType(new Bogus(), NonBogusType, ParamName),
+            () => EnsureArg.IsNotAssignableToType(BogusType, NonBogusType, ParamName),
+            () => EnsureArg.IsNotAssignableToType(new Bogus(), NonBogusType, ParamName),
+            () => Ensure.ThatType(typeof(Bogus), ParamName).IsNotAssignableToType(NonBogusType),
+            () => Ensure.ThatTypeFor(new Bogus(), ParamName).IsNotAssignableToType(NonBogusType));
 
         [Fact]
         public void IsInt_WhenNotTypeOf_ThrowsArgumentException() => AssertIsOfTypeScenario(
@@ -257,6 +311,9 @@ namespace UnitTests
 
         private static void AssertIsOfTypeScenario(Type expected, Type actual, params Action[] actions)
             => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Types_IsOfType_Failed, expected.FullName, actual.FullName), actions);
+
+        private static void AssertIsAssignableToTypeScenario(Type expected, Type actual, params Action[] actions)
+	        => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Types_IsAssignableToType_Failed, expected.FullName, actual.FullName), actions);
 
         private static void AssertIsNotClass(Type type, params Action[] actions)
             => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Types_IsClass_Failed, type.FullName), actions);

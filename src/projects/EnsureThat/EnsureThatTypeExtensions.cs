@@ -35,6 +35,12 @@ namespace EnsureThat
         public static void IsNotOfType(this in TypeParam param, Type expectedType)
             => Ensure.Type.IsNotOfType(param.Type, expectedType, param.Name, param.OptsFn);
 
+        public static void IsAssignableToType(this in TypeParam param, [NotNull] Type expectedType)
+	        => Ensure.Type.IsAssignableToType(param.Type, expectedType, param.Name, param.OptsFn);
+
+        public static void IsNotAssignableToType(this in TypeParam param, Type expectedType)
+	        => Ensure.Type.IsNotAssignableToType(param.Type, expectedType, param.Name, param.OptsFn);
+
         public static void IsClass<T>(this in Param<T> param)
             => Ensure.Type.IsClass(param.Value, param.Name, param.OptsFn);
 
