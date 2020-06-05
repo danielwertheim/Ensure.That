@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using System;
 
 namespace EnsureThat.Enforcers
 {
@@ -69,6 +70,36 @@ namespace EnsureThat.Enforcers
                     string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, max), paramName, value, optsFn);
 
             return value;
+        }
+
+        public decimal IsPositive(decimal value, ZeroSignMode zeroSignMode = ZeroSignMode.IsNeither, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            if (value > 0 || (value == 0 && (ZeroSignMode.IsPositive == zeroSignMode || ZeroSignMode.IsBoth == zeroSignMode))) return value;
+
+            throw Ensure.ExceptionFactory.ArgumentException(string.Format(ExceptionMessages.Numbers_IsPositive_Failed, value), paramName, optsFn);
+        }
+
+        public decimal IsNegative(decimal value, ZeroSignMode zeroSignMode = ZeroSignMode.IsNeither, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            if (value < 0 || (value == 0 && (ZeroSignMode.IsNegative == zeroSignMode || ZeroSignMode.IsBoth == zeroSignMode))) return value;
+
+            throw Ensure.ExceptionFactory.ArgumentException(string.Format(ExceptionMessages.Numbers_IsNegative_Failed, value), paramName, optsFn);
+        }
+
+        public decimal IsNotNegative(decimal value, ZeroSignMode zeroSignMode = ZeroSignMode.IsNeither, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            if (value > 0 || (value == 0 && ZeroSignMode.IsPositive == zeroSignMode)) return value;
+
+            throw Ensure.ExceptionFactory.ArgumentException(string.Format(ExceptionMessages.Numbers_IsNotNegative_Failed, value), paramName, optsFn);
+        }
+
+        public decimal IsApproximately(decimal value, decimal target, decimal accuracy, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            var difference = Math.Abs(value - target);
+            if (difference <= accuracy)
+                return value;
+
+            throw Ensure.ExceptionFactory.ArgumentException(string.Format(ExceptionMessages.Numbers_IsApproximately_Failed, value, accuracy, target), paramName, optsFn);
         }
     }
 }

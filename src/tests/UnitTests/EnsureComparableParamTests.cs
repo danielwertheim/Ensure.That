@@ -1,5 +1,5 @@
-using System;
 using EnsureThat;
+using System;
 using Xunit;
 
 namespace UnitTests
@@ -397,6 +397,258 @@ namespace UnitTests
                 () => Ensure.String.IsNotEqualTo(sa, Sa, StringComparison.OrdinalIgnoreCase, ParamName),
                 () => Ensure.That(sa, ParamName).IsNotEqualTo(Sa, StringComparison.OrdinalIgnoreCase));
         }
+
+        #region IsPositive, IsNegative, IsNotNegative, IsApproximately
+        [Fact]
+        public void IsPositive_Not_Zero_Should_Not_Throw()
+        {
+            ShouldNotThrow(
+                () => Ensure.Comparable.IsPositive(1, paramName: ParamName),
+                () => EnsureArg.IsPositive(1, paramName: ParamName),
+                () => Ensure.That(1, ParamName).IsPositive()
+            );
+        }
+
+        [Fact]
+        public void IsPositive_Not_Zero_Should_Throw()
+        {
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Numbers_IsPositive_Failed, -1),
+                () => Ensure.Comparable.IsPositive(-1, paramName: ParamName),
+                () => EnsureArg.IsPositive(-1, paramName: ParamName),
+                () => Ensure.That(-1, ParamName).IsPositive()
+            );
+        }
+
+        [Fact]
+        public void IsNegative_Not_Zero_Should_Not_Throw()
+        {
+            ShouldNotThrow(
+                () => Ensure.Comparable.IsNegative(-1, paramName: ParamName),
+                () => EnsureArg.IsNegative(-1, paramName: ParamName),
+                () => Ensure.That(-1, ParamName).IsNegative()
+            );
+        }
+
+        [Fact]
+        public void IsNegative_Not_Zero_Should_Throw()
+        {
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Numbers_IsNegative_Failed, 1),
+                () => Ensure.Comparable.IsNegative(1, paramName: ParamName),
+                () => EnsureArg.IsNegative(1, paramName: ParamName),
+                () => Ensure.That(1, ParamName).IsNegative()
+            );
+        }
+
+        [Fact]
+        public void IsNotNegative_Not_Zero_Should_Not_Throw()
+        {
+            ShouldNotThrow(
+                () => Ensure.Comparable.IsNotNegative(1, paramName: ParamName),
+                () => EnsureArg.IsNotNegative(1, paramName: ParamName),
+                () => Ensure.That(1, ParamName).IsNotNegative()
+            );
+        }
+
+        [Fact]
+        public void IsNotNegativee_Not_Zero_Should_Throw()
+        {
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Numbers_IsNotNegative_Failed, -1),
+                () => Ensure.Comparable.IsNotNegative(-1, paramName: ParamName),
+                () => EnsureArg.IsNotNegative(-1, paramName: ParamName),
+                () => Ensure.That(-1, ParamName).IsNotNegative()
+            );
+        }
+                       
+        [Fact]
+        public void IsPostive_Zero_IsPositive_Should_Not_Throw()
+        {
+            ShouldNotThrow(
+               () => Ensure.Comparable.IsPositive(0, ZeroSignMode.IsPositive, paramName: ParamName),
+               () => EnsureArg.IsPositive(0, ZeroSignMode.IsPositive, paramName: ParamName),
+               () => Ensure.That(0, ParamName).IsPositive(ZeroSignMode.IsPositive)
+           );
+        }
+
+        [Fact]
+        public void IsPostive_Zero_IsBoth_Should_Not_Throw()
+        {
+            ShouldNotThrow(
+               () => Ensure.Comparable.IsPositive(0, ZeroSignMode.IsBoth, paramName: ParamName),
+               () => EnsureArg.IsPositive(0, ZeroSignMode.IsBoth, paramName: ParamName),
+               () => Ensure.That(0, ParamName).IsPositive(ZeroSignMode.IsBoth)
+           );
+        }
+
+        [Fact]
+        public void IsPostive_Zero_IsNeither_Should_Throw()
+        {
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Numbers_IsPositive_Failed, 0),
+               () => Ensure.Comparable.IsPositive(0, paramName: ParamName),
+               () => EnsureArg.IsPositive(0, paramName: ParamName),
+               () => Ensure.That(0, ParamName).IsPositive()
+           );
+        }
+
+        [Fact]
+        public void IsPostive_Zero_IsNegative_Should_Throw()
+        {
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Numbers_IsPositive_Failed, 0),
+               () => Ensure.Comparable.IsPositive(0, ZeroSignMode.IsNegative, paramName: ParamName),
+               () => EnsureArg.IsPositive(0, ZeroSignMode.IsNegative, paramName: ParamName),
+               () => Ensure.That(0, ParamName).IsPositive(ZeroSignMode.IsNegative)
+           );
+        }
+        
+        [Fact]
+        public void IsNegative_Zero_IsNegative_Should_Not_Throw()
+        {
+            ShouldNotThrow(
+               () => Ensure.Comparable.IsNegative(0, ZeroSignMode.IsNegative, paramName: ParamName),
+               () => EnsureArg.IsNegative(0, ZeroSignMode.IsNegative, paramName: ParamName),
+               () => Ensure.That(0, ParamName).IsNegative(ZeroSignMode.IsNegative)
+           );
+        }
+
+        [Fact]
+        public void IsNegative_Zero_IsBoth_Should_Not_Throw()
+        {
+            ShouldNotThrow(
+               () => Ensure.Comparable.IsNegative(0, ZeroSignMode.IsBoth, paramName: ParamName),
+               () => EnsureArg.IsNegative(0, ZeroSignMode.IsBoth, paramName: ParamName),
+               () => Ensure.That(0, ParamName).IsNegative(ZeroSignMode.IsBoth)
+           );
+        }
+
+        [Fact]
+        public void IsNegative_Zero_IsNeither_Should_Throw()
+        {
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Numbers_IsNegative_Failed, 0),
+               () => Ensure.Comparable.IsNegative(0, paramName: ParamName),
+               () => EnsureArg.IsNegative(0, paramName: ParamName),
+               () => Ensure.That(0, ParamName).IsNegative()
+           );
+        }
+
+        [Fact]
+        public void IsNegative_Zero_IsPositive_Should_Throw()
+        {
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Numbers_IsNegative_Failed, 0),
+               () => Ensure.Comparable.IsNegative(0, ZeroSignMode.IsPositive, paramName: ParamName),
+               () => EnsureArg.IsNegative(0, ZeroSignMode.IsPositive, paramName: ParamName),
+               () => Ensure.That(0, ParamName).IsNegative(ZeroSignMode.IsPositive)
+           );
+        }
+        
+        [Fact]
+        public void IsNotNegative_Zero_IsPositive_Should_Not_Throw()
+        {
+            ShouldNotThrow(
+               () => Ensure.Comparable.IsNotNegative(0, ZeroSignMode.IsPositive, paramName: ParamName),
+               () => EnsureArg.IsNotNegative(0, ZeroSignMode.IsPositive, paramName: ParamName),
+               () => Ensure.That(0, ParamName).IsNotNegative(ZeroSignMode.IsPositive)
+           );
+        }
+
+        [Fact]
+        public void IsNotNegative_Zero_IsBoth_Should_Throw()
+        {
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Numbers_IsNotNegative_Failed, 0),
+               () => Ensure.Comparable.IsNotNegative(0, ZeroSignMode.IsBoth, paramName: ParamName),
+               () => EnsureArg.IsNotNegative(0, ZeroSignMode.IsBoth, paramName: ParamName),
+               () => Ensure.That(0, ParamName).IsNotNegative(ZeroSignMode.IsBoth)
+           );
+        }
+
+        [Fact]
+        public void IsNotNegative_Zero_IsNeither_Should_Throw()
+        {
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Numbers_IsNotNegative_Failed, 0),
+               () => Ensure.Comparable.IsNotNegative(0, paramName: ParamName),
+               () => EnsureArg.IsNotNegative(0, paramName: ParamName),
+               () => Ensure.That(0, ParamName).IsNotNegative()
+           );
+        }
+
+        [Fact]
+        public void IsNotNegative_Zero_IsNegative_Should_Throw()
+        {
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Numbers_IsNotNegative_Failed, 0),
+               () => Ensure.Comparable.IsNotNegative(0, ZeroSignMode.IsNegative, paramName: ParamName),
+               () => EnsureArg.IsNotNegative(0, ZeroSignMode.IsNegative, paramName: ParamName),
+               () => Ensure.That(0, ParamName).IsNotNegative(ZeroSignMode.IsNegative)
+           );
+        }
+        
+        [Fact]
+        public void IsApproximately_Exact_Should_Not_Throw()
+        {
+            ShouldNotThrow(
+                () => Ensure.Comparable.IsApproximately(5, 5, 2, paramName: ParamName),
+                () => EnsureArg.IsApproximately(5, 5, 2, paramName: ParamName),
+                () => Ensure.That(5, ParamName).IsApproximately(5, 2)
+                );
+        }
+
+        [Fact]
+        public void IsApproximately_Lower_Limit_Should_Not_Throw()
+        {
+            ShouldNotThrow(
+                () => Ensure.Comparable.IsApproximately(3, 5, 2, paramName: ParamName),
+                () => EnsureArg.IsApproximately(3, 5, 2, paramName: ParamName),
+                () => Ensure.That(3, ParamName).IsApproximately(5, 2)
+                );
+        }
+
+        [Fact]
+        public void IsApproximately_Lower_Should_Not_Throw()
+        {
+            ShouldNotThrow(
+                () => Ensure.Comparable.IsApproximately(4, 5, 2, paramName: ParamName),
+                () => EnsureArg.IsApproximately(4, 5, 2, paramName: ParamName),
+                () => Ensure.That(4, ParamName).IsApproximately(5, 2)
+                );
+        }
+
+        [Fact]
+        public void IsApproximately_Upper_Should_Not_Throw()
+        {
+            ShouldNotThrow(
+                () => Ensure.Comparable.IsApproximately(6, 5, 2, paramName: ParamName),
+                () => EnsureArg.IsApproximately(6, 5, 2, paramName: ParamName),
+                () => Ensure.That(6, ParamName).IsApproximately(5, 2)
+                );
+        }
+
+        [Fact]
+        public void IsApproximately_Upper_Limit_Should_Not_Throw()
+        {
+            ShouldNotThrow(
+                () => Ensure.Comparable.IsApproximately(7, 5, 2, paramName: ParamName),
+                () => EnsureArg.IsApproximately(7, 5, 2, paramName: ParamName),
+                () => Ensure.That(7, ParamName).IsApproximately(5, 2)
+                );
+        }
+
+        [Fact]
+        public void IsApproximately_Too_High_Should_Throw()
+        {
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Numbers_IsApproximately_Failed, 10, 2, 5),
+                () => Ensure.Comparable.IsApproximately(10, 5, 2, paramName: ParamName),
+                () => EnsureArg.IsApproximately(10, 5, 2, paramName: ParamName),
+                () => Ensure.That(10, ParamName).IsApproximately(5, 2)
+                );
+        }
+
+        [Fact]
+        public void IsApproximately_Too_Lower_Should_Throw()
+        {
+            ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Numbers_IsApproximately_Failed, 1, 2, 5),
+                () => Ensure.Comparable.IsApproximately(1, 5, 2, paramName: ParamName),
+                () => EnsureArg.IsApproximately(1, 5, 2, paramName: ParamName),
+                () => Ensure.That(1, ParamName).IsApproximately(5, 2)
+                );
+        }
+        #endregion
 
         private CompareParamTestSpec When_value_is_gt_than_limit() => new CompareParamTestSpec
         {

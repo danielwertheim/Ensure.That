@@ -24,5 +24,17 @@ namespace EnsureThat
 
         public static int IsInRange(int value, int min, int max, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Comparable.IsInRange(value, min, max, paramName, optsFn);
+
+        public static int IsPositive(int value, ZeroSignMode zeroSignMode = ZeroSignMode.IsNeither, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+             => Ensure.Comparable.IsPositive(value, zeroSignMode, paramName, optsFn);
+
+        public static int IsNegative(int value, ZeroSignMode zeroSignMode = ZeroSignMode.IsNeither, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.Comparable.IsNegative(value, zeroSignMode, paramName, optsFn);
+
+        public static int IsNotNegative(int value, ZeroSignMode zeroSignMode = ZeroSignMode.IsNeither, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.Comparable.IsNotNegative(value, zeroSignMode, paramName, optsFn);
+
+        public static int IsApproximately(int value, int target, int accuracy, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.Comparable.IsApproximately(value,target, accuracy, paramName, optsFn);
     }
 }
