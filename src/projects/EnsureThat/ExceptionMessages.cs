@@ -37,7 +37,7 @@
         public static string Strings_IsNotEmpty_Failed { get; } = "Empty String is not allowed.";
         public static string Strings_IsGuid_Failed { get; } = "Value '{0}' is not a valid GUID.";
         public static string Strings_StartsWith_Failed { get; } = "Value '{0}' is expected to start with '{1}' but does not.";
-
+        public static string Strings_IsAllLettersOrDigits_Failed { get; } = "Expected '{0} to contain only letters or digits but does not.";
         public static string Types_IsOfType_Failed { get; } = "The param is not of expected type. Expected: '{0}'. Got: '{1}'.";
         public static string Types_IsNotOfType_Failed { get; } = "The param was expected to not be of the type: '{0}'. But it was.";
         public static string Types_IsAssignableToType_Failed { get; } = "The param is not assignable to the expected type. Expected: '{0}'. Got: '{1}'.";
