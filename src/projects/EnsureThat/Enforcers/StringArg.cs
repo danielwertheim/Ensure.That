@@ -271,6 +271,8 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public string IsAllLettersOrDigits([ValidatedNotNull] string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             Ensure.Any.IsNotNull(value, paramName, optsFn);
