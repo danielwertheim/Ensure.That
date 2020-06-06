@@ -80,5 +80,8 @@ namespace EnsureThat
 
         public static void IsInRange(this in StringParam param, string min, string max, StringComparison comparison)
             => Ensure.String.IsInRange(param.Value, min, max, comparison, param.Name, param.OptsFn);
+
+        public static void IsAllLettersOrDigits(this in StringParam param)
+            => Ensure.String.IsAllLettersOrDigits(param.Value, param.Name, param.OptsFn);
     }
 }
