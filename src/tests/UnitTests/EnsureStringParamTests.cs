@@ -499,5 +499,50 @@ namespace UnitTests
                 () => EnsureArg.StartsWith(value, startPart, ParamName),
                 () => Ensure.That(value, ParamName).StartsWith(startPart));
         }
+
+        [Fact]
+        public void IsAllLettersOrDigits_WhenStringIsAllLettersAndDigits_It_should_not_throw()
+        {
+            const string value = "aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789";
+
+            ShouldNotThrow(
+                () => Ensure.String.IsAllLettersOrDigits(value, ParamName),
+                () => EnsureArg.IsAllLettersOrDigits(value, ParamName),
+                () => Ensure.That(value, ParamName).IsAllLettersOrDigits());
+        }
+
+        [Fact]
+        public void IsAllLettersOrDigits_WhenStringIsAllDigits_It_should_not_throw()
+        {
+            const string value = "0123456789";
+
+            ShouldNotThrow(
+                () => Ensure.String.IsAllLettersOrDigits(value, ParamName),
+                () => EnsureArg.IsAllLettersOrDigits(value, ParamName),
+                () => Ensure.That(value, ParamName).IsAllLettersOrDigits());
+        }
+
+        [Fact]
+        public void IsAllLettersOrDigits_WhenStringIsAllLetters_It_should_not_throw()
+        {
+            const string value = "aBcDeFgHiJkLmNoPqRsTuVwXyZ";
+
+            ShouldNotThrow(
+                () => Ensure.String.IsAllLettersOrDigits(value, ParamName),
+                () => EnsureArg.IsAllLettersOrDigits(value, ParamName),
+                () => Ensure.That(value, ParamName).IsAllLettersOrDigits());
+        }
+
+        [Fact]
+        public void IsAllLettersOrDigits_WhenStringDoesNotHaveLettersOrDigits_It_should_throw()
+        {
+            const string value = "<:)-+-<";
+
+            ShouldThrow<ArgumentException>(
+                string.Format(ExceptionMessages.Strings_IsAllLettersOrDigits_Failed, value),
+                () => Ensure.String.IsAllLettersOrDigits(value, ParamName),
+                () => EnsureArg.IsAllLettersOrDigits(value, ParamName),
+                () => Ensure.That(value, ParamName).IsAllLettersOrDigits());
+        }
     }
 }
