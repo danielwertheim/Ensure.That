@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 using EnsureThat.Annotations;
 using JetBrains.Annotations;
@@ -266,6 +267,22 @@ namespace EnsureThat.Enforcers
             if (StringIsGt(value, max, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
                     string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, max), paramName, value, optsFn);
+
+            return value;
+        }
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public string IsAllLettersOrDigits([ValidatedNotNull] string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            Ensure.Any.IsNotNull(value, paramName, optsFn);
+
+            for (var i = 0; i < value.Length; i++)
+                if (!char.IsLetterOrDigit(value[i]))
+                    throw Ensure.ExceptionFactory.ArgumentException(
+                        string.Format(ExceptionMessages.Strings_IsAllLettersOrDigits_Failed, value),
+                        paramName,
+                        optsFn);
 
             return value;
         }

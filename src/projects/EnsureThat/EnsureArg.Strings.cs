@@ -84,5 +84,10 @@ namespace EnsureThat
         [ContractAnnotation("value:null => halt")]
         public static string StartsWith([ValidatedNotNull] string value, [NotNull] string expectedStartsWith, StringComparison comparisonType, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.StartsWith(value, expectedStartsWith, comparisonType, paramName, optsFn);
+
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public static string IsAllLettersOrDigits([ValidatedNotNull] string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.String.IsAllLettersOrDigits(value, paramName, optsFn);
     }
 }
