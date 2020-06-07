@@ -277,11 +277,12 @@ namespace EnsureThat.Enforcers
         {
             Ensure.Any.IsNotNull(value, paramName, optsFn);
 
-            if (!value.ToCharArray().All(char.IsLetterOrDigit))
-                throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Strings_IsAllLettersOrDigits_Failed, value),
-                    paramName,
-                    optsFn);
+            for (var i = 0; i < value.Length; i++)
+                if (!char.IsLetterOrDigit(value[i]))
+                    throw Ensure.ExceptionFactory.ArgumentException(
+                        string.Format(ExceptionMessages.Strings_IsAllLettersOrDigits_Failed, value),
+                        paramName,
+                        optsFn);
 
             return value;
         }
