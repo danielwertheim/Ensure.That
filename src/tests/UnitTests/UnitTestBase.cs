@@ -14,7 +14,7 @@ namespace UnitTests
                 expectedMessage = string.Format(expectedMessage, formattingArgs);
 
             ex.ParamName.Should().Be(ParamName);
-#if NETCOREAPP3_0
+#if NETCOREAPP3_1
             var x = $"{expectedMessage} (Parameter 'test')";
 #else
             var x = $"{expectedMessage}{Environment.NewLine}Parameter name: test";
