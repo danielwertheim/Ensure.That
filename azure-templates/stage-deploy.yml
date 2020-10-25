@@ -18,6 +18,6 @@ stages:
             inputs:
               command: push
               nugetFeedType: external
-              publishFeedCredentials: nuget_push_new_versions
+              publishFeedCredentials: nuget_push
               verbosityPush: Normal
               packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg;!$(Pipeline.Workspace)/**/*.symbols.nupkg'
