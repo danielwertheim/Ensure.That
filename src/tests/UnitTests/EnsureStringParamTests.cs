@@ -465,14 +465,20 @@ namespace UnitTests
         }
 
         [Fact]
-        public void IsGuid_When_valid_Guid_returns_Guid()
+        public void IsGuid_When_valid_Guid_It_should_not_throw_and_should_return_Guid()
         {
-            var value = Guid.NewGuid().ToString();
+            var value = Guid.NewGuid();
+            var valueAsString = value.ToString();
 
             ShouldNotThrow(
-                () => Ensure.String.IsGuid(value, ParamName),
-                () => EnsureArg.IsGuid(value, ParamName),
-                () => Ensure.That(value, ParamName).IsGuid());
+                () => Ensure.String.IsGuid(valueAsString, ParamName),
+                () => EnsureArg.IsGuid(valueAsString, ParamName),
+                () => Ensure.That(valueAsString, ParamName).IsGuid());
+            
+            ShouldReturn(
+                value,
+                () => Ensure.String.IsGuid(valueAsString),
+                () => EnsureArg.IsGuid(valueAsString));
         }
 
         [Fact]

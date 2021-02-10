@@ -72,7 +72,7 @@ namespace EnsureThat
 
         [NotNull]
         [ContractAnnotation("value:null => halt")]
-        public static string IsGuid([ValidatedNotNull] string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public static Guid IsGuid([ValidatedNotNull] string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.IsGuid(value, paramName, optsFn);
 
         [NotNull]

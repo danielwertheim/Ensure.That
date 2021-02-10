@@ -46,5 +46,11 @@ namespace UnitTests
                 ex.Should().NotBeOfType<TEx>();
             }
         }
+
+        protected static void ShouldReturn<T>(T expectedResult, params Func<T>[] actions)
+        {
+            foreach (var action in actions) 
+                action().Should().Be(expectedResult);
+        }
     }
 }
