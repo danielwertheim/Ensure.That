@@ -181,15 +181,15 @@ namespace EnsureThat.Enforcers
 
         [NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string IsGuid([ValidatedNotNull]string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public Guid IsGuid([ValidatedNotNull]string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            if (!Guid.TryParse(value, out _))
+            if (!Guid.TryParse(value, out var parsed))
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Strings_IsGuid_Failed, value),
                     paramName,
                     optsFn);
 
-            return value;
+            return parsed;
         }
 
         [NotNull]
