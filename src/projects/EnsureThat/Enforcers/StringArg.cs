@@ -68,6 +68,21 @@ namespace EnsureThat.Enforcers
 
             return value;
         }
+        
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
+        public string HasLength([ValidatedNotNull]string value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        {
+            Ensure.Any.IsNotNull(value, paramName, optsFn);
+
+            if (value.Length != expected)
+                throw Ensure.ExceptionFactory.ArgumentException(
+                    string.Format(ExceptionMessages.Strings_SizeIs_Failed, expected, value.Length),
+                    paramName,
+                    optsFn);
+
+            return value;
+        }
 
         [NotNull]
         [ContractAnnotation("value:null => halt")]
@@ -110,18 +125,9 @@ namespace EnsureThat.Enforcers
 
         [NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string SizeIs([ValidatedNotNull]string value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
-        {
-            Ensure.Any.IsNotNull(value, paramName, optsFn);
-
-            if (value.Length != expected)
-                throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Strings_SizeIs_Failed, expected, value.Length),
-                    paramName,
-                    optsFn);
-
-            return value;
-        }
+        [Obsolete("Use 'HasLength' instead. This will be removed in an upcoming version.")]
+        public string SizeIs([ValidatedNotNull] string value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => HasLength(value, expected, paramName, optsFn);
 
         public string Is(string value, string expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => IsEqualTo(value, expected, paramName, optsFn);

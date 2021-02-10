@@ -20,6 +20,9 @@ namespace EnsureThat
 
         public static void IsNotEmpty(this in StringParam param)
             => Ensure.String.IsNotEmpty(param.Value, param.Name, param.OptsFn);
+        
+        public static void HasLength(this in StringParam param, int expected)
+            => Ensure.String.HasLength(param.Value, expected, param.Name, param.OptsFn);
 
         public static void HasLengthBetween(this in StringParam param, int minLength, int maxLength)
             => Ensure.String.HasLengthBetween(param.Value, minLength, maxLength, param.Name, param.OptsFn);
@@ -30,6 +33,7 @@ namespace EnsureThat
         public static void Matches(this in StringParam param, [NotNull] Regex match)
             => Ensure.String.Matches(param.Value, match, param.Name, param.OptsFn);
 
+        [Obsolete("Use 'HasLength' instead. This will be removed in an upcoming version.")]
         public static void SizeIs(this in StringParam param, int expected)
             => Ensure.String.SizeIs(param.Value, expected, param.Name, param.OptsFn);
 
