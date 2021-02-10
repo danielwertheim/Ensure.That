@@ -2,6 +2,7 @@ using System;
 using System.Text.RegularExpressions;
 using EnsureThat;
 using Xunit;
+#pragma warning disable 618
 
 namespace UnitTests
 {
@@ -175,6 +176,41 @@ namespace UnitTests
                 () => Ensure.String.IsNotEmpty(value, ParamName),
                 () => EnsureArg.IsNotEmpty(value, ParamName),
                 () => Ensure.That(value, ParamName).IsNotEmpty());
+        }
+        
+        [Fact]
+        public void HasLength_When_null_It_throws_ArgumentNullException()
+        {
+            string value = null;
+            var expected = 1;
+
+            AssertIsNotNull(
+                () => Ensure.String.HasLength(value, expected, ParamName),
+                () => EnsureArg.HasLength(value, expected, ParamName),
+                () => Ensure.That(value, ParamName).HasLength(expected));
+        }
+
+        [Fact]
+        public void HasLength_When_non_matching_length_of_string_It_throws_ArgumentException()
+        {
+            var value = "Some string";
+            var expected = value.Length + 1;
+
+            ShouldThrow<ArgumentException>(
+                string.Format(ExceptionMessages.Strings_SizeIs_Failed, expected, value.Length),
+                () => Ensure.String.HasLength(value, expected, ParamName),
+                () => EnsureArg.HasLength(value, expected, ParamName),
+                () => Ensure.That(value, ParamName).HasLength(expected));
+        }
+
+        [Fact]
+        public void HasLength_When_matching_constraint_It_should_not_throw()
+        {
+            var value = "Some string";
+
+            ShouldNotThrow(
+                () => Ensure.String.HasLength(value, value.Length, ParamName),
+                () => EnsureArg.HasLength(value, value.Length, ParamName));
         }
 
         [Fact]

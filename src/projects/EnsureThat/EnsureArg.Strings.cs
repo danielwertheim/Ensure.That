@@ -30,6 +30,11 @@ namespace EnsureThat
 
         [NotNull]
         [ContractAnnotation("value:null => halt")]
+        public static string HasLength([ValidatedNotNull] string value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+            => Ensure.String.HasLength(value, expected, paramName, optsFn);
+        
+        [NotNull]
+        [ContractAnnotation("value:null => halt")]
         public static string HasLengthBetween([ValidatedNotNull] string value, int minLength, int maxLength, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.HasLengthBetween(value, minLength, maxLength, paramName, optsFn);
 
@@ -43,6 +48,7 @@ namespace EnsureThat
 
         [NotNull]
         [ContractAnnotation("value:null => halt")]
+        [Obsolete("Use 'HasLength' instead. This will be removed in an upcoming version.")]
         public static string SizeIs([ValidatedNotNull] string value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.String.SizeIs(value, expected, paramName, optsFn);
 
