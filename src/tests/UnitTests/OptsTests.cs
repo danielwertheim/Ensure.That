@@ -10,6 +10,44 @@ namespace UnitTests
 {
     public class OptsTests
     {
+        public class WithCustomExceptionFactoryTests : UnitTestBase
+        {
+            [Fact]
+            public void ThrowsTheCustomExceptionFromTheFactory()
+            {
+                object value = null;
+                OptsFn options = o => o.WithExceptionFactory((_, __) => new KeyNotFoundException());
+
+                var actions = new Action[]
+                {
+                    () => Ensure.Any.IsNotNull(value, ParamName, options),
+                    () => EnsureArg.IsNotNull(value, ParamName, options),
+                    () => Ensure.That(value, ParamName, options).IsNotNull()
+                }.ToList();
+
+                actions.ForEach(a => a.Should().Throw<KeyNotFoundException>());
+            }
+
+            [Fact]
+            public void WhenWithMessageAndCustomExceptionAreSpecified_ThrowsTheCustomExceptionFromTheFactory()
+            {
+                object value = null;
+                OptsFn options = o => o
+                    .WithMessage("Foo bar")
+                    .WithException(new KeyNotFoundException())
+                    .WithExceptionFactory((_, __) => new InvalidTimeZoneException());
+
+                var actions = new Action[]
+                {
+                    () => Ensure.Any.IsNotNull(value, ParamName, options),
+                    () => EnsureArg.IsNotNull(value, ParamName, options),
+                    () => Ensure.That(value, ParamName,options).IsNotNull()
+                }.ToList();
+
+                actions.ForEach(a => a.Should().Throw<InvalidTimeZoneException>().And.Message.Should().NotContain("Foo Bar"));
+            }
+        }
+
         public class WithExceptionTests : UnitTestBase
         {
             [Fact]
