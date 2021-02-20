@@ -7,7 +7,10 @@ namespace EnsureThat
 {
     public static class Ensure
     {
-        internal static readonly ExceptionFactory ExceptionFactory = new ExceptionFactory();
+        /// <summary>
+        /// Gets or Sets the Exception factory to use.
+        /// </summary>
+        public static IExceptionFactory ExceptionFactory { get; set; } = new ExceptionFactory();
 
         /// <summary>
         /// Ensures for objects.
@@ -76,7 +79,7 @@ namespace EnsureThat
         /// <param name="optsFn"></param>
         /// <returns></returns>
         [Pure]
-        public static Param<T> That<T>([NoEnumeration]T value, string name = null, OptsFn optsFn = null)
+        public static Param<T> That<T>([NoEnumeration] T value, string name = null, OptsFn optsFn = null)
             => new Param<T>(name, value, optsFn);
 
         /// <summary>
@@ -90,7 +93,7 @@ namespace EnsureThat
         /// <param name="optsFn"></param>
         /// <returns></returns>
         [Pure]
-        public static StringParam That([NoEnumeration]string value, string name = null, OptsFn optsFn = null)
+        public static StringParam That([NoEnumeration] string value, string name = null, OptsFn optsFn = null)
             => new StringParam(name, value, optsFn);
 
         /// <summary>

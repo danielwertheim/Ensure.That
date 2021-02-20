@@ -3,11 +3,11 @@ using JetBrains.Annotations;
 
 namespace EnsureThat.Internals
 {
-    internal sealed class ExceptionFactory
+    internal sealed class ExceptionFactory : IExceptionFactory
     {
         [NotNull]
         [Pure]
-        internal Exception ArgumentException([NotNull] string defaultMessage, string paramName, OptsFn optsFn = null)
+        public Exception ArgumentException(string defaultMessage, string paramName, OptsFn optsFn = null)
         {
             if (optsFn != null)
             {
@@ -25,11 +25,14 @@ namespace EnsureThat.Internals
 
         [NotNull]
         [Pure]
-        internal Exception ArgumentNullException([NotNull] string defaultMessage, string paramName, OptsFn optsFn = null)
+        public Exception ArgumentNullException(string defaultMessage, string paramName, OptsFn optsFn = null)
         {
             if (optsFn != null)
             {
                 var opts = optsFn(new EnsureOptions());
+
+                if (opts.CustomExceptionFactory != null)
+                    return opts.CustomExceptionFactory(defaultMessage, paramName);
 
                 if (opts.CustomException != null)
                     return opts.CustomException;
@@ -43,7 +46,7 @@ namespace EnsureThat.Internals
 
         [NotNull]
         [Pure]
-        internal Exception ArgumentOutOfRangeException<TValue>([NotNull] string defaultMessage, string paramName, TValue value, OptsFn optsFn = null)
+        public Exception ArgumentOutOfRangeException<TValue>(string defaultMessage, string paramName, TValue value, OptsFn optsFn = null)
         {
             if (optsFn != null)
             {
