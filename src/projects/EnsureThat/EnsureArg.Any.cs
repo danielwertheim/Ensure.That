@@ -20,12 +20,26 @@ namespace EnsureThat
         /// <remarks>If you know you are dealing with e.g. a struct, the <see cref="IsNotNull{T}(T?, string, OptsFn)"/> overload is more performant.</remarks>
         [NotNull]
         [ContractAnnotation("value:null => halt")]
-        public static T HasValue<T>([NoEnumeration, ValidatedNotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+#if NETSTANDARD2_1
+        [return: System.Diagnostics.CodeAnalysis.NotNull]
+#endif
+        public static T HasValue<T>(
+#if NETSTANDARD2_1
+            [System.Diagnostics.CodeAnalysis.NotNull]
+#endif
+            [NoEnumeration, ValidatedNotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Any.HasValue(value, paramName, optsFn);
         
         [NotNull]
         [ContractAnnotation("value:null => halt")]
-        public static T IsNotNull<T>([NoEnumeration, ValidatedNotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class
+#if NETSTANDARD2_1
+        [return: System.Diagnostics.CodeAnalysis.NotNull]
+#endif
+        public static T IsNotNull<T>(
+#if NETSTANDARD2_1
+            [System.Diagnostics.CodeAnalysis.NotNull]
+#endif
+            [NoEnumeration, ValidatedNotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class
             => Ensure.Any.IsNotNull(value, paramName, optsFn);
     }
 }
