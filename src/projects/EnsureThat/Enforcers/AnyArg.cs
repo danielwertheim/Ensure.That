@@ -1,6 +1,8 @@
-using System;
+﻿using System;
 using EnsureThat.Annotations;
 using JetBrains.Annotations;
+
+using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
 
 namespace EnsureThat.Enforcers
 {
@@ -18,9 +20,9 @@ namespace EnsureThat.Enforcers
         /// <param name="optsFn"></param>
         /// <returns></returns>
         /// <remarks>If you know you are dealing with e.g. a struct, the <see cref="IsNotNull{T}(T?, string, OptsFn)"/> overload is more performant.</remarks>
-        [NotNull]
+        [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public T HasValue<T>([NoEnumeration, ValidatedNotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public T HasValue<T>([NoEnumeration, ValidatedNotNull, NotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
             // ReSharper disable once HeapView.BoxingAllocation
             if (value == null)
@@ -29,9 +31,9 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        [NotNull]
+        [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public T IsNotNull<T>([NoEnumeration, ValidatedNotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class
+        public T IsNotNull<T>([NoEnumeration, ValidatedNotNull, NotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class
         {
             if (value == null)
                 throw Ensure.ExceptionFactory.ArgumentNullException(ExceptionMessages.Common_IsNotNull_Failed, paramName, optsFn);
@@ -39,9 +41,9 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        [NotNull]
+        [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public T? IsNotNull<T>([ValidatedNotNull] T? value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : struct
+        public T? IsNotNull<T>([ValidatedNotNull, NotNull] T? value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : struct
         {
             if (value == null)
                 throw Ensure.ExceptionFactory.ArgumentNullException(ExceptionMessages.Common_IsNotNull_Failed, paramName, optsFn);

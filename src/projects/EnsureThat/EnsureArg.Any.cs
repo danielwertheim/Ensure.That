@@ -2,6 +2,8 @@
 using EnsureThat.Annotations;
 using JetBrains.Annotations;
 
+using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
+
 namespace EnsureThat
 {
     public static partial class EnsureArg
@@ -18,28 +20,14 @@ namespace EnsureThat
         /// <param name="optsFn"></param>
         /// <returns></returns>
         /// <remarks>If you know you are dealing with e.g. a struct, the <see cref="IsNotNull{T}(T?, string, OptsFn)"/> overload is more performant.</remarks>
-        [NotNull]
+        [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-#if NETSTANDARD2_1
-        [return: System.Diagnostics.CodeAnalysis.NotNull]
-#endif
-        public static T HasValue<T>(
-#if NETSTANDARD2_1
-            [System.Diagnostics.CodeAnalysis.NotNull]
-#endif
-            [NoEnumeration, ValidatedNotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public static T HasValue<T>([NoEnumeration, ValidatedNotNull, NotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
             => Ensure.Any.HasValue(value, paramName, optsFn);
         
-        [NotNull]
+        [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-#if NETSTANDARD2_1
-        [return: System.Diagnostics.CodeAnalysis.NotNull]
-#endif
-        public static T IsNotNull<T>(
-#if NETSTANDARD2_1
-            [System.Diagnostics.CodeAnalysis.NotNull]
-#endif
-            [NoEnumeration, ValidatedNotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class
+        public static T IsNotNull<T>([NoEnumeration, ValidatedNotNull, NotNull] T value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null) where T : class
             => Ensure.Any.IsNotNull(value, paramName, optsFn);
     }
 }

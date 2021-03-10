@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using EnsureThat.Enforcers;
 using EnsureThat.Internals;
 using JetBrains.Annotations;
