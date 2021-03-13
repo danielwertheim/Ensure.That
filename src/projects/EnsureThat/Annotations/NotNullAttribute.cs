@@ -5,6 +5,7 @@
 // // --------------------------------------------------------------------------------------------------------------------
 
 #if !NETSTANDARD2_1
+// ReSharper disable once CheckNamespace
 namespace System.Diagnostics.CodeAnalysis
 {
     /// <summary>
