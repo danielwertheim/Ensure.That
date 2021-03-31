@@ -14,7 +14,7 @@ namespace UnitTests
                 expectedMessage = string.Format(expectedMessage, formattingArgs);
 
             ex.ParamName.Should().Be(ParamName);
-#if NETCOREAPP3_1
+#if NETCOREAPP3_1 || NET5_0
             var x = $"{expectedMessage} (Parameter 'test')";
 #else
             var x = $"{expectedMessage}{Environment.NewLine}Parameter name: test";
@@ -45,6 +45,12 @@ namespace UnitTests
                 var ex = action.Should().Throw<ArgumentException>().Which;
                 ex.Should().NotBeOfType<TEx>();
             }
+        }
+
+        protected static void ShouldReturn<T>(T expectedResult, params Func<T>[] actions)
+        {
+            foreach (var action in actions) 
+                action().Should().Be(expectedResult);
         }
     }
 }

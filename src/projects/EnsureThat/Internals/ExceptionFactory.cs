@@ -1,13 +1,15 @@
 ﻿using System;
 using JetBrains.Annotations;
 
+using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
+
 namespace EnsureThat.Internals
 {
-    internal sealed class ExceptionFactory
+    internal sealed class ExceptionFactory : IExceptionFactory
     {
-        [NotNull]
+        [return: NotNull]
         [Pure]
-        internal Exception ArgumentException([NotNull] string defaultMessage, string paramName, OptsFn optsFn = null)
+        public Exception ArgumentException(string defaultMessage, string paramName, OptsFn optsFn = null)
         {
             if (optsFn != null)
             {
@@ -23,13 +25,16 @@ namespace EnsureThat.Internals
             return new ArgumentException(defaultMessage, paramName);
         }
 
-        [NotNull]
+        [return: NotNull]
         [Pure]
-        internal Exception ArgumentNullException([NotNull] string defaultMessage, string paramName, OptsFn optsFn = null)
+        public Exception ArgumentNullException(string defaultMessage, string paramName, OptsFn optsFn = null)
         {
             if (optsFn != null)
             {
                 var opts = optsFn(new EnsureOptions());
+
+                if (opts.CustomExceptionFactory != null)
+                    return opts.CustomExceptionFactory(defaultMessage, paramName);
 
                 if (opts.CustomException != null)
                     return opts.CustomException;
@@ -41,9 +46,9 @@ namespace EnsureThat.Internals
             return new ArgumentNullException(paramName, defaultMessage);
         }
 
-        [NotNull]
+        [return: NotNull]
         [Pure]
-        internal Exception ArgumentOutOfRangeException<TValue>([NotNull] string defaultMessage, string paramName, TValue value, OptsFn optsFn = null)
+        public Exception ArgumentOutOfRangeException<TValue>(string defaultMessage, string paramName, TValue value, OptsFn optsFn = null)
         {
             if (optsFn != null)
             {
