@@ -1,11 +1,13 @@
 ﻿using System;
 using JetBrains.Annotations;
 
+using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
+
 namespace EnsureThat.Internals
 {
     internal sealed class ExceptionFactory : IExceptionFactory
     {
-        [NotNull]
+        [return: NotNull]
         [Pure]
         public Exception ArgumentException(string defaultMessage, string paramName, OptsFn optsFn = null)
         {
@@ -23,7 +25,7 @@ namespace EnsureThat.Internals
             return new ArgumentException(defaultMessage, paramName);
         }
 
-        [NotNull]
+        [return: NotNull]
         [Pure]
         public Exception ArgumentNullException(string defaultMessage, string paramName, OptsFn optsFn = null)
         {
@@ -44,7 +46,7 @@ namespace EnsureThat.Internals
             return new ArgumentNullException(paramName, defaultMessage);
         }
 
-        [NotNull]
+        [return: NotNull]
         [Pure]
         public Exception ArgumentOutOfRangeException<TValue>(string defaultMessage, string paramName, TValue value, OptsFn optsFn = null)
         {

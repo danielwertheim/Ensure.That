@@ -5,6 +5,8 @@ using System.Linq;
 using EnsureThat.Annotations;
 using JetBrains.Annotations;
 
+using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
+
 namespace EnsureThat.Enforcers
 {
     /// <summary>
@@ -14,7 +16,7 @@ namespace EnsureThat.Enforcers
     [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
     public sealed class EnumerableArg
     {
-        [NotNull]
+        [return: NotNull]
         [ContractAnnotation("value:null => halt")]
         public IEnumerable<T> HasItems<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
@@ -29,7 +31,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        [NotNull]
+        [return: NotNull]
         [ContractAnnotation("value:null => halt")]
         public IEnumerable<T> SizeIs<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
@@ -46,7 +48,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        [NotNull]
+        [return: NotNull]
         [ContractAnnotation("value:null => halt")]
         public IEnumerable<T> SizeIs<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, long expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
@@ -69,7 +71,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        [NotNull]
+        [return: NotNull]
         [ContractAnnotation("value:null => halt")]
         public IEnumerable<T> HasAny<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, Func<T, bool> predicate, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
