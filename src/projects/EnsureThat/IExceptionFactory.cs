@@ -1,11 +1,17 @@
 ﻿using System;
 using JetBrains.Annotations;
-
 using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
 
-namespace EnsureThat.Internals
+namespace EnsureThat
 {
-    internal sealed class ExceptionFactory : IExceptionFactory
+    public interface IExceptionFactory
+    {
+        Exception ArgumentException([NotNull] string defaultMessage, string paramName, OptsFn optsFn = null);
+        Exception ArgumentNullException([NotNull] string defaultMessage, string paramName, OptsFn optsFn = null);
+        Exception ArgumentOutOfRangeException<TValue>([NotNull] string defaultMessage, string paramName, TValue value, OptsFn optsFn = null);
+    }
+
+    public sealed class ExceptionFactory : IExceptionFactory
     {
         [return: NotNull]
         [Pure]
@@ -14,6 +20,9 @@ namespace EnsureThat.Internals
             if (optsFn != null)
             {
                 var opts = optsFn(new EnsureOptions());
+
+                if (opts.CustomExceptionFactory != null)
+                    return opts.CustomExceptionFactory(defaultMessage, paramName);
 
                 if (opts.CustomException != null)
                     return opts.CustomException;
@@ -53,6 +62,9 @@ namespace EnsureThat.Internals
             if (optsFn != null)
             {
                 var opts = optsFn(new EnsureOptions());
+
+                if (opts.CustomExceptionFactory != null)
+                    return opts.CustomExceptionFactory(defaultMessage, paramName);
 
                 if (opts.CustomException != null)
                     return opts.CustomException;
