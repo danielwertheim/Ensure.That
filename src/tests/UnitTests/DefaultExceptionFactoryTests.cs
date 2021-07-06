@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using EnsureThat;
+using EnsureThat.Internals;
 using FluentAssertions;
 using Xunit;
 
 namespace UnitTests
 {
-    public class ExceptionFactoryTests : UnitTestBase
+    public class DefaultExceptionFactoryTests : UnitTestBase
     {
         private const string DefaultMessage = "54a170d6997c400487c177768f72aa7a";
         private const string CustomMessage = "3b3e6082d4c1482fbc775abc11a2e415";
         private const string DummyValue = "61927e885db34e08b9a7211c7eb74c36";
         private readonly Exception _exceptionFactoryException = new KeyNotFoundException();
         private readonly Exception _customException = new("036859e6693848b199575feffe17bd46");
-        private readonly ExceptionFactory _sut = new();
+        private readonly DefaultExceptionFactory _sut = new();
 
         [Fact]
         public void ArgumentException_UsesDefaults_WhenNoOptionsAreProvided()

@@ -10,7 +10,7 @@ namespace EnsureThat
         /// <summary>
         /// Gets or Sets the Exception factory to use.
         /// </summary>
-        public static IExceptionFactory ExceptionFactory { get; set; } = new ExceptionFactory();
+        public static IExceptionFactory ExceptionFactory { get; set; } = EnsureThat.ExceptionFactory.Default;
 
         /// <summary>
         /// Ensures for objects.
