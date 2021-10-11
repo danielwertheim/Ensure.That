@@ -14,13 +14,13 @@ stages:
         arguments: '-c $(BuildConfiguration) --no-incremental --nologo -p:TreatWarningsAsErrors=true -p:Version=$(SemVer) -p:InformationalVersion=$(CommitId)'
 
     - task: DotNetCoreCLI@2
-      displayName: 'UnitTests .Net4.5.2'
+      displayName: 'UnitTests .Net4.6.1'
       inputs:
         command: test
         projects: 'src/Tests/**/UnitTests.csproj'
         arguments: '-c $(BuildConfiguration) -f net452 --no-build'
-        testRunTitle: 'UnitTests .Net4.5.2'
-  
+        testRunTitle: 'UnitTests .Net4.6.1'
+
     - task: DotNetCoreCLI@2
       displayName: 'UnitTests .NetCoreApp3.1'
       inputs:
@@ -36,7 +36,7 @@ stages:
         projects: 'src/Tests/**/UnitTests.csproj'
         arguments: '-c $(BuildConfiguration) -f net5.0 --no-build'
         testRunTitle: 'UnitTests .Net5'
-  
+
     - task: DotNetCoreCLI@2
       displayName: 'Pack Nupkg'
       inputs:
@@ -44,7 +44,7 @@ stages:
         custom: pack
         projects: 'src/*.sln'
         arguments: '-c $(BuildConfiguration) --no-build -o $(Build.ArtifactStagingDirectory) -p:Version=$(SemVer) -p:InformationalVersion=$(CommitId)'
-  
+
     - task: PublishPipelineArtifact@1
       displayName: 'Publish Artifacts'
       inputs:
