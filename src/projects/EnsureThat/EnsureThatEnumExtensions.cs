@@ -10,7 +10,7 @@
         /// </summary>
         /// <example>
         /// Flags example:
-        /// 
+        ///
         /// [Flags]
         /// enum Abc {
         ///   A = 1,
@@ -22,14 +22,22 @@
         /// Abc.A | Abc.B IsDefined=true (due to Abc.AB)
         /// Abc.A | Abc.C IsDefined=false (A and C are both valid, the composite is valid due to `<see cref="System.FlagsAttribute"/> attribute, but the composite is not a named enum value
         /// </example>
-        public static void IsDefined<T>(this in Param<T> param) where T : struct, System.Enum
-            => Ensure.Enum.IsDefined(param.Value, param.Name, param.OptsFn);
+        public static Param<T> IsDefined<T>(this in Param<T> param) where T : struct, System.Enum
+        {
+            Ensure.Enum.IsDefined(param.Value, param.Name, param.OptsFn);
+
+            return param;
+        }
 
         /// <summary>
         /// Confirms that the <paramref name="param.Value"/> is defined in the enum <typeparamref name="T"/>.
         /// Supports <see cref="System.FlagsAttribute"/> attribute.
         /// </summary>
-        public static void IsDefinedWithFlagsSupport<T>(this in Param<T> param) where T : struct, System.Enum
-            => Ensure.Enum.IsDefinedWithFlagsSupport(param.Value, param.Name, param.OptsFn);
+        public static Param<T> IsDefinedWithFlagsSupport<T>(this in Param<T> param) where T : struct, System.Enum
+        {
+            Ensure.Enum.IsDefinedWithFlagsSupport(param.Value, param.Name, param.OptsFn);
+
+            return param;
+        }
     }
 }
