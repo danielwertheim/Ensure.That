@@ -18,7 +18,7 @@ stages:
       inputs:
         command: test
         projects: 'src/**/UnitTests.csproj'
-        arguments: '-c $(BuildConfiguration) -f net452 --no-build'
+        arguments: '-c $(BuildConfiguration) -f net461 --no-build'
         testRunTitle: 'UnitTests .Net4.6.1'
 
     - task: DotNetCoreCLI@2
