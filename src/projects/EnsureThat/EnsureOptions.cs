@@ -4,15 +4,17 @@ namespace EnsureThat
 {
     public delegate Exception CustomExceptionFactory(string message, string paramName);
 
-    public struct EnsureOptions
+    public readonly struct EnsureOptions
     {
+        public static readonly EnsureOptions Default = new();
+
         /// <summary>
         /// If defined, this factory will be used to produce the exception that
         /// will be thrown instead of the standard exceptions for the particular
         /// ensure method.
         /// Assign using <see cref="WithExceptionFactory"/>.
         /// </summary>
-        public CustomExceptionFactory CustomExceptionFactory { get; private set; }
+        public CustomExceptionFactory CustomExceptionFactory { get; }
 
         /// <summary>
         /// If defined, and no <see cref="CustomExceptionFactory"/> has been defined,
@@ -20,7 +22,7 @@ namespace EnsureThat
         /// particular ensure method.
         /// Assign using <see cref="WithException"/>.
         /// </summary>
-        public Exception CustomException { get; private set; }
+        public Exception CustomException { get; }
 
         /// <summary>
         /// If defined, and neither <see cref="CustomExceptionFactory"/>
@@ -29,27 +31,31 @@ namespace EnsureThat
         /// particular ensure method.
         /// Assign using <see cref="WithMessage"/>.
         /// </summary>
-        public string CustomMessage { get; private set; }
+        public string CustomMessage { get; }
 
-        public EnsureOptions WithExceptionFactory(CustomExceptionFactory factory)
+        private EnsureOptions(
+            CustomExceptionFactory customExceptionFactory,
+            Exception customException,
+            string customMessage)
         {
-            CustomExceptionFactory = factory;
-
-            return this;
+            CustomExceptionFactory = customExceptionFactory;
+            CustomException = customException;
+            CustomMessage = customMessage;
         }
 
-        public EnsureOptions WithException(Exception ex)
-        {
-            CustomException = ex;
+        public EnsureOptions WithExceptionFactory(CustomExceptionFactory factory) =>
+            new(factory,
+                CustomException,
+                CustomMessage);
 
-            return this;
-        }
+        public EnsureOptions WithException(Exception ex)=>
+            new(CustomExceptionFactory,
+                ex,
+                CustomMessage);
 
-        public EnsureOptions WithMessage(string message)
-        {
-            CustomMessage = message;
-
-            return this;
-        }
+        public EnsureOptions WithMessage(string message)=>
+            new(CustomExceptionFactory,
+                CustomException,
+                message);
     }
 }

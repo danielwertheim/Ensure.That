@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using EnsureThat;
 using EnsureThat.Internals;
 using FluentAssertions;
 using Xunit;
@@ -28,7 +29,7 @@ namespace UnitTests
             => _sut.ArgumentException(
                     DefaultMessage,
                     ParamName,
-                    o => o
+                    (in EnsureOptions o) => o
                         .WithMessage(CustomMessage)
                         .WithException(_customException)
                         .WithExceptionFactory((_, __) => _exceptionFactoryException))
@@ -40,7 +41,7 @@ namespace UnitTests
             => _sut.ArgumentException(
                     DefaultMessage,
                     ParamName,
-                    o => o
+                    (in EnsureOptions o) => o
                         .WithMessage(CustomMessage)
                         .WithException(_customException))
                 .Should()
@@ -51,7 +52,7 @@ namespace UnitTests
             => _sut.ArgumentException(
                     DefaultMessage,
                     ParamName,
-                    o => o
+                    (in EnsureOptions o) => o
                         .WithMessage(CustomMessage))
                 .Should()
                 .BeEquivalentTo(new ArgumentException(CustomMessage, ParamName));
@@ -69,7 +70,7 @@ namespace UnitTests
             => _sut.ArgumentNullException(
                     DefaultMessage,
                     ParamName,
-                    o => o
+                    (in EnsureOptions o) => o
                         .WithMessage(CustomMessage)
                         .WithException(_customException)
                         .WithExceptionFactory((_, __) => _exceptionFactoryException))
@@ -81,7 +82,7 @@ namespace UnitTests
             => _sut.ArgumentNullException(
                     DefaultMessage,
                     ParamName,
-                    o => o
+                    (in EnsureOptions o) => o
                         .WithMessage(CustomMessage)
                         .WithException(_customException))
                 .Should()
@@ -92,7 +93,7 @@ namespace UnitTests
             => _sut.ArgumentNullException(
                     DefaultMessage,
                     ParamName,
-                    o => o
+                    (in EnsureOptions o) => o
                         .WithMessage(CustomMessage))
                 .Should()
                 .BeEquivalentTo(new ArgumentNullException(ParamName, CustomMessage));
@@ -112,7 +113,7 @@ namespace UnitTests
                     DefaultMessage,
                     ParamName,
                     DummyValue,
-                    o => o
+                    (in EnsureOptions o) => o
                         .WithMessage(CustomMessage)
                         .WithException(_customException)
                         .WithExceptionFactory((_, __) => _exceptionFactoryException))
@@ -125,7 +126,7 @@ namespace UnitTests
                     DefaultMessage,
                     ParamName,
                     DummyValue,
-                    o => o
+                    (in EnsureOptions o) => o
                         .WithMessage(CustomMessage)
                         .WithException(_customException))
                 .Should()
@@ -137,7 +138,7 @@ namespace UnitTests
                     DefaultMessage,
                     ParamName,
                     DummyValue,
-                    o => o
+                    (in EnsureOptions o) => o
                         .WithMessage(CustomMessage))
                 .Should()
                 .BeEquivalentTo(new ArgumentOutOfRangeException(ParamName, DummyValue, CustomMessage));
