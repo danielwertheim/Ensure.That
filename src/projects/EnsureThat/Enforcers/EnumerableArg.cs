@@ -20,7 +20,7 @@ namespace EnsureThat.Enforcers
         [ContractAnnotation("value:null => halt")]
         public IEnumerable<T> HasItems<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            Ensure.Any.IsNotNull(value, paramName);
+            Ensure.Any.IsNotNull(value, paramName, optsFn);
 
             if (!value.Any())
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -35,7 +35,7 @@ namespace EnsureThat.Enforcers
         [ContractAnnotation("value:null => halt")]
         public IEnumerable<T> SizeIs<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            Ensure.Any.IsNotNull(value, paramName);
+            Ensure.Any.IsNotNull(value, paramName, optsFn);
 
             var count = value.Count();
 
@@ -52,7 +52,7 @@ namespace EnsureThat.Enforcers
         [ContractAnnotation("value:null => halt")]
         public IEnumerable<T> SizeIs<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, long expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            Ensure.Any.IsNotNull(value, paramName);
+            Ensure.Any.IsNotNull(value, paramName, optsFn);
 
             var count = value.LongCount();
 
@@ -69,7 +69,7 @@ namespace EnsureThat.Enforcers
         [ContractAnnotation("value:null => halt")]
         public IEnumerable<T> HasAny<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, Func<T, bool> predicate, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
         {
-            Ensure.Any.IsNotNull(value, paramName);
+            Ensure.Any.IsNotNull(value, paramName, optsFn);
 
             if (!value.Any(predicate))
                 throw Ensure.ExceptionFactory.ArgumentException(
