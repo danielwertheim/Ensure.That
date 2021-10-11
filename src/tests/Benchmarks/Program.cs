@@ -206,17 +206,17 @@ namespace Benchmarks
         [Benchmark(Baseline = true)]
         [BenchmarkCategory("Any.IsNotNull")]
         public void ThingIsNotNull()
-            => BaseLines.ThingIsNotNullViaThat(new MyThing());
+            => BaseLines.ThingIsNotNullViaThat(_things[0]);
 
         [Benchmark]
         [BenchmarkCategory("Any.IsNotNull")]
         public void ThingIsNotNullViaThat()
-            => Ensure.That(new MyThing(), "test").IsNotNull();
+            => Ensure.That(_things[0], "test").IsNotNull();
 
         [Benchmark]
         [BenchmarkCategory("Any.IsNotNull")]
         public void ThingIsNotNullViaEnforcer()
-            => Ensure.Any.IsNotNull(new MyThing(), ParamName);
+            => Ensure.Any.IsNotNull(_things[0], ParamName);
 
         [Benchmark(Baseline = true)]
         [BenchmarkCategory("Things.HasItems")]
@@ -256,7 +256,7 @@ namespace Benchmarks
         [Benchmark]
         [BenchmarkCategory("Any.string.HasValue")]
         public void AnyHasValueWhenString()
-            => Ensure.Any.HasValue(string.Empty, ParamName);        
+            => Ensure.Any.HasValue(string.Empty, ParamName);
 
         private class MyThing
         {
