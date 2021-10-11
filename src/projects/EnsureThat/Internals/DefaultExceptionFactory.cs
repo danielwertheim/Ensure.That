@@ -1,6 +1,6 @@
 ﻿using System;
-using JetBrains.Annotations;
-using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 
 namespace EnsureThat.Internals
 {

@@ -54,15 +54,9 @@ namespace EnsureThat.Enforcers
         {
             Ensure.Any.IsNotNull(value, paramName);
 
-#if NETSTANDARD1_1
             var count = value.LongCount();
 
             if (count != expected)
-#else
-            var count = value.LongCount();
-
-            if (count != expected)
-#endif
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, count),
                     paramName,

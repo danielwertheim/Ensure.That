@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 
@@ -20,7 +21,7 @@ namespace EnsureThat
 
         public static void IsNotEmpty(this in StringParam param)
             => Ensure.String.IsNotEmpty(param.Value, param.Name, param.OptsFn);
-        
+
         public static void HasLength(this in StringParam param, int expected)
             => Ensure.String.HasLength(param.Value, expected, param.Name, param.OptsFn);
 

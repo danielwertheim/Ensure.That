@@ -1,5 +1,5 @@
 ﻿using System;
-using JetBrains.Annotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace EnsureThat
 {

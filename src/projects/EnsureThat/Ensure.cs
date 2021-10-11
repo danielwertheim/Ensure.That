@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 using EnsureThat.Enforcers;
-using EnsureThat.Internals;
 using JetBrains.Annotations;
 
 namespace EnsureThat
