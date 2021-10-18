@@ -45,20 +45,6 @@ namespace JetBrains.Annotations
     [AttributeUsage(AttributeTargets.Parameter)]
     internal sealed class NoEnumerationAttribute : Attribute { }
 
-    // /// <summary>
-    // /// Indicates that the value of the marked element could never be <c>null</c>.
-    // /// </summary>
-    // /// <example><code>
-    // /// [NotNull] object Foo() {
-    // ///   return null; // Warning: Possible 'null' assignment
-    // /// }
-    // /// </code></example>
-    // [AttributeUsage(
-    //     AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
-    //     AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
-    //     AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
-    // internal sealed class NotNullAttribute : Attribute { }
-
     /// <summary>
     /// Indicates that the function argument should be string literal and match one
     /// of the parameters of the caller function. For example, ReSharper annotates
