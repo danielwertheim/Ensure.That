@@ -23,6 +23,20 @@ Ensure
 .IsGuid();
 ```
 
+Easily extendable:
+
+```csharp
+public static class StringArgExtensions
+{
+    public static StringParam IsNotFishy(this StringParam param)
+        => param.Value != "fishy"
+            ? param
+            : throw Ensure.ExceptionFactory.ArgumentException("Something is fishy!", param.Name);
+}
+
+Ensure.That(myString, nameof(myString)).IsNotFishy();
+```
+
 **NOTE:** If you are worried that the constructed `public readonly struct Param<T> {}` created for the argument being validated will hurt your performance you can use any of the other constructs e.g. contextual `Ensure.String` or `EnsureArg` (see below for samples).
 
 ## Using contextual validation
@@ -34,6 +48,20 @@ Ensure.String.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 Ensure.String.IsNotNullOrWhiteSpace(myString, nameof(myArg), (in EnsureOptions opts) => opts.WithMessage("Foo"));
 ```
 
+Easily extendable:
+
+```csharp
+public static class StringArgExtensions
+{
+    public static string IsNotFishy(this StringArg _, string value, string paramName = null)
+        => value != "fishy"
+            ? value
+            : throw Ensure.ExceptionFactory.ArgumentException("Something is fishy!", paramName);
+}
+
+Ensure.String.IsNotFishy(myString, nameof(myString));
+```
+
 ### Using static simple methods
 Introduced in the `v5.0.0` release.
 
@@ -41,6 +69,20 @@ Introduced in the `v5.0.0` release.
 EnsureArg.IsNotNullOrWhiteSpace(myString);
 EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg));
 EnsureArg.IsNotNullOrWhiteSpace(myString, nameof(myArg), (in EnsureOptions opts) => opts.WithMessage("Foo"));
+```
+
+Easily extendable:
+
+```csharp
+public static partial class EnsureArg
+{
+    public static string IsNotFishy(string value, string paramName = null)
+        => value != "fishy"
+            ? value
+            : throw Ensure.ExceptionFactory.ArgumentException("Something is fishy!", paramName);
+}
+
+EnsureArg.IsNotFishy(myString, nameof(myString));
 ```
 
 ## Samples
