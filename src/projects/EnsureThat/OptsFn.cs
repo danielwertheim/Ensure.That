@@ -1,4 +1,4 @@
 namespace EnsureThat
 {
-    public delegate EnsureOptions OptsFn(EnsureOptions options);
+    public delegate EnsureOptions OptsFn(in EnsureOptions options);
 }

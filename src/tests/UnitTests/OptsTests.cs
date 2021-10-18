@@ -16,13 +16,13 @@ namespace UnitTests
             public void ThrowsTheCustomExceptionFromTheFactory()
             {
                 object value = null;
-                OptsFn options = o => o.WithExceptionFactory((_, __) => new KeyNotFoundException());
+                EnsureOptions CreateOptions(in EnsureOptions o) => o.WithExceptionFactory((_, __) => new KeyNotFoundException());
 
                 var actions = new Action[]
                 {
-                    () => Ensure.Any.IsNotNull(value, ParamName, options),
-                    () => EnsureArg.IsNotNull(value, ParamName, options),
-                    () => Ensure.That(value, ParamName, options).IsNotNull()
+                    () => Ensure.Any.IsNotNull(value, ParamName, CreateOptions),
+                    () => EnsureArg.IsNotNull(value, ParamName, CreateOptions),
+                    () => Ensure.That(value, ParamName, CreateOptions).IsNotNull()
                 }.ToList();
 
                 actions.ForEach(a => a.Should().Throw<KeyNotFoundException>());
@@ -32,16 +32,17 @@ namespace UnitTests
             public void WhenWithMessageAndCustomExceptionAreSpecified_ThrowsTheCustomExceptionFromTheFactory()
             {
                 object value = null;
-                OptsFn options = o => o
+
+                EnsureOptions CreateOptions(in EnsureOptions o) => o
                     .WithMessage("Foo bar")
                     .WithException(new KeyNotFoundException())
                     .WithExceptionFactory((_, __) => new InvalidTimeZoneException());
 
                 var actions = new Action[]
                 {
-                    () => Ensure.Any.IsNotNull(value, ParamName, options),
-                    () => EnsureArg.IsNotNull(value, ParamName, options),
-                    () => Ensure.That(value, ParamName,options).IsNotNull()
+                    () => Ensure.Any.IsNotNull(value, ParamName, CreateOptions),
+                    () => EnsureArg.IsNotNull(value, ParamName, CreateOptions),
+                    () => Ensure.That(value, ParamName,CreateOptions).IsNotNull()
                 }.ToList();
 
                 actions.ForEach(a => a.Should().Throw<InvalidTimeZoneException>().And.Message.Should().NotContain("Foo Bar"));
@@ -54,13 +55,13 @@ namespace UnitTests
             public void ThrowsTheCustomException()
             {
                 object value = null;
-                OptsFn options = o => o.WithException(new KeyNotFoundException());
+                EnsureOptions CreateOptions(in EnsureOptions o) => o.WithException(new KeyNotFoundException());
 
                 var actions = new Action[]
                 {
-                    () => Ensure.Any.IsNotNull(value, ParamName, options),
-                    () => EnsureArg.IsNotNull(value, ParamName, options),
-                    () => Ensure.That(value, ParamName, options).IsNotNull()
+                    () => Ensure.Any.IsNotNull(value, ParamName, CreateOptions),
+                    () => EnsureArg.IsNotNull(value, ParamName, CreateOptions),
+                    () => Ensure.That(value, ParamName, CreateOptions).IsNotNull()
                 }.ToList();
 
                 actions.ForEach(a => a.Should().Throw<KeyNotFoundException>());
@@ -70,13 +71,13 @@ namespace UnitTests
             public void WhenWithMessageIsSpecified_ThrowsTheCustomExceptionButDoesNotUseTheExtraMessage()
             {
                 object value = null;
-                OptsFn options = o => o.WithMessage("Foo bar").WithException(new KeyNotFoundException());
+                EnsureOptions CreateOptions(in EnsureOptions o) => o.WithMessage("Foo bar").WithException(new KeyNotFoundException());
 
                 var actions = new Action[]
                 {
-                    () => Ensure.Any.IsNotNull(value, ParamName, options),
-                    () => EnsureArg.IsNotNull(value, ParamName, options),
-                    () => Ensure.That(value, ParamName,options).IsNotNull()
+                    () => Ensure.Any.IsNotNull(value, ParamName, CreateOptions),
+                    () => EnsureArg.IsNotNull(value, ParamName, CreateOptions),
+                    () => Ensure.That(value, ParamName, CreateOptions).IsNotNull()
                 }.ToList();
 
                 actions.ForEach(a => a.Should().Throw<KeyNotFoundException>().And.Message.Should().NotContain("Foo Bar"));
@@ -89,12 +90,12 @@ namespace UnitTests
             public void ThrowsExceptionWithTheCustomMessage()
             {
                 object value = null;
-                OptsFn options = o => o.WithMessage("Foo bar is some dummy text.");
+                EnsureOptions CreateOptions(in EnsureOptions o) => o.WithMessage("Foo bar is some dummy text.");
 
                 ShouldThrow<ArgumentNullException>("Foo bar is some dummy text.",
-                    () => Ensure.Any.IsNotNull(value, ParamName, options),
-                    () => EnsureArg.IsNotNull(value, ParamName, options),
-                    () => Ensure.That(value, ParamName, options).IsNotNull());
+                    () => Ensure.Any.IsNotNull(value, ParamName, CreateOptions),
+                    () => EnsureArg.IsNotNull(value, ParamName, CreateOptions),
+                    () => Ensure.That(value, ParamName, CreateOptions).IsNotNull());
             }
         }
     }

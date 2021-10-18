@@ -21,6 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 #pragma warning disable 1591
 // ReSharper disable UnusedMember.Global
@@ -43,40 +44,6 @@ namespace JetBrains.Annotations
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter)]
     internal sealed class NoEnumerationAttribute : Attribute { }
-
-    /// <summary>
-    /// Indicates that the value of the marked element could never be <c>null</c>.
-    /// </summary>
-    /// <example><code>
-    /// [NotNull] object Foo() {
-    ///   return null; // Warning: Possible 'null' assignment
-    /// }
-    /// </code></example>
-    [AttributeUsage(
-        AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
-        AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
-        AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
-    internal sealed class NotNullAttribute : Attribute { }
-
-    /// <summary>
-    /// Indicates that a method does not make any observable state changes.
-    /// The same as <c>System.Diagnostics.Contracts.PureAttribute</c>.
-    /// </summary>
-    /// <example><code>
-    /// [Pure] int Multiply(int x, int y) => x * y;
-    /// 
-    /// void M() {
-    ///   Multiply(123, 42); // Waring: Return value of pure method is not used
-    /// }
-    /// </code></example>
-    /// <remarks>
-    /// <c>System.Diagnostics.Contracts.PureAttribute</c> is not available for NETSTANDARD1_1.
-    /// For consistency, using this version of the attribute for all profiles rather than 
-    /// just NETSTANDARD1_1.
-    /// </remarks>
-    [AttributeUsage(AttributeTargets.Method)]
-    internal sealed class PureAttribute : Attribute { }
-
 
     /// <summary>
     /// Indicates that the function argument should be string literal and match one
@@ -129,7 +96,7 @@ namespace JetBrains.Annotations
     /// // A method that returns null if the parameter is null,
     /// // and not null if the parameter is not null
     /// [ContractAnnotation("null =&gt; null; notnull =&gt; notnull")]
-    /// public object Transform(object data) 
+    /// public object Transform(object data)
     /// </code></item>
     /// <item><code>
     /// [ContractAnnotation("=&gt; true, result: notnull; =&gt; false, result: null")]

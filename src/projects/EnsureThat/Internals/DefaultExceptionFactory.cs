@@ -1,6 +1,6 @@
 ﻿using System;
-using JetBrains.Annotations;
-using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
+using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 
 namespace EnsureThat.Internals
 {
@@ -12,7 +12,7 @@ namespace EnsureThat.Internals
         {
             if (optsFn != null)
             {
-                var opts = optsFn(new EnsureOptions());
+                var opts = optsFn(in EnsureOptions.Default);
 
                 if (opts.CustomExceptionFactory != null)
                     return opts.CustomExceptionFactory(defaultMessage, paramName);
@@ -33,7 +33,7 @@ namespace EnsureThat.Internals
         {
             if (optsFn != null)
             {
-                var opts = optsFn(new EnsureOptions());
+                var opts = optsFn(in EnsureOptions.Default);
 
                 if (opts.CustomExceptionFactory != null)
                     return opts.CustomExceptionFactory(defaultMessage, paramName);
@@ -54,7 +54,7 @@ namespace EnsureThat.Internals
         {
             if (optsFn != null)
             {
-                var opts = optsFn(new EnsureOptions());
+                var opts = optsFn(in EnsureOptions.Default);
 
                 if (opts.CustomExceptionFactory != null)
                     return opts.CustomExceptionFactory(defaultMessage, paramName);

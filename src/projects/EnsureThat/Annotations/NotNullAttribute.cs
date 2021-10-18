@@ -5,7 +5,7 @@ namespace System.Diagnostics.CodeAnalysis
 {
     /// <summary>
     /// This is JUST so we can avoid having #if regions in each usage site.
-    /// 
+    ///
     /// For non-supported frameworks, it may be ignored by CodeAnalysis, but allows the usage
     /// sites to avoid all having
     /// <code>

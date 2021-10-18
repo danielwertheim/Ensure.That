@@ -180,12 +180,7 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(param, paramName, optsFn);
             Ensure.Any.IsNotNull(expectedType, nameof(expectedType));
 
-#if NETSTANDARD1_1
-	        // According to: https://devblogs.microsoft.com/dotnet/porting-to-net-core/.
-	        if (!expectedType.GetTypeInfo().IsAssignableFrom(param.GetTypeInfo()))
-#else
             if (!expectedType.IsAssignableFrom(param))
-#endif
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Types_IsAssignableToType_Failed, expectedType.FullName, param.FullName),
                     paramName,
@@ -212,12 +207,7 @@ namespace EnsureThat.Enforcers
             Ensure.Any.IsNotNull(param, paramName, optsFn);
             Ensure.Any.IsNotNull(nonExpectedType, nameof(nonExpectedType));
 
-#if NETSTANDARD1_1
-            // According to: https://devblogs.microsoft.com/dotnet/porting-to-net-core/.
-	        if (nonExpectedType.GetTypeInfo().IsAssignableFrom(param.GetTypeInfo()))
-#else
             if (nonExpectedType.IsAssignableFrom(param))
-#endif
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Types_IsNotAssignableToType_Failed, nonExpectedType.FullName),
                     paramName,

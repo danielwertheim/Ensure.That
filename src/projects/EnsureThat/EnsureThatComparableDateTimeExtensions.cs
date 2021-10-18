@@ -4,25 +4,53 @@ namespace EnsureThat
 {
     public static class EnsureThatComparableDateTimeExtensions
     {
-        public static void Is(this in Param<DateTime> param, DateTime expected)
-            => Ensure.Comparable.Is(param.Value, expected, param.Name, param.OptsFn);
+        public static Param<DateTime> Is(this in Param<DateTime> param, DateTime expected)
+        {
+            Ensure.Comparable.Is(param.Value, expected, param.Name, param.OptsFn);
 
-        public static void IsNot(this in Param<DateTime> param, DateTime expected)
-            => Ensure.Comparable.IsNot(param.Value, expected, param.Name, param.OptsFn);
+            return param;
+        }
 
-        public static void IsLt(this in Param<DateTime> param, DateTime limit)
-            => Ensure.Comparable.IsLt(param.Value, limit, param.Name, param.OptsFn);
+        public static Param<DateTime> IsNot(this in Param<DateTime> param, DateTime expected)
+        {
+            Ensure.Comparable.IsNot(param.Value, expected, param.Name, param.OptsFn);
 
-        public static void IsLte(this in Param<DateTime> param, DateTime limit)
-            => Ensure.Comparable.IsLte(param.Value, limit, param.Name, param.OptsFn);
+            return param;
+        }
 
-        public static void IsGt(this in Param<DateTime> param, DateTime limit)
-            => Ensure.Comparable.IsGt(param.Value, limit, param.Name, param.OptsFn);
+        public static Param<DateTime> IsLt(this in Param<DateTime> param, DateTime limit)
+        {
+            Ensure.Comparable.IsLt(param.Value, limit, param.Name, param.OptsFn);
 
-        public static void IsGte(this in Param<DateTime> param, DateTime limit)
-            => Ensure.Comparable.IsGte(param.Value, limit, param.Name, param.OptsFn);
+            return param;
+        }
 
-        public static void IsInRange(this in Param<DateTime> param, DateTime min, DateTime max)
-            => Ensure.Comparable.IsInRange(param.Value, min, max, param.Name, param.OptsFn);
+        public static Param<DateTime> IsLte(this in Param<DateTime> param, DateTime limit)
+        {
+            Ensure.Comparable.IsLte(param.Value, limit, param.Name, param.OptsFn);
+
+            return param;
+        }
+
+        public static Param<DateTime> IsGt(this in Param<DateTime> param, DateTime limit)
+        {
+            Ensure.Comparable.IsGt(param.Value, limit, param.Name, param.OptsFn);
+
+            return param;
+        }
+
+        public static Param<DateTime> IsGte(this in Param<DateTime> param, DateTime limit)
+        {
+            Ensure.Comparable.IsGte(param.Value, limit, param.Name, param.OptsFn);
+
+            return param;
+        }
+
+        public static Param<DateTime> IsInRange(this in Param<DateTime> param, DateTime min, DateTime max)
+        {
+            Ensure.Comparable.IsInRange(param.Value, min, max, param.Name, param.OptsFn);
+
+            return param;
+        }
     }
 }
