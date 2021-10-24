@@ -8,20 +8,19 @@ namespace EnsureThat.Internals
     {
         [return: NotNull]
         [Pure]
-        public Exception ArgumentException(string defaultMessage, string paramName, OptsFn optsFn = null)
+        public Exception ArgumentException(string defaultMessage, string paramName)
         {
-            if (optsFn != null)
+            var opts = EnsureScope.GetCurrent();
+            if(opts.HasValue)
             {
-                var opts = optsFn(in EnsureOptions.Default);
+                if (opts.Value.CustomExceptionFactory != null)
+                    return opts.Value.CustomExceptionFactory(defaultMessage, paramName);
 
-                if (opts.CustomExceptionFactory != null)
-                    return opts.CustomExceptionFactory(defaultMessage, paramName);
+                if (opts.Value.CustomException != null)
+                    return opts.Value.CustomException;
 
-                if (opts.CustomException != null)
-                    return opts.CustomException;
-
-                if (opts.CustomMessage != null)
-                    return new ArgumentException(opts.CustomMessage, paramName);
+                if (opts.Value.CustomMessage != null)
+                    return new ArgumentException(opts.Value.CustomMessage, paramName);
             }
 
             return new ArgumentException(defaultMessage, paramName);
@@ -29,20 +28,19 @@ namespace EnsureThat.Internals
 
         [return: NotNull]
         [Pure]
-        public Exception ArgumentNullException(string defaultMessage, string paramName, OptsFn optsFn = null)
+        public Exception ArgumentNullException(string defaultMessage, string paramName)
         {
-            if (optsFn != null)
+            var opts = EnsureScope.GetCurrent();
+            if(opts.HasValue)
             {
-                var opts = optsFn(in EnsureOptions.Default);
+                if (opts.Value.CustomExceptionFactory != null)
+                    return opts.Value.CustomExceptionFactory(defaultMessage, paramName);
 
-                if (opts.CustomExceptionFactory != null)
-                    return opts.CustomExceptionFactory(defaultMessage, paramName);
+                if (opts.Value.CustomException != null)
+                    return opts.Value.CustomException;
 
-                if (opts.CustomException != null)
-                    return opts.CustomException;
-
-                if (opts.CustomMessage != null)
-                    return new ArgumentNullException(paramName, opts.CustomMessage);
+                if (opts.Value.CustomMessage != null)
+                    return new ArgumentNullException(paramName, opts.Value.CustomMessage);
             }
 
             return new ArgumentNullException(paramName, defaultMessage);
@@ -50,20 +48,19 @@ namespace EnsureThat.Internals
 
         [return: NotNull]
         [Pure]
-        public Exception ArgumentOutOfRangeException<TValue>(string defaultMessage, string paramName, TValue value, OptsFn optsFn = null)
+        public Exception ArgumentOutOfRangeException<TValue>(string defaultMessage, string paramName, TValue value)
         {
-            if (optsFn != null)
+            var opts = EnsureScope.GetCurrent();
+            if(opts.HasValue)
             {
-                var opts = optsFn(in EnsureOptions.Default);
+                if (opts.Value.CustomExceptionFactory != null)
+                    return opts.Value.CustomExceptionFactory(defaultMessage, paramName);
 
-                if (opts.CustomExceptionFactory != null)
-                    return opts.CustomExceptionFactory(defaultMessage, paramName);
+                if (opts.Value.CustomException != null)
+                    return opts.Value.CustomException;
 
-                if (opts.CustomException != null)
-                    return opts.CustomException;
-
-                if (opts.CustomMessage != null)
-                    return new ArgumentOutOfRangeException(paramName, value, opts.CustomMessage);
+                if (opts.Value.CustomMessage != null)
+                    return new ArgumentOutOfRangeException(paramName, value, opts.Value.CustomMessage);
             }
 
             return new ArgumentOutOfRangeException(paramName, value, defaultMessage);

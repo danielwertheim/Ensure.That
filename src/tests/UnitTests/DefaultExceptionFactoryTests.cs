@@ -5,6 +5,8 @@ using EnsureThat.Internals;
 using FluentAssertions;
 using Xunit;
 
+// ReSharper disable UnusedParameter.Local
+
 namespace UnitTests
 {
     public class DefaultExceptionFactoryTests : UnitTestBase
@@ -14,6 +16,8 @@ namespace UnitTests
         private const string DummyValue = "61927e885db34e08b9a7211c7eb74c36";
         private readonly Exception _exceptionFactoryException = new KeyNotFoundException();
         private readonly Exception _customException = new("036859e6693848b199575feffe17bd46");
+        private readonly EnsureOptions _customParentOptions = EnsureOptions.Default.WithMessage("Parent message");
+        private readonly EnsureOptions _customChildOptions = EnsureOptions.Default.WithMessage("Child message");
         private readonly DefaultExceptionFactory _sut = new();
 
         [Fact]
@@ -25,37 +29,52 @@ namespace UnitTests
                 .BeEquivalentTo(new ArgumentException(DefaultMessage, ParamName));
 
         [Fact]
+        public void ArgumentException_UsesInnerMostScope_WhenParentChildScopesExists()
+        {
+            using var _ = EnsureScope.Create().With(_customParentOptions);
+
+            using var __ = EnsureScope.Create().With(_customChildOptions);
+
+            _sut.ArgumentException(DefaultMessage, ParamName)
+                .Should()
+                .BeEquivalentTo(new ArgumentException(_customChildOptions.CustomMessage, ParamName));
+        }
+
+        [Fact]
         public void ArgumentException_UsesExceptionFactory_WhenOptionsAlsoContainsCustomExceptionAndCustomMessage()
-            => _sut.ArgumentException(
-                    DefaultMessage,
-                    ParamName,
-                    (in EnsureOptions o) => o
-                        .WithMessage(CustomMessage)
-                        .WithException(_customException)
-                        .WithExceptionFactory((_, __) => _exceptionFactoryException))
+        {
+            using var _ = EnsureScope.Create().With((in EnsureOptions o) => o
+                .WithMessage(CustomMessage)
+                .WithException(_customException)
+                .WithExceptionFactory((_, __) => _exceptionFactoryException));
+
+            _sut.ArgumentException(DefaultMessage, ParamName)
                 .Should()
                 .Be(_exceptionFactoryException);
+        }
 
         [Fact]
         public void ArgumentException_UsesCustomException_WhenOptionsAlsoContainsCustomMessage()
-            => _sut.ArgumentException(
-                    DefaultMessage,
-                    ParamName,
-                    (in EnsureOptions o) => o
-                        .WithMessage(CustomMessage)
-                        .WithException(_customException))
+        {
+            using var _ = EnsureScope.Create().With((in EnsureOptions o) => o
+                .WithMessage(CustomMessage)
+                .WithException(_customException));
+
+            _sut.ArgumentException(DefaultMessage, ParamName)
                 .Should()
                 .Be(_customException);
+        }
 
         [Fact]
         public void ArgumentException_UsesCustomMessage_WhenOptionsHasNoOtherConfig()
-            => _sut.ArgumentException(
-                    DefaultMessage,
-                    ParamName,
-                    (in EnsureOptions o) => o
-                        .WithMessage(CustomMessage))
+        {
+            using var _ = EnsureScope.Create().With((in EnsureOptions o) => o
+                .WithMessage(CustomMessage));
+
+            _sut.ArgumentException(DefaultMessage, ParamName)
                 .Should()
                 .BeEquivalentTo(new ArgumentException(CustomMessage, ParamName));
+        }
 
         [Fact]
         public void ArgumentNullException_UsesDefaults_WhenNoOptionsAreProvided()
@@ -66,81 +85,106 @@ namespace UnitTests
                 .BeEquivalentTo(new ArgumentNullException(ParamName, DefaultMessage));
 
         [Fact]
+        public void ArgumentNullException_UsesInnerMostScope_WhenParentChildScopesExists()
+        {
+            using var _ = EnsureScope.Create().With(_customParentOptions);
+
+            using var __ = EnsureScope.Create().With(_customChildOptions);
+
+            _sut.ArgumentNullException(DefaultMessage, ParamName)
+                .Should()
+                .BeEquivalentTo(new ArgumentNullException(ParamName, _customChildOptions.CustomMessage));
+        }
+
+        [Fact]
         public void ArgumentNullException_UsesExceptionFactory_WhenOptionsAlsoContainsCustomExceptionAndCustomMessage()
-            => _sut.ArgumentNullException(
-                    DefaultMessage,
-                    ParamName,
-                    (in EnsureOptions o) => o
-                        .WithMessage(CustomMessage)
-                        .WithException(_customException)
-                        .WithExceptionFactory((_, __) => _exceptionFactoryException))
+        {
+            using var _ = EnsureScope.Create().With((in EnsureOptions o) => o
+                .WithMessage(CustomMessage)
+                .WithException(_customException)
+                .WithExceptionFactory((_, __) => _exceptionFactoryException));
+
+            _sut.ArgumentNullException(DefaultMessage, ParamName)
                 .Should()
                 .Be(_exceptionFactoryException);
+        }
 
         [Fact]
         public void ArgumentNullException_UsesCustomException_WhenOptionsAlsoContainsCustomMessage()
-            => _sut.ArgumentNullException(
-                    DefaultMessage,
-                    ParamName,
-                    (in EnsureOptions o) => o
-                        .WithMessage(CustomMessage)
-                        .WithException(_customException))
+        {
+            using var _ = EnsureScope.Create().With((in EnsureOptions o) => o
+                .WithMessage(CustomMessage)
+                .WithException(_customException));
+
+            _sut.ArgumentNullException(DefaultMessage, ParamName)
                 .Should()
                 .Be(_customException);
+        }
 
         [Fact]
         public void ArgumentNullException_UsesCustomMessage_WhenOptionsHasNoOtherConfig()
-            => _sut.ArgumentNullException(
-                    DefaultMessage,
-                    ParamName,
-                    (in EnsureOptions o) => o
-                        .WithMessage(CustomMessage))
+        {
+            using var _ = EnsureScope.Create().With((in EnsureOptions o) => o
+                .WithMessage(CustomMessage));
+
+            _sut.ArgumentNullException(DefaultMessage, ParamName)
                 .Should()
                 .BeEquivalentTo(new ArgumentNullException(ParamName, CustomMessage));
+        }
 
         [Fact]
         public void ArgumentOutOfRangeException_UsesDefaults_WhenNoOptionsAreProvided()
-            => _sut.ArgumentOutOfRangeException(
-                    DefaultMessage,
-                    ParamName,
-                    DummyValue)
+            => _sut
+                .ArgumentOutOfRangeException(DefaultMessage, ParamName, DummyValue)
                 .Should()
                 .BeEquivalentTo(new ArgumentOutOfRangeException(ParamName, DummyValue, DefaultMessage));
 
         [Fact]
+        public void ArgumentOutOfRangeException_UsesInnerMostScope_WhenParentChildScopesExists()
+        {
+            using var _ = EnsureScope.Create().With(_customParentOptions);
+
+            using var __ = EnsureScope.Create().With(_customChildOptions);
+
+            _sut.ArgumentOutOfRangeException(DefaultMessage, ParamName, DummyValue)
+                .Should()
+                .BeEquivalentTo(new ArgumentOutOfRangeException(ParamName, DummyValue, _customChildOptions.CustomMessage));
+        }
+
+        [Fact]
         public void ArgumentOutOfRangeException_UsesExceptionFactory_WhenOptionsAlsoContainsCustomExceptionAndCustomMessage()
-            => _sut.ArgumentOutOfRangeException(
-                    DefaultMessage,
-                    ParamName,
-                    DummyValue,
-                    (in EnsureOptions o) => o
-                        .WithMessage(CustomMessage)
-                        .WithException(_customException)
-                        .WithExceptionFactory((_, __) => _exceptionFactoryException))
+        {
+            using var _ = EnsureScope.Create().With((in EnsureOptions o) => o
+                .WithMessage(CustomMessage)
+                .WithException(_customException)
+                .WithExceptionFactory((_, __) => _exceptionFactoryException));
+
+            _sut.ArgumentOutOfRangeException(DefaultMessage, ParamName, DummyValue)
                 .Should()
                 .Be(_exceptionFactoryException);
+        }
 
         [Fact]
         public void ArgumentOutOfRangeException_UsesCustomException_WhenOptionsAlsoContainsCustomMessage()
-            => _sut.ArgumentOutOfRangeException(
-                    DefaultMessage,
-                    ParamName,
-                    DummyValue,
-                    (in EnsureOptions o) => o
-                        .WithMessage(CustomMessage)
-                        .WithException(_customException))
+        {
+            using var _ = EnsureScope.Create().With((in EnsureOptions o) => o
+                .WithMessage(CustomMessage)
+                .WithException(_customException));
+
+            _sut.ArgumentOutOfRangeException(DefaultMessage, ParamName, DummyValue)
                 .Should()
                 .Be(_customException);
+        }
 
         [Fact]
         public void ArgumentOutOfRangeException_UsesCustomMessage_WhenOptionsHasNoOtherConfig()
-            => _sut.ArgumentOutOfRangeException(
-                    DefaultMessage,
-                    ParamName,
-                    DummyValue,
-                    (in EnsureOptions o) => o
-                        .WithMessage(CustomMessage))
+        {
+            using var _ = EnsureScope.Create().With((in EnsureOptions o) => o
+                .WithMessage(CustomMessage));
+
+            _sut.ArgumentOutOfRangeException(DefaultMessage, ParamName, DummyValue)
                 .Should()
                 .BeEquivalentTo(new ArgumentOutOfRangeException(ParamName, DummyValue, CustomMessage));
+        }
     }
 }
