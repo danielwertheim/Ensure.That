@@ -14,6 +14,14 @@ stages:
         arguments: '-c $(BuildConfiguration) --no-incremental --nologo -p:TreatWarningsAsErrors=true -p:Version=$(SemVer) -p:InformationalVersion=$(CommitId)'
 
     - task: DotNetCoreCLI@2
+      displayName: 'UnitTests .Net4.6.2'
+      inputs:
+        command: test
+        projects: 'src/**/UnitTests.csproj'
+        arguments: '-c $(BuildConfiguration) -f net4.6.2 --no-build'
+        testRunTitle: 'UnitTests .Net4.6.2'
+
+    - task: DotNetCoreCLI@2
       displayName: 'UnitTests .NetCoreApp3.1'
       inputs:
         command: test
