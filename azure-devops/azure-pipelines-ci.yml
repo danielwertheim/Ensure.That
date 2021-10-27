@@ -19,7 +19,7 @@ pr:
     - master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 
 stages:
 - template: stage-build.yml
