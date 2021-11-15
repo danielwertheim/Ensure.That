@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using EnsureThat.Internals;
 using JetBrains.Annotations;
 
@@ -52,6 +54,24 @@ namespace EnsureThat.Enforcers
             {
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
                     string.Format(ExceptionMessages.Enum_IsValidEnum, value, EnumOf<T>.EnumType),
+                    paramName,
+                    value,
+                    optsFn);
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// Confirms that the <paramref name="value"/> exists in the provided collection <paramref name="values"/>.
+        /// Supports <see cref="FlagsAttribute"/> attribute.
+        /// </summary>
+        public T? IsNullOrIn<T>(IEnumerable<T> values,T? value, string paramName = null, OptsFn optsFn = null) where T : struct, Enum
+        {
+            if (value.HasValue && !values.Contains(value.Value))
+            {
+                throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
+                    string.Format(ExceptionMessages.Collections_ItemDoesNotExist, value),
                     paramName,
                     value,
                     optsFn);

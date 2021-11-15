@@ -1,5 +1,6 @@
 ﻿using System;
 using EnsureThat;
+using FluentAssertions;
 using Xunit;
 
 namespace UnitTests
@@ -31,5 +32,47 @@ namespace UnitTests
             () => Ensure.Bool.IsFalse(false, ParamName),
             () => EnsureArg.IsFalse(false, ParamName),
             () => Ensure.That(false, ParamName).IsFalse());
+
+        [Fact]
+        public void IsNullOrTrue_Should_Throw_ArgumentException_When_Value_IsFalse()
+        {
+            var act = new Action(() => Ensure.Bool.IsNullOrTrue(false));
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
+        public void IsNullOrTrue_Should_Return_Null_When_Value_IsNull()
+        {
+            var value = Ensure.Bool.IsNullOrTrue(null);
+            value.Should().BeNull();
+        }
+
+        [Fact]
+        public void IsNullOrTrue_Should_Return_True_When_Value_IsTrue()
+        {
+            var value = Ensure.Bool.IsNullOrTrue(true);
+            value.Should().BeTrue();
+        }
+
+        [Fact]
+        public void IsNullOrFalse_Should_Throw_ArgumentException_When_Value_IsTrue()
+        {
+            var act = new Action(() => Ensure.Bool.IsNullOrFalse(true));
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
+        public void IsNullOrFalse_Should_Return_Null_When_Value_IsNull()
+        {
+            var value = Ensure.Bool.IsNullOrFalse(null);
+            value.Should().BeNull();
+        }
+
+        [Fact]
+        public void IsNullOrFalse_Should_Return_False_When_Value_IsFalse()
+        {
+            var value = Ensure.Bool.IsNullOrFalse(false);
+            value.Should().BeFalse();
+        }
     }
 }

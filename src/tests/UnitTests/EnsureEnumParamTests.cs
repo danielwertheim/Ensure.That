@@ -1,5 +1,6 @@
 using System;
 using EnsureThat;
+using FluentAssertions;
 using Xunit;
 
 namespace UnitTests
@@ -85,7 +86,7 @@ namespace UnitTests
                 () => EnsureArg.EnumIsDefined(item, ParamName),
                 () => Ensure.That(item, ParamName).IsDefined());
         }
-        
+
         [Theory]
         [InlineData(TestFlagsEnum.Bar)]
         [InlineData(TestFlagsEnum.Bar | TestFlagsEnum.Baz)]
@@ -108,7 +109,7 @@ namespace UnitTests
                 () => EnsureArg.EnumIsDefinedWithFlagsSupport(item, ParamName),
                 () => Ensure.That(item, ParamName).IsDefinedWithFlagsSupport());
         }
-        
+
         [Theory]
         [InlineData(TestFlagsOfWhateverPower.A)]
         [InlineData(TestFlagsOfWhateverPower.B)]
@@ -127,12 +128,50 @@ namespace UnitTests
         public void FlagOfWhateverPowerIsNotDefined_ShouldThrow()
         {
             var item = (TestFlagsOfWhateverPower)9;
-            
+
             ShouldThrow<ArgumentOutOfRangeException>(
                 string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsOfWhateverPower)),
                 () => Ensure.Enum.IsDefinedWithFlagsSupport(item, ParamName),
                 () => EnsureArg.EnumIsDefinedWithFlagsSupport(item, ParamName),
                 () => Ensure.That(item, ParamName).IsDefinedWithFlagsSupport());
+        }
+
+        [Fact]
+        public void IsNullOrIn_Should_Throw_ArgumentException_When_Value_IsProvided_And_ListEmpty()
+        {
+            var act = new Action(() => Ensure.Enum.IsNullOrIn(new TestEnums[] { }, TestEnums.A));
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
+        public void IsNullOrIn_Should_Return_Null_When_Value_IsNull_And_ListEmpty()
+        {
+            var value = Ensure.Enum.IsNullOrIn(new TestEnums[] { }, null);
+            value.Should().BeNull();
+        }
+
+        [Fact]
+        public void IsNullOrIn_Should_Return_TheValue_When_Value_IsInList()
+        {
+            var value = Ensure.Enum.IsNullOrIn(new[] { TestEnums.A, TestEnums.B },
+                TestEnums.B);
+            value.Should().Be(TestEnums.B);
+        }
+
+        [Fact]
+        public void IsNullOrIn_Should_Throw_ArgumentException_When_Value_IsNotInList()
+        {
+            var act = new Action(() =>
+                Ensure.Enum.IsNullOrIn(new[] { TestEnums.A, TestEnums.B },
+                    TestEnums.C));
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
+        public void IsNullOrIn_Should_Return_Null_When_Value_IsNull_And_ListIsNotEmpty()
+        {
+            var value = Ensure.Enum.IsNullOrIn(new[] { TestEnums.A }, null);
+            value.Should().BeNull();
         }
 
         public enum Only1IsValidEnum : byte
@@ -154,5 +193,14 @@ namespace UnitTests
             B = 5,
             C = 8
         }
+
+        [Flags]
+        private enum TestEnums : byte
+        {
+            A = 4,
+            B = 5,
+            C = 8
+        }
+
     }
 }
