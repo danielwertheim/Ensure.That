@@ -10,8 +10,8 @@ Developed for: .NET4.6.2, .NET5.0, .NET Standard 2.0 and 2.1 available via [NuGe
 
 ```csharp
 Ensure.That(myString).IsNotNullOrWhiteSpace();
-Ensure.That(myString, nameof(myArg)).IsNotNullOrWhiteSpace();
-Ensure.That(myString, nameof(myArg), (in EnsureOptions opts) => opts.WithMessage("Foo")).IsNotNullOrWhiteSpace();
+Ensure.That(myString, nameof(myString)).IsNotNullOrWhiteSpace();
+Ensure.That(myString, nameof(myString), (in EnsureOptions opts) => opts.WithMessage("Foo")).IsNotNullOrWhiteSpace();
 ```
 
 Chainable:
