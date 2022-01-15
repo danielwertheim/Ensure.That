@@ -1,8 +1,9 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 
 namespace EnsureThat.Internals;
 
-internal static class DefaultFormatProvider
+public static class DefaultFormatProvider
 {
-    internal static readonly CultureInfo Strings = CultureInfo.InvariantCulture;
+    public static readonly IFormatProvider Strings = CultureInfo.InvariantCulture;
 }

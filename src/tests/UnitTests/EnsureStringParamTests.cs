@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using EnsureThat;
 using EnsureThat.Internals;
@@ -426,7 +427,7 @@ namespace UnitTests
         public void IsNotEqualTo_When_different_values_by_casing_using_non_case_sensitive_compare_It_throws_ArgumentException()
         {
             const string value = "The value";
-            var compareTo = value.ToLower(DefaultFormatProvider.Strings);
+            var compareTo = value.ToLower(CultureInfo.CurrentCulture);
 
             ShouldThrow<ArgumentException>(
                 string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNot_Failed, value, compareTo),
@@ -456,7 +457,7 @@ namespace UnitTests
         public void IsNotEqualTo_When_different_values_by_casing_using_case_sensitive_compare_It_should_not_throw()
         {
             var value = "The value";
-            var compareTo = value.ToLower(DefaultFormatProvider.Strings);
+            var compareTo = value.ToLower(CultureInfo.CurrentCulture);
 
             ShouldNotThrow(
                 () => Ensure.String.IsNotEqualTo(value, compareTo, StringComparison.Ordinal, ParamName),
