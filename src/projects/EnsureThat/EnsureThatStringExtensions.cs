@@ -85,16 +85,16 @@ namespace EnsureThat
             return param;
         }
 
-        public static StringParam IsEqualTo(this in StringParam param, string expected)
+        public static StringParam Is(this in StringParam param, string expected, StringComparison comparison)
         {
-            Ensure.String.IsEqualTo(param.Value, expected, param.Name);
+            Ensure.String.Is(param.Value, expected, comparison, param.Name);
 
             return param;
         }
 
-        public static StringParam Is(this in StringParam param, string expected, StringComparison comparison)
+        public static StringParam IsEqualTo(this in StringParam param, string expected)
         {
-            Ensure.String.Is(param.Value, expected, comparison, param.Name);
+            Ensure.String.IsEqualTo(param.Value, expected, param.Name);
 
             return param;
         }
@@ -113,16 +113,16 @@ namespace EnsureThat
             return param;
         }
 
-        public static StringParam IsNotEqualTo(this in StringParam param, string notExpected)
+        public static StringParam IsNot(this in StringParam param, string notExpected, StringComparison comparison)
         {
-            Ensure.String.IsNotEqualTo(param.Value, notExpected, param.Name);
+            Ensure.String.IsNot(param.Value, notExpected, comparison, param.Name);
 
             return param;
         }
 
-        public static StringParam IsNot(this in StringParam param, string notExpected, StringComparison comparison)
+        public static StringParam IsNotEqualTo(this in StringParam param, string notExpected)
         {
-            Ensure.String.IsNot(param.Value, notExpected, comparison, param.Name);
+            Ensure.String.IsNotEqualTo(param.Value, notExpected, param.Name);
 
             return param;
         }

@@ -146,17 +146,17 @@ namespace EnsureThat.Enforcers
         private static bool ValueIsLt<T>(T x, T y) where T : IComparable<T>
             => x.CompareTo(y) < 0;
 
-        private static bool ValueIsEq<T>(T x, T y) where T : IComparable<T>
-            => x.CompareTo(y) == 0;
-
-        private static bool ValueIsGt<T>(T x, T y) where T : IComparable<T>
-            => x.CompareTo(y) > 0;
-
         private static bool ValueIsLt<T>(T x, T y, IComparer<T> c) where T : IComparable<T>
             => c.Compare(x, y) < 0;
 
         private static bool ValueIsEq<T>(T x, T y, IComparer<T> c) where T : IComparable<T>
             => c.Compare(x, y) == 0;
+
+        private static bool ValueIsEq<T>(T x, T y) where T : IComparable<T>
+            => x.CompareTo(y) == 0;
+
+        private static bool ValueIsGt<T>(T x, T y) where T : IComparable<T>
+            => x.CompareTo(y) > 0;
 
         private static bool ValueIsGt<T>(T x, T y, IComparer<T> c) where T : IComparable<T>
             => c.Compare(x, y) > 0;

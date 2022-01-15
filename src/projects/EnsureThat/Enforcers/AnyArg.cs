@@ -45,6 +45,7 @@ namespace EnsureThat.Enforcers
         /// <remarks>If you know you are dealing with e.g. a struct, the <see cref="IsNotNull{T}(T?, string)"/> overload is more performant.</remarks>
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
+        [SuppressMessage("Major Code Smell", "S4144:Methods should not have identical implementations")]
         public T IsNotNull<T>([NoEnumeration, ValidatedNotNull, NotNull] T value, [InvokerParameterName] string paramName = null) where T : class
         {
             if (value == null)

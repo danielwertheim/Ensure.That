@@ -132,6 +132,9 @@ namespace EnsureThat.Enforcers
         public string Is(string value, string expected, [InvokerParameterName] string paramName = null)
             => IsEqualTo(value, expected, paramName);
 
+        public string Is(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null)
+            => IsEqualTo(value, expected, comparison, paramName);
+
         public string IsEqualTo(string value, string expected, [InvokerParameterName] string paramName = null)
         {
             if (!StringEquals(value, expected))
@@ -141,9 +144,6 @@ namespace EnsureThat.Enforcers
 
             return value;
         }
-
-        public string Is(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null)
-            => IsEqualTo(value, expected, comparison, paramName);
 
         public string IsEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null)
         {
@@ -158,6 +158,9 @@ namespace EnsureThat.Enforcers
         public string IsNot(string value, string notExpected, [InvokerParameterName] string paramName = null)
             => IsNotEqualTo(value, notExpected, paramName);
 
+        public string IsNot(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null)
+            => IsNotEqualTo(value, notExpected, comparison, paramName);
+
         public string IsNotEqualTo(string value, string notExpected, [InvokerParameterName] string paramName = null)
         {
             if (StringEquals(value, notExpected))
@@ -167,9 +170,6 @@ namespace EnsureThat.Enforcers
 
             return value;
         }
-
-        public string IsNot(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null)
-            => IsNotEqualTo(value, notExpected, comparison, paramName);
 
         public string IsNotEqualTo(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null)
         {
