@@ -12,46 +12,46 @@ namespace EnsureThat.Enforcers
     {
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string IsNotNull([ValidatedNotNull, NotNull]string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsNotNull([ValidatedNotNull, NotNull]string value, [InvokerParameterName] string paramName = null)
         {
-            Ensure.Any.IsNotNull(value, paramName, optsFn);
+            Ensure.Any.IsNotNull(value, paramName);
 
             return value;
         }
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string IsNotNullOrWhiteSpace([ValidatedNotNull, NotNull]string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsNotNullOrWhiteSpace([ValidatedNotNull, NotNull]string value, [InvokerParameterName] string paramName = null)
         {
-            Ensure.Any.IsNotNull(value, paramName, optsFn);
+            Ensure.Any.IsNotNull(value, paramName);
 
             if (string.IsNullOrWhiteSpace(value))
-                throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotNullOrWhiteSpace_Failed, paramName, optsFn);
+                throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotNullOrWhiteSpace_Failed, paramName);
 
             return value;
         }
 
         [return: NotNull]
-        public string IsNotNullOrEmpty([ValidatedNotNull, NotNull]string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsNotNullOrEmpty([ValidatedNotNull, NotNull]string value, [InvokerParameterName] string paramName = null)
         {
-            Ensure.Any.IsNotNull(value, paramName, optsFn);
+            Ensure.Any.IsNotNull(value, paramName);
 
             if (string.IsNullOrEmpty(value))
-                throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotNullOrEmpty_Failed, paramName, optsFn);
+                throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotNullOrEmpty_Failed, paramName);
 
             return value;
         }
 
-        public string IsNotEmptyOrWhiteSpace(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsNotEmptyOrWhiteSpace(string value, [InvokerParameterName] string paramName = null)
         {
-            if (value == null) 
+            if (value == null)
             {
                 return null;
             }
 
             if (value.Length == 0)
             {
-                throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmptyOrWhiteSpace_Failed, paramName, optsFn);
+                throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmptyOrWhiteSpace_Failed, paramName);
             }
             foreach (var t in value)
             {
@@ -60,67 +60,63 @@ namespace EnsureThat.Enforcers
                     return value; //succeed and return as soon as we see a non-whitespace character
                 }
             }
-            throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmptyOrWhiteSpace_Failed, paramName, optsFn);
+            throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmptyOrWhiteSpace_Failed, paramName);
         }
 
-        public string IsNotEmpty(string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsNotEmpty(string value, [InvokerParameterName] string paramName = null)
         {
             if (value?.Length == 0)
-                throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmpty_Failed, paramName, optsFn);
+                throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmpty_Failed, paramName);
 
             return value;
         }
-        
+
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string HasLength([ValidatedNotNull, NotNull]string value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string HasLength([ValidatedNotNull, NotNull]string value, int expected, [InvokerParameterName] string paramName = null)
         {
-            Ensure.Any.IsNotNull(value, paramName, optsFn);
+            Ensure.Any.IsNotNull(value, paramName);
 
             if (value.Length != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Strings_SizeIs_Failed, expected, value.Length),
-                    paramName,
-                    optsFn);
+                    paramName);
 
             return value;
         }
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string HasLengthBetween([ValidatedNotNull, NotNull]string value, int minLength, int maxLength, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string HasLengthBetween([ValidatedNotNull, NotNull]string value, int minLength, int maxLength, [InvokerParameterName] string paramName = null)
         {
-            Ensure.Any.IsNotNull(value, paramName, optsFn);
+            Ensure.Any.IsNotNull(value, paramName);
 
             var length = value.Length;
 
             if (length < minLength)
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Strings_HasLengthBetween_Failed_ToShort, minLength, maxLength, length),
-                    paramName,
-                    optsFn);
+                    paramName);
 
             if (length > maxLength)
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Strings_HasLengthBetween_Failed_ToLong, minLength, maxLength, length),
-                    paramName,
-                    optsFn);
+                    paramName);
 
             return value;
         }
 
         [return: NotNull]
-        public string Matches(string value, [RegexPattern] string match, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
-            => Matches(value, new Regex(match), paramName, optsFn);
+        public string Matches(string value, [RegexPattern] string match, [InvokerParameterName] string paramName = null)
+            => Matches(value, new Regex(match), paramName);
 
         [return: NotNull]
-        public string Matches(string value, Regex match, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string Matches(string value, Regex match, [InvokerParameterName] string paramName = null)
         {
             if (!match.IsMatch(value))
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Strings_Matches_Failed, value, match),
-                    paramName,
-                    optsFn);
+                    paramName);
 
             return value;
         }
@@ -128,169 +124,161 @@ namespace EnsureThat.Enforcers
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
         [Obsolete("Use 'HasLength' instead. This will be removed in an upcoming version.")]
-        public string SizeIs([ValidatedNotNull, NotNull] string value, int expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
-            => HasLength(value, expected, paramName, optsFn);
+        public string SizeIs([ValidatedNotNull, NotNull] string value, int expected, [InvokerParameterName] string paramName = null)
+            => HasLength(value, expected, paramName);
 
-        public string Is(string value, string expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
-            => IsEqualTo(value, expected, paramName, optsFn);
+        public string Is(string value, string expected, [InvokerParameterName] string paramName = null)
+            => IsEqualTo(value, expected, paramName);
 
-        public string IsEqualTo(string value, string expected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsEqualTo(string value, string expected, [InvokerParameterName] string paramName = null)
         {
             if (!StringEquals(value, expected))
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Strings_IsEqualTo_Failed, value, expected),
-                    paramName,
-                    optsFn);
+                    paramName);
 
             return value;
         }
 
-        public string Is(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
-            => IsEqualTo(value, expected, comparison, paramName, optsFn);
+        public string Is(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null)
+            => IsEqualTo(value, expected, comparison, paramName);
 
-        public string IsEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null)
         {
             if (!StringEquals(value, expected, comparison))
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Strings_IsEqualTo_Failed, value, expected),
-                    paramName,
-                    optsFn);
+                    paramName);
 
             return value;
         }
 
-        public string IsNot(string value, string notExpected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
-            => IsNotEqualTo(value, notExpected, paramName, optsFn);
+        public string IsNot(string value, string notExpected, [InvokerParameterName] string paramName = null)
+            => IsNotEqualTo(value, notExpected, paramName);
 
-        public string IsNotEqualTo(string value, string notExpected, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsNotEqualTo(string value, string notExpected, [InvokerParameterName] string paramName = null)
         {
             if (StringEquals(value, notExpected))
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Strings_IsNotEqualTo_Failed, value, notExpected),
-                    paramName,
-                    optsFn);
+                    paramName);
 
             return value;
         }
 
-        public string IsNot(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
-            => IsNotEqualTo(value, notExpected, comparison, paramName, optsFn);
+        public string IsNot(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null)
+            => IsNotEqualTo(value, notExpected, comparison, paramName);
 
-        public string IsNotEqualTo(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsNotEqualTo(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null)
         {
             if (StringEquals(value, notExpected, comparison))
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Strings_IsNotEqualTo_Failed, value, notExpected),
-                    paramName,
-                    optsFn);
+                    paramName);
 
             return value;
         }
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public Guid IsGuid([ValidatedNotNull, NotNull]string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public Guid IsGuid([ValidatedNotNull, NotNull]string value, [InvokerParameterName] string paramName = null)
         {
             if (!Guid.TryParse(value, out var parsed))
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Strings_IsGuid_Failed, value),
-                    paramName,
-                    optsFn);
+                    paramName);
 
             return parsed;
         }
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string StartsWith([ValidatedNotNull, NotNull]string value, [NotNull] string expectedStartsWith, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string StartsWith([ValidatedNotNull, NotNull]string value, [NotNull] string expectedStartsWith, [InvokerParameterName] string paramName = null)
         {
-            Ensure.Any.IsNotNull(value, paramName, optsFn);
+            Ensure.Any.IsNotNull(value, paramName);
 
             if (!value.StartsWith(expectedStartsWith))
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Strings_StartsWith_Failed, value, expectedStartsWith),
-                    paramName,
-                    optsFn);
+                    paramName);
 
             return value;
         }
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string StartsWith([ValidatedNotNull, NotNull]string value, [NotNull] string expectedStartsWith, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string StartsWith([ValidatedNotNull, NotNull]string value, [NotNull] string expectedStartsWith, StringComparison comparison, [InvokerParameterName] string paramName = null)
         {
-            Ensure.Any.IsNotNull(value, paramName, optsFn);
+            Ensure.Any.IsNotNull(value, paramName);
 
             if (!value.StartsWith(expectedStartsWith, comparison))
                 throw Ensure.ExceptionFactory.ArgumentException(
                     string.Format(ExceptionMessages.Strings_StartsWith_Failed, value, expectedStartsWith),
-                    paramName,
-                    optsFn);
+                    paramName);
 
             return value;
         }
 
-        public string IsLt(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsLt(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null)
         {
             if (!StringIsLt(value, limit, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), paramName, value, optsFn);
+                    string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), paramName, value);
 
             return value;
         }
 
-        public string IsLte(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsLte(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null)
         {
             if (StringIsGt(value, limit, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), paramName, value, optsFn);
+                    string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), paramName, value);
 
             return value;
         }
 
-        public string IsGt(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsGt(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null)
         {
             if (!StringIsGt(value, limit, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), paramName, value, optsFn);
+                    string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), paramName, value);
 
             return value;
         }
 
-        public string IsGte(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsGte(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null)
         {
             if (StringIsLt(value, limit, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), paramName, value, optsFn);
+                    string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), paramName, value);
 
             return value;
         }
 
-        public string IsInRange(string value, string min, string max, StringComparison comparison, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsInRange(string value, string min, string max, StringComparison comparison, [InvokerParameterName] string paramName = null)
         {
             if (StringIsLt(value, min, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, min), paramName, value, optsFn);
+                    string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, min), paramName, value);
 
             if (StringIsGt(value, max, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, max), paramName, value, optsFn);
+                    string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, max), paramName, value);
 
             return value;
         }
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string IsAllLettersOrDigits([ValidatedNotNull, NotNull] string value, [InvokerParameterName] string paramName = null, OptsFn optsFn = null)
+        public string IsAllLettersOrDigits([ValidatedNotNull, NotNull] string value, [InvokerParameterName] string paramName = null)
         {
-            Ensure.Any.IsNotNull(value, paramName, optsFn);
+            Ensure.Any.IsNotNull(value, paramName);
 
             for (var i = 0; i < value.Length; i++)
                 if (!char.IsLetterOrDigit(value[i]))
                     throw Ensure.ExceptionFactory.ArgumentException(
                         string.Format(ExceptionMessages.Strings_IsAllLettersOrDigits_Failed, value),
-                        paramName,
-                        optsFn);
+                        paramName);
 
             return value;
         }
