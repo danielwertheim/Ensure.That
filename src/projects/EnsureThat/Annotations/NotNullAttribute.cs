@@ -1,5 +1,5 @@
 ﻿// This IF should be 'any new targets we add that natively support NotNullAttribute'. Right now, that is only 2_1.
-#if !NETSTANDARD2_1 && !NET5_0
+#if NET462
 // ReSharper disable once CheckNamespace
 namespace System.Diagnostics.CodeAnalysis
 {
@@ -9,7 +9,7 @@ namespace System.Diagnostics.CodeAnalysis
     /// For non-supported frameworks, it may be ignored by CodeAnalysis, but allows the usage
     /// sites to avoid all having
     /// <code>
-    /// #if NETSTANDARD2_1
+    /// #if NET462
     ///   [NotNull]
     /// #endif
     /// [OtherAttributes]

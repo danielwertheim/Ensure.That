@@ -30,12 +30,12 @@ stages:
         testRunTitle: 'UnitTests .NetCoreApp3.1'
 
     - task: DotNetCoreCLI@2
-      displayName: 'UnitTests .Net5'
+      displayName: 'UnitTests .Net6'
       inputs:
         command: test
         projects: 'src/**/UnitTests.csproj'
-        arguments: '-c $(BuildConfiguration) -f net5.0 --no-build'
-        testRunTitle: 'UnitTests .Net5'
+        arguments: '-c $(BuildConfiguration) -f net6.0 --no-build'
+        testRunTitle: 'UnitTests .Net6'
 
     - task: DotNetCoreCLI@2
       displayName: 'Pack Nupkg'

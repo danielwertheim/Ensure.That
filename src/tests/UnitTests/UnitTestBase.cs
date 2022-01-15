@@ -14,10 +14,10 @@ namespace UnitTests
                 expectedMessage = string.Format(expectedMessage, formattingArgs);
 
             ex.ParamName.Should().Be(ParamName);
-#if NETCOREAPP3_1 || NET5_0
-            var x = $"{expectedMessage} (Parameter 'test')";
-#else
+#if NET462
             var x = $"{expectedMessage}{Environment.NewLine}Parameter name: test";
+#else
+            var x = $"{expectedMessage} (Parameter 'test')";
 #endif
             ex.Message.Should().Contain(x);
         }
@@ -49,7 +49,7 @@ namespace UnitTests
 
         protected static void ShouldReturn<T>(T expectedResult, params Func<T>[] actions)
         {
-            foreach (var action in actions) 
+            foreach (var action in actions)
                 action().Should().Be(expectedResult);
         }
     }
