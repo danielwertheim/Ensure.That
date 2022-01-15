@@ -15,7 +15,7 @@ namespace EnsureThat
         /// <remarks>If you know you are dealing with e.g. a struct, the <see cref="EnsureThatValueTypeExtensions.IsNotNull{T}"/> overload is more performant.</remarks>
         public static Param<T> HasValue<T>(this in Param<T> param)
         {
-            Ensure.Any.HasValue(param.Value, param.Name, param.OptsFn);
+            Ensure.Any.HasValue(param.Value, param.Name);
 
             return param;
         }
@@ -31,7 +31,7 @@ namespace EnsureThat
         /// <remarks>If you know you are dealing with e.g. a struct, the <see cref="EnsureThatValueTypeExtensions.IsNotNull{T}"/> overload is more performant.</remarks>
         public static Param<T> IsNotNull<T>(this in Param<T> param) where T : class
         {
-            Ensure.Any.IsNotNull(param.Value, param.Name, param.OptsFn);
+            Ensure.Any.IsNotNull(param.Value, param.Name);
 
             return param;
         }

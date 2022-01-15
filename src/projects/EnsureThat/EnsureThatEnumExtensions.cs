@@ -24,7 +24,7 @@
         /// </example>
         public static Param<T> IsDefined<T>(this in Param<T> param) where T : struct, System.Enum
         {
-            Ensure.Enum.IsDefined(param.Value, param.Name, param.OptsFn);
+            Ensure.Enum.IsDefined(param.Value, param.Name);
 
             return param;
         }
@@ -35,7 +35,7 @@
         /// </summary>
         public static Param<T> IsDefinedWithFlagsSupport<T>(this in Param<T> param) where T : struct, System.Enum
         {
-            Ensure.Enum.IsDefinedWithFlagsSupport(param.Value, param.Name, param.OptsFn);
+            Ensure.Enum.IsDefinedWithFlagsSupport(param.Value, param.Name);
 
             return param;
         }

@@ -77,11 +77,10 @@ namespace EnsureThat
         /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>
         /// <param name="name"></param>
-        /// <param name="optsFn"></param>
         /// <returns></returns>
         [Pure]
-        public static Param<T> That<T>([NoEnumeration] T value, string name = null, OptsFn optsFn = null)
-            => new Param<T>(name, value, optsFn);
+        public static Param<T> That<T>([NoEnumeration] T value, string name = null)
+            => new Param<T>(name, value);
 
         /// <summary>
         /// Ensures via discoverable API. Please note that an extra wrapping object
@@ -91,11 +90,10 @@ namespace EnsureThat
         /// </summary>
         /// <param name="value"></param>
         /// <param name="name"></param>
-        /// <param name="optsFn"></param>
         /// <returns></returns>
         [Pure]
-        public static StringParam That([NoEnumeration] string value, string name = null, OptsFn optsFn = null)
-            => new StringParam(name, value, optsFn);
+        public static StringParam That([NoEnumeration] string value, string name = null)
+            => new StringParam(name, value);
 
         /// <summary>
         /// Ensures via discoverable API. Please note that an extra wrapping object
@@ -106,11 +104,10 @@ namespace EnsureThat
         /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>
         /// <param name="name"></param>
-        /// <param name="optsFn"></param>
         /// <returns></returns>
         [Pure]
-        public static TypeParam ThatTypeFor<T>([NotNull] T value, string name = null, OptsFn optsFn = null)
-            => new TypeParam(name, value.GetType(), optsFn);
+        public static TypeParam ThatTypeFor<T>([NotNull] T value, string name = null)
+            => new TypeParam(name, value.GetType());
 
         /// <summary>
         /// Ensures via discoverable API. Please note that an extra wrapping object
@@ -120,10 +117,9 @@ namespace EnsureThat
         /// </summary>
         /// <param name="value"></param>
         /// <param name="name"></param>
-        /// <param name="optsFn"></param>
         /// <returns></returns>
         [Pure]
-        public static TypeParam ThatType([NotNull] Type value, string name = null, OptsFn optsFn = null)
-            => new TypeParam(name, value, optsFn);
+        public static TypeParam ThatType([NotNull] Type value, string name = null)
+            => new TypeParam(name, value);
     }
 }
