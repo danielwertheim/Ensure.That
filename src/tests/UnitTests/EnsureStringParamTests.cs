@@ -1,6 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
 using EnsureThat;
+using EnsureThat.Internals;
 using Xunit;
 #pragma warning disable 618
 
@@ -177,7 +178,7 @@ namespace UnitTests
                 () => EnsureArg.IsNotEmpty(value, ParamName),
                 () => Ensure.That(value, ParamName).IsNotEmpty());
         }
-        
+
         [Fact]
         public void HasLength_When_null_It_throws_ArgumentNullException()
         {
@@ -197,7 +198,7 @@ namespace UnitTests
             var expected = value.Length + 1;
 
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_SizeIs_Failed, expected, value.Length),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_SizeIs_Failed, expected, value.Length),
                 () => Ensure.String.HasLength(value, expected, ParamName),
                 () => EnsureArg.HasLength(value, expected, ParamName),
                 () => Ensure.That(value, ParamName).HasLength(expected));
@@ -232,7 +233,7 @@ namespace UnitTests
             var value = new string('a', low - 1);
 
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_HasLengthBetween_Failed_ToShort, low, high, value.Length),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_HasLengthBetween_Failed_ToShort, low, high, value.Length),
                 () => Ensure.String.HasLengthBetween(value, low, high, ParamName),
                 () => EnsureArg.HasLengthBetween(value, low, high, ParamName),
                 () => Ensure.That(value, ParamName).HasLengthBetween(low, high));
@@ -246,7 +247,7 @@ namespace UnitTests
             var value = new string('a', high + 1);
 
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_HasLengthBetween_Failed_ToLong, low, high, value.Length),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_HasLengthBetween_Failed_ToLong, low, high, value.Length),
                 () => Ensure.String.HasLengthBetween(value, low, high, ParamName),
                 () => EnsureArg.HasLengthBetween(value, low, high, ParamName),
                 () => Ensure.That(value, ParamName).HasLengthBetween(low, high));
@@ -285,7 +286,7 @@ namespace UnitTests
             const string match = @"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*";
 
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_Matches_Failed, value, match),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_Matches_Failed, value, match),
                 () => Ensure.String.Matches(value, match, ParamName),
                 () => EnsureArg.Matches(value, match, ParamName),
                 () => Ensure.That(value, ParamName).Matches(match));
@@ -298,7 +299,7 @@ namespace UnitTests
             var match = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*");
 
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_Matches_Failed, value, match),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_Matches_Failed, value, match),
                 () => Ensure.String.Matches(value, match, ParamName),
                 () => EnsureArg.Matches(value, match, ParamName),
                 () => Ensure.That(value, ParamName).Matches(match));
@@ -347,7 +348,7 @@ namespace UnitTests
             var expected = value.Length + 1;
 
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_SizeIs_Failed, expected, value.Length),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_SizeIs_Failed, expected, value.Length),
                 () => Ensure.String.SizeIs(value, expected, ParamName),
                 () => EnsureArg.SizeIs(value, expected, ParamName),
                 () => Ensure.That(value, ParamName).SizeIs(expected));
@@ -370,7 +371,7 @@ namespace UnitTests
             const string expected = "Other value";
 
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_IsEqualTo_Failed, value, expected),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_IsEqualTo_Failed, value, expected),
                 () => Ensure.String.IsEqualTo(value, expected, ParamName),
                 () => EnsureArg.IsEqualTo(value, expected, ParamName),
                 () => Ensure.That(value, ParamName).IsEqualTo(expected));
@@ -412,7 +413,7 @@ namespace UnitTests
             const string value = "The value";
 
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Comp_IsNot_Failed, value, value),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNot_Failed, value, value),
                 () => Ensure.String.IsNotEqualTo(value, value, ParamName),
                 () => EnsureArg.IsNotEqualTo(value, value, ParamName),
                 () => Ensure.That(value, ParamName).IsNotEqualTo(value),
@@ -425,10 +426,10 @@ namespace UnitTests
         public void IsNotEqualTo_When_different_values_by_casing_using_non_case_sensitive_compare_It_throws_ArgumentException()
         {
             const string value = "The value";
-            var compareTo = value.ToLower();
+            var compareTo = value.ToLower(DefaultFormatProvider.Strings);
 
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Comp_IsNot_Failed, value, compareTo),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNot_Failed, value, compareTo),
                 () => Ensure.String.IsNotEqualTo(value, compareTo, StringComparison.OrdinalIgnoreCase, ParamName),
                 () => EnsureArg.IsNotEqualTo(value, compareTo, StringComparison.OrdinalIgnoreCase, ParamName),
                 () => Ensure.That(value, ParamName).IsNotEqualTo(compareTo, StringComparison.OrdinalIgnoreCase),
@@ -455,14 +456,15 @@ namespace UnitTests
         public void IsNotEqualTo_When_different_values_by_casing_using_case_sensitive_compare_It_should_not_throw()
         {
             var value = "The value";
+            var compareTo = value.ToLower(DefaultFormatProvider.Strings);
 
             ShouldNotThrow(
-                () => Ensure.String.IsNotEqualTo(value, value.ToLower(), StringComparison.Ordinal, ParamName),
-                () => EnsureArg.IsNotEqualTo(value, value.ToLower(), StringComparison.Ordinal, ParamName),
-                () => Ensure.That(value, ParamName).IsNotEqualTo(value.ToLower(), StringComparison.Ordinal),
-                () => Ensure.String.IsNot(value, value.ToLower(), StringComparison.Ordinal, ParamName),
-                () => EnsureArg.IsNot(value, value.ToLower(), StringComparison.Ordinal, ParamName),
-                () => Ensure.That(value, ParamName).IsNot(value.ToLower(), StringComparison.Ordinal));
+                () => Ensure.String.IsNotEqualTo(value, compareTo, StringComparison.Ordinal, ParamName),
+                () => EnsureArg.IsNotEqualTo(value, compareTo, StringComparison.Ordinal, ParamName),
+                () => Ensure.That(value, ParamName).IsNotEqualTo(compareTo, StringComparison.Ordinal),
+                () => Ensure.String.IsNot(value, compareTo, StringComparison.Ordinal, ParamName),
+                () => EnsureArg.IsNot(value, compareTo, StringComparison.Ordinal, ParamName),
+                () => Ensure.That(value, ParamName).IsNot(compareTo, StringComparison.Ordinal));
         }
 
         [Fact]
@@ -482,7 +484,7 @@ namespace UnitTests
             string value = null;
 
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_IsGuid_Failed, value),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_IsGuid_Failed, value),
                 () => Ensure.String.IsGuid(value, ParamName),
                 () => EnsureArg.IsGuid(value, ParamName),
                 () => Ensure.That(value, ParamName).IsGuid());
@@ -494,7 +496,7 @@ namespace UnitTests
             const string value = "324-3243-123-23";
 
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_IsGuid_Failed, value),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_IsGuid_Failed, value),
                 () => Ensure.String.IsGuid(value, ParamName),
                 () => EnsureArg.IsGuid(value, ParamName),
                 () => Ensure.That(value, ParamName).IsGuid());
@@ -510,7 +512,7 @@ namespace UnitTests
                 () => Ensure.String.IsGuid(valueAsString, ParamName),
                 () => EnsureArg.IsGuid(valueAsString, ParamName),
                 () => Ensure.That(valueAsString, ParamName).IsGuid());
-            
+
             ShouldReturn(
                 value,
                 () => Ensure.String.IsGuid(valueAsString),
@@ -536,7 +538,7 @@ namespace UnitTests
             var startPart = "otherString";
 
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_StartsWith_Failed, value, startPart),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_StartsWith_Failed, value, startPart),
                 () => Ensure.String.StartsWith(value, startPart, ParamName),
                 () => EnsureArg.StartsWith(value, startPart, ParamName),
                 () => Ensure.That(value, ParamName).StartsWith(startPart));
@@ -581,7 +583,7 @@ namespace UnitTests
             const string value = "<:)-+-<";
 
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Strings_IsAllLettersOrDigits_Failed, value),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_IsAllLettersOrDigits_Failed, value),
                 () => Ensure.String.IsAllLettersOrDigits(value, ParamName),
                 () => EnsureArg.IsAllLettersOrDigits(value, ParamName),
                 () => Ensure.That(value, ParamName).IsAllLettersOrDigits());

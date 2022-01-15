@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using EnsureThat.Annotations;
 using JetBrains.Annotations;
 
@@ -6,6 +7,7 @@ using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
 
 namespace EnsureThat.Enforcers
 {
+    [SuppressMessage("Performance", "CA1822:Mark members as static")]
     public sealed class AnyArg
     {
         /// <summary>

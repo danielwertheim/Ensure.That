@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace EnsureThat
 {
+    [SuppressMessage("Design", "CA1051:Do not declare visible instance fields")]
     public readonly struct Param<T>
     {
         public readonly string Name;
@@ -15,6 +16,7 @@ namespace EnsureThat
         }
     }
 
+    [SuppressMessage("Design", "CA1051:Do not declare visible instance fields")]
     public readonly struct StringParam
     {
         public readonly string Name;
@@ -27,6 +29,7 @@ namespace EnsureThat
         }
     }
 
+    [SuppressMessage("Design", "CA1051:Do not declare visible instance fields")]
     public readonly struct TypeParam
     {
         public readonly string Name;

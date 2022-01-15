@@ -19,8 +19,8 @@ namespace EnsureThat.Internals
 
             var enumValues = Enum.GetValues(EnumType);
             _values = new List<ulong>(enumValues.Length);
-            foreach (var v in enumValues) 
-                _values.Add(Convert.ToUInt64(v));
+            foreach (var v in enumValues)
+                _values.Add(Convert.ToUInt64(v, null));
         }
 
         internal static bool Contains(T value)
@@ -28,7 +28,7 @@ namespace EnsureThat.Internals
             if (!_hasFlags)
                 return Enum.IsDefined(EnumType, value);
 
-            var raw = Convert.ToUInt64(value);
+            var raw = Convert.ToUInt64(value, null);
             if (raw == 0)
                 return Enum.IsDefined(EnumType, value);
 

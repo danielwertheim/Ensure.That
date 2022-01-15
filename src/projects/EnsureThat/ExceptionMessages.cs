@@ -1,5 +1,8 @@
-﻿namespace EnsureThat
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace EnsureThat
 {
+    [SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores")]
     public static class ExceptionMessages
     {
         public static string Common_IsNotNull_Failed { get; } = "Value can not be null.";

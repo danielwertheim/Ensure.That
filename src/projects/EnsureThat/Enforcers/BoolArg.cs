@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
 
 // ReSharper disable ConditionIsAlwaysTrueOrFalse
 
 namespace EnsureThat.Enforcers
 {
+    [SuppressMessage("Performance", "CA1822:Mark members as static")]
     public sealed class BoolArg
     {
         [ContractAnnotation("value:false=>halt; value:true=>true")]

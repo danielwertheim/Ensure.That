@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using EnsureThat.Internals;
 using JetBrains.Annotations;
 
 namespace EnsureThat.Enforcers
 {
+    [SuppressMessage("Performance", "CA1822:Mark members as static")]
     public sealed partial class ComparableArg
     {
         public T Is<T>(T value, T expected, [InvokerParameterName] string paramName = null) where T : IComparable<T>
         {
             if (!ValueIsEq(value, expected))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Comp_Is_Failed, value, expected), paramName);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_Is_Failed, value, expected), paramName);
 
             return value;
         }
@@ -19,7 +22,7 @@ namespace EnsureThat.Enforcers
         {
             if (!ValueIsEq(value, expected, comparer))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Comp_Is_Failed, value, expected), paramName);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_Is_Failed, value, expected), paramName);
 
             return value;
         }
@@ -28,7 +31,7 @@ namespace EnsureThat.Enforcers
         {
             if (ValueIsEq(value, expected))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Comp_IsNot_Failed, value, expected), paramName);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNot_Failed, value, expected), paramName);
 
             return value;
         }
@@ -37,7 +40,7 @@ namespace EnsureThat.Enforcers
         {
             if (ValueIsEq(value, expected, comparer))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Comp_IsNot_Failed, value, expected), paramName);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNot_Failed, value, expected), paramName);
 
             return value;
         }
@@ -46,7 +49,7 @@ namespace EnsureThat.Enforcers
         {
             if (!ValueIsLt(value, limit))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotLt, value, limit), paramName, value);
 
             return value;
         }
@@ -55,7 +58,7 @@ namespace EnsureThat.Enforcers
         {
             if (!ValueIsLt(value, limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotLt, value, limit), paramName, value);
 
             return value;
         }
@@ -64,7 +67,7 @@ namespace EnsureThat.Enforcers
         {
             if (ValueIsGt(value, limit))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotLte, value, limit), paramName, value);
 
             return value;
         }
@@ -73,7 +76,7 @@ namespace EnsureThat.Enforcers
         {
             if (ValueIsGt(value, limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotLte, value, limit), paramName, value);
 
             return value;
         }
@@ -82,7 +85,7 @@ namespace EnsureThat.Enforcers
         {
             if (!ValueIsGt(value, limit))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotGt, value, limit), paramName, value);
 
             return value;
         }
@@ -91,7 +94,7 @@ namespace EnsureThat.Enforcers
         {
             if (!ValueIsGt(value, limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotGt, value, limit), paramName, value);
 
             return value;
         }
@@ -100,7 +103,7 @@ namespace EnsureThat.Enforcers
         {
             if (ValueIsLt(value, limit))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotGte, value, limit), paramName, value);
 
             return value;
         }
@@ -109,7 +112,7 @@ namespace EnsureThat.Enforcers
         {
             if (ValueIsLt(value, limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotGte, value, limit), paramName, value);
 
             return value;
         }
@@ -118,11 +121,11 @@ namespace EnsureThat.Enforcers
         {
             if (ValueIsLt(value, min))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, min), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotInRange_ToLow, value, min), paramName, value);
 
             if (ValueIsGt(value, max))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, max), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotInRange_ToHigh, value, max), paramName, value);
 
             return value;
         }
@@ -131,11 +134,11 @@ namespace EnsureThat.Enforcers
         {
             if (ValueIsLt(value, min, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, min), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotInRange_ToLow, value, min), paramName, value);
 
             if (ValueIsGt(value, max, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, max), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotInRange_ToHigh, value, max), paramName, value);
 
             return value;
         }

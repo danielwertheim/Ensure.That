@@ -1,5 +1,7 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using EnsureThat;
+using EnsureThat.Internals;
 using Xunit;
 
 namespace UnitTests
@@ -323,7 +325,7 @@ namespace UnitTests
             var spec = When_value_is_lt_than_limit();
 
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Comp_Is_Failed, spec.Value, spec.Limit),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_Is_Failed, spec.Value, spec.Limit),
                 () => Ensure.Comparable.Is(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.Is(spec.Value, spec.Limit, ParamName),
                 () => Ensure.That(spec.Value, ParamName).Is(spec.Limit));
@@ -337,7 +339,7 @@ namespace UnitTests
             var Sa = "Sa";
             IComparer<string> ordinal = StringComparer.Ordinal;
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Comp_Is_Failed, sa, Sa),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_Is_Failed, sa, Sa),
                 () => Ensure.Comparable.Is(sa, Sa, ordinal, ParamName),
                 () => EnsureArg.Is(sa, Sa, ordinal, ParamName),
                 () => Ensure.String.IsEqualTo(sa, Sa, StringComparison.Ordinal, ParamName),
@@ -369,7 +371,7 @@ namespace UnitTests
             var spec = When_value_is_equal_to_limit();
 
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Comp_IsNot_Failed, spec.Value, spec.Limit),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNot_Failed, spec.Value, spec.Limit),
                 () => Ensure.Comparable.IsNot(spec.Value, spec.Limit, ParamName),
                 () => EnsureArg.IsNot(spec.Value, spec.Limit, ParamName),
                 () => Ensure.That(spec.Value, ParamName).IsNot(spec.Limit));
@@ -391,7 +393,7 @@ namespace UnitTests
             // Validate with comparer (order is reversed)
             IComparer<string> ignoreCase = StringComparer.OrdinalIgnoreCase;
             ShouldThrow<ArgumentException>(
-                string.Format(ExceptionMessages.Comp_IsNot_Failed, sa, Sa),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNot_Failed, sa, Sa),
                 () => Ensure.Comparable.IsNot(sa, Sa, ignoreCase, ParamName),
                 () => EnsureArg.IsNot(sa, Sa, ignoreCase, ParamName),
                 () => Ensure.String.IsNotEqualTo(sa, Sa, StringComparison.OrdinalIgnoreCase, ParamName),
@@ -440,23 +442,24 @@ namespace UnitTests
         }
 
         private static void AssertIsLtScenario<T>(T value, T limit, params Action[] actions)
-            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), actions);
+            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotLt, value, limit), actions);
 
         private static void AssertIsGtScenario<T>(T value, T limit, params Action[] actions)
-            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), actions);
+            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotGt, value, limit), actions);
 
         private static void AssertIsLteScenario<T>(T value, T limit, params Action[] actions)
-            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), actions);
+            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotLte, value, limit), actions);
 
         private static void AssertIsGteScenario<T>(T value, T limit, params Action[] actions)
-            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), actions);
+            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotGte, value, limit), actions);
 
         private static void AssertIsRangeToLowScenario<T>(T value, T limit, params Action[] actions)
-            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, limit), actions);
+            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotInRange_ToLow, value, limit), actions);
 
         private static void AssertIsRangeToHighScenario<T>(T value, T limit, params Action[] actions)
-            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, limit), actions);
+            => ShouldThrow<ArgumentOutOfRangeException>(string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotInRange_ToHigh, value, limit), actions);
 
+        [SuppressMessage("Design", "CA1036:Override methods on comparable types")]
         public class CustomComparable : IComparable<CustomComparable>
         {
             private readonly int _value;
@@ -476,7 +479,7 @@ namespace UnitTests
 
             public static implicit operator CustomComparable(int value) => new CustomComparable(value);
 
-            public override string ToString() => _value.ToString();
+            public override string ToString() => _value.ToString(DefaultFormatProvider.Strings);
         }
 
         public class CompareParamTestSpec

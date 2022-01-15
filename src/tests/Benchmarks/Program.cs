@@ -41,7 +41,7 @@ namespace Benchmarks
 
         public static void StringIsEqualTo(string value, string expected)
         {
-            if (!string.Equals(value, expected))
+            if (!string.Equals(value, expected, StringComparison.Ordinal))
                 throw new ArgumentException("Some message 2.", nameof(value));
         }
 

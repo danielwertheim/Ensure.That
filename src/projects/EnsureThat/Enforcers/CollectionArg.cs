@@ -2,14 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using EnsureThat.Annotations;
+using EnsureThat.Internals;
 using JetBrains.Annotations;
 
 using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
 
 namespace EnsureThat.Enforcers
 {
+    [SuppressMessage("Performance", "CA1822:Mark members as static")]
     public sealed class CollectionArg
     {
         [return: NotNull]
@@ -188,7 +191,7 @@ namespace EnsureThat.Enforcers
 
             if (value.Length != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Length),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_SizeIs_Failed, expected, value.Length),
                     paramName);
 
             return value;
@@ -202,7 +205,7 @@ namespace EnsureThat.Enforcers
 
             if (value.Length != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Length),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_SizeIs_Failed, expected, value.Length),
                     paramName);
 
             return value;
@@ -216,7 +219,7 @@ namespace EnsureThat.Enforcers
 
             if (value.Count != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName);
 
             return value;
@@ -230,7 +233,7 @@ namespace EnsureThat.Enforcers
 
             if (value.Count != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName);
 
             return value;
@@ -244,7 +247,7 @@ namespace EnsureThat.Enforcers
 
             if (value.Count != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName);
 
             return value;
@@ -258,7 +261,7 @@ namespace EnsureThat.Enforcers
 
             if (value.Count != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName);
 
             return value;
@@ -272,7 +275,7 @@ namespace EnsureThat.Enforcers
 
             if (value.Count != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName);
 
             return value;
@@ -286,7 +289,7 @@ namespace EnsureThat.Enforcers
 
             if (value.Count != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName);
 
             return value;
@@ -300,7 +303,7 @@ namespace EnsureThat.Enforcers
 
             if (value.Count != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName);
 
             return value;
@@ -314,7 +317,7 @@ namespace EnsureThat.Enforcers
 
             if (value.Count != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_SizeIs_Failed, expected, value.Count),
                     paramName);
 
             return value;
@@ -328,7 +331,7 @@ namespace EnsureThat.Enforcers
 
             if (!value.ContainsKey(expectedKey))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Collections_ContainsKey_Failed, expectedKey),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_ContainsKey_Failed, expectedKey),
                     paramName);
 
             return value;
