@@ -1,9 +1,12 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using EnsureThat;
+using EnsureThat.Internals;
 using Xunit;
 
 namespace UnitTests
 {
+    [SuppressMessage("Naming", "CA1711:Identifiers should not have incorrect suffix")]
     public class EnsureEnumParamTests : UnitTestBase
     {
         [Fact]
@@ -23,7 +26,7 @@ namespace UnitTests
         public void NotDefined_ShouldThrow(Only1IsValidEnum item)
         {
             ShouldThrow<ArgumentOutOfRangeException>(
-                string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(Only1IsValidEnum)),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Enum_IsValidEnum, item, typeof(Only1IsValidEnum)),
                 () => Ensure.Enum.IsDefined(item, ParamName),
                 () => EnsureArg.EnumIsDefined(item, ParamName),
                 () => Ensure.That(item, ParamName).IsDefined());
@@ -46,7 +49,7 @@ namespace UnitTests
         public void NotDefined_Extended_ShouldThrow(Only1IsValidEnum item)
         {
             ShouldThrow<ArgumentOutOfRangeException>(
-                string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(Only1IsValidEnum)),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Enum_IsValidEnum, item, typeof(Only1IsValidEnum)),
                 () => Ensure.Enum.IsDefinedWithFlagsSupport(item, ParamName),
                 () => EnsureArg.EnumIsDefinedWithFlagsSupport(item, ParamName),
                 () => Ensure.That(item, ParamName).IsDefinedWithFlagsSupport());
@@ -69,7 +72,7 @@ namespace UnitTests
             var item = TestFlagsEnum.Bar | TestFlagsEnum.Baz;
 
             ShouldThrow<ArgumentOutOfRangeException>(
-                string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsEnum)),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsEnum)),
                 () => Ensure.Enum.IsDefined(item, ParamName),
                 () => EnsureArg.EnumIsDefined(item, ParamName),
                 () => Ensure.That(item, ParamName).IsDefined());
@@ -80,12 +83,12 @@ namespace UnitTests
         {
             var item = (TestFlagsEnum)3;
             ShouldThrow<ArgumentOutOfRangeException>(
-                string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsEnum)),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsEnum)),
                 () => Ensure.Enum.IsDefined(item, ParamName),
                 () => EnsureArg.EnumIsDefined(item, ParamName),
                 () => Ensure.That(item, ParamName).IsDefined());
         }
-        
+
         [Theory]
         [InlineData(TestFlagsEnum.Bar)]
         [InlineData(TestFlagsEnum.Bar | TestFlagsEnum.Baz)]
@@ -103,12 +106,12 @@ namespace UnitTests
         public void FlagNotDefined_Extended_ShouldThrow(TestFlagsEnum item)
         {
             ShouldThrow<ArgumentOutOfRangeException>(
-                string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsEnum)),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsEnum)),
                 () => Ensure.Enum.IsDefinedWithFlagsSupport(item, ParamName),
                 () => EnsureArg.EnumIsDefinedWithFlagsSupport(item, ParamName),
                 () => Ensure.That(item, ParamName).IsDefinedWithFlagsSupport());
         }
-        
+
         [Theory]
         [InlineData(TestFlagsOfWhateverPower.A)]
         [InlineData(TestFlagsOfWhateverPower.B)]
@@ -127,9 +130,9 @@ namespace UnitTests
         public void FlagOfWhateverPowerIsNotDefined_ShouldThrow()
         {
             var item = (TestFlagsOfWhateverPower)9;
-            
+
             ShouldThrow<ArgumentOutOfRangeException>(
-                string.Format(ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsOfWhateverPower)),
+                string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Enum_IsValidEnum, item, typeof(TestFlagsOfWhateverPower)),
                 () => Ensure.Enum.IsDefinedWithFlagsSupport(item, ParamName),
                 () => EnsureArg.EnumIsDefinedWithFlagsSupport(item, ParamName),
                 () => Ensure.That(item, ParamName).IsDefinedWithFlagsSupport());

@@ -1,9 +1,11 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using EnsureThat.Internals;
 using JetBrains.Annotations;
 
 namespace EnsureThat.Enforcers
 {
+    [SuppressMessage("Performance", "CA1822:Mark members as static")]
     public sealed class EnumArg
     {
         /// <summary>
@@ -31,7 +33,7 @@ namespace EnsureThat.Enforcers
             if (!Enum.IsDefined(typeof(T), value))
             {
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Enum_IsValidEnum, value, typeof(T)),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Enum_IsValidEnum, value, typeof(T)),
                     paramName,
                     value);
             }
@@ -50,7 +52,7 @@ namespace EnsureThat.Enforcers
             if (!isEnumDefined)
             {
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Enum_IsValidEnum, value, EnumOf<T>.EnumType),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Enum_IsValidEnum, value, EnumOf<T>.EnumType),
                     paramName,
                     value);
             }

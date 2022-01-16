@@ -41,7 +41,7 @@ namespace Benchmarks
 
         public static void StringIsEqualTo(string value, string expected)
         {
-            if (!string.Equals(value, expected))
+            if (!string.Equals(value, expected, StringComparison.Ordinal))
                 throw new ArgumentException("Some message 2.", nameof(value));
         }
 
@@ -240,11 +240,6 @@ namespace Benchmarks
 
         [Benchmark]
         [BenchmarkCategory("Any.int.HasValue")]
-        public void AnyHasValueWhenInt()
-            => Ensure.Any.HasValue(NullableInt, ParamName);
-
-        [Benchmark]
-        [BenchmarkCategory("Any.int.HasValue")]
         public void AnyHasValueWhenIntViaNotNull()
             => Ensure.Any.IsNotNull(NullableInt, ParamName);
 
@@ -252,11 +247,6 @@ namespace Benchmarks
         [BenchmarkCategory("Any.string.HasValue")]
         public void AnyHasValueWhenStringBaseLine()
             => BaseLines.StringIsNotNull(string.Empty);
-
-        [Benchmark]
-        [BenchmarkCategory("Any.string.HasValue")]
-        public void AnyHasValueWhenString()
-            => Ensure.Any.HasValue(string.Empty, ParamName);
 
         private class MyThing
         {

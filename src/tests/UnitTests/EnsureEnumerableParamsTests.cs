@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using EnsureThat;
+using EnsureThat.Internals;
 using Xunit;
 
 namespace UnitTests
@@ -119,7 +120,7 @@ namespace UnitTests
             => ShouldThrow<ArgumentNullException>(ExceptionMessages.Common_IsNotNull_Failed, actions);
 
         private void AssertSizeIsWrong(int actualSize, int expectedSize, params Action[] actions)
-            => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIs_Failed, expectedSize, actualSize), actions);
+            => ShouldThrow<ArgumentException>(string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_SizeIs_Failed, expectedSize, actualSize), actions);
 
         private void AssertAnyPredicateYieldedNone(params Action[] actions)
             => ShouldThrow<ArgumentException>(ExceptionMessages.Collections_Any_Failed, actions);

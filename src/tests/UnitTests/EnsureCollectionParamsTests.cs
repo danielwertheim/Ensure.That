@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using EnsureThat;
+using EnsureThat.Internals;
 using Xunit;
 
 namespace UnitTests
@@ -176,7 +177,7 @@ namespace UnitTests
         [Fact]
         public void HasItems_WhenEmptyArray_ThrowsArgumentException()
         {
-            var emptyArray = new int[] { };
+            var emptyArray = Array.Empty<int>();
 
             AssertIsEmptyCollection(
                 () => Ensure.Collection.HasItems(emptyArray, ParamName),
@@ -814,10 +815,10 @@ namespace UnitTests
         private void AssertIsNotNull(params Action[] actions) => ShouldThrow<ArgumentNullException>(ExceptionMessages.Common_IsNotNull_Failed, actions);
 
         private void AssertSizeIsWrong(int actualSize, int expectedSize, params Action[] actions)
-            => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_SizeIs_Failed, expectedSize, actualSize), actions);
+            => ShouldThrow<ArgumentException>(string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_SizeIs_Failed, expectedSize, actualSize), actions);
 
         private void AssertContainsKey(string expectedKey, params Action[] actions)
-            => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Collections_ContainsKey_Failed, expectedKey), actions);
+            => ShouldThrow<ArgumentException>(string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_ContainsKey_Failed, expectedKey), actions);
 
         private void AssertAnyPredicateYieldedNone(params Action[] actions) => ShouldThrow<ArgumentException>(ExceptionMessages.Collections_Any_Failed, actions);
     }

@@ -2,40 +2,34 @@ using System;
 using EnsureThat;
 using Xunit;
 
+// ReSharper disable ExpressionIsAlwaysNull
+
 namespace UnitTests
 {
-    
+
     public class EnsureAnyParamTests : UnitTestBase
     {
         [Fact]
-        public void HasValue_WhenNull_ThrowsArgumentNullException()
+        public void IsNotNull_WhenValueTypeIsNull_ThrowsArgumentNullException()
         {
-            static void Verify<T>(T value) =>
-                ShouldThrow<ArgumentNullException>(
-                    ExceptionMessages.Common_IsNotNull_Failed,
-                    () => Ensure.Any.HasValue(value, ParamName),
-                    () => EnsureArg.HasValue(value, ParamName),
-                    () => Ensure.That(value, ParamName).HasValue());
+            int? value = null;
 
-            Verify((int?)null);
-            Verify((string)null);
-            Verify((Foo?)null);
-            Verify((Type)null);
+            ShouldThrow<ArgumentNullException>(
+                ExceptionMessages.Common_IsNotNull_Failed,
+                () => Ensure.Any.IsNotNull(value, ParamName),
+                () => EnsureArg.IsNotNull(value, ParamName),
+                () => Ensure.That(value, ParamName).IsNotNull());
         }
 
         [Fact]
-        public void HasValue_WhenNotNull_ShouldNotThrow()
+        public void IsNotNull_WhenValueTypeIsNotNull_ShouldNotThrow()
         {
-            static void Verify<T>(T value) =>
-                ShouldNotThrow(
-                    () => Ensure.Any.HasValue(value, ParamName),
-                    () => EnsureArg.HasValue(value, ParamName),
-                    () => Ensure.That(value, ParamName).HasValue());
+            int? value = 1;
 
-            Verify((int?)1);
-            Verify("");
-            Verify(Foo.Bar);
-            Verify(typeof(int));
+            ShouldNotThrow(
+                () => Ensure.Any.IsNotNull(value, ParamName),
+                () => EnsureArg.IsNotNull(value, ParamName),
+                () => Ensure.That(value, ParamName).IsNotNull());
         }
 
         [Fact]
@@ -82,11 +76,6 @@ namespace UnitTests
                 () => Ensure.Any.IsNotDefault(value, ParamName),
                 () => EnsureArg.IsNotDefault(value, ParamName),
                 () => Ensure.That(value, ParamName).IsNotDefault());
-        }
-        
-        private enum Foo
-        {
-            Bar
         }
     }
 }

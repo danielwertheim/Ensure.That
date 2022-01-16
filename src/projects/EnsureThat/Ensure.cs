@@ -6,6 +6,7 @@ using JetBrains.Annotations;
 
 namespace EnsureThat
 {
+    [SuppressMessage("Naming", "CA1720:Identifier contains type name")]
     public static class Ensure
     {
         /// <summary>

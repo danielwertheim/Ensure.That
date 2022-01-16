@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using EnsureThat.Annotations;
+using EnsureThat.Internals;
 using JetBrains.Annotations;
 
 using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
 
 namespace EnsureThat.Enforcers
 {
+    [SuppressMessage("Performance", "CA1822:Mark members as static")]
     public sealed class TypeArg
     {
         private static class Types
@@ -128,7 +131,7 @@ namespace EnsureThat.Enforcers
 
             if (param != expectedType)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Types_IsOfType_Failed, expectedType.FullName, param.FullName),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Types_IsOfType_Failed, expectedType.FullName, param.FullName),
                     paramName);
 
             return param;
@@ -154,7 +157,7 @@ namespace EnsureThat.Enforcers
 
             if (param == nonExpectedType)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Types_IsNotOfType_Failed, nonExpectedType.FullName),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Types_IsNotOfType_Failed, nonExpectedType.FullName),
                     paramName);
 
             return param;
@@ -180,7 +183,7 @@ namespace EnsureThat.Enforcers
 
             if (!expectedType.IsAssignableFrom(param))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Types_IsAssignableToType_Failed, expectedType.FullName, param.FullName),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Types_IsAssignableToType_Failed, expectedType.FullName, param.FullName),
                     paramName);
 
             return param;
@@ -206,7 +209,7 @@ namespace EnsureThat.Enforcers
 
             if (nonExpectedType.IsAssignableFrom(param))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Types_IsNotAssignableToType_Failed, nonExpectedType.FullName),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Types_IsNotAssignableToType_Failed, nonExpectedType.FullName),
                     paramName);
 
             return param;
@@ -237,7 +240,7 @@ namespace EnsureThat.Enforcers
 
             if (!param.GetTypeInfo().IsClass)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Types_IsClass_Failed, param.FullName),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Types_IsClass_Failed, param.FullName),
                     paramName);
 
             return param;

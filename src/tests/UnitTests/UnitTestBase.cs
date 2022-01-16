@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using EnsureThat.Internals;
 using FluentAssertions;
 
 namespace UnitTests
@@ -11,7 +12,7 @@ namespace UnitTests
         private static void AssertThrowedAsExpected(ArgumentException ex, string expectedMessage, params object[] formattingArgs)
         {
             if (formattingArgs != null && formattingArgs.Any())
-                expectedMessage = string.Format(expectedMessage, formattingArgs);
+                expectedMessage = string.Format(DefaultFormatProvider.Strings, expectedMessage, formattingArgs);
 
             ex.ParamName.Should().Be(ParamName);
 #if NET462

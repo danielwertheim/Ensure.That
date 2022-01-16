@@ -57,11 +57,11 @@ namespace EnsureThat
         public static string Is(string value, string expected, [InvokerParameterName] string paramName = null)
             => Ensure.String.Is(value, expected, paramName);
 
-        public static string IsEqualTo(string value, string expected, [InvokerParameterName] string paramName = null)
-            => Ensure.String.IsEqualTo(value, expected, paramName);
-
         public static string Is(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null)
             => Ensure.String.Is(value, expected, comparison, paramName);
+
+        public static string IsEqualTo(string value, string expected, [InvokerParameterName] string paramName = null)
+            => Ensure.String.IsEqualTo(value, expected, paramName);
 
         public static string IsEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null)
             => Ensure.String.IsEqualTo(value, expected, comparison, paramName);
@@ -69,16 +69,15 @@ namespace EnsureThat
         public static string IsNot(string value, string notExpected, [InvokerParameterName] string paramName = null)
             => Ensure.String.IsNot(value, notExpected, paramName);
 
-        public static string IsNotEqualTo(string value, string notExpected, [InvokerParameterName] string paramName = null)
-            => Ensure.String.IsNotEqualTo(value, notExpected, paramName);
-
         public static string IsNot(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null)
             => Ensure.String.IsNot(value, notExpected, comparison, paramName);
+
+        public static string IsNotEqualTo(string value, string notExpected, [InvokerParameterName] string paramName = null)
+            => Ensure.String.IsNotEqualTo(value, notExpected, paramName);
 
         public static string IsNotEqualTo(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null)
             => Ensure.String.IsNotEqualTo(value, notExpected, comparison, paramName);
 
-        [return: NotNull]
         [ContractAnnotation("value:null => halt")]
         public static Guid IsGuid([ValidatedNotNull, NotNull] string value, [InvokerParameterName] string paramName = null)
             => Ensure.String.IsGuid(value, paramName);

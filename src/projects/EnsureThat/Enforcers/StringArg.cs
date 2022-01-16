@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using EnsureThat.Annotations;
+using EnsureThat.Internals;
 using JetBrains.Annotations;
 
 using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
 
 namespace EnsureThat.Enforcers
 {
+    [SuppressMessage("Performance", "CA1822:Mark members as static")]
     public sealed class StringArg
     {
         [return: NotNull]
@@ -79,7 +81,7 @@ namespace EnsureThat.Enforcers
 
             if (value.Length != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Strings_SizeIs_Failed, expected, value.Length),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_SizeIs_Failed, expected, value.Length),
                     paramName);
 
             return value;
@@ -95,12 +97,12 @@ namespace EnsureThat.Enforcers
 
             if (length < minLength)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Strings_HasLengthBetween_Failed_ToShort, minLength, maxLength, length),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_HasLengthBetween_Failed_ToShort, minLength, maxLength, length),
                     paramName);
 
             if (length > maxLength)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Strings_HasLengthBetween_Failed_ToLong, minLength, maxLength, length),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_HasLengthBetween_Failed_ToLong, minLength, maxLength, length),
                     paramName);
 
             return value;
@@ -115,7 +117,7 @@ namespace EnsureThat.Enforcers
         {
             if (!match.IsMatch(value))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Strings_Matches_Failed, value, match),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_Matches_Failed, value, match),
                     paramName);
 
             return value;
@@ -130,24 +132,24 @@ namespace EnsureThat.Enforcers
         public string Is(string value, string expected, [InvokerParameterName] string paramName = null)
             => IsEqualTo(value, expected, paramName);
 
+        public string Is(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null)
+            => IsEqualTo(value, expected, comparison, paramName);
+
         public string IsEqualTo(string value, string expected, [InvokerParameterName] string paramName = null)
         {
             if (!StringEquals(value, expected))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Strings_IsEqualTo_Failed, value, expected),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_IsEqualTo_Failed, value, expected),
                     paramName);
 
             return value;
         }
 
-        public string Is(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null)
-            => IsEqualTo(value, expected, comparison, paramName);
-
         public string IsEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null)
         {
             if (!StringEquals(value, expected, comparison))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Strings_IsEqualTo_Failed, value, expected),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_IsEqualTo_Failed, value, expected),
                     paramName);
 
             return value;
@@ -156,24 +158,24 @@ namespace EnsureThat.Enforcers
         public string IsNot(string value, string notExpected, [InvokerParameterName] string paramName = null)
             => IsNotEqualTo(value, notExpected, paramName);
 
+        public string IsNot(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null)
+            => IsNotEqualTo(value, notExpected, comparison, paramName);
+
         public string IsNotEqualTo(string value, string notExpected, [InvokerParameterName] string paramName = null)
         {
             if (StringEquals(value, notExpected))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Strings_IsNotEqualTo_Failed, value, notExpected),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_IsNotEqualTo_Failed, value, notExpected),
                     paramName);
 
             return value;
         }
 
-        public string IsNot(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null)
-            => IsNotEqualTo(value, notExpected, comparison, paramName);
-
         public string IsNotEqualTo(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null)
         {
             if (StringEquals(value, notExpected, comparison))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Strings_IsNotEqualTo_Failed, value, notExpected),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_IsNotEqualTo_Failed, value, notExpected),
                     paramName);
 
             return value;
@@ -185,7 +187,7 @@ namespace EnsureThat.Enforcers
         {
             if (!Guid.TryParse(value, out var parsed))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Strings_IsGuid_Failed, value),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_IsGuid_Failed, value),
                     paramName);
 
             return parsed;
@@ -197,9 +199,9 @@ namespace EnsureThat.Enforcers
         {
             Ensure.Any.IsNotNull(value, paramName);
 
-            if (!value.StartsWith(expectedStartsWith))
+            if (!value.StartsWith(expectedStartsWith, StringComparison.CurrentCulture))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Strings_StartsWith_Failed, value, expectedStartsWith),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_StartsWith_Failed, value, expectedStartsWith),
                     paramName);
 
             return value;
@@ -213,7 +215,7 @@ namespace EnsureThat.Enforcers
 
             if (!value.StartsWith(expectedStartsWith, comparison))
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Strings_StartsWith_Failed, value, expectedStartsWith),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_StartsWith_Failed, value, expectedStartsWith),
                     paramName);
 
             return value;
@@ -223,7 +225,7 @@ namespace EnsureThat.Enforcers
         {
             if (!StringIsLt(value, limit, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotLt, value, limit), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotLt, value, limit), paramName, value);
 
             return value;
         }
@@ -232,7 +234,7 @@ namespace EnsureThat.Enforcers
         {
             if (StringIsGt(value, limit, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotLte, value, limit), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotLte, value, limit), paramName, value);
 
             return value;
         }
@@ -241,7 +243,7 @@ namespace EnsureThat.Enforcers
         {
             if (!StringIsGt(value, limit, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotGt, value, limit), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotGt, value, limit), paramName, value);
 
             return value;
         }
@@ -250,7 +252,7 @@ namespace EnsureThat.Enforcers
         {
             if (StringIsLt(value, limit, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotGte, value, limit), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotGte, value, limit), paramName, value);
 
             return value;
         }
@@ -259,11 +261,11 @@ namespace EnsureThat.Enforcers
         {
             if (StringIsLt(value, min, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotInRange_ToLow, value, min), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotInRange_ToLow, value, min), paramName, value);
 
             if (StringIsGt(value, max, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
-                    string.Format(ExceptionMessages.Comp_IsNotInRange_ToHigh, value, max), paramName, value);
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Comp_IsNotInRange_ToHigh, value, max), paramName, value);
 
             return value;
         }
@@ -277,14 +279,14 @@ namespace EnsureThat.Enforcers
             for (var i = 0; i < value.Length; i++)
                 if (!char.IsLetterOrDigit(value[i]))
                     throw Ensure.ExceptionFactory.ArgumentException(
-                        string.Format(ExceptionMessages.Strings_IsAllLettersOrDigits_Failed, value),
+                        string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Strings_IsAllLettersOrDigits_Failed, value),
                         paramName);
 
             return value;
         }
 
         private static bool StringEquals(string x, string y)
-            => string.Equals(x, y);
+            => string.Equals(x, y, StringComparison.Ordinal);
 
         private static bool StringEquals(string x, string y, StringComparison comparison)
             => string.Equals(x, y, comparison);

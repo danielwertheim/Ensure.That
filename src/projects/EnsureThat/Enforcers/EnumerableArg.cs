@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using EnsureThat.Annotations;
+using EnsureThat.Internals;
 using JetBrains.Annotations;
 
 using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
@@ -14,6 +15,7 @@ namespace EnsureThat.Enforcers
     /// </summary>
     /// <remarks>MULTIPLE ENUMERATION OF PASSED ENUMERABLE IS POSSIBLE.</remarks>
     [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
+    [SuppressMessage("Performance", "CA1822:Mark members as static")]
     public sealed class EnumerableArg
     {
         [return: NotNull]
@@ -40,7 +42,7 @@ namespace EnsureThat.Enforcers
 
             if (count != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, count),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_SizeIs_Failed, expected, count),
                     paramName);
 
             return value;
@@ -56,7 +58,7 @@ namespace EnsureThat.Enforcers
 
             if (count != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
-                    string.Format(ExceptionMessages.Collections_SizeIs_Failed, expected, count),
+                    string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Collections_SizeIs_Failed, expected, count),
                     paramName);
 
             return value;

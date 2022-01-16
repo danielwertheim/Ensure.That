@@ -1,5 +1,6 @@
 using System;
 using EnsureThat;
+using EnsureThat.Internals;
 using Xunit;
 
 namespace UnitTests
@@ -39,7 +40,7 @@ namespace UnitTests
 
         [Fact]
         public void IsNotOfType_WhenTypeOf_ThrowsArgumentException() => ShouldThrow<ArgumentException>(
-            string.Format(ExceptionMessages.Types_IsNotOfType_Failed, BogusType),
+            string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Types_IsNotOfType_Failed, BogusType),
             () => Ensure.Type.IsNotOfType(typeof(Bogus), BogusType, ParamName),
             () => Ensure.Type.IsNotOfType(new Bogus(), BogusType, ParamName),
             () => EnsureArg.IsNotOfType(typeof(Bogus), BogusType, ParamName),
@@ -83,7 +84,7 @@ namespace UnitTests
 
         [Fact]
         public void IsNotAssignableToType_WhenAssignableToType_ThrowsArgumentException() => ShouldThrow<ArgumentException>(
-            string.Format(ExceptionMessages.Types_IsNotAssignableToType_Failed, NonBogusType),
+            string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Types_IsNotAssignableToType_Failed, NonBogusType),
             () => Ensure.Type.IsNotAssignableToType(typeof(NonBogus), NonBogusType, ParamName),
             () => Ensure.Type.IsNotAssignableToType(new NonBogus(), NonBogusType, ParamName),
             () => EnsureArg.IsNotAssignableToType(typeof(NonBogus), NonBogusType, ParamName),
@@ -310,13 +311,13 @@ namespace UnitTests
         }
 
         private static void AssertIsOfTypeScenario(Type expected, Type actual, params Action[] actions)
-            => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Types_IsOfType_Failed, expected.FullName, actual.FullName), actions);
+            => ShouldThrow<ArgumentException>(string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Types_IsOfType_Failed, expected.FullName, actual.FullName), actions);
 
         private static void AssertIsAssignableToTypeScenario(Type expected, Type actual, params Action[] actions)
-	        => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Types_IsAssignableToType_Failed, expected.FullName, actual.FullName), actions);
+	        => ShouldThrow<ArgumentException>(string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Types_IsAssignableToType_Failed, expected.FullName, actual.FullName), actions);
 
         private static void AssertIsNotClass(Type type, params Action[] actions)
-            => ShouldThrow<ArgumentException>(string.Format(ExceptionMessages.Types_IsClass_Failed, type.FullName), actions);
+            => ShouldThrow<ArgumentException>(string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Types_IsClass_Failed, type.FullName), actions);
 
         private class MyClass { }
     }

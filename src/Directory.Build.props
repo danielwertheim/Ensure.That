@@ -11,4 +11,9 @@
     <RepositoryType>Git</RepositoryType>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
+
+  <PropertyGroup Label="Code Analysis">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+  </PropertyGroup>
 </Project>
