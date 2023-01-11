@@ -248,7 +248,7 @@ namespace Benchmarks
         public void AnyHasValueWhenStringBaseLine()
             => BaseLines.StringIsNotNull(string.Empty);
 
-        private class MyThing
+        private sealed class MyThing
         {
             public string MyString { get; set; }
             public int MyInt { get; set; }
