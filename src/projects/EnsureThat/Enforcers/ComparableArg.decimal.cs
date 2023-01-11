@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using EnsureThat.Internals;
 using JetBrains.Annotations;
 
@@ -7,7 +8,7 @@ namespace EnsureThat.Enforcers
     [SuppressMessage("Performance", "CA1822:Mark members as static")]
     public sealed partial class ComparableArg
     {
-        public decimal Is(decimal value, decimal expected, [InvokerParameterName] string paramName = null)
+        public decimal Is(decimal value, decimal expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (value != expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -16,7 +17,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public decimal IsNot(decimal value, decimal expected, [InvokerParameterName] string paramName = null)
+        public decimal IsNot(decimal value, decimal expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (value == expected)
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -25,7 +26,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public decimal IsLt(decimal value, decimal limit, [InvokerParameterName] string paramName = null)
+        public decimal IsLt(decimal value, decimal limit, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (value >= limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -34,7 +35,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public decimal IsLte(decimal value, decimal limit, [InvokerParameterName] string paramName = null)
+        public decimal IsLte(decimal value, decimal limit, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (value > limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -43,7 +44,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public decimal IsGt(decimal value, decimal limit, [InvokerParameterName] string paramName = null)
+        public decimal IsGt(decimal value, decimal limit, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (value <= limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -52,7 +53,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public decimal IsGte(decimal value, decimal limit, [InvokerParameterName] string paramName = null)
+        public decimal IsGte(decimal value, decimal limit, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (value < limit)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -61,7 +62,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public decimal IsInRange(decimal value, decimal min, decimal max, [InvokerParameterName] string paramName = null)
+        public decimal IsInRange(decimal value, decimal min, decimal max, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (value < min)
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(

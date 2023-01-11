@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using EnsureThat.Annotations;
 using EnsureThat.Internals;
@@ -14,7 +15,7 @@ namespace EnsureThat.Enforcers
     {
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string IsNotNull([ValidatedNotNull, NotNull]string value, [InvokerParameterName] string paramName = null)
+        public string IsNotNull([ValidatedNotNull, NotNull]string value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -23,7 +24,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string IsNotNullOrWhiteSpace([ValidatedNotNull, NotNull]string value, [InvokerParameterName] string paramName = null)
+        public string IsNotNullOrWhiteSpace([ValidatedNotNull, NotNull]string value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -34,7 +35,7 @@ namespace EnsureThat.Enforcers
         }
 
         [return: NotNull]
-        public string IsNotNullOrEmpty([ValidatedNotNull, NotNull]string value, [InvokerParameterName] string paramName = null)
+        public string IsNotNullOrEmpty([ValidatedNotNull, NotNull]string value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -44,7 +45,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsNotEmptyOrWhiteSpace(string value, [InvokerParameterName] string paramName = null)
+        public string IsNotEmptyOrWhiteSpace(string value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (value == null)
             {
@@ -65,7 +66,7 @@ namespace EnsureThat.Enforcers
             throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmptyOrWhiteSpace_Failed, paramName);
         }
 
-        public string IsNotEmpty(string value, [InvokerParameterName] string paramName = null)
+        public string IsNotEmpty(string value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (value?.Length == 0)
                 throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.Strings_IsNotEmpty_Failed, paramName);
@@ -75,7 +76,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string HasLength([ValidatedNotNull, NotNull]string value, int expected, [InvokerParameterName] string paramName = null)
+        public string HasLength([ValidatedNotNull, NotNull]string value, int expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -89,7 +90,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string HasLengthBetween([ValidatedNotNull, NotNull]string value, int minLength, int maxLength, [InvokerParameterName] string paramName = null)
+        public string HasLengthBetween([ValidatedNotNull, NotNull]string value, int minLength, int maxLength, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -109,11 +110,11 @@ namespace EnsureThat.Enforcers
         }
 
         [return: NotNull]
-        public string Matches(string value, [RegexPattern] string match, [InvokerParameterName] string paramName = null)
+        public string Matches(string value, [RegexPattern] string match, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
             => Matches(value, new Regex(match), paramName);
 
         [return: NotNull]
-        public string Matches(string value, Regex match, [InvokerParameterName] string paramName = null)
+        public string Matches(string value, Regex match, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (!match.IsMatch(value))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -126,16 +127,16 @@ namespace EnsureThat.Enforcers
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
         [Obsolete("Use 'HasLength' instead. This will be removed in an upcoming version.")]
-        public string SizeIs([ValidatedNotNull, NotNull] string value, int expected, [InvokerParameterName] string paramName = null)
+        public string SizeIs([ValidatedNotNull, NotNull] string value, int expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
             => HasLength(value, expected, paramName);
 
-        public string Is(string value, string expected, [InvokerParameterName] string paramName = null)
+        public string Is(string value, string expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
             => IsEqualTo(value, expected, paramName);
 
-        public string Is(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null)
+        public string Is(string value, string expected, StringComparison comparison, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
             => IsEqualTo(value, expected, comparison, paramName);
 
-        public string IsEqualTo(string value, string expected, [InvokerParameterName] string paramName = null)
+        public string IsEqualTo(string value, string expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (!StringEquals(value, expected))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -145,7 +146,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName] string paramName = null)
+        public string IsEqualTo(string value, string expected, StringComparison comparison, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (!StringEquals(value, expected, comparison))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -155,13 +156,13 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsNot(string value, string notExpected, [InvokerParameterName] string paramName = null)
+        public string IsNot(string value, string notExpected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
             => IsNotEqualTo(value, notExpected, paramName);
 
-        public string IsNot(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null)
+        public string IsNot(string value, string notExpected, StringComparison comparison, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
             => IsNotEqualTo(value, notExpected, comparison, paramName);
 
-        public string IsNotEqualTo(string value, string notExpected, [InvokerParameterName] string paramName = null)
+        public string IsNotEqualTo(string value, string notExpected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (StringEquals(value, notExpected))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -171,7 +172,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsNotEqualTo(string value, string notExpected, StringComparison comparison, [InvokerParameterName] string paramName = null)
+        public string IsNotEqualTo(string value, string notExpected, StringComparison comparison, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (StringEquals(value, notExpected, comparison))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -183,7 +184,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public Guid IsGuid([ValidatedNotNull, NotNull]string value, [InvokerParameterName] string paramName = null)
+        public Guid IsGuid([ValidatedNotNull, NotNull]string value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (!Guid.TryParse(value, out var parsed))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -195,7 +196,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string StartsWith([ValidatedNotNull, NotNull]string value, [NotNull] string expectedStartsWith, [InvokerParameterName] string paramName = null)
+        public string StartsWith([ValidatedNotNull, NotNull]string value, [NotNull] string expectedStartsWith, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -209,7 +210,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string StartsWith([ValidatedNotNull, NotNull]string value, [NotNull] string expectedStartsWith, StringComparison comparison, [InvokerParameterName] string paramName = null)
+        public string StartsWith([ValidatedNotNull, NotNull]string value, [NotNull] string expectedStartsWith, StringComparison comparison, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -221,7 +222,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsLt(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null)
+        public string IsLt(string value, string limit, StringComparison comparison, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (!StringIsLt(value, limit, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -230,7 +231,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsLte(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null)
+        public string IsLte(string value, string limit, StringComparison comparison, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (StringIsGt(value, limit, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -239,7 +240,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsGt(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null)
+        public string IsGt(string value, string limit, StringComparison comparison, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (!StringIsGt(value, limit, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -248,7 +249,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsGte(string value, string limit, StringComparison comparison, [InvokerParameterName] string paramName = null)
+        public string IsGte(string value, string limit, StringComparison comparison, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (StringIsLt(value, limit, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -257,7 +258,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public string IsInRange(string value, string min, string max, StringComparison comparison, [InvokerParameterName] string paramName = null)
+        public string IsInRange(string value, string min, string max, StringComparison comparison, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             if (StringIsLt(value, min, comparison))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -272,7 +273,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public string IsAllLettersOrDigits([ValidatedNotNull, NotNull] string value, [InvokerParameterName] string paramName = null)
+        public string IsAllLettersOrDigits([ValidatedNotNull, NotNull] string value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using EnsureThat.Annotations;
 using EnsureThat.Internals;
 using JetBrains.Annotations;
@@ -17,7 +18,7 @@ namespace EnsureThat.Enforcers
     {
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public T HasItems<T>([ValidatedNotNull, NotNull]T value, [InvokerParameterName] string paramName = null) where T : class, ICollection
+        public T HasItems<T>([ValidatedNotNull, NotNull]T value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : class, ICollection
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -31,7 +32,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public ICollection<T> HasItems<T>([ValidatedNotNull, NotNull]ICollection<T> value, [InvokerParameterName] string paramName = null)
+        public ICollection<T> HasItems<T>([ValidatedNotNull, NotNull]ICollection<T> value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -45,7 +46,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public IReadOnlyCollection<T> HasItems<T>([ValidatedNotNull, NotNull]IReadOnlyCollection<T> value, [InvokerParameterName] string paramName = null)
+        public IReadOnlyCollection<T> HasItems<T>([ValidatedNotNull, NotNull]IReadOnlyCollection<T> value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -59,7 +60,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public IReadOnlyList<T> HasItems<T>([ValidatedNotNull, NotNull]IReadOnlyList<T> value, [InvokerParameterName] string paramName = null)
+        public IReadOnlyList<T> HasItems<T>([ValidatedNotNull, NotNull]IReadOnlyList<T> value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -73,7 +74,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public ISet<T> HasItems<T>([ValidatedNotNull, NotNull]ISet<T> value, [InvokerParameterName] string paramName = null)
+        public ISet<T> HasItems<T>([ValidatedNotNull, NotNull]ISet<T> value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -87,7 +88,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public T[] HasItems<T>([ValidatedNotNull, NotNull]T[] value, [InvokerParameterName] string paramName = null)
+        public T[] HasItems<T>([ValidatedNotNull, NotNull]T[] value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -101,7 +102,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public IList<T> HasItems<T>([ValidatedNotNull, NotNull] IList<T> value, [InvokerParameterName] string paramName = null)
+        public IList<T> HasItems<T>([ValidatedNotNull, NotNull] IList<T> value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -115,7 +116,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public IDictionary<TKey, TValue> HasItems<TKey, TValue>([ValidatedNotNull, NotNull]IDictionary<TKey, TValue> value, [InvokerParameterName] string paramName = null)
+        public IDictionary<TKey, TValue> HasItems<TKey, TValue>([ValidatedNotNull, NotNull]IDictionary<TKey, TValue> value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -129,7 +130,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public Collection<T> HasItems<T>([ValidatedNotNull, NotNull] Collection<T> value, [InvokerParameterName] string paramName = null)
+        public Collection<T> HasItems<T>([ValidatedNotNull, NotNull] Collection<T> value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -143,7 +144,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public List<T> HasItems<T>([ValidatedNotNull, NotNull] List<T> value, [InvokerParameterName] string paramName = null)
+        public List<T> HasItems<T>([ValidatedNotNull, NotNull] List<T> value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -157,7 +158,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public HashSet<T> HasItems<T>([ValidatedNotNull, NotNull] HashSet<T> value, [InvokerParameterName] string paramName = null)
+        public HashSet<T> HasItems<T>([ValidatedNotNull, NotNull] HashSet<T> value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -171,7 +172,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public Dictionary<TKey, TValue> HasItems<TKey, TValue>([ValidatedNotNull, NotNull]Dictionary<TKey, TValue> value, [InvokerParameterName] string paramName = null)
+        public Dictionary<TKey, TValue> HasItems<TKey, TValue>([ValidatedNotNull, NotNull]Dictionary<TKey, TValue> value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -185,7 +186,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public T[] SizeIs<T>([ValidatedNotNull, NotNull]T[] value, int expected, [InvokerParameterName] string paramName = null)
+        public T[] SizeIs<T>([ValidatedNotNull, NotNull]T[] value, int expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -199,7 +200,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public T[] SizeIs<T>([ValidatedNotNull, NotNull]T[] value, long expected, [InvokerParameterName] string paramName = null)
+        public T[] SizeIs<T>([ValidatedNotNull, NotNull]T[] value, long expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -213,7 +214,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public T SizeIs<T>([ValidatedNotNull, NotNull]T value, int expected, [InvokerParameterName] string paramName = null) where T : class, ICollection
+        public T SizeIs<T>([ValidatedNotNull, NotNull]T value, int expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : class, ICollection
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -227,7 +228,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public T SizeIs<T>([ValidatedNotNull, NotNull]T value, long expected, [InvokerParameterName] string paramName = null) where T : class, ICollection
+        public T SizeIs<T>([ValidatedNotNull, NotNull]T value, long expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : class, ICollection
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -241,7 +242,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public ICollection<T> SizeIs<T>([ValidatedNotNull, NotNull]ICollection<T> value, int expected, [InvokerParameterName] string paramName = null)
+        public ICollection<T> SizeIs<T>([ValidatedNotNull, NotNull]ICollection<T> value, int expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -255,7 +256,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public ICollection<T> SizeIs<T>([ValidatedNotNull, NotNull]ICollection<T> value, long expected, [InvokerParameterName] string paramName = null)
+        public ICollection<T> SizeIs<T>([ValidatedNotNull, NotNull]ICollection<T> value, long expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -269,7 +270,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public IList<T> SizeIs<T>([ValidatedNotNull, NotNull] IList<T> value, int expected, [InvokerParameterName] string paramName = null)
+        public IList<T> SizeIs<T>([ValidatedNotNull, NotNull] IList<T> value, int expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -283,7 +284,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public IList<T> SizeIs<T>([ValidatedNotNull, NotNull]IList<T> value, long expected, [InvokerParameterName] string paramName = null)
+        public IList<T> SizeIs<T>([ValidatedNotNull, NotNull]IList<T> value, long expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -297,7 +298,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public IDictionary<TKey, TValue> SizeIs<TKey, TValue>([ValidatedNotNull, NotNull]IDictionary<TKey, TValue> value, int expected, [InvokerParameterName] string paramName = null)
+        public IDictionary<TKey, TValue> SizeIs<TKey, TValue>([ValidatedNotNull, NotNull]IDictionary<TKey, TValue> value, int expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -311,7 +312,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public IDictionary<TKey, TValue> SizeIs<TKey, TValue>([ValidatedNotNull, NotNull]IDictionary<TKey, TValue> value, long expected, [InvokerParameterName] string paramName = null)
+        public IDictionary<TKey, TValue> SizeIs<TKey, TValue>([ValidatedNotNull, NotNull]IDictionary<TKey, TValue> value, long expected, [InvokerParameterName, CallerArgumentExpression("value")   ] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -325,7 +326,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public IDictionary<TKey, TValue> ContainsKey<TKey, TValue>([ValidatedNotNull, NotNull]IDictionary<TKey, TValue> value, TKey expectedKey, [InvokerParameterName] string paramName = null)
+        public IDictionary<TKey, TValue> ContainsKey<TKey, TValue>([ValidatedNotNull, NotNull]IDictionary<TKey, TValue> value, TKey expectedKey, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -339,7 +340,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public IList<T> HasAny<T>([ValidatedNotNull, NotNull]IList<T> value, Func<T, bool> predicate, [InvokerParameterName] string paramName = null)
+        public IList<T> HasAny<T>([ValidatedNotNull, NotNull]IList<T> value, Func<T, bool> predicate, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -353,7 +354,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public ICollection<T> HasAny<T>([ValidatedNotNull, NotNull]ICollection<T> value, Func<T, bool> predicate, [InvokerParameterName] string paramName = null)
+        public ICollection<T> HasAny<T>([ValidatedNotNull, NotNull]ICollection<T> value, Func<T, bool> predicate, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -367,7 +368,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public T[] HasAny<T>([ValidatedNotNull, NotNull]T[] value, Func<T, bool> predicate, [InvokerParameterName] string paramName = null)
+        public T[] HasAny<T>([ValidatedNotNull, NotNull]T[] value, Func<T, bool> predicate, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
