@@ -8,7 +8,7 @@ using EnsureThat;
 
 namespace Benchmarks
 {
-    class Program
+    sealed class Program
     {
         static void Main(string[] args)
         {
@@ -26,14 +26,12 @@ namespace Benchmarks
 
         public static void StringIsNotNull(string value)
         {
-            if (value == null)
-                throw new ArgumentNullException(nameof(value));
+            ArgumentNullException.ThrowIfNull(value);
         }
 
         public static void StringIsNotNullOrWhiteSpace(string value)
         {
-            if (value == null)
-                throw new ArgumentNullException(nameof(value));
+            ArgumentNullException.ThrowIfNull(value);
 
             if (string.IsNullOrWhiteSpace(value))
                 throw new ArgumentException("Some message 1.", nameof(value));
@@ -71,8 +69,7 @@ namespace Benchmarks
 
         public static void ThingIsNotNullViaThat<T>(T thing) where T : class
         {
-            if (thing == null)
-                throw new ArgumentNullException(nameof(thing));
+            ArgumentNullException.ThrowIfNull(thing);
         }
 
         public static void ThingsHasItems<T>(List<T> things) where T : class
@@ -248,7 +245,7 @@ namespace Benchmarks
         public void AnyHasValueWhenStringBaseLine()
             => BaseLines.StringIsNotNull(string.Empty);
 
-        private class MyThing
+        private sealed class MyThing
         {
             public string MyString { get; set; }
             public int MyInt { get; set; }

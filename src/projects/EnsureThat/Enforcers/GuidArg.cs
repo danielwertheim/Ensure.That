@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 
 namespace EnsureThat.Enforcers
@@ -7,7 +8,7 @@ namespace EnsureThat.Enforcers
     [SuppressMessage("Performance", "CA1822:Mark members as static")]
     public sealed class GuidArg
     {
-        public Guid IsNotEmpty(Guid value, [InvokerParameterName] string paramName = null)
+        public Guid IsNotEmpty(Guid value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null)
         {
             if (value.Equals(Guid.Empty))
                 throw Ensure.ExceptionFactory.ArgumentException(

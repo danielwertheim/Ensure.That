@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using EnsureThat.Annotations;
 using EnsureThat.Internals;
 using JetBrains.Annotations;
@@ -33,87 +34,87 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public Type IsInt([ValidatedNotNull, NotNull]Type param, [InvokerParameterName] string paramName = null)
+        public Type IsInt([ValidatedNotNull, NotNull]Type param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.IntType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public object IsInt([ValidatedNotNull, NotNull]object param, [InvokerParameterName] string paramName = null)
+        public object IsInt([ValidatedNotNull, NotNull]object param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.IntType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public Type IsShort([ValidatedNotNull, NotNull]Type param, [InvokerParameterName] string paramName = null)
+        public Type IsShort([ValidatedNotNull, NotNull]Type param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.ShortType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public object IsShort([ValidatedNotNull, NotNull]object param, [InvokerParameterName] string paramName = null)
+        public object IsShort([ValidatedNotNull, NotNull]object param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.ShortType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public Type IsDecimal([ValidatedNotNull, NotNull]Type param, [InvokerParameterName] string paramName = null)
+        public Type IsDecimal([ValidatedNotNull, NotNull]Type param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.DecimalType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public object IsDecimal([ValidatedNotNull, NotNull]object param, [InvokerParameterName] string paramName = null)
+        public object IsDecimal([ValidatedNotNull, NotNull]object param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.DecimalType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public Type IsDouble([ValidatedNotNull, NotNull]Type param, [InvokerParameterName] string paramName = null)
+        public Type IsDouble([ValidatedNotNull, NotNull]Type param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.DoubleType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public object IsDouble([ValidatedNotNull, NotNull]object param, [InvokerParameterName] string paramName = null)
+        public object IsDouble([ValidatedNotNull, NotNull]object param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.DoubleType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public Type IsFloat([ValidatedNotNull, NotNull]Type param, [InvokerParameterName] string paramName = null)
+        public Type IsFloat([ValidatedNotNull, NotNull]Type param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.FloatType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public object IsFloat([ValidatedNotNull, NotNull]object param, [InvokerParameterName] string paramName = null)
+        public object IsFloat([ValidatedNotNull, NotNull]object param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.FloatType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public Type IsBool([ValidatedNotNull, NotNull]Type param, [InvokerParameterName] string paramName = null)
+        public Type IsBool([ValidatedNotNull, NotNull]Type param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.BoolType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public object IsBool([ValidatedNotNull, NotNull]object param, [InvokerParameterName] string paramName = null)
+        public object IsBool([ValidatedNotNull, NotNull]object param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.BoolType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public Type IsDateTime([ValidatedNotNull, NotNull]Type param, [InvokerParameterName] string paramName = null)
+        public Type IsDateTime([ValidatedNotNull, NotNull]Type param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.DateTimeType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public object IsDateTime([ValidatedNotNull, NotNull]object param, [InvokerParameterName] string paramName = null)
+        public object IsDateTime([ValidatedNotNull, NotNull]object param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.DateTimeType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public Type IsString([ValidatedNotNull, NotNull]Type param, [InvokerParameterName] string paramName = null)
+        public Type IsString([ValidatedNotNull, NotNull]Type param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.StringType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public object IsString([ValidatedNotNull, NotNull]object param, [InvokerParameterName] string paramName = null)
+        public object IsString([ValidatedNotNull, NotNull]object param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
             => IsOfType(param, Types.StringType, paramName);
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public T IsOfType<T>([ValidatedNotNull, NotNull]T param, Type expectedType, [InvokerParameterName] string paramName = null) where T : class
+        public T IsOfType<T>([ValidatedNotNull, NotNull]T param, Type expectedType, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null) where T : class
         {
             Ensure.Any.IsNotNull(param, paramName);
 
@@ -124,7 +125,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public Type IsOfType([ValidatedNotNull, NotNull]Type param, Type expectedType, [InvokerParameterName] string paramName = null)
+        public Type IsOfType([ValidatedNotNull, NotNull]Type param, Type expectedType, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
         {
             Ensure.Any.IsNotNull(param, paramName);
             Ensure.Any.IsNotNull(expectedType, nameof(expectedType));
@@ -139,7 +140,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public T IsNotOfType<T>([ValidatedNotNull, NotNull]T param, Type nonExpectedType, [InvokerParameterName] string paramName = null) where T : class
+        public T IsNotOfType<T>([ValidatedNotNull, NotNull]T param, Type nonExpectedType, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null) where T : class
         {
             Ensure.Any.IsNotNull(param, paramName);
 
@@ -150,7 +151,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public Type IsNotOfType([ValidatedNotNull, NotNull]Type param, Type nonExpectedType, [InvokerParameterName] string paramName = null)
+        public Type IsNotOfType([ValidatedNotNull, NotNull]Type param, Type nonExpectedType, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
         {
             Ensure.Any.IsNotNull(param, paramName);
             Ensure.Any.IsNotNull(nonExpectedType, nameof(nonExpectedType));
@@ -165,7 +166,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public T IsAssignableToType<T>([ValidatedNotNull, NotNull]T param, Type expectedType, [InvokerParameterName] string paramName = null) where T : class
+        public T IsAssignableToType<T>([ValidatedNotNull, NotNull]T param, Type expectedType, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null) where T : class
         {
             Ensure.Any.IsNotNull(param, paramName);
 
@@ -176,7 +177,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public Type IsAssignableToType([ValidatedNotNull, NotNull]Type param, Type expectedType, [InvokerParameterName] string paramName = null)
+        public Type IsAssignableToType([ValidatedNotNull, NotNull]Type param, Type expectedType, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
         {
             Ensure.Any.IsNotNull(param, paramName);
             Ensure.Any.IsNotNull(expectedType, nameof(expectedType));
@@ -191,7 +192,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public T IsNotAssignableToType<T>([ValidatedNotNull, NotNull]T param, Type nonExpectedType, [InvokerParameterName] string paramName = null) where T : class
+        public T IsNotAssignableToType<T>([ValidatedNotNull, NotNull]T param, Type nonExpectedType, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null) where T : class
         {
             Ensure.Any.IsNotNull(param, paramName);
 
@@ -202,7 +203,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public Type IsNotAssignableToType([ValidatedNotNull, NotNull]Type param, Type nonExpectedType, [InvokerParameterName] string paramName = null)
+        public Type IsNotAssignableToType([ValidatedNotNull, NotNull]Type param, Type nonExpectedType, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
         {
             Ensure.Any.IsNotNull(param, paramName);
             Ensure.Any.IsNotNull(nonExpectedType, nameof(nonExpectedType));
@@ -217,7 +218,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public T IsClass<T>([ValidatedNotNull, NotNull]T param, [InvokerParameterName] string paramName = null)
+        public T IsClass<T>([ValidatedNotNull, NotNull]T param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
         {
             if (param == null)
                 throw Ensure.ExceptionFactory.ArgumentNullException(
@@ -231,7 +232,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("param:null => halt")]
-        public Type IsClass([ValidatedNotNull, NotNull]Type param, [InvokerParameterName] string paramName = null)
+        public Type IsClass([ValidatedNotNull, NotNull]Type param, [InvokerParameterName, CallerArgumentExpression(nameof(param))] string paramName = null)
         {
             if (param == null)
                 throw Ensure.ExceptionFactory.ArgumentNullException(

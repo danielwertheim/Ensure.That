@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net4.6.2;netcoreapp3.1;net6.0</TargetFrameworks>
+    <TargetFrameworks>net4.6.2;netcoreapp3.1;net6.0;net7.0</TargetFrameworks>
     <Title>Ensure.That</Title>
     <PackageId>Ensure.That</PackageId>
     <PackageTags>ensure-that ensure that argument validation guard clause contracts</PackageTags>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 using EnsureThat.Enforcers;
 using JetBrains.Annotations;
 
@@ -80,7 +81,7 @@ namespace EnsureThat
         /// <param name="name"></param>
         /// <returns></returns>
         [Pure]
-        public static Param<T> That<T>([NoEnumeration] T value, string name = null)
+        public static Param<T> That<T>([NoEnumeration] T value, [CallerArgumentExpression(nameof(value))] string name = null)
             => new Param<T>(name, value);
 
         /// <summary>
@@ -93,7 +94,7 @@ namespace EnsureThat
         /// <param name="name"></param>
         /// <returns></returns>
         [Pure]
-        public static StringParam That([NoEnumeration] string value, string name = null)
+        public static StringParam That([NoEnumeration] string value, [CallerArgumentExpression(nameof(value))] string name = null)
             => new StringParam(name, value);
 
         /// <summary>
@@ -107,7 +108,7 @@ namespace EnsureThat
         /// <param name="name"></param>
         /// <returns></returns>
         [Pure]
-        public static TypeParam ThatTypeFor<T>([NotNull] T value, string name = null)
+        public static TypeParam ThatTypeFor<T>([NotNull] T value, [CallerArgumentExpression(nameof(value))] string name = null)
             => new TypeParam(name, value.GetType());
 
         /// <summary>
@@ -120,7 +121,7 @@ namespace EnsureThat
         /// <param name="name"></param>
         /// <returns></returns>
         [Pure]
-        public static TypeParam ThatType([NotNull] Type value, string name = null)
+        public static TypeParam ThatType([NotNull] Type value, [CallerArgumentExpression(nameof(value))] string name = null)
             => new TypeParam(name, value);
     }
 }

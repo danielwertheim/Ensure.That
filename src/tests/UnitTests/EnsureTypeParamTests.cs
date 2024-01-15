@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using EnsureThat;
 using EnsureThat.Internals;
 using Xunit;
@@ -7,11 +7,11 @@ namespace UnitTests
 {
     public class EnsureTypeParamTests : UnitTestBase
     {
-        private class Bogus { }
+        private sealed class Bogus { }
 
         private class NonBogus { }
 
-        private class AssignableToNonBogus : NonBogus { }
+        private sealed class AssignableToNonBogus : NonBogus { }
 
         private static readonly Type BogusType = typeof(Bogus);
 
@@ -319,6 +319,6 @@ namespace UnitTests
         private static void AssertIsNotClass(Type type, params Action[] actions)
             => ShouldThrow<ArgumentException>(string.Format(DefaultFormatProvider.Strings, ExceptionMessages.Types_IsClass_Failed, type.FullName), actions);
 
-        private class MyClass { }
+        private sealed class MyClass { }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using EnsureThat.Annotations;
 using JetBrains.Annotations;
 
@@ -11,7 +12,7 @@ namespace EnsureThat.Enforcers
     {
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public T IsNotNull<T>([NoEnumeration, ValidatedNotNull, NotNull] T value, [InvokerParameterName] string paramName = null) where T : class
+        public T IsNotNull<T>([NoEnumeration, ValidatedNotNull, NotNull] T value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : class
         {
             if (value == null)
                 throw Ensure.ExceptionFactory.ArgumentNullException(ExceptionMessages.Common_IsNotNull_Failed, paramName);
@@ -21,7 +22,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public T? IsNotNull<T>([ValidatedNotNull, NotNull] T? value, [InvokerParameterName] string paramName = null) where T : struct
+        public T? IsNotNull<T>([ValidatedNotNull, NotNull] T? value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : struct
         {
             if (value == null)
                 throw Ensure.ExceptionFactory.ArgumentNullException(ExceptionMessages.Common_IsNotNull_Failed, paramName);
@@ -29,7 +30,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsNotDefault<T>(T value, [InvokerParameterName] string paramName = null) where T : struct
+        public T IsNotDefault<T>(T value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : struct
         {
             if (default(T).Equals(value))
                 throw Ensure.ExceptionFactory.ArgumentException(ExceptionMessages.ValueTypes_IsNotDefault_Failed, paramName);

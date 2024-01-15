@@ -1,4 +1,5 @@
-﻿using EnsureThat.Annotations;
+﻿using System.Runtime.CompilerServices;
+using EnsureThat.Annotations;
 using JetBrains.Annotations;
 
 using NotNullAttribute = System.Diagnostics.CodeAnalysis.NotNullAttribute;
@@ -9,7 +10,7 @@ namespace EnsureThat
     {
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public static T IsNotNull<T>([NoEnumeration, ValidatedNotNull, NotNull] T value, [InvokerParameterName] string paramName = null) where T : class
+        public static T IsNotNull<T>([NoEnumeration, ValidatedNotNull, NotNull] T value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : class
             => Ensure.Any.IsNotNull(value, paramName);
     }
 }
