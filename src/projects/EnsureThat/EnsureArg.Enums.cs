@@ -27,14 +27,14 @@ namespace EnsureThat
         /// Abc.A | Abc.B IsDefined=true (due to Abc.AB)
         /// Abc.A | Abc.C IsDefined=false (A and C are both valid, the composite is valid due to <see cref="FlagsAttribute"/> attribute, but the composite is not a named enum value
         /// </example>
-        public static T EnumIsDefined<T>(T value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : struct, Enum
+        public static T EnumIsDefined<T>(T value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : struct, Enum
             => Ensure.Enum.IsDefined(value, paramName);
 
         /// <summary>
         /// Confirms that the <paramref name="value"/> is defined in the enum <typeparamref name="T"/>.
         /// Supports <see cref="FlagsAttribute"/> attribute.
         /// </summary>
-        public static T EnumIsDefinedWithFlagsSupport<T>(T value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : struct, Enum
+        public static T EnumIsDefinedWithFlagsSupport<T>(T value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : struct, Enum
             => Ensure.Enum.IsDefinedWithFlagsSupport(value, paramName);
     }
 }

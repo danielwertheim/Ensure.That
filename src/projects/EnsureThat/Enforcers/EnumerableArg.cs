@@ -21,7 +21,7 @@ namespace EnsureThat.Enforcers
     {
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public IEnumerable<T> HasItems<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
+        public IEnumerable<T> HasItems<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -35,7 +35,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public IEnumerable<T> SizeIs<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, int expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
+        public IEnumerable<T> SizeIs<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, int expected, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -51,7 +51,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public IEnumerable<T> SizeIs<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, long expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
+        public IEnumerable<T> SizeIs<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, long expected, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 
@@ -67,7 +67,7 @@ namespace EnsureThat.Enforcers
 
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public IEnumerable<T> HasAny<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, Func<T, bool> predicate, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null)
+        public IEnumerable<T> HasAny<T>([ValidatedNotNull, InstantHandle]IEnumerable<T> value, Func<T, bool> predicate, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null)
         {
             Ensure.Any.IsNotNull(value, paramName);
 

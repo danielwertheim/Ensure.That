@@ -10,7 +10,7 @@ namespace EnsureThat
     {
         [return: NotNull]
         [ContractAnnotation("value:null => halt")]
-        public static T IsNotNull<T>([NoEnumeration, ValidatedNotNull, NotNull] T value, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : class
+        public static T IsNotNull<T>([NoEnumeration, ValidatedNotNull, NotNull] T value, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : class
             => Ensure.Any.IsNotNull(value, paramName);
     }
 }

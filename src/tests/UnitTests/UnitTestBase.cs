@@ -11,7 +11,7 @@ namespace UnitTests
 
         private static void AssertThrowedAsExpected(ArgumentException ex, string expectedMessage, params object[] formattingArgs)
         {
-            if (formattingArgs != null && formattingArgs.Any())
+            if (formattingArgs != null && formattingArgs.Length != 0)
                 expectedMessage = string.Format(DefaultFormatProvider.Strings, expectedMessage, formattingArgs);
 
             ex.ParamName.Should().Be(ParamName);

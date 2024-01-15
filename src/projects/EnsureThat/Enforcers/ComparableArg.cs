@@ -10,7 +10,7 @@ namespace EnsureThat.Enforcers
     [SuppressMessage("Performance", "CA1822:Mark members as static")]
     public sealed partial class ComparableArg
     {
-        public T Is<T>(T value, T expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : IComparable<T>
+        public T Is<T>(T value, T expected, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : IComparable<T>
         {
             if (!ValueIsEq(value, expected))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -19,7 +19,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T Is<T>(T value, T expected, IComparer<T> comparer, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : IComparable<T>
+        public T Is<T>(T value, T expected, IComparer<T> comparer, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : IComparable<T>
         {
             if (!ValueIsEq(value, expected, comparer))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -28,7 +28,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsNot<T>(T value, T expected, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : IComparable<T>
+        public T IsNot<T>(T value, T expected, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : IComparable<T>
         {
             if (ValueIsEq(value, expected))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -37,7 +37,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsNot<T>(T value, T expected, IComparer<T> comparer, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : IComparable<T>
+        public T IsNot<T>(T value, T expected, IComparer<T> comparer, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : IComparable<T>
         {
             if (ValueIsEq(value, expected, comparer))
                 throw Ensure.ExceptionFactory.ArgumentException(
@@ -46,7 +46,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsLt<T>(T value, T limit, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : IComparable<T>
+        public T IsLt<T>(T value, T limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : IComparable<T>
         {
             if (!ValueIsLt(value, limit))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -55,7 +55,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsLt<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : IComparable<T>
+        public T IsLt<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : IComparable<T>
         {
             if (!ValueIsLt(value, limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -64,7 +64,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsLte<T>(T value, T limit, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : IComparable<T>
+        public T IsLte<T>(T value, T limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : IComparable<T>
         {
             if (ValueIsGt(value, limit))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -73,7 +73,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsLte<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : IComparable<T>
+        public T IsLte<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : IComparable<T>
         {
             if (ValueIsGt(value, limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -82,7 +82,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsGt<T>(T value, T limit, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : IComparable<T>
+        public T IsGt<T>(T value, T limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : IComparable<T>
         {
             if (!ValueIsGt(value, limit))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -91,7 +91,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsGt<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : IComparable<T>
+        public T IsGt<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : IComparable<T>
         {
             if (!ValueIsGt(value, limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -100,7 +100,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsGte<T>(T value, T limit, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : IComparable<T>
+        public T IsGte<T>(T value, T limit, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : IComparable<T>
         {
             if (ValueIsLt(value, limit))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -109,7 +109,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsGte<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : IComparable<T>
+        public T IsGte<T>(T value, T limit, IComparer<T> comparer, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : IComparable<T>
         {
             if (ValueIsLt(value, limit, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -118,7 +118,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsInRange<T>(T value, T min, T max, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : IComparable<T>
+        public T IsInRange<T>(T value, T min, T max, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : IComparable<T>
         {
             if (ValueIsLt(value, min))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
@@ -131,7 +131,7 @@ namespace EnsureThat.Enforcers
             return value;
         }
 
-        public T IsInRange<T>(T value, T min, T max, IComparer<T> comparer, [InvokerParameterName, CallerArgumentExpression("value")] string paramName = null) where T : IComparable<T>
+        public T IsInRange<T>(T value, T min, T max, IComparer<T> comparer, [InvokerParameterName, CallerArgumentExpression(nameof(value))] string paramName = null) where T : IComparable<T>
         {
             if (ValueIsLt(value, min, comparer))
                 throw Ensure.ExceptionFactory.ArgumentOutOfRangeException(
